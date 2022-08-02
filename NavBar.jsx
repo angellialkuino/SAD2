@@ -12,10 +12,16 @@ class NavBar extends Component {
                                     <a className="nav-link" href="/#">Home</a>
                                 </li>
                                 <li className="nav-item">
+                                    <a className="nav-link" href="/#">Order Now</a>
+                                </li>
+                                <li className="nav-item">
                                     <a className="nav-link" href="/#">About Us</a>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="/#">Order</a>
+                                    <a className="nav-link" href="/#">Sign Up</a>
+                                </li>
+                                <li className="nav-item">
+                                    <a className="nav-link" href="/#">Login</a>
                                 </li>
                             </ul>
                         </div>
