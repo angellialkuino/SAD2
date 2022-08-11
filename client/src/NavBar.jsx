@@ -4,7 +4,7 @@ class NavBar extends Component {
         return (
             <React.Fragment>
                 <nav className="navbar navbar-expand-lg">
-                    <div className="container-fluid m-2">
+                    <div className="container-fluid m-2 ms-5 me-5">
                         {/* NEED: provide links */}
                         <a className="navbar-brand" href="#">Crafter's Haven</a>
                         <div className="collapse navbar-collapse" id="navbarSupportedContent">
