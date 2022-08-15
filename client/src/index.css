@@ -39,16 +39,29 @@
     position: absolute
 }
 
+.text-bg {
+    border-radius: 40px;
+    background: #78f3ce;
+}
+
 .feed-frame {
     border-radius: 40px;
     background: #78ccf3;
     padding: 10px;
     width: 600px;
-    height: 800px;
-    position: absolute
+    height: 600px;
 }
 
-.vertical-center {
+.vertical-content {
     display: flex;
     justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+img {
+    max-width: 85%;
+    max-height: 85%;
+    padding: 10px;
 }
