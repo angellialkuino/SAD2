@@ -9,6 +9,7 @@ exports.up = function(knex) {
         table.dateTime('order_date').notNullable();
         table.string('urgency').notNullable();
         table.string('order_status');
+        table.date('estimate_date_finished').notNullable();
     })
 };
 
