@@ -17,6 +17,8 @@ class AboutUs extends Component {
                         <div className="w-100"></div>
                         <div className="col-md-auto fw-bold">Phone Number:</div>
                         <div className="col-md-auto">09xxxxxxxxx</div>
+                        <div className="col-md-auto fw-bold">Address:</div>
+                        <div className="col-md-auto">Door 3, JADEG Bldg., 80 V. Mapa St, Poblacion District, Davao City, 8000 Davao del Sur</div>
                     </div>
                 </div>
             </div>
