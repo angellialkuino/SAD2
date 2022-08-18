@@ -13,7 +13,7 @@ class NavBar extends Component {
                 <nav className='nav'>
                     <Link to="/" className="navbar-brand nav-link site-title nav-hover">Crafter's Haven</Link>
                     <ul>
-                        <li><Link to='/aboutus' className="nav-link nav-hover">About Us</Link></li>
+                        <li><Link to='/aboutus' className="nav-link nav-text">About Us</Link></li>
                         <li><a className="rounded-pill btn btn-info fw-bold nav-hover">Order Now</a></li>
                     </ul>
                     <ul>
