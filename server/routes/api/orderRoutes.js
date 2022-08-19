@@ -25,6 +25,8 @@ router.get('/my-orders', controller.get); //customer order list
 
 router.get('/order-documentation', controller.get);
 
+module.exports = router;
+
 
 
 
