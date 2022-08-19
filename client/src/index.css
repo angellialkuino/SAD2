@@ -1,29 +1,9 @@
-.highlight {
-    background-color: aquamarine;
-}
-
-.navbar-style {
-    background-color: rgb(253, 184, 56) !important;
-}
-
-.green-highlight {
-    color: green;
-    font-size: 40px;
-}
-
-.red-highlight {
-    color: red;
-    font-size: 25px;
-}
-
 .hand-icon {
     cursor: pointer;
 }
 
-.rightbtn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
+.btn-info {
+    background-color: #179ad3;
 }
 
 .about-us {
@@ -32,31 +12,32 @@
 
 .contact-info {
     border-radius: 40px;
-    background: #78ccf3;
+    background: #179ad3;
     padding: 10px;
-    width: 300px;
-    height: 110px;
+    width: fit-content;
+    height: fit-content;
     position: absolute
 }
 
 .text-bg {
     border-radius: 40px;
-    background: #78f3ce;
+    background: #9afe00;
 }
 
 .feed-frame {
     border-radius: 40px;
-    background: #78ccf3;
+    background: #179ad3;
     padding: 10px;
     width: 600px;
-    height: 600px;
+    height: fit-content;
+    margin: 1rem;
 }
 
-.vertical-content {
+.horizontal-content {
     display: flex;
     justify-content: center;
     text-align: center;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
 }
 
@@ -64,4 +45,76 @@ img {
     max-width: 85%;
     max-height: 85%;
     padding: 10px;
+}
+
+.nav {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    padding: 0 2rem;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+}
+
+.nav a {
+    color: black;
+}
+
+.nav-hover:hover {
+    color: white;
+}
+
+.site-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.nav-text:hover {
+    border-radius: 2rem;
+    color: #9afe00;
+    font-weight: bold;
+}
+
+.button {
+    background-color: #179ad3;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 2rem;
+}
+
+.div-frame {
+    padding: 2rem;
+    margin: 2rem auto auto auto;
+    background-color: #a1d0e4;
+    height: 80vh;
+    width: 90vw;
+    border-radius: 2rem;
+}
+
+.headers {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+
+}
+
+.title {
+    font-size: 2rem;
 }
