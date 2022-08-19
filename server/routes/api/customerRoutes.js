@@ -17,7 +17,7 @@ router.get('/sign-up', controller.get);
 
 router.post('/log-in', controller.get);
 
-router.post('/sign-up', controller.get);
+router.post('/sign-up', controller.createUser);
 
 //////account
 

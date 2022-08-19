@@ -6,12 +6,12 @@ exports.up = function(knex) {
   return knex.schema.createTable("users", (table) => {
     table.uuid('user_id').notNullable().primary();
     table.string('full_name').notNullable();
-    table.string('phone_number').notNullable();
+    table.string('phone_number').notNullable();  //ahw sht ayaw ni inotnullable
     table.string('email').notNullable(); //tama ba data type ng email and password
     table.string('password').notNullable();
     table.string('fb_account');
     table.string('full_address');
-
+    //add roles table?????
   })
 };
 

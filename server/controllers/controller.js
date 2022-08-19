@@ -1,11 +1,33 @@
-// require other named exports from services for some reason
+const service = require('../services/userServices');
 
 //main purpose is to be business logic
 
-//exports.get = asynch/*bat may asynch??*/ (req,res) => {logic}
-
-//how to distinguish different .get requests
-
 exports.get = (req,res) =>{
     res.send('wassup');
-}
+};
+
+/// create user
+exports.createUser = async (req, res) => {
+    try{
+        const newUser = req.body;
+        //console.log(`req.body ${JSON.stringify(newUser)}`);
+        console.log('ehm');
+        const creation = await service.createUser(newUser);
+        return res.send('new user created yey');
+
+    } catch (er){
+        console.log('error man :"(');
+        return res.send(er);
+    }
+};
+
+
+// create order
+exports.createOrder = async (req,res) => {
+    try{
+        const newOrder = req.body; //how to split order details and additional details???
+        const creation = await service.createOrder
+    } catch (er){
+
+    }
+};

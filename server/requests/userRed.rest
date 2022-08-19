@@ -1,0 +1,42 @@
+@hostname = http://localhost:5000/api
+
+### create new customer
+
+POST {{hostname}}/customer/sign-up
+Content-Type: application/json
+
+{
+    "full_name": "Macaroni N. Cheese",
+    "phone_number": "0101010",
+    "email": "thassawa@gmail.com",
+    "password": "123password",
+    "fb_account": "MNC.WAP",
+    "full_address": "somethnsomethn"
+}
+
+### create new order
+
+POST {{hostname}}/order/order-form
+Content-Type: application/json
+
+{
+    "invite_type": "what even are the options",
+    "event_date": "",
+    "motif": "",
+    "font_style": "",
+    "quantity": "",
+    "inner_type": "",
+    "outter_type": "",
+    "envelope_type": "",
+    "inner_size": "",
+    "outter_size": "",
+    "envelope_size": "",
+
+    "emboss": "",
+    "dry_emboss": "",
+    "monetary_gift": "",
+    "RSVP": "",
+    "hard_bound": "",
+    "soft_bound": "",
+    "field": ""
+}
