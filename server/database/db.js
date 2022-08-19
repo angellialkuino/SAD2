@@ -1,7 +1,14 @@
-require('dotenv').config({path: './.env'}); //{path: '../.env'}
+const knex = require('knex');
+const knexfile = require('./knexfile');
 
-//why does this return undefined????
-console.log(process.env.PORT);
+const db = knex(knexfile.development);
+
+module.exports = db;
+
+//require('dotenv').config({path: './.env'}); //{path: '../.env'}
+
+//why does this return undefined???? when path ./../.env or anythin else? ugh
+//console.log(process.env.PORT);
 
 // const knex = require('knex')({
 //     client: 'mysql',

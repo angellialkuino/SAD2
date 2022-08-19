@@ -6,11 +6,11 @@ exports.up = function(knex) {
   return knex.schema.createTable("users", (table) => {
     table.uuid('user_id').notNullable().primary();
     table.string('full_name').notNullable();
-    table.integer('phone_number').notNullable();
+    table.string('phone_number').notNullable();
     table.string('email').notNullable(); //tama ba data type ng email and password
     table.string('password').notNullable();
-    table.string('messenger_account');
-    table.string('full_addres');
+    table.string('fb_account');
+    table.string('full_address');
 
   })
 };
