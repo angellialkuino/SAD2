@@ -9,7 +9,10 @@ import StaffList from "./StaffList";
 import LoginForm from "./LoginForm";
 import SignUpForm from "./SignUpForm";
 import StaffProfile from "./StaffProfile";
+import StaffAccountViewOwner from "./StaffAccountViewOwner";
 import { Route, Routes } from "react-router-dom";
+import CreateStaffAccountOwner from "./CreateStaffAccountOwner";
+import StaffAccountUpdateOwner from "./StaffAccountUpdate";
 
 export default class App extends Component {
     render() {
@@ -20,9 +23,11 @@ export default class App extends Component {
                 <Route path='/aboutus' element={<AboutUs />} />
             </Routes>
 
-            <StaffProfile />
+            <StaffAccountUpdateOwner />
 
             {/*
+            <StaffAccountViewOwner />
+            <CreateStaffAccountOwner />
             <LoginForm />
             <SignUpForm />
             <NavBarOwner />

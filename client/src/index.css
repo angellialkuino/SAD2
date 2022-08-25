@@ -97,6 +97,21 @@ ul {
     border-radius: 2rem;
 }
 
+.sub-button {
+    background-color: #179ad3;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 1rem;
+}
+
+
 .div-frame {
     display: flex;
     padding: 2rem;
@@ -133,8 +148,9 @@ ul {
 }
 
 .profile-textfield {
-    border-radius: 1rem;
-    padding: 6px 100px;
+    border-radius: 0.5rem;
+    padding: 6px 10px;
+    width: 300px;
 }
 
 .profile-info {
@@ -174,4 +190,12 @@ ul {
     width: 85vw;
     border-radius: 2rem;
     justify-content: space-between;
+}
+
+.button-row {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    justify-content: flex-end;
+    align-items: flex-end;
 }
