@@ -112,9 +112,21 @@ ul {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 2rem;
+}
 
+.staff-info ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
 }
 
 .title {
     font-size: 2rem;
+}
+
+.textfield {
+    border-radius: 2rem;
+    padding: 15px 32px;
 }
