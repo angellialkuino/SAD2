@@ -8,6 +8,7 @@ import OrderForm_2 from "./OrderForm_2";
 import StaffList from "./StaffList";
 import LoginForm from "./LoginForm";
 import SignUpForm from "./SignUpForm";
+import StaffProfile from "./StaffProfile";
 import { Route, Routes } from "react-router-dom";
 
 export default class App extends Component {
@@ -19,10 +20,11 @@ export default class App extends Component {
                 <Route path='/aboutus' element={<AboutUs />} />
             </Routes>
 
-            <LoginForm />
-            <SignUpForm />
+            <StaffProfile />
 
             {/*
+            <LoginForm />
+            <SignUpForm />
             <NavBarOwner />
             <NavBarStaff />
             <OrderForm_2 /> 

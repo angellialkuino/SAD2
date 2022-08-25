@@ -98,11 +98,12 @@ ul {
 }
 
 .div-frame {
+    display: flex;
     padding: 2rem;
     margin: 2rem auto auto auto;
     background-color: #a1d0e4;
     height: 80vh;
-    width: 90vw;
+    width: 85vw;
     border-radius: 2rem;
 }
 
@@ -129,4 +130,48 @@ ul {
 .textfield {
     border-radius: 2rem;
     padding: 15px 32px;
+}
+
+.profile-textfield {
+    border-radius: 1rem;
+    padding: 6px 100px;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    margin: 7.5rem 2rem 2rem 3rem;
+}
+
+.label-textfield {
+    margin-bottom: 2rem;
+}
+
+.second-div-frame {
+    display: flex;
+    padding: 2rem;
+    margin: 2rem auto auto auto;
+    background-color: #d5e0e6;
+    height: 500px;
+    width: 500px;
+    border-radius: 20rem;
+}
+
+.profile-pic {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem;
+}
+
+.profile-div {
+    display: flex;
+    padding: 2rem;
+    margin: 2rem auto auto auto;
+    background-color: #a1d0e4;
+    height: 80vh;
+    width: 85vw;
+    border-radius: 2rem;
+    justify-content: space-between;
 }
