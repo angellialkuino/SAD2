@@ -27,6 +27,8 @@ router.get('/view-staff', controller.get);
 
 router.get('/create-staff', controller.get);
 
+module.exports = router;
+
 
 
 

@@ -9,15 +9,14 @@ exports.up = function(knex) {
         table.date('event_date').notNullable(); //tama man ang date type noh
         table.string('motif').notNullable();
         table.string('font_style').notNullable();
-        table.integrer('quantity').notNullable();
+        table.integer('quantity').notNullable();
         table.string('inner_type').notNullable();
         table.string('outter_type').notNullable();
         table.string('envelope_type').notNullable();
         table.string('inner_size').notNullable();
         table.string('outter_size').notNullable();
         table.string('envelope_size').notNullable();
-        table.string('inner_size').notNullable();
-        table.integer('additional_details_id').references('additional_details_id').inTable('additional_details');
+        table.uuid('additional_details_id').references('additional_details_id').inTable('additional_details');
     
       })
 };

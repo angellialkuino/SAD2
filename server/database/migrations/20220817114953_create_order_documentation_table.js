@@ -6,7 +6,7 @@ exports.up = function(knex) {
     return knex.schema.createTable("order_documentation", (table) =>{
         table.uuid('id').references('order_id').inTable('order_details');
         table.dateTime('date').notNullable();
-        table.string('description').notNullable();
+        table.text('description').notNullable();
     })
 };
 
@@ -15,5 +15,6 @@ exports.up = function(knex) {
  * @returns { Promise<void> }
  */
 exports.down = function(knex) {
-  
+    return knex.schema.dropTable("order_documentation");
+    
 };
