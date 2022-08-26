@@ -1,15 +1,20 @@
 import React, { Component } from 'react';
 import './index.css';
 
-class LoginForm extends Component {
+class SignUpForm extends Component {
     render() {
         return (
-            <div className="login-form">
+            <div className="signup-form">
                 <form>
-                    <h3>Log in</h3>
+                    <h3>Sign Up</h3>
 
                     <div className="form-group">
-                        <label>Email</label>
+                        <label>Name</label>
+                        <input type="text" className="form-control" placeholder="First name" />
+                    </div>
+
+                    <div className="form-group">
+                        <label>Email Address</label>
                         <input type="email" className="form-control" placeholder="Enter email" />
                     </div>
 
@@ -19,20 +24,14 @@ class LoginForm extends Component {
                     </div>
 
                     <div className="form-group">
-                        <div className="custom-control custom-checkbox">
-                            <input type="checkbox" className="custom-control-input" id="customCheck1" />
-                            <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
-                        </div>
+                        <label>Facebook Account Link</label>
+                        <input type="facebook" className="form-control" placeholder="Enter Facebook Account Link" />
                     </div>
 
                     <button type="submit" className="btn btn-dark btn-lg btn-block">Sign in</button>
 
-                    <p className="forgot-password text-right">
-                        Forgot <a href="#">password?</a>
-                    </p>
-
                     <p className="no-account text-right">
-                        Don't have an account? <a href="#">Sign up here.</a>
+                        Have an account already? <a href="#">Log in here.</a>
                     </p>
 
                     </form>
@@ -41,4 +40,4 @@ class LoginForm extends Component {
     } 
 }
 
-export default LoginForm;
+export default SignUpForm;

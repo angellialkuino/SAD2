@@ -6,7 +6,13 @@ import NavBarStaff from './NavBarStaff';
 import NavBarOwner from "./NavBarOwner";
 import OrderForm_2 from "./OrderForm_2";
 import StaffList from "./StaffList";
+import LoginForm from "./LoginForm";
+import SignUpForm from "./SignUpForm";
+import StaffProfile from "./StaffProfile";
+import StaffAccountViewOwner from "./StaffAccountViewOwner";
 import { Route, Routes } from "react-router-dom";
+import CreateStaffAccountOwner from "./CreateStaffAccountOwner";
+import StaffAccountUpdateOwner from "./StaffAccountUpdate";
 
 export default class App extends Component {
     render() {
@@ -16,8 +22,14 @@ export default class App extends Component {
                 {/* <Route path='/' element={<HomePage />} /> */}
                 <Route path='/aboutus' element={<AboutUs />} />
             </Routes>
-            <StaffList />
+
+            <StaffAccountUpdateOwner />
+
             {/*
+            <StaffAccountViewOwner />
+            <CreateStaffAccountOwner />
+            <LoginForm />
+            <SignUpForm />
             <NavBarOwner />
             <NavBarStaff />
             <OrderForm_2 /> 

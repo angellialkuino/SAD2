@@ -13,9 +13,9 @@ class StaffList extends Component {
 
 
                 </div>
-                <div className="headers">
-                    <h4 className="title">Name</h4>
+                <div className="staff-info">
                     <ul>
+                        <li><h5 className="">Name</h5></li>
                         <li><h5 className="">Email</h5></li>
                         <li><h5 className="">Contact</h5></li>
                     </ul>
