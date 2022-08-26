@@ -1,6 +1,5 @@
-require('dotenv').config({path: './../.env'});
-
-console.log(process.env.DB_USER);
+require('dotenv').config({path: './.env'}); //why tf is the path like this gahd
+//path for migrations or seeding ../.env
 
 // Update with your config settings.
 

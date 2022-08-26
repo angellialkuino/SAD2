@@ -9,9 +9,20 @@ Content-Type: application/json
     "full_name": "Macaroni N. Cheese",
     "phone_number": "0101010",
     "email": "thassawa@gmail.com",
-    "password": "123password",
+    "password": "testing",
     "fb_account": "MNC.WAP",
     "full_address": "somethnsomethn"
+}
+
+
+### customer log in
+
+POST {{hostname}}/customer/log-in
+Content-Type: application/json
+
+{
+    "email": "thassawa@gmail.com",
+    "password": "testing"
 }
 
 ### create new order

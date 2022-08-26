@@ -1,6 +1,5 @@
 const service = require('../services/userServices');
 
-//main purpose is to be business logic
 
 exports.get = (req,res) =>{
     res.send('wassup');
@@ -11,7 +10,7 @@ exports.createUser = async (req, res) => {
     try{
         const newUser = req.body;
         //console.log(`req.body ${JSON.stringify(newUser)}`);
-        console.log('ehm');
+        
         const creation = await service.createUser(newUser);
         return res.send('new user created yey');
 
