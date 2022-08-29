@@ -5,18 +5,46 @@ exports.get = (req,res) =>{
     res.send('wassup');
 };
 
-/// create user
-exports.createUser = async (req, res) => {
+/// create customer user
+exports.createCust = async (req, res, next) => {
     try{
-        const newUser = req.body;
-        //console.log(`req.body ${JSON.stringify(newUser)}`);
-        
-        const creation = await service.createUser(newUser);
+        //console.log(`req.body is: ${JSON.stringify(req.body)}`);
+        const userData = req.body;
+        const existingUser = await service.findUser(userData.email);
+
+        if(existingUser){
+            //console.log(existingUser);
+            return res.send('this user already exists');
+        }
+
+        const creation = await service.createUser(userData, 'customer');
+        res.send('new user created yey');
+        next();
+
+    } catch (err){
+        console.log('error man :"(');
+        return res.send(err);
+    }
+};
+
+/// create staff user
+exports.createStaff = async (req, res) => {
+    try{
+        //console.log(`req.body is: ${JSON.stringify(req.body)}`);
+        const userData = req.body;
+        const existingUser = await service.findUser(userData.email);
+
+        if(existingUser){
+            //console.log(existingUser);
+            return res.send('this user already exists');
+        }
+
+        const creation = await service.createUser(userData, 'staff');
         return res.send('new user created yey');
 
-    } catch (er){
+    } catch (err){
         console.log('error man :"(');
-        return res.send(er);
+        return res.send(err);
     }
 };
 

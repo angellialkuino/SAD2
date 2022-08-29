@@ -3,11 +3,12 @@ const uuid = require('uuid');
 const bcrypt = require('bcrypt');
 
 //create user
-exports.createUser = async (userData) => {
+exports.createUser = async (userData,role) => {
     userData.password = await bcrypt.hash(userData.password, 10);
 
     await db.transaction(async (trx) => {
         userData.user_id = uuid.v4();
+        userData.role = role;
         await trx("users").insert(userData);
     });
 };
@@ -19,8 +20,7 @@ exports.findUser = async (email) => {
                     .where({ email: email.toLowerCase()});
     });
     
-    
-    return user;
+    return user[0];
 };
 
 exports.findUserbyId = async (id) => {
@@ -30,6 +30,27 @@ exports.findUserbyId = async (id) => {
                     .where({ user_id: id});
     });
     
-    
+    return user;
+};
+
+exports.updateUser = async (userData,email) => {
+    await db.transaction(async (trx) => {
+        user = await trx("users")
+                    .update(userData)
+                    .where({ email: email});
+    });
+    //returns array of all updated rows
+    //console.log(user);
+    return user;
+};
+
+exports.deleteUser = async (email) => {
+    await db.transaction(async (trx) => {
+        user = await trx("users")
+                    .where({ email: email})
+                    .del();
+    });
+    //returns array of all updated rows
+    //console.log(user);
     return user;
 };

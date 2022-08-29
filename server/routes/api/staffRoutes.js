@@ -2,11 +2,16 @@ const express = require('express');
 const router = express.Router();
 const controller = require('../../controllers/controller');
 
-//log in page for staff is same as customer????
-router.post('/log-in', controller.get);
-//so nasa customer/log-in na path??? hayst???
+// not sure if we need to store sessions of these???
+const passport = require('passport');
+const isAuth = require('../../middleware/auth').isAuth;
+
+//staff log-in and sign-up
+router.post('/log-in', passport.authenticate('local'), (req,res)=>{res.send('ya logeed in boi');});
+router.post('/sign-up', controller.createStaff);
 
 //for staff!!!!!!!
+router.get('/log-out', (req,res)=>{req.logout();});
 
 router.get('/order-details', controller.get);
 

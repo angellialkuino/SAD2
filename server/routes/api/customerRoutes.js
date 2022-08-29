@@ -15,11 +15,12 @@ router.get('/log-in', controller.get);
 
 router.get('/sign-up', controller.get);
 
+router.get('/log-out', (req,res)=>{req.logout();});
+
+
 //////enter log in or sign up info
-
-router.post('/log-in', (req,res,next)=>{console.log('initial post');next();}, passport.authenticate('local'), (req,res)=>{res.send('ya logeed in boi');}); // add where to redirect in the auth params
-
-router.post('/sign-up', controller.createUser);
+router.post('/log-in', passport.authenticate('local'), (req,res)=>{res.send('ya logeed in boi');}); 
+router.post('/sign-up', controller.createCust, passport.authenticate('local'));
 
 //////account
 

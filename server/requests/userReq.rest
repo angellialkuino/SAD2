@@ -1,5 +1,8 @@
 @hostname = http://localhost:5000/api
 
+### test route
+GET {{hostname}}/customer/get-test
+
 ### create new customer
 
 POST {{hostname}}/customer/sign-up
@@ -8,7 +11,7 @@ Content-Type: application/json
 {
     "full_name": "Macaroni N. Cheese",
     "phone_number": "0101010",
-    "email": "thassawa@gmail.com",
+    "email": "issapa@gmail.com",
     "password": "testing",
     "fb_account": "MNC.WAP",
     "full_address": "somethnsomethn"

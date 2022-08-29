@@ -36,6 +36,12 @@ app.use((req,res,next)=>{
 
 app.use('/api', require('./routes/api/index'));
 
+app.use((req,res,next)=>{
+    console.log(req.session);
+    console.log(req.user);
+    next();
+});
+
 app.listen(process.env.PORT, ()=>{
     console.log(`Listening on port ${process.env.PORT}`);
 });
