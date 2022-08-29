@@ -23,7 +23,7 @@ export default class App extends Component {
                 <Route path='/aboutus' element={<AboutUs />} />
             </Routes>
 
-            <StaffAccountUpdateOwner />
+            <LoginForm />
 
             {/*
             <StaffAccountViewOwner />
@@ -33,6 +33,7 @@ export default class App extends Component {
             <NavBarOwner />
             <NavBarStaff />
             <OrderForm_2 /> 
+            <StaffAccountUpdateOwner />
             */}
         </React.Fragment>
     }
