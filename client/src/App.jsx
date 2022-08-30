@@ -23,7 +23,7 @@ export default class App extends Component {
                 <Route path='/aboutus' element={<AboutUs />} />
             </Routes>
 
-            <LoginForm />
+            <SignUpForm />
 
             {/*
             <StaffAccountViewOwner />
