@@ -4,7 +4,7 @@
  */
 exports.up = function(knex) {
     return knex.schema.createTable("additional_details", (table) =>{
-        table.uuid('additional_details_id').notNullable().primary(); //wait diba pwede toh null??? kay way additionals??
+        table.uuid('additional_details_id').notNullable().primary();
         table.string('emboss');
         table.string('dry_emboss');
         table.string('monetary_gift');

@@ -1,5 +1,6 @@
 require('dotenv').config({path: './.env'}); //why tf is the path like this gahd
 //path for migrations or seeding ../.env
+//path for npm run start ./.env
 
 // Update with your config settings.
 

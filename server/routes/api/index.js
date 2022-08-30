@@ -10,6 +10,9 @@ router.use('/order', require('./orderRoutes'));
 
 router.use('/staff', require('./staffRoutes'));
 
+router.use('/owner', require('./ownerRoutes'));
+
+
 
 
 module.exports = router;
