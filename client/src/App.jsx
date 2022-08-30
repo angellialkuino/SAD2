@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import AboutUs from "./AboutUs";
 import HomePage from "./HomePage";
 import NavBar from "./NavBar";
+import OrderForm_1 from "./OrderForm_1";
 import NavBarStaff from './NavBarStaff';
 import NavBarOwner from "./NavBarOwner";
 import OrderForm_2 from "./OrderForm_2";
@@ -19,13 +20,17 @@ export default class App extends Component {
         return <React.Fragment>
             <NavBar />
             <Routes>
-                {/* <Route path='/' element={<HomePage />} /> */}
-                <Route path='/aboutus' element={<AboutUs />} />
+                <Route path='/' element={<HomePage />} />
+                <Route path='/AboutUs' element={<AboutUs />} />
+                <Route path='/OrderForm_1' element={<OrderForm_1 />} />
+                <Route path='/SignUpForm' element={<SignUpForm />} />
+                <Route path='/LoginForm' element={<LoginForm />} />
             </Routes>
 
-            <SignUpForm />
+
 
             {/*
+            <StaffList />
             <StaffAccountViewOwner />
             <CreateStaffAccountOwner />
             <LoginForm />
@@ -35,7 +40,7 @@ export default class App extends Component {
             <OrderForm_2 /> 
             <StaffAccountUpdateOwner />
             */}
-            
+
         </React.Fragment>
     }
 }
