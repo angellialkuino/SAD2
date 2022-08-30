@@ -30,27 +30,37 @@ exports.findUserbyId = async (id) => {
                     .where({ user_id: id});
     });
     
-    return user;
+    return user[0];
 };
 
-exports.updateUser = async (userData,email) => {
+exports.updateUser = async (userData) => {
     await db.transaction(async (trx) => {
         user = await trx("users")
                     .update(userData)
-                    .where({ email: email});
+                    .where({ user_id: userData.user_id});
     });
     //returns array of all updated rows
     //console.log(user);
     return user;
 };
 
-exports.deleteUser = async (email) => {
+exports.deleteUser = async (id) => {
     await db.transaction(async (trx) => {
         user = await trx("users")
-                    .where({ email: email})
+                    .where({ user_id: id})
                     .del();
     });
     //returns array of all updated rows
     //console.log(user);
+    return user;
+};
+
+exports.viewStaffList = async () => {
+    await db.transaction(async (trx) => {
+        user = await trx("users")
+                    .select('*')
+                    .where({ role: 'staff'});
+    });
+    //returns array
     return user;
 };

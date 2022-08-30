@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const controller = require('../../controllers/controller');
+const controller = require('../../controllers/userController');
 
 // not sure if we need to store sessions of these???
 const passport = require('passport');
