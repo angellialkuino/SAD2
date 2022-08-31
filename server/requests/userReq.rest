@@ -34,23 +34,27 @@ POST {{hostname}}/order/order-form
 Content-Type: application/json
 
 {
-    "invite_type": "what even are the options",
-    "event_date": "",
-    "motif": "",
-    "font_style": "",
-    "quantity": "",
-    "inner_type": "",
-    "outter_type": "",
-    "envelope_type": "",
-    "inner_size": "",
-    "outter_size": "",
-    "envelope_size": "",
-
-    "emboss": "",
-    "dry_emboss": "",
-    "monetary_gift": "",
-    "RSVP": "",
-    "hard_bound": "",
-    "soft_bound": "",
-    "field": ""
+    "order_details": {
+        "invite_type": "invite type",
+        "event_date": "2022-09-01",
+        "motif": "motif",
+        "font_style": "font style",
+        "quantity": "quantity",
+        "inner_type": "inner type",
+        "outer_type": "outter type",
+        "envelope_type": "envelope type",
+        "inner_size": "inner size",
+        "outer_size": "outter size",
+        "envelope_size": "envelope size"
+    },
+    "additional_details": {
+        "emboss": "true",
+        "dry_emboss": "true",
+        "plain_print": "true",
+        "foil_print": "true",
+        "monetary_gift": "true",
+        "RSVP": "false",
+        "hard_bound": "true",
+        "soft_bound": "false"
+    }
 }

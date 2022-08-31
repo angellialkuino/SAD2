@@ -1,4 +1,4 @@
-require('dotenv').config({path: './.env'}); //why tf is the path like this gahd
+require('dotenv').config({path: './.env'});
 //path for migrations or seeding ../.env
 //path for npm run start ./.env
 
