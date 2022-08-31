@@ -31,12 +31,13 @@
   align-items: center;
   background-color: #ffffff;
   border-radius: 1rem;
-  margin: auto auto auto auto;
+  margin: 20px auto auto auto;
   transform: translateX(50%);
 }
 
 * {
     box-sizing: border-box;
+    
   }
   
   body {
@@ -44,12 +45,10 @@
     display: flex;
     font-weight: 400;
     font-family: sans-serif;
-    background: #12c2e9;
-    background: -webkit-linear-gradient(to right, #53c46d, #3ca3c6, #cdf0f6);
-    background: linear-gradient(to right, #53c46d, #3ca3c6,  #cdf0f6);
     align-items: right;
+    background-color: #53c46d;
   }
-  
+
   body, html, .App, #root, .outer {
     width: 100%;
     height: 100%;

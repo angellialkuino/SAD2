@@ -37,7 +37,7 @@ class LoginForm extends Component {
                             </div>
                         </div>
 
-                        <button type="submit" className="btn btn-dark btn-lg btn-block">Sign in</button>
+                        <button type="submit" className="btn btn-dark btn-lg btn-block">Sign In</button>
 
                         <p className="no-account text-left">
                             Don't have an account? <a href="#">Sign up here.</a>
