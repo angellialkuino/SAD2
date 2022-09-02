@@ -12,6 +12,7 @@ export default function StaffList() {
         );
 
     };
+
     return (
         <div className="div-frame staff-list">
             <div className="headers">
