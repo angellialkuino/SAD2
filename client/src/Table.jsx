@@ -1,3 +1,5 @@
+import React, { Component }  from 'react';
+
 const Table = ({ data }) => {
     return (
         <table className="table-table">

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Table from "./Table";
+import React, { Component }  from 'react';
 var Users = require("./StaffListPlaceholder.json");
 
 export default function StaffList() {
