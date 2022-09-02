@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import React, { Component } from 'react';
 import Table from "./Table";
+import React, { Component }  from 'react';
 var Users = require("./StaffListPlaceholder.json");
 
 export default function StaffList() {
@@ -13,6 +14,7 @@ export default function StaffList() {
         );
 
     };
+
     return (
         <div className="div-frame staff-list">
             <div className="headers">

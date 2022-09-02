@@ -24,6 +24,7 @@ export default class App extends Component {
     render() {
         return <React.Fragment>
             <NavBar />
+
             <Routes>
                 {/* <Route path='/' element={<HomePage />} /> */}
                 <Route path='/AboutUs' element={<AboutUs />} />
@@ -31,8 +32,6 @@ export default class App extends Component {
                 <Route path='/SignUpForm' element={<SignUpForm />} />
                 <Route path='/LoginForm' element={<LoginForm />} />
             </Routes>
-            <ShippingAddress />
-
 
             {/*
             <StaffList />
@@ -44,6 +43,7 @@ export default class App extends Component {
             <NavBarStaff />
             <OrderForm_2 /> 
             <StaffAccountUpdateOwner />
+            <CustDetail />
             */}
 
         </React.Fragment>

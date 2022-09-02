@@ -1,11 +1,11 @@
 const service = require('../services/userServices');
 
-
+//test
 exports.get = (req,res) =>{
     res.send('wassup');
 };
 
-/// create customer user
+//CREATE NEW CUSTOMER
 exports.createCust = async (req, res, next) => {
     try{
         //console.log(`req.body is: ${JSON.stringify(req.body)}`);
@@ -27,7 +27,7 @@ exports.createCust = async (req, res, next) => {
     }
 };
 
-/// create staff user
+//CREATE NEW STAFF
 exports.createStaff = async (req, res) => {
     try{
         //console.log(`req.body is: ${JSON.stringify(req.body)}`);
@@ -49,6 +49,7 @@ exports.createStaff = async (req, res) => {
     }
 };
 
+//VIEW USER ACC INFO
 exports.viewUser = async (req, res) => {
     try {
         let id;
@@ -64,6 +65,7 @@ exports.viewUser = async (req, res) => {
     }
 }
 
+//UPDATE USER ACC INFO
 exports.updateUser = async (req, res) => {
     try {
         const userData = req.body; //how will customer send id??? also user var not used
@@ -76,6 +78,7 @@ exports.updateUser = async (req, res) => {
     }
 }
 
+//DELETE USER ACC INFO
 exports.deleteUser = async (req, res) => {
     try {
         const user = await service.deleteUser(req.body.user_id);
@@ -88,6 +91,7 @@ exports.deleteUser = async (req, res) => {
     }
 }
 
+//VIEW STAFF LIST
 exports.viewStaffList = async (req, res) => {
     try {
         const staffList = await service.viewStaffList();
@@ -99,12 +103,3 @@ exports.viewStaffList = async (req, res) => {
     }
 }
 
-// create order
-exports.createOrder = async (req,res) => {
-    try{
-        const newOrder = req.body; //how to split order details and additional details???
-        const creation = await service.createOrder
-    } catch (er){
-
-    }
-};

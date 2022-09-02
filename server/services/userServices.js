@@ -2,7 +2,7 @@ const db = require('../database/db');
 const uuid = require('uuid');
 const bcrypt = require('bcrypt');
 
-//create user
+
 exports.createUser = async (userData,role) => {
     userData.password = await bcrypt.hash(userData.password, 10);
 
