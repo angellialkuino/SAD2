@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import React, { Component } from 'react';
 import Table from "./Table";
 var Users = require("./StaffListPlaceholder.json");
 
