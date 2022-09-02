@@ -26,7 +26,7 @@ export default class App extends Component {
             <NavBar />
 
             <Routes>
-                {/* <Route path='/' element={<HomePage />} /> */}
+                <Route path='/' element={<HomePage />} />
                 <Route path='/AboutUs' element={<AboutUs />} />
                 <Route path='/OrderForm_1' element={<OrderForm_1 />} />
                 <Route path='/SignUpForm' element={<SignUpForm />} />
@@ -35,15 +35,6 @@ export default class App extends Component {
 
             {/*
             <StaffList />
-            <StaffAccountViewOwner />
-            <CreateStaffAccountOwner />
-            <LoginForm />
-            <SignUpForm />
-            <NavBarOwner />
-            <NavBarStaff />
-            <OrderForm_2 /> 
-            <StaffAccountUpdateOwner />
-            <CustDetail />
             */}
 
         </React.Fragment>
