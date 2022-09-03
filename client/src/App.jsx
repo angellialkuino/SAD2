@@ -19,6 +19,7 @@ import StaffAccountUpdateOwner from "./StaffAccountUpdate";
 import OrderPickup from "./OrderPickup";
 import ShippingAddress from "./ShippingAddress";
 import CustAccDetail from "./CustAccDetail";
+import CustMyOrders from "./CustMyOrders";
 
 
 export default class App extends Component {
@@ -35,8 +36,9 @@ export default class App extends Component {
             </Routes>
 
             {/* <LoginForm /> */}
-            <CustAccDetail />
+            {/* <CustAccDetail /> */}
             {/* <StaffList /> */}
+            <CustMyOrders />
 
 
         </React.Fragment>
