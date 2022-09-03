@@ -18,6 +18,7 @@ import CreateStaffAccountOwner from "./CreateStaffAccountOwner";
 import StaffAccountUpdateOwner from "./StaffAccountUpdate";
 import OrderPickup from "./OrderPickup";
 import ShippingAddress from "./ShippingAddress";
+import CustAccDetail from "./CustAccDetail";
 
 
 export default class App extends Component {
@@ -26,16 +27,17 @@ export default class App extends Component {
             <NavBar />
 
             <Routes>
-                <Route path='/' element={<HomePage />} />
+                {/* <Route path='/' element={<HomePage />} /> */}
                 <Route path='/AboutUs' element={<AboutUs />} />
                 <Route path='/OrderForm_1' element={<OrderForm_1 />} />
                 <Route path='/SignUpForm' element={<SignUpForm />} />
                 <Route path='/LoginForm' element={<LoginForm />} />
             </Routes>
 
-            {/*
-            <StaffList />
-            */}
+            {/* <LoginForm /> */}
+            <CustAccDetail />
+            {/* <StaffList /> */}
+
 
         </React.Fragment>
     }

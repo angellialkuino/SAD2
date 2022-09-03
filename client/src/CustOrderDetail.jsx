@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 
-class HomePage extends Component {
+class CustOrderDetail extends Component {
     render() {
         return (
-            <div className="custDetail">
+            <div className="custOrderDetail">
 
                 <div className="orderTable">
                     <div className="orderTable-header">
@@ -35,3 +35,5 @@ class HomePage extends Component {
         );
     }
 }
+
+export default CustOrderDetail;
