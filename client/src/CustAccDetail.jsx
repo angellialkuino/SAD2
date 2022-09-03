@@ -4,14 +4,14 @@ import './CustAccDetail.css';
 class CustAccDetail extends Component {
     render() {
         return (
-            <div className="">
-                <div className="">
-
-                    <div className="">
-                        <h2>Account Details</h2>
-                    </div>
-
+            <div className="accDetail">
+                <div className="accDetailMain">
                     <div className="accDetail-body">
+
+                        <div className="accDetail-header">
+                            <h2>Account Details</h2>
+                        </div>
+
                         <div className="accDetail-body-left">
 
                             <div className="accDetail-body-left-name">
@@ -49,7 +49,7 @@ class CustAccDetail extends Component {
                             </div>
 
                             <div className="accDetail-body-right-password">
-                                <h3>text</h3>
+                                <h3>Password</h3>
                                 <input type="text" className="form-control" />
                             </div>
 
@@ -61,8 +61,8 @@ class CustAccDetail extends Component {
                         </div>
 
                         <div className="accDetail-body-bottom">
-                            <button className="btn btn-dark btn-lg btn-block">Update Account</button>
                             <button className="btn btn-dark btn-lg btn-block">Log Out</button>
+                            <button className="btn btn-dark btn-lg btn-block">Update Account</button>
                         </div>
 
                     </div>
