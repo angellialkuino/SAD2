@@ -53,27 +53,7 @@ class CustAccDetail extends Component {
                                 <h3>Postal Code</h3>
                                 <input type="text" className="form-control" />
                             </div>
-
                         </div>
-
-                        {/* <div className="accDetail-body-right">
-
-                            <div className="accDetail-body-right-contact">
-                                <h3>Contact Number</h3>
-                                <input type="text" className="form-control" />
-                            </div>
-
-                            <div className="accDetail-body-right-password">
-                                <h3>Password</h3>
-                                <input type="text" className="form-control" />
-                            </div>
-
-                            <div className="accDetail-body-right-postal">
-                                <h3>Postal Code</h3>
-                                <input type="text" className="form-control" />
-                            </div>
-
-                        </div> */}
 
                         <div className="accDetail-body-bottom">
                             <button className="btn btn-dark btn-lg btn-block">Log Out</button>
