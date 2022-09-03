@@ -4,10 +4,10 @@ import './CustAccDetail.css';
 class CustAccDetail extends Component {
     render() {
         return (
-            <div className="CustAccDetail">
-                <div className="accDetail">
+            <div className="">
+                <div className="">
 
-                    <div className="accDetail-header">
+                    <div className="">
                         <h2>Account Details</h2>
                     </div>
 
@@ -16,27 +16,27 @@ class CustAccDetail extends Component {
 
                             <div className="accDetail-body-left-name">
                                 <h3>Name</h3>
-                                <input type="Full Name" className="form-control"> </input>
+                                <input type="text" className="form-control" />
                             </div>
 
                             <div className="accDetail-body-left-email">
                                 <h3>Email</h3>
-                                <input type="Email" className="form-control"> </input>
+                                <input type="text" className="form-control" />
                             </div>
 
                             <div className="accDetail-body-left-barangay">
                                 <h3>Barangay</h3>
-                                <input type="Barangay" className="form-control"> </input>
+                                <input type="text" className="form-control" />
                             </div>
 
                             <div className="accDetail-body-left-address">
                                 <h3>Address</h3>
-                                <input type="Address" className="form-control"> </input>
+                                <input type="text" className="form-control" />
                             </div>
 
                             <div className="accDetail-body-left-fb">
                                 <h3>Facebook Account</h3>
-                                <input type="Facebook Account" className="form-control"> </input>
+                                <input type="text" className="form-control" />
                             </div>
 
                         </div>
@@ -45,24 +45,24 @@ class CustAccDetail extends Component {
 
                             <div className="accDetail-body-right-contact">
                                 <h3>Contact Number</h3>
-                                <input type="Contact Number" className="form-control"> </input>
+                                <input type="text" className="form-control" />
                             </div>
 
                             <div className="accDetail-body-right-password">
-                                <h3>Password</h3>
-                                <input type="Password" className="form-control"> </input>
+                                <h3>text</h3>
+                                <input type="text" className="form-control" />
                             </div>
 
                             <div className="accDetail-body-right-postal">
                                 <h3>Postal Code</h3>
-                                <input type="Postal Code" className="form-control"> </input>
+                                <input type="text" className="form-control" />
                             </div>
 
                         </div>
 
                         <div className="accDetail-body-bottom">
-                            <button type="update" className="btn btn-dark btn-lg btn-block">Update Account</button>
-                            <button type="logout" className="btn btn-dark btn-lg btn-block">Log Out</button>
+                            <button className="btn btn-dark btn-lg btn-block">Update Account</button>
+                            <button className="btn btn-dark btn-lg btn-block">Log Out</button>
                         </div>
 
                     </div>

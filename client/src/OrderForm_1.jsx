@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import NavBar from "./NavBar";
 
 class OrderForm_1 extends Component {
     render() {
