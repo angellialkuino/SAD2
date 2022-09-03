@@ -27,7 +27,7 @@
     width: 100%;
 }
 
-.accDetail-body-right{
+.accDetail-body-right {
     display: inline-block;
     flex-direction: column;
     justify-content: space-between;
@@ -58,12 +58,27 @@
     width: 200px;
     margin-top: 10%;
     display: inline;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: right;
     
 }
 
 .btn {
     width: 200px;
     margin: auto;
-    display: inline;
-    
+    display: inline; 
+}
+
+.accDetail-body-field {
+    float: left;
+    width: 50%;
+    margin-left: auto;
+}
+
+  .accDetail-body-left:after {
+    content: "";
+    display: table;
+    clear: both;
+    margin: 1%;
 }

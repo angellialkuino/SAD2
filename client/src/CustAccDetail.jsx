@@ -14,34 +14,49 @@ class CustAccDetail extends Component {
 
                         <div className="accDetail-body-left">
 
-                            <div className="accDetail-body-left-name">
+                            <div className="accDetail-body-field">
                                 <h3>Name</h3>
                                 <input type="text" className="form-control" />
                             </div>
 
-                            <div className="accDetail-body-left-email">
+                            <div className="accDetail-body-field">
                                 <h3>Email</h3>
                                 <input type="text" className="form-control" />
                             </div>
 
-                            <div className="accDetail-body-left-barangay">
+                            <div className="accDetail-body-field">
                                 <h3>Barangay</h3>
                                 <input type="text" className="form-control" />
                             </div>
 
-                            <div className="accDetail-body-left-address">
+                            <div className="accDetail-body-field">
                                 <h3>Address</h3>
                                 <input type="text" className="form-control" />
                             </div>
 
-                            <div className="accDetail-body-left-fb">
+                            <div className="accDetail-body-field">
                                 <h3>Facebook Account</h3>
+                                <input type="text" className="form-control" />
+                            </div>
+
+                            <div className="accDetail-body-field">
+                                <h3>Contact Number</h3>
+                                <input type="text" className="form-control" />
+                            </div>
+
+                            <div className="accDetail-body-field">
+                                <h3>Password</h3>
+                                <input type="text" className="form-control" />
+                            </div>
+
+                            <div className="accDetail-body-field">
+                                <h3>Postal Code</h3>
                                 <input type="text" className="form-control" />
                             </div>
 
                         </div>
 
-                        <div className="accDetail-body-right">
+                        {/* <div className="accDetail-body-right">
 
                             <div className="accDetail-body-right-contact">
                                 <h3>Contact Number</h3>
@@ -58,7 +73,7 @@ class CustAccDetail extends Component {
                                 <input type="text" className="form-control" />
                             </div>
 
-                        </div>
+                        </div> */}
 
                         <div className="accDetail-body-bottom">
                             <button className="btn btn-dark btn-lg btn-block">Log Out</button>
