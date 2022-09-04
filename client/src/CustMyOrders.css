@@ -2,7 +2,8 @@
     background: #ffffff;
     padding: 20px;
     border-radius: 10px;
-    width: auto;
+    width: 50%;
+    margin: auto;
 }
 
 .custMyOrders-main {
@@ -10,6 +11,7 @@
     border-radius: 10px;
     padding: 20px;
     margin: 20px;
+    width: 100%;
 }
 
 .custMyOrders-header {
@@ -17,11 +19,10 @@
     justify-content: space-between;
     align-items: left;
     margin-bottom: 10px;
-    margin-top: -30px;
+    margin-left: 20px;
 }
 
 .custMyOrders-labels {
-    /* place label and button side by side */
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -35,12 +36,32 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: antiquewhite;
+    background-color: white;
     margin-top: 20px;
+    border-radius: 10px;
+}
+
+.custMyOrders-body-color {
+    background-color: antiquewhite;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
 }
 
 .btn {
     width: 200px;
     margin-left: 50px;
     display: inline; 
+}
+
+.custMyOrders-body-labels-and-buttons {
+    /* put the items in the center */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 20px;
 }
