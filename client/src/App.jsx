@@ -20,8 +20,7 @@ import OrderPickup from "./OrderPickup";
 import ShippingAddress from "./ShippingAddress";
 import CustAccDetail from "./CustAccDetail";
 import CustMyOrders from "./CustMyOrders";
-import StaffOrderList from "./StaffOrderList";
-
+import LoginPage from "./LoginPage";
 
 export default class App extends Component {
     render() {
@@ -40,8 +39,7 @@ export default class App extends Component {
             {/* <CustAccDetail /> */}
             {/* <StaffList /> */}
             {/* <CustMyOrders /> */}
-            <StaffOrderList />
-
+            <LoginPage />
 
         </React.Fragment>
     }

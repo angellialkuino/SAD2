@@ -1,0 +1,52 @@
+.login-page-body {
+    background-color: #f5f5f5;
+    border: 1px solid gree;
+    border-radius: 1rem;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+    margin: auto;
+    padding: 19px 29px 29px;
+    width: 700px;
+}
+
+.login-page-title h3{
+    text-align: left;
+    font-size: 3rem;
+    font-weight: 600;
+    color: #000000;
+}
+
+.custom-control {
+    margin-bottom: 10px;
+    margin-top: -20px;
+}
+
+.login-page {
+    margin-top: 4%;
+}
+
+.no-account {
+    text-align: center;
+    font-size: 13px;
+    padding-top: 10px;
+    color: #7f7d7d;
+    margin: 0;
+}
+
+.btn-page {
+    border-radius: 10px;
+    border: none;
+    padding: 10px 10px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #000000;
+    background: #53c46d;
+    width: 100%;
+    transition: all .3s;
+    display: inline-block;
+}
+
+.btn-page:hover {
+    background: #53c46d;
+    color: #ffffff;
+}
+
