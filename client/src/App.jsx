@@ -6,7 +6,7 @@ import NavBar from "./NavBar";
 import OrderForm_1 from "./OrderForm_1";
 import NavBarStaff from './NavBarStaff';
 import NavBarOwner from "./NavBarOwner";
-import OrderForm_2 from "./OrderForm_2";
+import TermsAndConditions from "./TermsAndConditions";
 import StaffList from "./StaffList";
 import LoginForm from "./LoginForm";
 import SignUpForm from "./SignUpForm";
@@ -39,7 +39,8 @@ export default class App extends Component {
             {/* <CustAccDetail /> */}
             {/* <StaffList /> */}
             {/* <CustMyOrders /> */}
-            <LoginPage />
+            {/* <LoginPage /> */}
+            <TermsAndConditions />
 
         </React.Fragment>
     }
