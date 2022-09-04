@@ -34,7 +34,7 @@ class LoginPage extends Component {
                                     </div>
                                 </div>
 
-                                <button type="submit" className="btn-page btn-dark btn-lg btn-block">Sign In</button>
+                                <button type="submit" className="btn-page btn-dark btn-lg btn-block">Log In</button>
 
                                 <p className="no-account text-left">
                                     Don't have an account? <a href="#">Sign up here.</a>
