@@ -3,7 +3,7 @@
     flex-direction: column;
     margin: 2rem auto auto auto;
     background-color: #a1d0e4;
-    height: 0px;
+    height: 1154px;
     width: 1100px;
     border-radius: 2rem;
     justify-content: center;
@@ -21,7 +21,7 @@ h2 {
 }
 
 .footer {
-    position: fixed;
+    margin-top: 2rem;
     display: flex;
     justify-content: right;
     align-items: center;
@@ -95,4 +95,24 @@ h2 {
     align-items: center;
     justify-content: center;
     margin-bottom: 2rem;
+}
+
+.profile-textfield {
+    border-radius: 0.5rem;
+    padding: 6px 10px;
+    width: 300px;
+    border-style: none;
+}
+
+.label-textfield {
+    margin-bottom: 2rem;
+}
+
+.invite-details {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem
 }
