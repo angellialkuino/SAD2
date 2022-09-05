@@ -86,17 +86,6 @@ h2 {
     background-color: #53c46d;
 }
 
-.grid-container {
-    display: grid;
-    grid-template-columns: auto auto auto auto;
-    padding: 10px;
-    align-items: center;
-}
-
-.grid-item {
-    padding: 10px;
-}
-
 select {
     width: 100%;
     padding: 16px 0px;
