@@ -1,0 +1,107 @@
+.order_form_10-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 0 0 0 0;
+    gap: 1rem;
+    margin-top: 50px;
+}
+
+.order_form_10-body {
+    width: 1100px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+.order_form_10-header h3{
+    font-size: 30px;
+    font-weight: 500;
+    color: black;
+    padding: 0px;
+    text-align: left;
+    font-weight: bold;
+    line-height: 40px;
+}
+
+.order_form_10-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    background-color: antiquewhite;
+    border-radius: 10px;
+}
+
+.order_form_10-content-left {
+    display: inline-block;
+    flex-direction: column;
+    margin: 5%;
+    box-sizing: border-box;
+}
+
+.order_form_10-content-right {
+    display: inline-block;
+    flex-direction: column;
+    box-sizing: border-box;
+    width: 200px;
+    margin: 5%;
+    line-height: 20px;
+}
+
+.order_form_10-footer {
+    display: flex;
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    transform: translateX(185%);
+}
+
+.order_form_10-btn-back {
+    background-color: #179ad3;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 1rem;
+}
+
+.order_form_10-btn-proceed {
+    background-color: #179ad3;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 1rem;
+}
+
+.order_form_10-btn-back:hover {
+    background-color: red;
+    transition: 200ms;
+}
+
+.order_form_10-btn-proceed:hover {
+    background-color: green;
+    transition: 200ms;
+}
