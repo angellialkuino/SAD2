@@ -1,4 +1,4 @@
-.signup-form-header,
+.login-form-header,
 h1 {
   font-size: 1.8em;
   font-weight: bold;
@@ -8,7 +8,7 @@ h1 {
   position: relative;
   align-items: left;
   left: -67%;
-  top: 20%;
+  top: 10%;
 }
 
 .form-group {
@@ -23,7 +23,7 @@ h1 {
   text-align: left;
 }
 
-.signup-form {
+.login-form {
   width: 50%;
   height: 100%;
   display: flex;
@@ -38,6 +38,7 @@ h1 {
 
 * {
   box-sizing: border-box;
+
 }
 
 body {
@@ -117,7 +118,7 @@ html,
   transition: all .3s;
 }
 
-.signup-form-title h3 {
+.login-form-title h3 {
   text-align: left;
   font-size: 3rem;
   font-weight: 600;
@@ -147,10 +148,10 @@ label {
   color: #000000;
 }
 
-.signup-form-body {
+.login-form-body {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  transform: translateY(-12%);
+  transform: translateY(-25%);
 }

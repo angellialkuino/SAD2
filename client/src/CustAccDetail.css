@@ -1,0 +1,84 @@
+.accDetail-body {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    width: auto;
+}
+
+.accDetailMain {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px;
+}
+
+.accDetail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: left;
+    margin-bottom: 10px;
+}
+
+.accDetail-body-left {
+    display: inline-block;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: left;
+    width: 100%;
+}
+
+.accDetail-body-right {
+    display: inline-block;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: right;
+    width: 100%;
+}
+
+.form-control{
+    border-radius: 10px;
+    padding: 10px 10px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #000000;
+    background: #ffffff;
+    width: 100%;
+}
+
+.accDetail {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: antiquewhite;
+    margin-top: 20px;
+}
+
+.accDetail-body-bottom {
+    width: 200px;
+    margin-top: 10%;
+    display: inline;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: right;
+    
+}
+
+.btn {
+    width: 200px;
+    margin: auto;
+    display: inline; 
+}
+
+.accDetail-body-field {
+    float: left;
+    width: 50%;
+    margin-left: auto;
+}
+
+  .accDetail-body-left:after {
+    content: "";
+    display: table;
+    clear: both;
+    margin: 1%;
+}

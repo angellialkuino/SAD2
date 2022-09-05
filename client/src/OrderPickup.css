@@ -1,0 +1,78 @@
+.order-pickup-frame {
+    display: flex;
+    margin: 2rem auto auto auto;
+    background-color: #a1d0e4;
+    height: 710px;
+    width: 1000px;
+    border-radius: 2rem;
+    flex-flow: row wrap;
+}
+
+.order-pickup-frame .map {
+    margin: auto;
+}
+
+.order-pickup-frame .text {
+    padding: 1rem 0 0 5rem;
+}
+
+img {
+    border-radius: 2rem;
+}
+
+h4 {
+    margin-top: 1rem;
+}
+
+h2 {
+    font-weight: bold;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.footer {
+    position: fixed;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 0 500px 50px 0;
+    gap: 1rem;
+}
+
+.button {
+    background-color: #179ad3;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 1rem;
+}
+
+.text-button {
+    background-color: transparent;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 2rem;
+}
+
+.force-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

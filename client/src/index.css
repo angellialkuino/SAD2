@@ -21,7 +21,7 @@
 
 .text-bg {
     border-radius: 40px;
-    background: #9afe00;
+    background: white;
 }
 
 .feed-frame {
@@ -73,14 +73,17 @@ ul {
     color: white;
 }
 
+.site-title:hover {
+    color: #53c46d;
+}
+
 .site-title {
     font-size: 1.5rem;
     font-weight: bold;
 }
 
 .nav-text:hover {
-    border-radius: 2rem;
-    color: #9afe00;
+    color: #53c46d;
     font-weight: bold;
 }
 
@@ -153,6 +156,7 @@ ul {
     border-radius: 0.5rem;
     padding: 6px 10px;
     width: 300px;
+    border-style: none;
 }
 
 .profile-info {
