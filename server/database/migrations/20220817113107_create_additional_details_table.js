@@ -9,7 +9,7 @@ exports.up = function(knex) {
         table.string('cover');
         table.string('cards');
         table.string('wax_seal');
-        table.string('dreid_flowers');
+        table.string('dried_flowers');
         table.string('brooch');
 
 

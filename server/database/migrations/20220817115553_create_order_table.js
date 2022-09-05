@@ -4,12 +4,11 @@
  */
 exports.up = function(knex) {
     return knex.schema.createTable('order', (table) => {
-        table.uuid('customer_id').references('user_id').inTable('users');
+        table.uuid('user_id').references('user_id').inTable('users');
         table.uuid('order_id').references('order_id').inTable('order_details');
-        table.dateTime('order_date').notNullable();
-        table.string('urgency').notNullable();
-        table.string('order_status');
-        table.date('estimate_date_finished').notNullable();
+        table.dateTime('date_ordered').notNullable();
+        table.date('order_deadline').notNullable();
+        table.string('order_status').notNullable();
     })
 };
 

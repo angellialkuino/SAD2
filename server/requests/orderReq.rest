@@ -1,11 +1,27 @@
 @hostname = http://localhost:5000/api
 
+### view order information
+
+GET {{hostname}}/order/order-info
+Content-Type: application/json
+
+{
+    "order_id": "e40d7d80-032d-4421-b393-b2501945a0cb"
+}
+
 ### create new order
 
 POST {{hostname}}/order/order-form
 Content-Type: application/json
 
 {
+    "order": {
+        "user_id": "5bc962d8-de5b-4950-ab9d-96f85b58e07c",
+        "date_ordered": "2022-09-20 15:30:30",
+        "order_deadline": "2022-09-20",
+        "order_status": "pending"
+    },
+
     "order_details": {
         "invite_type": "invite type",
         "material": "material",
@@ -20,12 +36,12 @@ Content-Type: application/json
         "envelope_paper": "envelope type",
         "inner_size": "inner size",
         "envelope_size": "envelope size",
-        "envelope_liner": "true",
-        "envelope_lock": "true",
+        "envelope_liner": true,
+        "envelope_lock": true,
         "header_text": "foil print",
         "body_text": "plain print"
-
     },
+
     "additional_details": {
         "other_pages": "other pages",
         "cover": "cover",
@@ -35,3 +51,67 @@ Content-Type: application/json
         "brooch": "brooch"
     }
 }
+
+### update order status
+
+PUT {{hostname}}/order/update-status
+Content-Type: application/json
+
+{
+    "order_id": "e40d7d80-032d-4421-b393-b2501945a0cb",
+    "order_status": "pending"
+}
+
+### update order details and additonal details
+
+PUT {{hostname}}/order/update-order-details
+Content-Type: application/json
+
+{
+    "order_details": {
+        "order_id": "e40d7d80-032d-4421-b393-b2501945a0cb",
+        "font_style": "COMIC SANS",
+        "peg_link": "abcd.com"
+    },
+
+    "additional_details": {
+        "additional_details_id": "f711a839-2efc-492c-b08f-aaf077182d16",
+        "brooch": "some brooch design"
+    }
+}
+
+### update order purchase
+
+PUT {{hostname}}/order/update-order-purchase
+Content-Type: application/json
+
+{
+    "??": "???"
+}
+
+### cancel order
+
+PUT {{hostname}}/order/cancel-order
+Content-Type: application/json
+
+{
+    "order_id": "e40d7d80-032d-4421-b393-b2501945a0cb",
+    "order_status": "canceled"
+}
+
+### view order history
+
+GET {{hostname}}/order/order-history
+
+### my orders for customer
+
+GET {{hostname}}/order/my-orders
+Content-Type: application/json
+
+{
+    "user_id": "5bc962d8-de5b-4950-ab9d-96f85b58e07c"
+}
+
+### view current orders for staff
+
+GET {{hostname}}/order/current-orders

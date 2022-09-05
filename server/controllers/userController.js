@@ -57,6 +57,11 @@ exports.viewUser = async (req, res) => {
         else{id=req.body.user_id}
 
         const user = await service.findUserbyId(id); //coordinate with fat on this
+
+        if(!user){
+            return res.status(400).send({ status:'This user does not exist'});
+        }
+        
         return res.status(200).send({ status:'Successfully retrieved user account info' , user});
 
     } catch (err) {
