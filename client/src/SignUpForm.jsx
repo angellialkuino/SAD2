@@ -5,11 +5,11 @@ class SignUpForm extends Component {
     render() {
         return (
             <div className="signup-form">
-                
+
                 <div className="signup-form-header">
-                    <h1> Invitations for <br/> every occassion </h1>
+                    <h1 className='h1'> Invitations for <br /> every occassion </h1>
                 </div>
-                
+
                 <div className="signup-form-body">
                     <form>
                         <div className="signup-form-title">
@@ -48,12 +48,12 @@ class SignUpForm extends Component {
                             Have an account already? <a href="#">Log in here.</a>
                         </p>
 
-                  
-                        </form>
-                    </div>
+
+                    </form>
+                </div>
             </div>
         )
-    } 
+    }
 }
 
 export default SignUpForm;

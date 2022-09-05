@@ -20,7 +20,8 @@ import ShippingAddress from "./ShippingAddress";
 import CustAccDetail from "./CustAccDetail";
 import CustMyOrders from "./CustMyOrders";
 import LoginPage from "./LoginPage";
-import Order_Form_10 from "./Order_Form_10";
+import OrderBeingConfirmed from "./OrderBeingConfirmed";
+import Order_Form_2 from "./Order_Form_2";
 
 export default class App extends Component {
     render() {
@@ -30,18 +31,18 @@ export default class App extends Component {
             <Routes>
                 {/* <Route path='/' element={<HomePage />} /> */}
                 <Route path='/AboutUs' element={<AboutUs />} />
-                <Route path='/Order_Form_1' element={<Order_Form_1 />} />
+                <Route path='/OrderForm' element={<LoginPage />} />
                 <Route path='/SignUpForm' element={<SignUpForm />} />
                 <Route path='/LoginForm' element={<LoginForm />} />
             </Routes>
 
+            <Order_Form_2 />
             {/* <LoginForm /> */}
             {/* <CustAccDetail /> */}
             {/* <StaffList /> */}
             {/* <CustMyOrders /> */}
             {/* <LoginPage /> */}
             {/* <TermsAndConditions /> */}
-            <Order_Form_10 />
 
         </React.Fragment>
     }

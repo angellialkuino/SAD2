@@ -15,18 +15,7 @@ h2 {
     margin-top: 1rem;
 }
 
-.footer {
-    position: fixed;
-    display: flex;
-    justify-content: right;
-    align-items: center;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-    padding: 0 500px 50px 0;
-    gap: 1rem;
-}
+
 
 .button {
     background-color: #179ad3;
@@ -56,16 +45,7 @@ h2 {
     border-radius: 2rem;
 }
 
-.profile-textfield {
-    border-radius: 0.5rem;
-    padding: 6px 10px;
-    width: 300px;
-    border-style: none;
-}
 
-.label-textfield {
-    margin-bottom: 2rem;
-}
 
 .number-circle {
     display: flex;
@@ -88,15 +68,6 @@ h2 {
     gap: 1rem;
 }
 
-.invite-details {
-    display: flex;
-    flex-flow: row wrap;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    padding: 1rem
-}
-
 .checkbox-circle {
     width: 1.3em;
     height: 1.3em;
@@ -113,17 +84,6 @@ h2 {
 
 .checkbox-circle:checked {
     background-color: #53c46d;
-}
-
-.grid-container {
-    display: grid;
-    grid-template-columns: auto auto auto auto;
-    padding: 10px;
-    align-items: center;
-}
-
-.grid-item {
-    padding: 10px;
 }
 
 select {

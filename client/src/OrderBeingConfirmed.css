@@ -1,0 +1,111 @@
+.order-being-confirmed-frame {
+    display: flex;
+    margin: 2rem auto auto auto;
+    background-color: #a1d0e4;
+    height: 710px;
+    width: 1000px;
+    border-radius: 2rem;
+    flex-direction: column;
+    padding: 3rem;
+}
+
+.order-being-confirmed-footer {
+    display: flex;
+    position: absolute;
+    align-items: center;
+    bottom: 5%;
+    right: 25%;
+
+}
+
+.order-being-confirmed-header {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.order-being-confirmed-force-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.order-being-confirmed-p {
+    width: 200px;
+    text-align: center;
+    border-bottom: 1px solid #000;
+    line-height: 0;
+    margin: 220px 0 190px 0;
+}
+
+.pending {
+    color: #267e3a;
+}
+
+.order-being-confirmed-pending {
+    width: 200px;
+    text-align: center;
+    border-bottom: 1px solid #267e3a;
+    line-height: 0.1em;
+    margin: 220px 0 190px;
+}
+
+.order-being-confirmed-p span {
+    /* padding: 0 10px; */
+    background: #a1d0e4;
+    font-weight: bold;
+}
+
+.force-center-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.timeline {
+    width: 800px;
+    height: 20px;
+    list-style: none;
+    text-align: center;
+    margin: 210px auto 150px auto;
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255, 255, 255, 0)), color-stop(45%, rgba(255, 255, 255, 0)), color-stop(51%, rgb(0, 0, 0)), color-stop(57%, rgba(255, 255, 255, 0)), color-stop(100%, rgba(255, 255, 255, 0)));
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 45%, rgb(0, 0, 0) 51%, rgba(255, 255, 255, 0) 57%, rgba(255, 255, 255, 0) 100%);
+}
+
+.timeline li {
+    display: inline-block;
+    width: 200px;
+    height: 20px;
+    background: gray;
+    text-align: center;
+    line-height: 1.2;
+    position: relative;
+    border-radius: 50%;
+}
+
+.timeline .pending {
+    display: inline-block;
+    width: 200px;
+    height: 20px;
+    background: #267e3a;
+    text-align: center;
+    line-height: 1.2;
+    position: relative;
+    border-radius: 50%;
+}
+
+.timeline li:before {
+    display: inline-block;
+    content: attr(status);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: bold;
+}
+
+.timeline li:nth-child(odd):before {
+    top: -40px;
+}
+
+.timeline li:nth-child(even):before {
+    bottom: -40px;
+}
