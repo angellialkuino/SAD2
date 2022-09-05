@@ -96,7 +96,12 @@ class Order_Form_2 extends Component {
                         <div className='grid-item'><input type="checkbox" value="table" className='checkbox-circle' />Table Cards</div>
                         <div className='grid-item'><input type="checkbox" value="seat" className='checkbox-circle' />Seat Cards</div>
                     </div>
+                    <span className='total-footer'>
+                        Total is subject to change <b>Total: Php</b>
+                    </span>
                 </div>
+
+
 
 
 

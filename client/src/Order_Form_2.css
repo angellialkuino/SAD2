@@ -35,3 +35,14 @@
 .grid-item {
     padding: 10px;
 }
+
+.total-footer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 1100px;
+    padding: 20px;
+    background-color: #179ad3;
+    font-size: xx-large;
+    gap: 2rem;
+}
