@@ -6,9 +6,8 @@ const controller = require('../../controllers/userController');
 const passport = require('passport');
 const isAuth = require('../../middleware/auth').isAuth;
 
-//staff log-in and sign-up
+//staff log-in
 router.post('/log-in', passport.authenticate('local'), (req,res)=>{res.send('ya logeed in boi');});
-router.post('/sign-up', controller.createStaff);
 
 //for staff!!!!!!!
 router.get('/log-out', (req,res)=>{req.logout();});

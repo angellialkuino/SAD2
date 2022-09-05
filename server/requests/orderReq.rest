@@ -1,0 +1,37 @@
+@hostname = http://localhost:5000/api
+
+### create new order
+
+POST {{hostname}}/order/order-form
+Content-Type: application/json
+
+{
+    "order_details": {
+        "invite_type": "invite type",
+        "material": "material",
+        "event_date": "2022-09-01",
+        "motif": "motif",
+        "invite_title": "material",
+        "font_style": "font style",
+        "content_link": "material",
+        "num_of_invites": "30",
+        "peg_link": "material",
+        "inner_paper": "inner type",
+        "envelope_paper": "envelope type",
+        "inner_size": "inner size",
+        "envelope_size": "envelope size",
+        "envelope_liner": "true",
+        "envelope_lock": "true",
+        "header_text": "foil print",
+        "body_text": "plain print"
+
+    },
+    "additional_details": {
+        "other_pages": "other pages",
+        "cover": "cover",
+        "cards": "cards",
+        "wax_seal": "wax seal",
+        "dried_flowers": "dried flowers",
+        "brooch": "brooch"
+    }
+}

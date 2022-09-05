@@ -5,11 +5,14 @@ const controller = require('../../controllers/userController');
 const isAuth = require('../../middleware/auth').isAuth;
 
 //this has search funtionaity ehmm hooow
-router.get('/staff-list', controller.get);
+router.post('/new-staff', controller.createStaff);
 
-router.get('/staff-account', controller.get);
+router.get('/staff-list', controller.viewStaffList);
 
-router.post('/staff-delete', controller.get);
+router.get('/staff-account', controller.viewUser);
 
+router.delete('/staff-delete', controller.deleteUser);
+
+module.exports = router;
 
 

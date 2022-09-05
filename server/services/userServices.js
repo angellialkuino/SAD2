@@ -35,13 +35,17 @@ exports.findUserbyId = async (id) => {
 
 exports.updateUser = async (userData) => {
     await db.transaction(async (trx) => {
-        user = await trx("users")
+        num = await trx("users")
                     .update(userData)
                     .where({ user_id: userData.user_id});
+        user = await trx("users")
+                    .select('*')
+                    .where({user_id: userData.user_id});
     });
+
     //returns array of all updated rows
     //console.log(user);
-    return user;
+    return user[0];
 };
 
 exports.deleteUser = async (id) => {
@@ -57,10 +61,10 @@ exports.deleteUser = async (id) => {
 
 exports.viewStaffList = async () => {
     await db.transaction(async (trx) => {
-        user = await trx("users")
+        staff_list = await trx("users")
                     .select('*')
-                    .where({ role: 'staff'});
+                    .where('role','staff');
     });
     //returns array
-    return user;
+    return staff_list;
 };

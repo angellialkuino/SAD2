@@ -24,37 +24,62 @@ POST {{hostname}}/customer/log-in
 Content-Type: application/json
 
 {
-    "email": "thassawa@gmail.com",
+    "email": "issapa@gmail.com",
     "password": "testing"
 }
 
-### create new order
+### customer log out
 
-POST {{hostname}}/order/order-form
+GET {{hostname}}/customer/log-out
+
+
+### update customer
+
+PUT {{hostname}}/customer/update
 Content-Type: application/json
 
 {
-    "order_details": {
-        "invite_type": "invite type",
-        "event_date": "2022-09-01",
-        "motif": "motif",
-        "font_style": "font style",
-        "quantity": "quantity",
-        "inner_type": "inner type",
-        "outer_type": "outter type",
-        "envelope_type": "envelope type",
-        "inner_size": "inner size",
-        "outer_size": "outter size",
-        "envelope_size": "envelope size"
-    },
-    "additional_details": {
-        "emboss": "true",
-        "dry_emboss": "true",
-        "plain_print": "true",
-        "foil_print": "true",
-        "monetary_gift": "true",
-        "RSVP": "false",
-        "hard_bound": "true",
-        "soft_bound": "false"
-    }
+    "user_id": "90d044e8-b020-47a4-8f7c-9b2d4f3b2a05",
+    "phone_number": "333",
+    "fb_account": "mc.mc"
 }
+
+
+
+### create new staff
+
+POST {{hostname}}/owner/new-staff
+Content-Type: application/json
+
+{
+    "full_name": "Marmalade M. Clementine",
+    "phone_number": "7777",
+    "email": "wanmoretaym@gmail.com",
+    "password": "abcpassword",
+    "fb_account": "jam",
+    "full_address": "#123, bb. street"
+}
+
+
+
+### delete staff acc
+
+DELETE {{hostname}}/owner/staff-delete
+Content-Type: application/json
+
+{
+    "user_id": "90d044e8-b020-47a4-8f7c-9b2d4f3b2a05"
+}
+
+### view staff acc
+
+GET {{hostname}}/owner/staff-account
+Content-Type: application/json
+
+{
+    "user_id": "21d8fd2a-03d0-4574-9c77-d5de79bf729b"
+}
+
+### view list of staff acc
+
+GET {{hostname}}/owner/staff-list

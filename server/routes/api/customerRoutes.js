@@ -10,10 +10,13 @@ router.get('/get-test', controller.get);
 //this file accesses controllers
 
 router.get('/about-us', controller.get);
-router.get('/log-in', controller.get);
-router.get('/sign-up', controller.get);
+router.get('/log-in', controller.get); //cannot access whne logged in
+router.get('/sign-up', controller.get); //cannot access whne logged in
 
-router.get('/log-out', (req,res)=>{req.logout();});
+router.get('/log-out', (req,res)=>{req.logout(function(err) {
+    if (err) { return res.send(err); }
+    res.send('ya logged out');
+  });});
 
 
 //////enter log in or sign up info
