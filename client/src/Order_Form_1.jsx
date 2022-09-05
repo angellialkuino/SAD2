@@ -36,6 +36,36 @@ class Order_Form_1 extends Component {
                             <h4>Acrylic</h4>
                         </div>
                     </div>
+                    <div className="invite-details">
+                        <div className='label-textfield'>
+                            <h4>Date of Event</h4>
+                            <input type='text' className='profile-textfield' />
+                        </div>
+                        <div className='label-textfield'>
+                            <h4>Motif/Theme</h4>
+                            <input type='text' className='profile-textfield' />
+                        </div>
+                        <div className='label-textfield'>
+                            <h4>Invitation Title</h4>
+                            <input type='text' className='profile-textfield' />
+                        </div>
+                        <div className='label-textfield'>
+                            <h4>Font Style</h4>
+                            <input type='text' className='profile-textfield' />
+                        </div>
+                        <div className='label-textfield'>
+                            <h4>Content Link</h4>
+                            <input type='text' className='profile-textfield' />
+                        </div>
+                        <div className='label-textfield'>
+                            <h4>Number of Invites</h4>
+                            <input type='text' className='profile-textfield' />
+                        </div>
+                        <div className='label-textfield'>
+                            <h4>Peg Link</h4>
+                            <input type='text' className='profile-textfield' />
+                        </div>
+                    </div>
                 </div>
 
                 <div className='footer'>

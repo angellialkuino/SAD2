@@ -5,9 +5,9 @@ class LoginForm extends Component {
     render() {
         return (
             <div className="login-form">
-                
+
                 <div className="login-form-header">
-                    <h1> Invitations for <br/> every occassion </h1>
+                    <h1 className='h1'> Invitations for <br /> every occassion </h1>
                 </div>
 
                 <div className="login-form-body">
@@ -43,11 +43,11 @@ class LoginForm extends Component {
                             Don't have an account? <a href="#">Sign up here.</a>
                         </p>
 
-                        </form>
-                    </div>
+                    </form>
+                </div>
             </div>
         )
-    } 
+    }
 }
 
 export default LoginForm;

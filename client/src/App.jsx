@@ -3,7 +3,6 @@ import { Route, Routes } from "react-router-dom";
 import AboutUs from "./AboutUs";
 import HomePage from "./HomePage";
 import NavBar from "./NavBar";
-import OrderForm_1 from "./OrderForm_1";
 import NavBarStaff from './NavBarStaff';
 import NavBarOwner from "./NavBarOwner";
 import TermsAndConditions from "./TermsAndConditions";
@@ -21,6 +20,7 @@ import ShippingAddress from "./ShippingAddress";
 import CustAccDetail from "./CustAccDetail";
 import CustMyOrders from "./CustMyOrders";
 import LoginPage from "./LoginPage";
+import OrderBeingConfirmed from "./OrderBeingConfirmed";
 
 export default class App extends Component {
     render() {
@@ -30,17 +30,18 @@ export default class App extends Component {
             <Routes>
                 {/* <Route path='/' element={<HomePage />} /> */}
                 <Route path='/AboutUs' element={<AboutUs />} />
-                <Route path='/OrderForm_1' element={<OrderForm_1 />} />
+                <Route path='/OrderForm' element={<LoginPage />} />
                 <Route path='/SignUpForm' element={<SignUpForm />} />
                 <Route path='/LoginForm' element={<LoginForm />} />
             </Routes>
 
+            <OrderBeingConfirmed />
             {/* <LoginForm /> */}
             {/* <CustAccDetail /> */}
             {/* <StaffList /> */}
             {/* <CustMyOrders /> */}
             {/* <LoginPage /> */}
-            <TermsAndConditions />
+            {/* <TermsAndConditions /> */}
 
         </React.Fragment>
     }
