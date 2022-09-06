@@ -11,7 +11,7 @@ class Order_Form_7 extends Component {
                     <div className="Order_Form_7-body>">
 
                         <div className="Order_Form_7-header-top">
-                            <p className="order_form_7 number-circle"> 5 </p>
+                            <p className="Order_Form_7-numbers number-circle"> 5 </p>
                             <h3> Tell us when the order should be finished. </h3>
                         </div>
                         
@@ -24,13 +24,12 @@ class Order_Form_7 extends Component {
                         </div>
 
                         <div className="Order_Form_7-header-bottom">
-                            <p className="order_form_7 number-circle"> 6 </p>
+                            <p className="Order_Form_7-numbers number-circle"> 6 </p>
                             <h3> How would you like to receive your order? </h3>
                         </div>
 
                         <div className="Order_Form_7-checkboxes">
                             <div className="Order_Form_7-checkbox">
-
                                 <form>
                                     <div className='form-check-rush'>
                                         <input type="radio" id="rush" name="pick" value="rush" />
@@ -42,17 +41,18 @@ class Order_Form_7 extends Component {
                                         <label for="pickup">Pick Up at Store</label>
                                     </div>
                                 </form>
-
-                            <div className ="Order_Form_7-footer">
-                                <div className="Order_Form_7-buttons">
-                                    <button className="Order_Form_7-button-back btn-primary"> Back </button>
-                                    <button className="Order_Form_7-button-next btn-primary"> Next </button>
-                                </div>
-                            </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                    <div className ="Order_Form_7-footer">
+                        <div className="Order_Form_7-buttons">
+                            <button className="Order_Form_7-button-back btn-primary"> Back </button>
+                            <button className="Order_Form_7-button-next btn-primary"> Next </button>
+                        </div>
+                    </div>
+                    
             </div>
         );
     }
