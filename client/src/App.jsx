@@ -22,6 +22,8 @@ import CustMyOrders from "./CustMyOrders";
 import LoginPage from "./LoginPage";
 import OrderBeingConfirmed from "./OrderBeingConfirmed";
 import Order_Form_2 from "./Order_Form_2";
+import Order_Form_10 from "./Order_Form_10";
+import Order_Form_7 from ",/Order_Form_7";
 
 export default class App extends Component {
     render() {
@@ -36,7 +38,7 @@ export default class App extends Component {
                 <Route path='/LoginForm' element={<LoginForm />} />
             </Routes>
 
-            <Order_Form_2 />
+            {/* <Order_Form_2 /> */}
             {/* <LoginForm /> */}
             {/* <CustAccDetail /> */}
             {/* <StaffList /> */}
