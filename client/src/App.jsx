@@ -12,7 +12,6 @@ import SignUpForm from "./SignUpForm";
 import StaffProfile from "./StaffProfile";
 import StaffAccountViewOwner from "./StaffAccountViewOwner";
 import Order_Form_1 from "./Order_Form_1";
-import Order_Form_2_NonWeddings from "./Order_Form_2_NonWeddings";
 import CreateStaffAccountOwner from "./CreateStaffAccountOwner";
 import StaffAccountUpdateOwner from "./StaffAccountUpdate";
 import OrderPickup from "./OrderPickup";
@@ -24,6 +23,8 @@ import OrderBeingConfirmed from "./OrderBeingConfirmed";
 import Order_Form_2 from "./Order_Form_2";
 import Order_Form_10 from "./Order_Form_10";
 import Order_Form_7 from "./Order_Form_7";
+import InvitationDraftCustomer from './InvitationDraftCustomer'
+import InvitationDraftStaff from './InvitationDraftStaff'
 
 export default class App extends Component {
     render() {
@@ -45,7 +46,9 @@ export default class App extends Component {
             {/* <CustMyOrders /> */}
             {/* <LoginPage /> */}
             {/* <TermsAndConditions /> */}
-            <Order_Form_7 />
+            {/* <Order_Form_7 /> */}
+            <InvitationDraftStaff />
+
 
         </React.Fragment>
     }

@@ -1,0 +1,31 @@
+.invitation-draft-frame {
+    display: flex;
+    margin: 2rem auto auto auto;
+    background-color: #a1d0e4;
+    height: 710px;
+    width: 1000px;
+    border-radius: 2rem;
+    flex-direction: column;
+    padding: 3rem;
+}
+
+.invitation-draft-inner-frame {
+    display: flex;
+    margin: auto;
+    height: 92%;
+    width: 100%;
+    background-color: white;
+    border-radius: 2rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.draft-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.invitation-draft-h1 {
+    font-weight: bold;
+}
