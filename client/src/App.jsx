@@ -25,6 +25,8 @@ import Order_Form_10 from "./Order_Form_10";
 import Order_Form_7 from "./Order_Form_7";
 import InvitationDraftCustomer from './InvitationDraftCustomer'
 import InvitationDraftStaff from './InvitationDraftStaff'
+import OrderDetailsCustomer from "./OrderDetailsCustomer";
+import OrderDetailsStaff from "./OrderDetailsStaff";
 
 export default class App extends Component {
     render() {
@@ -47,7 +49,7 @@ export default class App extends Component {
             {/* <LoginPage /> */}
             {/* <TermsAndConditions /> */}
             {/* <Order_Form_7 /> */}
-            <InvitationDraftStaff />
+            <OrderDetailsStaff />
 
 
         </React.Fragment>
