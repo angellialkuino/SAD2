@@ -5,12 +5,11 @@
 exports.up = function(knex) {
     return knex.schema.createTable('order_purchase', (table) => {
         table.uuid('OP_id').notNullable().primary();
-        table.uuid('customer_id').notNullable().references('user_id').inTable('users');
-        table.uuid('order_id').notNullable().references('order_id').inTable('order_details');
+        table.uuid('user_id').notNullable().references('user_id').inTable('users');
+        table.uuid('order_id').notNullable().references('order_id').inTable('order');
         table.float('unit_cost',2).notNullable();
         table.float('VAT',2).notNullable();
         table.float('sub_total',2).notNullable();
-        table.string('claim_type').notNullable();
         table.dateTime('purchase_date').notNullable();
 
     })
