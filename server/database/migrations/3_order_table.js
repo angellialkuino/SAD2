@@ -3,8 +3,9 @@
  * @returns { Promise<void> }
  */
 exports.up = function(knex) {
-    return knex.schema.createTable("order_details", (table) =>{
+    return knex.schema.createTable('order', (table) => {
         table.uuid('order_id').notNullable().primary();
+        table.uuid('user_id').notNullable().references('user_id').inTable('users');
         table.string('invite_type').notNullable();
         table.string('material').notNullable();
         table.date('event_date').notNullable(); //tama man ang date type noh
@@ -14,17 +15,11 @@ exports.up = function(knex) {
         table.string('content_link').notNullable();
         table.integer('num_of_invites').notNullable();
         table.string('peg_link').notNullable();
-        table.string('inner_paper').notNullable();
-        table.string('envelope_paper');
-        table.string('inner_size').notNullable();
-        table.string('envelope_size');
-        table.boolean('envelope_liner');
-        table.boolean('envelope_lock');
-        table.string('header_text');
-        table.string('body_text');
-        table.uuid('additional_details_id').references('additional_details_id').inTable('additional_details');
-    
-      })
+        table.dateTime('date_ordered').notNullable();
+        table.date('order_deadline').notNullable();
+        table.string('claim_type').notNullable();
+        table.string('order_status').notNullable();
+    })
 };
 
 /**
@@ -32,5 +27,6 @@ exports.up = function(knex) {
  * @returns { Promise<void> }
  */
 exports.down = function(knex) {
-    return knex.schema.dropTable("order_details");
+  return knex.schema.dropTable("order");
+    
 };
