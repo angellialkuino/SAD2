@@ -29,6 +29,10 @@ import OrderDetailsCustomer from "./OrderDetailsCustomer";
 import OrderDetailsStaff from "./OrderDetailsStaff";
 import Order_Form_4 from "./Order_Form_4";
 import Order_Form_5 from "./Order_Form_5";
+import Order_History_Staff_Table from "./Order_History_Staff_Table";
+import Order_History_STAFF from "./Order_History_STAFF";
+import Order_List_Staff_Table from "./Order_List_Staff_Table";
+import Order_List_STAFF from "./Order_List_STAFF";
 
 export default class App extends Component {
     render() {
@@ -51,7 +55,8 @@ export default class App extends Component {
             {/* <LoginPage /> */}
             {/* <TermsAndConditions /> */}
             {/* <Order_Form_7 /> */}
-            <Order_Form_4 />
+            {/* <Order_Form_4 /> */}
+            <Order_List_STAFF />
 
 
         </React.Fragment>
