@@ -18,7 +18,7 @@ exports.currentOrders = async () => {
         orders = await trx("order AS o")
                     .join("users AS u","o.user_id","=","u.user_id")
                     .join("order_details AS od","o.order_id","=","od.order_id")
-                    .select("o.order_id","u.full_name","o.date_ordered","o.order_deadline","od.invite_type","od.motif","od.num_of_invites","o.order_status")
+                    .select("o.order_id","u.full_name","o.date_ordered","o.order_deadline","o.invite_type","o.motif","o.num_of_invites","o.order_status")
                     .whereNotIn("o.order_status",["completed","canceled"]);
 
     });
@@ -27,60 +27,45 @@ exports.currentOrders = async () => {
 }
 
 //create new order
-exports.createOrder = async (orderDetails,additionalDetails,order) => {
-    if(additionalDetails){ //if not empty
-        await db.transaction(async (trx) => {
-            additionalDetails.additional_details_id = uuid.v4();
-            await trx("additional_details").insert(additionalDetails);
-        });
-    }else{ //if empty
-        additionalDetails.additional_details_id = null;
-    }
-
+exports.createOrder = async (order, itemsArray) => {
+    
     await db.transaction(async (trx) => {
-        orderDetails.order_id = uuid.v4();
-        orderDetails.additional_details_id = additionalDetails.additional_details_id;
-        await trx("order_details").insert(orderDetails);
+        order.order_id = uuid.v4();
+        await trx("order").insert(order);
     });
 
     await db.transaction(async (trx) => {
-        order.order_id = orderDetails.order_id;
-        await trx("order").insert(order);
+        //must iterate through each item; how??? use for each???
+        itemsArray.order_id = order.order_id;
+        await trx("order_details").insert(itemsArray);
     })
 
 };
 
 //find if order exists
-exports.findOrderDeets = async (orderId) => {
+exports.findOrder = async (orderId) => {
     await db.transaction(async (trx) => {
-        orderDetails = await trx("order_details")
+        order = await trx("order")
                     .select('*')
                     .where({ order_id: orderId});
 
     });
 
-    return orderDetails[0];
+    return order[0];
 };
 
 //view order details
-exports.viewOrder = async (orderDetails) => {
+exports.viewOrder = async (order) => {
 
     await db.transaction(async (trx) => {
-        order = await trx("order")
+        orderDetails = await trx("order_details")
         .select('*')
-        .where({ order_id: orderDetails.order_id});
+        .where({ order_id: order.order_id});
     });
 
-    if(orderDetails.additional_details_id){
-        await db.transaction(async (trx) => {
-            additional = await trx("additional_details")
-                        .select('*')
-                        .where({ additional_details_id: orderDetails.additional_details_id});
-        });
-    }
-    
-    
-    return {order_details:orderDetails, addional_order_details:additional[0], order:order[0]};
+    //add query for order purchase details
+
+    return {order:order, order_details:orderDetails};
 
 }
 

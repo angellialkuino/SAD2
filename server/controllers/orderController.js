@@ -8,10 +8,9 @@ exports.get = (req,res) =>{
 //create new
 exports.createOrder = async (req,res) => {
     try{
-        const orderDeatils = req.body.order_details; 
-        const additionalDeatils = req.body.additional_details; 
         const order = req.body.order; 
-        const creation = await service.createOrder(orderDeatils,additionalDeatils,order);
+        const itemsArray = req.body.items_array;
+        const creation = await service.createOrder(order, itemsArray);
 
         res.status(201).send({ status:'Successfully created new order', creation});
     } catch (err){
@@ -24,7 +23,7 @@ exports.createOrder = async (req,res) => {
 exports.viewOrder = async (req,res) => {
     try {
         //console.log(`order id: ${req.body.order_id}`);
-        orderInfo = await service.findOrderDeets(req.body.order_id);
+        orderInfo = await service.findOrder(req.body.order_id);
 
         if(!orderInfo){
         res.status(400).send({ status:'Order does not exist'});
@@ -56,6 +55,8 @@ exports.updateStatus = async (req,res) => {
 
 exports.updateOrderDetails = async (req,res) => {
     try {
+        //how???? should i just delete all details with specific order_id then add whole new ones????
+
         //order id and additional id is assumed to be in req body
         const {order_details,additional_details} = req.body;
         const {order_id} = order_details;

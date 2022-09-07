@@ -6,7 +6,7 @@ exports.up = function(knex) {
     return knex.schema.createTable("items", (table) =>{
         table.string('item_id').notNullable().primary();
         table.string('item_name').notNullable();
-        table.float('price',2).notNullable();
+        table.float('price').notNullable();
   })
 };
 

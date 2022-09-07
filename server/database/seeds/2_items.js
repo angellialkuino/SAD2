@@ -6,7 +6,6 @@
  
  exports.seed = async function(knex) {
    // Deletes ALL existing entries
-   pass = await await bcrypt.hash('secret', 10);
    await knex('items').del()
    await knex('items').insert([
      {item_id: 'm1', item_name: 'page', price: 30},
