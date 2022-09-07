@@ -17,12 +17,6 @@ Content-Type: application/json
 {
     "order": {
         "user_id": "5bc962d8-de5b-4950-ab9d-96f85b58e07c",
-        "date_ordered": "2022-09-20 15:30:30",
-        "order_deadline": "2022-09-20",
-        "order_status": "pending"
-    },
-
-    "order_details": {
         "invite_type": "invite type",
         "material": "material",
         "event_date": "2022-09-01",
@@ -30,26 +24,23 @@ Content-Type: application/json
         "invite_title": "material",
         "font_style": "font style",
         "content_link": "material",
-        "num_of_invites": "30",
-        "peg_link": "material",
-        "inner_paper": "inner type",
-        "envelope_paper": "envelope type",
-        "inner_size": "inner size",
-        "envelope_size": "envelope size",
-        "envelope_liner": true,
-        "envelope_lock": true,
-        "header_text": "foil print",
-        "body_text": "plain print"
+        "num_of_invites": 30,
+        "peg_link": "pinterest.com",
+        "date_ordered": "2022-09-20 15:30:30",
+        "order_deadline": "2022-09-20",
+        "order_status": "pending"
+
     },
 
-    "additional_details": {
-        "other_pages": "other pages",
-        "cover": "cover",
-        "cards": "cards",
-        "wax_seal": "wax seal",
-        "dried_flowers": "dried flowers",
-        "brooch": "brooch"
-    }
+"items_array": [
+    {"item_id": "m1", "item_name": "page", "price": 30},
+    {"item_id": "m2", "item_name": "acrylic page", "price": 180},
+    {"item_id": "e1", "item_name": "envelope", "price": 30},
+    {"item_id": "e2", "item_name": "envelope liner", "price": 10},
+    {"item_id": "e3", "item_name": "envelope lock", "price": 5},
+    {"item_id": "t1", "item_name": "plain print" , "price": 30}
+    ]
+
 }
 
 ### update order status

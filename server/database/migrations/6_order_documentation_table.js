@@ -5,7 +5,7 @@
  exports.up = function(knex) {
     return knex.schema.createTable("order_documentation", (table) =>{
         table.uuid('doc_id').notNullable().primary();
-        table.uuid('order_id').references('order_id').inTable('order_details');
+        table.uuid('order_id').notNullable().references('order_id').inTable('order');
         table.dateTime('date').notNullable();
         table.text('description').notNullable();
     })
