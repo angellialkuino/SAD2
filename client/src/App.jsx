@@ -48,8 +48,8 @@ export default class App extends Component {
             {/* <CustMyOrders /> */}
             {/* <LoginPage /> */}
             {/* <TermsAndConditions /> */}
-            {/* <Order_Form_7 /> */}
-            <OrderDetailsStaff />
+            <Order_Form_7 />
+            {/* <OrderDetailsStaff /> */}
 
 
         </React.Fragment>

@@ -16,16 +16,7 @@
     align-items: center;
     justify-content: center;
     display: flex;
-}
-
-.Order_Form_7-body {
-    display: flex;
     flex-direction: column;
-    width: 100%;
-    height: 100%;
-    align-items: center;
-    justify-content: center;
-
 }
 
 .datepicker-control-section {
@@ -63,6 +54,7 @@
     margin-bottom: 10px;
     display: inline-block;
     margin-left: 10px;
+    margin-top: 20px;
 }
 
 .Order_Form_7-numbers {
@@ -77,25 +69,29 @@
 
 .Order_Form_7-date-picker {
     margin-top: 10px;
-    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .Order_Form_7-tac p {
     font-size: 14px;
     margin-bottom: 10px;
     display: inline-block;
-    margin-left: 10px;
     margin-top: 10px;
 }
 
 .Order_Form_7-buttons {
-    margin-top: 10px;
-    margin-left: 70%;
+    display: flex;
 }
 
 .Order_Form_7-footer {
     box-sizing: border-box;
     display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    transform: translateX(400px);
 }
 
 .Order_Form_7-button-back {
@@ -156,4 +152,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.Order_Form_7-header-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
