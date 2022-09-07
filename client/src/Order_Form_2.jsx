@@ -23,6 +23,7 @@ class Order_Form_2 extends Component {
                         <div className='grid-item'>
                             <select name="inner" id="inner">
                                 <option value="a">Let Crafters Haven handle it!</option>
+                                <option value="b">Customize</option>
                             </select>
                         </div>
                         <div className='grid-item'>
@@ -37,11 +38,12 @@ class Order_Form_2 extends Component {
                         <div className='grid-item'><input type="checkbox" value="envelope" className='checkbox-circle' />Envelope</div>
                         <div className='grid-item'><select name="envelope" id="envelope">
                             <option value="a">Let Crafters Haven handle it!</option>
+                            <option value="b">Customize</option>
                         </select></div>
                         <div className='grid-item'>
                             <div className='grid-item'>
                                 <select name="envelope" id="envelope">
-                                    <option value="a">Standard envelope size</option>
+                                    <option value="a">6 x 8 in</option>
                                 </select>
                             </div>
                         </div>
