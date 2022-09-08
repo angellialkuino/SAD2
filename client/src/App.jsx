@@ -33,6 +33,8 @@ import Order_History_Staff_Table from "./Order_History_Staff_Table";
 import Order_History_STAFF from "./Order_History_STAFF";
 import Order_List_Staff_Table from "./Order_List_Staff_Table";
 import Order_List_STAFF from "./Order_List_STAFF";
+import Order_Documentation from "./Order_Documentation";
+import Order_Documentation_Table from "./Order_Documentation_Table";
 
 export default class App extends Component {
     render() {
@@ -56,7 +58,8 @@ export default class App extends Component {
             {/* <TermsAndConditions /> */}
             {/* <Order_Form_7 /> */}
             {/* <Order_Form_4 /> */}
-            <Order_List_STAFF />
+            {/* <Order_List_STAFF /> */}
+            <Order_Documentation />
 
 
         </React.Fragment>
