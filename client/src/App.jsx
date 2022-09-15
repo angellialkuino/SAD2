@@ -27,7 +27,17 @@ import InvitationDraftCustomer from './InvitationDraftCustomer'
 import InvitationDraftStaff from './InvitationDraftStaff'
 import OrderDetailsCustomer from "./OrderDetailsCustomer";
 import OrderDetailsStaff from "./OrderDetailsStaff";
+import Order_Form_4 from "./Order_Form_4";
 import Order_Form_5 from "./Order_Form_5";
+import Order_History_Staff_Table from "./Order_History_Staff_Table";
+import Order_History_STAFF from "./Order_History_STAFF";
+import Order_List_Staff_Table from "./Order_List_Staff_Table";
+import Order_List_STAFF from "./Order_List_STAFF";
+import Order_Documentation from "./Order_Documentation";
+import Order_Documentation_Table from "./Order_Documentation_Table";
+import Check_Order from "./Check_Order";
+import Order_Documentation_Customer from "./Order_Documentation_Customer";
+import Order_Documentation_Table_Customer from "./Order_Documentation_Table_Customer";
 
 export default class App extends Component {
     render() {
@@ -50,8 +60,11 @@ export default class App extends Component {
             {/* <LoginPage /> */}
             {/* <TermsAndConditions /> */}
             {/* <Order_Form_7 /> */}
-            {/* <OrderDetailsStaff /> */}
-            <Order_Form_5 />
+            {/* <Order_Form_4 /> */}
+            {/* <Order_List_STAFF /> */}
+            {/* <Order_Documentation /> */}
+            {/* <Check_Order /> */}
+            <Order_Documentation_Customer />
 
 
         </React.Fragment>
