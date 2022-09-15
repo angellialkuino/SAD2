@@ -23,14 +23,6 @@ router.get('/order-documentation', controller.get);
 router.get('/order-history', controller.get);
 
 
-/////for owner!!!!!!!
-
-router.get('/staff-list', controller.get);
-
-router.get('/view-staff', controller.get);
-
-router.get('/create-staff', controller.get);
-
 module.exports = router;
 
 

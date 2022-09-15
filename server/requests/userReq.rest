@@ -83,3 +83,17 @@ Content-Type: application/json
 ### view list of staff acc
 
 GET {{hostname}}/owner/staff-list
+
+### upload image for profile picture
+
+POST {{hostname}}/owner/upload-prof-pic
+Content-Type: multipart/form-data; boundary=xxxxxx
+
+--xxxxxx
+
+Content-Disposition: form-data; name="prof_pic"; filename="zpermit.png"
+Content-Type: image/png
+
+< ./zpermit.png
+
+--xxxxxx--

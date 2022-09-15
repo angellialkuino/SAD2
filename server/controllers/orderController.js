@@ -10,9 +10,9 @@ exports.createOrder = async (req,res) => {
     try{
         const order = req.body.order; 
         const itemsArray = req.body.items_array;
-        const creation = await service.createOrder(order, itemsArray);
+        await service.createOrder(order, itemsArray);
 
-        res.status(201).send({ status:'Successfully created new order', creation});
+        res.status(201).send({ status:'Successfully created new order'});
     } catch (err){
         console.log(err);
         return res.status(400).send({ status:'Failed to create new order' });
@@ -39,7 +39,7 @@ exports.viewOrder = async (req,res) => {
     }
 };
 
-//update order info
+//update order infoS
 exports.updateStatus = async (req,res) => {
     try {
         const {order_id,order_status} = req.body;
@@ -89,7 +89,7 @@ exports.updateOrderPurchase = async (req,res) => {
     }
 };
 
-//view order details
+//view order history
 exports.viewOrderHistory = async (req,res) => {
     try {
         
@@ -128,3 +128,30 @@ exports.viewCurrentOrders = async (req,res) => {
     }
 };
 
+exports.docEntry = async (req, res) => {
+    try {
+        const entryInfo = req.body;
+        entry = await service.docEntry(entryInfo);
+        res.status(200).send({ status:'Successfully created new documentation entry', entry});
+
+    } catch (err) {
+        console.log(err);
+        return res.status(400).send({ status:'Failed to create new documentation entry' });
+    }
+}
+
+exports.docEntryList = async (req,res) => {
+    try {
+        entries = await service.docEntryList(req.body.order_id);
+        res.status(200).send({ status:'Successfully retrieved list of documentation entries', entries});
+
+    } catch (err) {
+        console.log(err);
+        return res.status(400).send({ status:'Failed to retrieve list of documentation entries' });
+    }
+}
+
+
+exports.inviteDraftPic = async (req,res) => {
+
+};

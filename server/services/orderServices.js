@@ -17,7 +17,6 @@ exports.currentOrders = async () => {
     await db.transaction( async (trx) => {
         orders = await trx("order AS o")
                     .join("users AS u","o.user_id","=","u.user_id")
-                    .join("order_details AS od","o.order_id","=","od.order_id")
                     .select("o.order_id","u.full_name","o.date_ordered","o.order_deadline","o.invite_type","o.motif","o.num_of_invites","o.order_status")
                     .whereNotIn("o.order_status",["completed","canceled"]);
 
@@ -34,9 +33,11 @@ exports.createOrder = async (order, itemsArray) => {
         await trx("order").insert(order);
     });
 
+    itemsArray.forEach((item) => {
+        item.order_id = order.order_id;
+    });
+
     await db.transaction(async (trx) => {
-        //must iterate through each item; how??? use for each???
-        itemsArray.order_id = order.order_id;
         await trx("order_details").insert(itemsArray);
     })
 
@@ -65,7 +66,7 @@ exports.viewOrder = async (order) => {
 
     //add query for order purchase details
 
-    return {order:order, order_details:orderDetails};
+    return {order:order, order_details: orderDetails};
 
 }
 
@@ -109,3 +110,16 @@ exports.docEntry = async (entryData) => {
 
     return entry;
 };
+
+//view list of entry documentation
+exports.docEntryList = async (orderId) => {
+
+    await db.transaction(async (trx) => {
+        entries = await trx("order_documentation")
+        .select('*')
+        .where({ order_id: orderId});
+    });
+
+    return entries;
+
+}

@@ -6,7 +6,7 @@ GET {{hostname}}/order/order-info
 Content-Type: application/json
 
 {
-    "order_id": "e40d7d80-032d-4421-b393-b2501945a0cb"
+    "order_id": "bcb5b2ce-b3e7-4642-aac2-c6e93857b81a"
 }
 
 ### create new order
@@ -16,7 +16,7 @@ Content-Type: application/json
 
 {
     "order": {
-        "user_id": "5bc962d8-de5b-4950-ab9d-96f85b58e07c",
+        "user_id": "4d1e5e52-0979-4a2c-9e79-8b2b7b79d860",
         "invite_type": "invite type",
         "material": "material",
         "event_date": "2022-09-01",
@@ -28,17 +28,17 @@ Content-Type: application/json
         "peg_link": "pinterest.com",
         "date_ordered": "2022-09-20 15:30:30",
         "order_deadline": "2022-09-20",
+        "claim_type": "delivery",
         "order_status": "pending"
 
     },
 
 "items_array": [
-    {"item_id": "m1", "item_name": "page", "price": 30},
-    {"item_id": "m2", "item_name": "acrylic page", "price": 180},
-    {"item_id": "e1", "item_name": "envelope", "price": 30},
-    {"item_id": "e2", "item_name": "envelope liner", "price": 10},
-    {"item_id": "e3", "item_name": "envelope lock", "price": 5},
-    {"item_id": "t1", "item_name": "plain print" , "price": 30}
+    {"item_id": "m1", "type": "orange", "size": "5.75 x 6.75", "quantity": 3},
+    {"item_id": "e1", "type": "red", "size": "6 x 7"},
+    {"item_id": "e3", "type": "euhue"},
+    {"item_id": "co2", "type": "covertype"},
+    {"item_id": "d1", "type": "leaves", "color": "blue"}
     ]
 
 }
@@ -49,13 +49,13 @@ PUT {{hostname}}/order/update-status
 Content-Type: application/json
 
 {
-    "order_id": "e40d7d80-032d-4421-b393-b2501945a0cb",
-    "order_status": "pending"
+    "order_id": "bcb5b2ce-b3e7-4642-aac2-c6e93857b81a",
+    "order_status": "confimed"
 }
 
 ### update order details and additonal details
 
-PUT {{hostname}}/order/update-order-details
+PUT {{hostname}}/order/update-order
 Content-Type: application/json
 
 {
@@ -86,7 +86,7 @@ PUT {{hostname}}/order/cancel-order
 Content-Type: application/json
 
 {
-    "order_id": "e40d7d80-032d-4421-b393-b2501945a0cb",
+    "order_id": "bcb5b2ce-b3e7-4642-aac2-c6e93857b81a",
     "order_status": "canceled"
 }
 
@@ -100,9 +100,46 @@ GET {{hostname}}/order/my-orders
 Content-Type: application/json
 
 {
-    "user_id": "5bc962d8-de5b-4950-ab9d-96f85b58e07c"
+    "user_id": "4d1e5e52-0979-4a2c-9e79-8b2b7b79d860"
 }
 
 ### view current orders for staff
 
 GET {{hostname}}/order/current-orders
+
+### new doc entry
+
+POST {{hostname}}/order/new-doc-entry
+Content-Type: application/json
+
+{
+    "order_id": "bcb5b2ce-b3e7-4642-aac2-c6e93857b81a",
+    "date": "2022-09-08",
+    "description": "Something something changed something"
+}
+
+### view list of doc entry
+
+GET {{hostname}}/order/order-documentation
+Content-Type: application/json
+
+{
+    "order_id": "bcb5b2ce-b3e7-4642-aac2-c6e93857b81a"
+}
+
+
+### upload image for invite draft
+
+POST {{hostname}}/order/update-invite-draft
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+
+Content-Disposition: form-data; name="invite_draft"; filename="zpermit.png"
+Content-Type: image/png
+
+< ./zpermit.png
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+
