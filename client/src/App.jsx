@@ -8,7 +8,6 @@ import NavBarOwner from "./NavBarOwner";
 import TermsAndConditions from "./TermsAndConditions";
 import StaffList from "./StaffList";
 import LoginForm from "./LoginForm";
-import SignUpForm from "./SignUpForm";
 import StaffProfile from "./StaffProfile";
 import StaffAccountViewOwner from "./StaffAccountViewOwner";
 import Order_Form_1 from "./Order_Form_1";
@@ -38,6 +37,7 @@ import Order_Documentation_Table from "./Order_Documentation_Table";
 import Check_Order from "./Check_Order";
 import Order_Documentation_Customer from "./Order_Documentation_Customer";
 import Order_Documentation_Table_Customer from "./Order_Documentation_Table_Customer";
+import Sign_up from "./Sign_up";
 
 export default class App extends Component {
     render() {
@@ -45,27 +45,12 @@ export default class App extends Component {
             <NavBar />
 
             <Routes>
-                {/* <Route path='/' element={<HomePage />} /> */}
-                <Route path='/AboutUs' element={<AboutUs />} />
+                <Route path='/' element={<HomePage />} />
+                <Route path='/about-us' element={<AboutUs />} />
                 <Route path='/OrderForm' element={<LoginPage />} />
-                <Route path='/SignUpForm' element={<SignUpForm />} />
-                <Route path='/LoginForm' element={<LoginForm />} />
+                <Route path='/sign-up' element={<Sign_up />} />
+                <Route path='/log-in' element={<LoginForm />} />
             </Routes>
-
-            {/* <Order_Form_2 /> */}
-            {/* <LoginForm /> */}
-            {/* <CustAccDetail /> */}
-            {/* <StaffList /> */}
-            {/* <CustMyOrders /> */}
-            {/* <LoginPage /> */}
-            {/* <TermsAndConditions /> */}
-            {/* <Order_Form_7 /> */}
-            {/* <Order_Form_4 /> */}
-            {/* <Order_List_STAFF /> */}
-            {/* <Order_Documentation /> */}
-            {/* <Check_Order /> */}
-            <Order_Documentation_Customer />
-
 
         </React.Fragment>
     }
