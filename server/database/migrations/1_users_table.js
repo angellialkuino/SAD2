@@ -10,7 +10,7 @@ exports.up = function(knex) {
     table.string('phone_number');
     table.string('email').notNullable(); //tama ba data type ng email and password
     table.string('password').notNullable();
-    table.string('fb_account');
+    table.string('fb_account').notNullable();
     table.string('full_address');
     //add roles table?????
   })

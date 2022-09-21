@@ -123,3 +123,26 @@ exports.docEntryList = async (orderId) => {
     return entries;
 
 }
+
+//compute price of order
+exports.computePrice = async (itemsArray) => {
+
+    let unitPrice=0;
+
+    await db.transaction( async (trx) => {
+        for( let x in itemsArray){
+
+            price = await trx("items")
+            .select('price')
+            .where({ item_id: itemsArray[x].item_id});
+
+            unitPrice += price[0].price;
+            console.log(itemsArray[x].item_id);
+            console.log(price[0].price);
+            console.log(unitPrice);
+
+        }}); 
+    
+    return unitPrice;
+
+};
