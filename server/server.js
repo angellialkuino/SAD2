@@ -1,4 +1,4 @@
-const express = require ('express');
+const express = require('express');
 const app = express();
 const session = require('express-session');
 const passport = require('passport');
@@ -10,16 +10,17 @@ const cors = require('cors');
 
 app.use(cors()); //to connect front n back
 
+app.use(cors()); //to connect front n back
 
 //parses incomming JSON requests and puts the parsed data in req.body
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 
 /* ask kuya raph? 
 const server = require('http').createServer(app);
 */
 
-const sessStore = new KnexStore({knex: db});
+const sessStore = new KnexStore({ knex: db });
 
 app.use(session({
     secret: process.env.SESSION_SECRET,
@@ -39,6 +40,6 @@ app.use(passport.session());
 
 app.use('/api', require('./routes/api/index'));
 
-app.listen(process.env.PORT, ()=>{
+app.listen(process.env.PORT, () => {
     console.log(`Listening on port ${process.env.PORT}`);
 });
