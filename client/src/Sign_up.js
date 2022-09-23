@@ -34,7 +34,10 @@ function Sign_up() {
             fb_account: fb_account
         }).then(() => {
             console.log("success");
-        });
+        })
+            .catch(err => {
+                console.log(err)
+            });
     };
 
     return (
@@ -52,7 +55,7 @@ function Sign_up() {
 
                     <div className="form-group">
                         <label>Full Name</label>
-                        <input type="text" className="form-control" placeholder="First name" onChange={(event) => {
+                        <input type="text" className="form-control" placeholder="Full name" onChange={(event) => {
                             setfull_name(event.target.value);
                         }} />
                     </div>
