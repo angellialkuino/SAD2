@@ -9,12 +9,10 @@ POST {{hostname}}/customer/sign-up
 Content-Type: application/json
 
 {
-    "full_name": "Macaroni N. Cheese",
-    "phone_number": "0101010",
-    "email": "issapa@gmail.com",
-    "password": "testing",
-    "fb_account": "MNC.WAP",
-    "full_address": "somethnsomethn"
+    "full_name": "Yancy Leandro Tupas",
+    "email": "YLT@gmail.com",
+    "password": "hush",
+    "fb_account": "YL.Tupas"
 }
 
 
@@ -24,8 +22,8 @@ POST {{hostname}}/customer/log-in
 Content-Type: application/json
 
 {
-    "email": "issapa@gmail.com",
-    "password": "testing"
+    "email": "YLT@gmail.com",
+    "password": "hush"
 }
 
 ### customer log out

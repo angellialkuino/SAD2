@@ -25,18 +25,18 @@ const sessStore = new KnexStore({ knex: db });
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     store: sessStore
 }));
 
 app.use(passport.initialize()); //initialize passport middleware
 app.use(passport.session());
 
-// app.use((req,res,next)=>{
-//     console.log(req.session);
-//     console.log(req.user);
-//     next();
-// });
+app.use((req,res,next)=>{
+    console.log(req.session);
+    console.log(req.user);
+    next();
+});
 
 app.use('/api', require('./routes/api/index'));
 

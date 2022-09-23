@@ -16,9 +16,8 @@ exports.createCust = async (req, res, next) => {
             //console.log(existingUser);
             return res.status(400).send({ status:'This email already has an existing account' });
         }
-
+        
         const creation = await service.createUser(userData, 'customer');
-        res.status(201).send({ status:'Successfully created new customer account' });
         next();
 
     } catch (err){
