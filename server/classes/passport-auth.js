@@ -7,16 +7,14 @@ passport.use(new LocalStrategy({ usernameField: 'email'},
     async (email, password, done) => {
         try {
             const user = await service.findUser(email);
-            //console.log(user);
+            //console.log(email);
             if (!user) { return done(null, false)}
 
             const isValid = await check.validPassword(password, user.password);
-            console.log(password);
-            console.log(user.password);
-
+            
 
             if (isValid) {
-                console.log(`this aint runnin ryt? ${isValid}`);
+                //console.log(user);
                 return done(null,user); //passport allows to go to route
             }else{
                 return done(null, false); //not allow to route

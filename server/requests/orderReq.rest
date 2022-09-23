@@ -135,7 +135,7 @@ Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0g
 
 ------WebKitFormBoundary7MA4YWxkTrZu0gW
 
-Content-Disposition: form-data; name="invite_draft"; filename="zpermit.png"
+Content-Disposition: form-data; name="image"; filenamSe="zpermit.png"
 Content-Type: image/png
 
 < ./zpermit.png

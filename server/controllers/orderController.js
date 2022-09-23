@@ -10,9 +10,10 @@ exports.createOrder = async (req,res) => {
     try{
         const order = req.body.order; 
         const itemsArray = req.body.items_array;
-        await service.createOrder(order, itemsArray);
+        //await service.createOrder(order, itemsArray);
+        const unitPrice = await service.computePrice(itemsArray);
 
-        res.status(201).send({ status:'Successfully created new order'});
+        res.status(201).send({ status:'Successfully created new order', unitPrice});
     } catch (err){
         console.log(err);
         return res.status(400).send({ status:'Failed to create new order' });
