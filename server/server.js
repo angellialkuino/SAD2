@@ -10,8 +10,6 @@ const cors = require('cors');
 
 app.use(cors()); //to connect front n back
 
-app.use(cors()); //to connect front n back
-
 //parses incomming JSON requests and puts the parsed data in req.body
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
