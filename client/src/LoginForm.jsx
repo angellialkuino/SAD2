@@ -1,4 +1,10 @@
 import React, { Component } from 'react';
+import {
+    BrowserRouter,
+    Routes,
+    Route,
+    Link
+} from 'react-router-dom';
 import './LoginForm.css';
 
 class LoginForm extends Component {
@@ -26,9 +32,9 @@ class LoginForm extends Component {
                             <input type="password" className="form-control" placeholder="Enter password" />
                         </div>
 
-                        <p className="forgot-password text-left">
+                        {/* <p className="forgot-password text-left">
                             Forgot <a href="#">password?</a>
-                        </p>
+                        </p> */}
 
                         <div className="form-group">
                             <div className="custom-control custom-checkbox">
@@ -40,7 +46,7 @@ class LoginForm extends Component {
                         <button type="submit" className="btn btn-dark btn-lg btn-block">Sign In</button>
 
                         <p className="no-account text-left">
-                            Don't have an account? <a href="#">Sign up here.</a>
+                            Don't have an account? <Link to='/sign-up' className="rounded-pill btn btn-info fw-bold nav-hover">Sign up here</Link>
                         </p>
 
                     </form>

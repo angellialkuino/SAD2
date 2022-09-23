@@ -1,4 +1,10 @@
 import React, { Component } from 'react';
+import {
+    BrowserRouter,
+    Routes,
+    Route,
+    Link
+} from 'react-router-dom';
 import './Order_Form_1.css';
 
 class Order_Form_1 extends Component {
@@ -69,8 +75,8 @@ class Order_Form_1 extends Component {
                 </div>
 
                 <div className='footer'>
-                    <button className='text-button'>Back</button>
-                    <button className='button'>Next</button>
+                    <Link to='/terms-and-conditions' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
+                    <Link to='/order-form-2' className="rounded-pill btn btn-info fw-bold nav-hover">Next</Link>
                 </div>
             </div>
 

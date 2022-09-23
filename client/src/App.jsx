@@ -27,7 +27,7 @@ import InvitationDraftStaff from './InvitationDraftStaff'
 import OrderDetailsCustomer from "./OrderDetailsCustomer";
 import OrderDetailsStaff from "./OrderDetailsStaff";
 import Order_Form_4 from "./Order_Form_4";
-import Order_Form_5 from "./Order_Form_5";
+import Order_Form_3 from "./Order_Form_3";
 import Order_History_Staff_Table from "./Order_History_Staff_Table";
 import Order_History_STAFF from "./Order_History_STAFF";
 import Order_List_Staff_Table from "./Order_List_Staff_Table";
@@ -50,8 +50,12 @@ export default class App extends Component {
                 <Route path='/OrderForm' element={<LoginPage />} />
                 <Route path='/sign-up' element={<Sign_up />} />
                 <Route path='/log-in' element={<LoginForm />} />
+                <Route path='/terms-and-conditions' element={<TermsAndConditions />} />
+                <Route path='/order-form-1' element={<Order_Form_1 />} />
+                <Route path='/order-form-2' element={<Order_Form_2 />} />
+                {/* <Route path='/order-form-2' element={<Order_Form_2 />} /> */}
             </Routes>
-
+            {/* <Order_Form_3 /> */}
         </React.Fragment>
     }
 }

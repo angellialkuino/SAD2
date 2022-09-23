@@ -1,4 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import {
+    BrowserRouter,
+    Routes,
+    Route,
+    Link
+} from 'react-router-dom';
 import Axios from 'axios';
 import './SignUp.css';
 
@@ -8,9 +14,20 @@ function Sign_up() {
     const [password, setpassword] = useState('');
     const [fb_account, setfb_account] = useState('');
 
+    //get function for reference
+    useEffect(() => {
+        Axios.get('http://localhost:5000/api/customer/sign-up', {})
+            .then(res => {
+                console.log(res)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }, [])
+
     const addUser = () => {
         //this is node js' server connection (5000) with /customer/sign-up as the address to store user data
-        Axios.post('http:/localhost:5000/api/customer/sign-up', {
+        Axios.post('http://localhost:5000/api/customer/sign-up', {
             full_name: full_name,
             email: email,
             password: password,
@@ -70,7 +87,7 @@ function Sign_up() {
                     <button type="submit" onClick={addUser} className="btn btn-dark btn-lg btn-block">Sign Up</button>
 
                     <p className="no-account text-right">
-                        Have an account already? <a href="#">Log in here.</a>
+                        Have an account already? <Link to='/log-in' className="rounded-pill btn btn-info fw-bold nav-hover">Login here</Link>
                     </p>
 
 
