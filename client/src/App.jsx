@@ -45,7 +45,7 @@ export default class App extends Component {
             <NavBar />
 
             <Routes>
-                {/* <Route path='/' element={<HomePage />} /> */}
+                <Route path='/' element={<HomePage />} />
                 <Route path='/about-us' element={<AboutUs />} />
                 <Route path='/OrderForm' element={<LoginPage />} />
                 <Route path='/sign-up' element={<Sign_up />} />
@@ -53,9 +53,8 @@ export default class App extends Component {
                 <Route path='/terms-and-conditions' element={<TermsAndConditions />} />
                 <Route path='/order-form-1' element={<Order_Form_1 />} />
                 <Route path='/order-form-2' element={<Order_Form_2 />} />
-                {/* <Route path='/order-form-2' element={<Order_Form_2 />} /> */}
+                <Route path='/order-form-3' element={<Order_Form_3 />} />
             </Routes>
-            <InvitationDraftStaff />
         </React.Fragment>
     }
 }
