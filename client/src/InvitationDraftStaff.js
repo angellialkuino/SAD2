@@ -1,4 +1,4 @@
-import { Axios } from 'axios';
+import Axios from 'axios';
 import React, { Component, useState, useEffect } from 'react';
 import './InvitationDraft.css';
 
@@ -37,19 +37,9 @@ function InvitationDraftStaff() {
             invite_draft: fileData
         }).then(() => {
             console.log("success");
+        }).catch(err => {
+            console.log(err)
         });
-
-        //AJAX method if Axios method doesn't work
-        // fetch("http://localhost:5000/single", {
-        //     method: "POST",
-        //     body: data,
-        // })
-        //     .then((result) => {
-        //         console.log("File Sent Successful");
-        //     })
-        //     .catch((err) => {
-        //         console.log(err.message);
-        //     });
     };
 
     return (

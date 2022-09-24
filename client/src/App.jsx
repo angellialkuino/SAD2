@@ -55,7 +55,7 @@ export default class App extends Component {
                 <Route path='/order-form-2' element={<Order_Form_2 />} />
                 <Route path='/order-form-3' element={<Order_Form_3 />} />
             </Routes>
-            <InvitationDraftStaff />
+            <LoginForm />
         </React.Fragment>
     }
 }

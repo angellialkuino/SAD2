@@ -243,7 +243,7 @@ const Sign_up = () => {
                         Already registered?<br />
                         <span className="line">
                             {/*put router link here*/}
-                            <a href="#">Sign In</a>
+                            <a href="#">Login</a>
                         </span>
                     </p>
                 </section>
