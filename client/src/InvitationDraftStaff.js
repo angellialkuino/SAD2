@@ -33,7 +33,7 @@ function InvitationDraftStaff() {
         const data = new FormData();
 
         data.append("image", fileData);
-        Axios.post('http://localhost:5000/api/staff/invite-draft', {
+        Axios.post('http://localhost:5000/api/order/update-invite-draft', {
             invite_draft: fileData
         }).then(() => {
             console.log("success");
