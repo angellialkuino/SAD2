@@ -36,6 +36,9 @@ const LoginForm = () => {
                 {
                     email: email,
                     password: pwd,
+                },
+                {
+                    withCredentials: true
                 }
             );
             console.log(JSON.stringify(response?.data));
