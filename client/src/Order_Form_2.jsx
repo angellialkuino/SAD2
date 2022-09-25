@@ -11,7 +11,7 @@ class Order_Form_2 extends Component {
                     </div>
 
                     <div className='row-group'>
-                        <div class="number-circle">1</div>
+                        <div className="number-circle">1</div>
                         <h2>Details of the Invite</h2>
                     </div>
 
@@ -54,7 +54,7 @@ class Order_Form_2 extends Component {
                     </div>
 
                     <div className='row-group'>
-                        <div class="number-circle">2</div>
+                        <div className="number-circle">2</div>
                         <h2>Text Decor</h2>
                     </div>
                     <div className='grid-container'>
@@ -70,7 +70,7 @@ class Order_Form_2 extends Component {
                     </div>
 
                     <div className='row-group'>
-                        <div class="number-circle">3</div>
+                        <div className="number-circle">3</div>
                         <h2>Other Pages</h2>
                     </div>
                     <div className='grid-container'>
@@ -80,7 +80,7 @@ class Order_Form_2 extends Component {
                     </div>
 
                     <div className='row-group'>
-                        <div class="number-circle">4</div>
+                        <div className="number-circle">4</div>
                         <h2>Cover</h2>
                     </div>
                     <div className='grid-container-2x2'>
@@ -90,7 +90,7 @@ class Order_Form_2 extends Component {
                         <div className='grid-item'><input type="checkbox" value="lasercut" className='checkbox-circle' />Lasercut Cover</div>
                     </div>
                     <div className='row-group'>
-                        <div class="number-circle">5</div>
+                        <div className="number-circle">5</div>
                         <h2>Cards</h2>
                     </div>
                     <div className='grid-container'>
