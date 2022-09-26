@@ -39,7 +39,7 @@ router.post('/new-doc-entry', controller.docEntry);
 
 const storageEngine = multer.diskStorage({
     destination: (req,file,cb) => {
-        cb(null, '../../images');
+        cb(null, './images');
     },
     filename: (req,file,cb) => {
         //cb(null, Date.now()+ 'draft' + path.extname(file.originalname));
@@ -49,8 +49,8 @@ const storageEngine = multer.diskStorage({
 
 const upload = multer({storage: storageEngine});
 
+router.post('/update-invite-draft', upload.single('image'), (req,res)=>{console.log('update invite draft reached'); res.send('ngano mn ni')});
 //router.post('/update-invite-draft', (req,res)=>{console.log('butt whay')}, upload.single('invite_draft'), (req,res)=>{res.send('ngano mn ni')});
-router.post('/update-invite-draft', upload.single('image'), (req,res)=>{res.send('ngano mn ni')});
 
 // router.post('/update-invite-draft', (req,res)=>{
 //     try {

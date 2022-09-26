@@ -1,4 +1,4 @@
-import { Axios } from 'axios';
+import Axios from 'axios';
 import React, { Component, useState, useEffect } from 'react';
 import './InvitationDraft.css';
 
@@ -37,6 +37,8 @@ function InvitationDraftStaff() {
             invite_draft: fileData
         }).then(() => {
             console.log("success");
+        }).catch(err => {
+            console.log(err)
         });
 
         //AJAX method if Axios method doesn't work

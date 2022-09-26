@@ -8,7 +8,10 @@ require('./classes/passport-auth');
 require('dotenv').config();
 const cors = require('cors');
 
-app.use(cors()); //to connect front n back
+app.use(cors({
+    origin: "http://localhost:3000",
+    credentials: true
+})); //to connect front n back
 
 //parses incomming JSON requests and puts the parsed data in req.body
 app.use(express.json());
@@ -23,14 +26,18 @@ const sessStore = new KnexStore({ knex: db });
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: false,
-    store: sessStore
+    saveUninitialized: true,
+    store: sessStore,
+    cookie: {
+        maxAge: 1000 * 60
+    }
 }));
 
 app.use(passport.initialize()); //initialize passport middleware
 app.use(passport.session());
 
 app.use((req,res,next)=>{
+    console.log(req.sessionID);
     console.log(req.session);
     console.log(req.user);
     next();
