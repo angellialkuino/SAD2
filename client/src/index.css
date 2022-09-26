@@ -6,31 +6,6 @@
     background-color: #179ad3;
 }
 
-.about-us {
-    width: 900px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: large;
-}
-
-.about-us-center {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.contact-info {
-    border-radius: 40px;
-    background: #179ad3;
-    padding: 15px;
-    width: fit-content;
-    height: fit-content;
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-}
-
 .text-bg {
     border-radius: 40px;
     background: white;

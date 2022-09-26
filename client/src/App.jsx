@@ -45,6 +45,7 @@ import Sign_up from "./Sign_up";
 export default class App extends Component {
     render() {
         return <React.Fragment>
+            <NavBar />
             <Routes>
                 <Route path='*' element={<ErrorPage />} />
                 {/* Main Page */}
