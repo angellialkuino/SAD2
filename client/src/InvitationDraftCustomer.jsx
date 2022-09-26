@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './InvitationDraft.css';
 
 class InvitationDraftCustomer extends Component {
@@ -11,7 +12,7 @@ class InvitationDraftCustomer extends Component {
                 </div>
 
                 <div className='order-being-confirmed-footer'>
-                    <button className='button'>Back</button>
+                    <Link to='/order-details' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
                 </div>
             </div>
         );

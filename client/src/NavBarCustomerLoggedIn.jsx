@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 
-class NavBar extends Component {
+class NavBarCustomerLoggedIn extends Component {
     render() {
         return (
             <React.Fragment>
@@ -13,8 +13,8 @@ class NavBar extends Component {
                         <li><Link to='/order-form-login' className="rounded-pill btn btn-info fw-bold nav-hover">Order Now</Link></li>
                     </ul>
                     <ul>
-                        <li><Link to='/sign-up' className="rounded-pill btn btn-info fw-bold nav-hover">Sign Up</Link></li>
-                        <li><Link to='/login' className="rounded-pill btn btn-info fw-bold nav-hover">Login</Link></li>
+                        <li><Link to='/current-orders' className="rounded-pill btn btn-info fw-bold nav-hover">My Orders</Link></li>
+                        <li><Link to='/account-details' className="rounded-pill btn btn-info fw-bold nav-hover">My Account</Link></li>
                     </ul>
                 </nav>
 
@@ -23,4 +23,4 @@ class NavBar extends Component {
     }
 }
 
-export default NavBar;
+export default NavBarCustomerLoggedIn;

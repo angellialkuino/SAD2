@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from 'react-router-dom';
 import "./Order_Form_4.css";
 import React from 'react';
 
@@ -114,8 +115,8 @@ function Order_Form_4() {
                 </span>
             </div>
             <div className='footer'>
-                <button className='text-button'>Back</button>
-                <button className='button'>Next</button>
+                <Link to='order-form-3' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
+                <Link to='/order-form-5' className="rounded-pill btn btn-info fw-bold nav-hover">Next</Link>
             </div>
         </div>
     );

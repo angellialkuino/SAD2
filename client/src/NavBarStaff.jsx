@@ -1,10 +1,5 @@
 import React, { Component } from 'react';
-import {
-    BrowserRouter,
-    Routes,
-    Route,
-    Link
-} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class NavBarStaff extends Component {
     render() {
@@ -13,8 +8,8 @@ class NavBarStaff extends Component {
                 <nav className='nav'>
                     <Link to="/" className="navbar-brand nav-link site-title nav-hover">Crafter's Haven</Link>
                     <ul>
-                        <li><a className="rounded-pill btn btn-info fw-bold nav-hover">Order List</a></li>
-                        <li><a className="rounded-pill btn btn-info fw-bold nav-hover">Order History</a></li>
+                        <li><Link to='/order-list-staff' className="rounded-pill btn btn-info fw-bold nav-hover">Order List</Link></li>
+                        <li><Link to='/order-history-staff' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link></li>
                     </ul>
                 </nav>
 

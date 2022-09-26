@@ -1,4 +1,5 @@
 import React, { Component, useEffect, useState } from "react";
+import NavBarStaff from "./NavBarStaff";
 import Order_List_Staff_Table from "./Order_List_Staff_Table";
 import './Order_List_Staff_Table.css'
 
@@ -10,7 +11,7 @@ export default function Order_List() {
 
     return (
         <div className="ol_div-frame order-history">
-
+            <NavBarStaff />
             <div className="ol_headers">
                 <h4 className="ol_title">Order List</h4>
             </div>
@@ -19,7 +20,7 @@ export default function Order_List() {
                 <Order_List_Staff_Table data={Orders} />
             </div>
 
-            <div className = "ol_buttons">
+            <div className="ol_buttons">
                 <button className="ol_button-back">Back</button>
                 <button className="ol_button-next">Next</button>
             </div>

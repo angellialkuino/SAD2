@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './Order_Form_2.css';
 
 class Order_Form_2 extends Component {
@@ -108,8 +109,8 @@ class Order_Form_2 extends Component {
 
 
                 <div className='footer'>
-                    <button className='text-button'>Back</button>
-                    <button className='button'>Next</button>
+                    <Link to='/order-form-1' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
+                    <Link to='/order-form-3' className="rounded-pill btn btn-info fw-bold nav-hover">Next</Link>
                 </div>
             </div>
         );

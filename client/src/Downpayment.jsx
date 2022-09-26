@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import './Order_Form_6.css';
+import { Link } from 'react-router-dom';
+import './Downpayment.css';
 
 class Order_Form_10 extends Component {
     render() {
@@ -41,8 +42,8 @@ class Order_Form_10 extends Component {
                     </div>
 
                     <div className="order_form_10-footer">
-                        <button className="order_form_10-btn-back">Back</button>
-                        <button className="order_form_10-btn-proceed">Proceed</button>
+                        <Link to='/shipping-address' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
+                        <Link to='/order-payment' className="rounded-pill btn btn-info fw-bold nav-hover">Next</Link>
                     </div>
 
                 </div>

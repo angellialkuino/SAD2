@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './Order_Form_5.css';
 import { DatePickerComponent } from '@syncfusion/ej2-react-calendars';
 
@@ -52,8 +53,8 @@ class Order_Form_7 extends Component {
 
                 <div className="Order_Form_7-footer">
                     <div className="Order_Form_7-buttons">
-                        <button className="Order_Form_7-button-back btn-primary"> Back </button>
-                        <button className="Order_Form_7-button-next btn-primary"> Next </button>
+                        <Link to='/order-form-4' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
+                        <Link to='/check-order' className="rounded-pill btn btn-info fw-bold nav-hover">Next</Link>
                     </div>
                 </div>
 
