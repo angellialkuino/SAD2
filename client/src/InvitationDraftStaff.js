@@ -40,18 +40,6 @@ function InvitationDraftStaff() {
         }).catch(err => {
             console.log(err)
         });
-
-        //AJAX method if Axios method doesn't work
-        // fetch("http://localhost:5000/single", {
-        //     method: "POST",
-        //     body: data,
-        // })
-        //     .then((result) => {
-        //         console.log("File Sent Successful");
-        //     })
-        //     .catch((err) => {
-        //         console.log(err.message);
-        //     });
     };
 
     return (

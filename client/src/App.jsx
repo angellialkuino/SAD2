@@ -20,8 +20,8 @@ import CustMyOrders from "./CustMyOrders";
 import LoginPage from "./LoginPage";
 import OrderBeingConfirmed from "./OrderBeingConfirmed";
 import Order_Form_2 from "./Order_Form_2";
-import Order_Form_10 from "./Order_Form_10";
-import Order_Form_7 from "./Order_Form_7";
+import Order_Form_6 from "./Order_Form_6";
+import Order_Form_5 from "./Order_Form_5";
 import InvitationDraftCustomer from './InvitationDraftCustomer'
 import InvitationDraftStaff from './InvitationDraftStaff'
 import OrderDetailsCustomer from "./OrderDetailsCustomer";
@@ -47,15 +47,37 @@ export default class App extends Component {
             <Routes>
                 {/* <Route path='/' element={<HomePage />} /> */}
                 <Route path='/about-us' element={<AboutUs />} />
-                <Route path='/OrderForm' element={<LoginPage />} />
                 <Route path='/sign-up' element={<Sign_up />} />
                 <Route path='/log-in' element={<LoginForm />} />
+                <Route path='/order-form-login' element={<LoginPage />} />
                 <Route path='/terms-and-conditions' element={<TermsAndConditions />} />
                 <Route path='/order-form-1' element={<Order_Form_1 />} />
                 <Route path='/order-form-2' element={<Order_Form_2 />} />
                 <Route path='/order-form-3' element={<Order_Form_3 />} />
+                <Route path='/order-form-4' element={<Order_Form_4 />} />
+                <Route path='/check-order' element={<Check_Order />} />
+                <Route path='/order-pickup' element={<OrderPickup />} />
+                <Route path='/shipping-address' element={<ShippingAddress />} />
+                <Route path='/order-form-5' element={<Order_Form_5 />} />
+                <Route path='/order-payment' element={<OrderBeingConfirmed />} />
+                <Route path='/account-details' element={<CustAccDetail />} />
+                <Route path='/order-details' element={<OrderDetailsCustomer />} />
+                <Route path='/invitation-draft' element={<InvitationDraftCustomer />} />
+                <Route path='/current-orders' element={<CustMyOrders />} />
+                <Route path='/documentation-of-changes' element={<Order_Documentation_Customer />} />
+                <Route path='/order-list-staff' element={<Order_List_STAFF />} />
+                <Route path='/order-details-staff' element={<OrderDetailsStaff />} />
+                <Route path='/invitation-draft-staff' element={<InvitationDraftStaff />} />
+                <Route path='/order-history-staff' element={<Order_History_STAFF />} />
+                {/* Documentaion of Changes for the staff? */}
+                <Route path='/create-staff' element={<CreateStaffAccountOwner />} />
+                <Route path='/view-staff' element={<StaffAccountViewOwner />} />
+                <Route path='/update-staff' element={<StaffAccountUpdateOwner />} />
+                <Route path='/staff-list' element={<StaffList />} />
+
+
             </Routes>
-            <InvitationDraftStaff />
+            {/* <Order_Documentation_Table_Customer /> */}
         </React.Fragment>
     }
 }

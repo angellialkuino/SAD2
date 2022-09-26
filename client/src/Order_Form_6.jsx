@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Order_Form_10.css';
+import './Order_Form_6.css';
 
 class Order_Form_10 extends Component {
     render() {
@@ -12,15 +12,15 @@ class Order_Form_10 extends Component {
                             <div className="order_form_10-content-left">
 
                                 <div className="order_form_10-header">
-                                    <h3>Please Pay The <br/> 50% Down Payment</h3>
+                                    <h3>Please Pay The <br /> 50% Down Payment</h3>
                                 </div>
 
                                 <p> Payment can be done via: </p>
-                                <p> Over the counter at Crafter’s Heaven located at:<br/>
-                                    Door 3, JADEG Bldg., 80 V. Mapa St, Poblacion District, <br/>
+                                <p> Over the counter at Crafter’s Heaven located at:<br />
+                                    Door 3, JADEG Bldg., 80 V. Mapa St, Poblacion District, <br />
                                     Davao City, 8000 Davao del Sur</p>
-                                <p> GCash <br/> 
-                                    Number: 09078216011 <br/>
+                                <p> GCash <br />
+                                    Number: 09078216011 <br />
                                     Recipient: Angelli Kezzed M. Alkuino</p>
                             </div>
 
@@ -30,7 +30,7 @@ class Order_Form_10 extends Component {
                                 <p>Contact Number: </p>
                                 <p>Address: </p>
                                 <p>Payment Method: </p>
-                                <br/>
+                                <br />
                                 <p>Quantity: </p>
                                 <p>Order Number: </p>
                                 <p>Amount per Set: </p>
