@@ -104,11 +104,7 @@ class Order_Form_2 extends Component {
                     </span>
                 </div>
 
-
-
-
-
-                <div className='footer'>
+                <div className='form1-footer'>
                     <Link to='/order-form-1' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
                     <Link to='/order-form-3' className="rounded-pill btn btn-info fw-bold nav-hover">Next</Link>
                 </div>

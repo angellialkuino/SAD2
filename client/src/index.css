@@ -2,13 +2,8 @@
     cursor: pointer;
 }
 
-.btn-info {
-    background-color: #179ad3;
-}
-
-.text-bg {
-    border-radius: 40px;
-    background: white;
+.white-text {
+    color: white;
 }
 
 .feed-frame {
@@ -26,12 +21,6 @@
     text-align: center;
     flex-direction: row;
     align-items: center;
-}
-
-img {
-    max-width: 85%;
-    max-height: 85%;
-    padding: 10px;
 }
 
 .nav {

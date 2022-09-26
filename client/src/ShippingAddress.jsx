@@ -35,7 +35,7 @@ class ShippingAddress extends Component {
                         <input type='text' className='profile-textfield long-textfield' />
                     </div>
                 </div>
-                <div className='footer'>
+                <div className='shipping-footer'>
                     <Link to='/order-pickup' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
                     <Link to='/downpayment' className="rounded-pill btn btn-info fw-bold nav-hover">Next</Link>
 

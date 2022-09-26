@@ -24,7 +24,7 @@
     align-items: center;
 }
 
-.Order_Form_5-pages-bottom{
+.Order_Form_5-pages-bottom {
     display: flex;
     justify-content: center;
     text-align: center;
@@ -50,8 +50,8 @@
     align-items: center;
     gap: 2rem;
     padding: 0 2rem;
-    background-color: #179ad3;
-    border-radius: 15px;
+    background-color: #d8ecf5;
+    border-radius: 2rem;
     width: 80%;
 
 }
@@ -62,11 +62,10 @@
     justify-content: center;
 }
 
-.Order_Form_5-dropdown p{
+.Order_Form_5-dropdown p {
     display: inline;
     margin-top: 14px;
     font-weight: bold;
-    color: white;
 }
 
 .Order_Form_5-dropdown select {
@@ -84,7 +83,16 @@
 }
 
 .Order_Form_5-footer {
-    margin-top: 20px;
+    margin-top: 2rem;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    width: 50%;
+    text-align: center;
+    gap: 1rem;
+    position: relative;
+    left: 80px;
+    bottom: 20px;
 }
 
 .Order_Form_5-button-back {

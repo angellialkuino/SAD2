@@ -5,12 +5,9 @@ import "./TermsAndConditions.css";
 class TermsAndConditions extends Component {
     render() {
         return (
-            <div className="termsAndConditions">
+            <div>
                 <div className="termsAndConditions-main">
-
-                    <div className="termsAndConditions-header">
-                        <h1>Terms and Conditions</h1>
-                    </div>
+                    <h1>Terms and Conditions</h1>
 
                     <div className="termsAndConditions-body">
                         <p>• 50% of total amount is required as downpayment before layout. </p>
@@ -29,7 +26,7 @@ class TermsAndConditions extends Component {
                 </div>
 
                 <div className='termsAndConditions-btn'>
-                    <button className='tAC-btn-cancel btn-primary'>Cancel</button>
+                    <Link to='/' className="rounded-pill btn btn-info fw-bold nav-hover">Cancel</Link>
                     <Link to='/order-form-1' className="rounded-pill btn btn-info fw-bold nav-hover">I Agree</Link>
                 </div>
             </div>

@@ -137,19 +137,6 @@ class Order_Form_5 extends Component {
                                     <h4 className="text-bg">Wedding Invitation</h4>
                                 </div>
                             </div>
-
-                            {/* <nav aria-label="Page navigation example">
-                                <ul class="pagination">
-                                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                                    <li class="page-item"><a class="page-link" href="">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">5</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                                </ul>
-                            </nav> */}
-
                         </div>
 
                         <div className="Order_Form_5-dropdown">
@@ -172,10 +159,8 @@ class Order_Form_5 extends Component {
                 </div>
 
                 <div className="Order_Form_5-footer">
-                    <div className="Order_Form_5-buttons-bottom">
-                        <Link to='/order-form-2' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
-                        <Link to='/order-form-4' className="rounded-pill btn btn-info fw-bold nav-hover">Next</Link>
-                    </div>
+                    <Link to='/order-form-2' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
+                    <Link to='/order-form-4' className="rounded-pill btn btn-info fw-bold nav-hover">Next</Link>
                 </div>
             </div>
 

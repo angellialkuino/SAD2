@@ -1,7 +1,7 @@
 .order-pickup-frame {
     display: flex;
     margin: 2rem auto auto auto;
-    background-color: #a1d0e4;
+    background-color: #d8ecf5;
     height: 710px;
     width: 1000px;
     border-radius: 2rem;
@@ -16,7 +16,10 @@
     padding: 1rem 0 0 5rem;
 }
 
-.img {
+.map-img {
+    max-width: 85%;
+    max-height: 85%;
+    margin: auto;
     border-radius: 2rem;
 }
 
@@ -62,4 +65,17 @@ h2 {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.order-pickup-footer {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    width: 50%;
+    text-align: center;
+    gap: 1rem;
+    position: relative;
+    top: 70px;
+    left: 250px;
 }

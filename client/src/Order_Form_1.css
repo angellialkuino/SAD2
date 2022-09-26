@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     margin: 2rem auto auto auto;
-    background-color: #a1d0e4;
+    background-color: #d8ecf5;
     height: 1154px;
     width: 1100px;
     border-radius: 2rem;
@@ -20,17 +20,17 @@ h2 {
     margin-bottom: 1rem;
 }
 
-.footer {
+.form1-footer {
     margin-top: 2rem;
     display: flex;
     justify-content: right;
     align-items: center;
-    left: 0;
-    bottom: 0;
-    width: 100%;
+    width: 50%;
     text-align: center;
-    padding: 0 500px 50px 0;
     gap: 1rem;
+    position: relative;
+    left: 550px;
+    bottom: 20px;
 }
 
 .button {

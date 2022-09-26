@@ -69,7 +69,7 @@ class Order_Form_1 extends Component {
                     </div>
                 </div>
 
-                <div className='footer'>
+                <div className='form1-footer'>
                     <Link to='/terms-and-conditions' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
                     <Link to='/order-form-2' className="rounded-pill btn btn-info fw-bold nav-hover">Next</Link>
                 </div>

@@ -10,7 +10,7 @@ import NavBarStaff from './NavBarStaff';
 import NavBarOwner from "./NavBarOwner";
 import TermsAndConditions from "./TermsAndConditions";
 import StaffList from "./StaffList";
-import LoginForm from "./LoginForm";
+import LoginForm from "./Login";
 import StaffProfile from "./StaffProfile";
 import StaffAccountViewOwner from "./StaffAccountViewOwner";
 import Order_Form_1 from "./Order_Form_1";
@@ -41,6 +41,7 @@ import Check_Order from "./Check_Order";
 import Order_Documentation_Customer from "./Order_Documentation_Customer";
 import Order_Documentation_Table_Customer from "./Order_Documentation_Table_Customer";
 import Sign_up from "./Sign_up";
+import Login from "./Login";
 
 export default class App extends Component {
     render() {
@@ -53,9 +54,9 @@ export default class App extends Component {
                 <Route path='/homepage' element={<HomePageCustomerLoggedIn />} />
                 <Route path='/about-us' element={<AboutUs />} />
                 <Route path='/sign-up' element={<Sign_up />} />
-                <Route path='/log-in' element={<LoginForm />} />
+                <Route path='/login' element={<Login />} />
                 {/* Customer Order Form */}
-                <Route path='/order-form-login' element={<LoginForm />} />
+                <Route path='/order-form-login' element={<LoginPage />} />
                 <Route path='/terms-and-conditions' element={<TermsAndConditions />} />
                 <Route path='/order-form-1' element={<Order_Form_1 />} />
                 <Route path='/order-form-2' element={<Order_Form_2 />} />
@@ -85,7 +86,7 @@ export default class App extends Component {
                 <Route path='/update-staff' element={<StaffAccountUpdateOwner />} />
                 <Route path='/staff-list' element={<StaffList />} />
             </Routes>
-            {/* <Order_Documentation_Table_Customer /> */}
+            {/* <Downpayment /> */}
         </React.Fragment>
     }
 }
