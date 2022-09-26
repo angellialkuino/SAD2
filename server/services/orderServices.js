@@ -137,9 +137,9 @@ exports.computePrice = async (itemsArray) => {
             .where({ item_id: itemsArray[x].item_id});
 
             unitPrice += price[0].price;
-            console.log(itemsArray[x].item_id);
-            console.log(price[0].price);
-            console.log(unitPrice);
+            // console.log(itemsArray[x].item_id);
+            // console.log(price[0].price);
+            // console.log(unitPrice);
 
         }}); 
     

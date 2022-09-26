@@ -1,6 +1,6 @@
 @hostname = http://localhost:5000/api
 
-### test route
+### test route http://localhost:5000/api/customer/get-test
 GET {{hostname}}/customer/get-test
 
 ### create new customer

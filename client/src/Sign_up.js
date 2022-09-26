@@ -85,7 +85,7 @@ const Sign_up = () => {
             );
             // console.log(response?.data);
             // console.log(response?.accessToken);
-            // console.log(JSON.stringify(response))
+            console.log(JSON.stringify(response))
             setSuccess(true);
             //clear state and controlled inputs
             //need value attrib on inputs for this
