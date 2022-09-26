@@ -1,11 +1,5 @@
 import React, { Component, useRef, useState, useEffect, useContext } from 'react';
 import AuthContext from "./context/AuthProvider";
-import {
-    BrowserRouter,
-    Routes,
-    Route,
-    Link
-} from 'react-router-dom';
 import './LoginForm.css';
 
 import Axios from 'axios';

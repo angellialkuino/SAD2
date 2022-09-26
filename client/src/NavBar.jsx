@@ -14,7 +14,7 @@ class NavBar extends Component {
                     </ul>
                     <ul>
                         <li><Link to='/sign-up' className="rounded-pill btn btn-info fw-bold nav-hover">Sign Up</Link></li>
-                        <li><Link to='/log-in' className="rounded-pill btn btn-info fw-bold nav-hover">Login</Link></li>
+                        <li><Link to='/login' className="rounded-pill btn btn-info fw-bold nav-hover">Login</Link></li>
                     </ul>
                 </nav>
 

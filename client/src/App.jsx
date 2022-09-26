@@ -74,8 +74,6 @@ export default class App extends Component {
                 <Route path='/view-staff' element={<StaffAccountViewOwner />} />
                 <Route path='/update-staff' element={<StaffAccountUpdateOwner />} />
                 <Route path='/staff-list' element={<StaffList />} />
-
-
             </Routes>
             {/* <Order_Documentation_Table_Customer /> */}
         </React.Fragment>
