@@ -1,10 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import {
-    BrowserRouter,
-    Routes,
-    Route,
-    Link
-} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Axios from 'axios';
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -118,7 +113,7 @@ const Sign_up = () => {
                 <section>
                     <h1>Success!</h1>
                     <p>
-                        <a href="#">Sign In</a>
+                        <Link to='/login'>Login</Link>
                     </p>
                 </section>
             ) : (
@@ -246,7 +241,7 @@ const Sign_up = () => {
                         Already registered?<br />
                         <span className="line">
                             {/*put router link here*/}
-                            <a href="#">Login</a>
+                            <Link to='login'>Login</Link>
                         </span>
                     </p>
                 </section>

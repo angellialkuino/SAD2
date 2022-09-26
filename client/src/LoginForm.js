@@ -1,4 +1,5 @@
-import React, { Component, useRef, useState, useEffect, useContext } from 'react';
+import React, { useRef, useState, useEffect, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import AuthContext from "./context/AuthProvider";
 import './LoginForm.css';
 
@@ -64,7 +65,7 @@ const LoginForm = () => {
                     <h1>You are logged in!</h1>
                     <br />
                     <p>
-                        <a href="#">Go to Home</a>
+                        <Link to='homepage'>Go to Home</Link>
                     </p>
                 </section>
             ) : (

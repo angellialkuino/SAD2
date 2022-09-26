@@ -1,4 +1,5 @@
 import React, { Component, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Order_Form_3.css';
 
 class Order_Form_5 extends Component {
@@ -172,8 +173,8 @@ class Order_Form_5 extends Component {
 
                 <div className="Order_Form_5-footer">
                     <div className="Order_Form_5-buttons-bottom">
-                        <button className="Order_Form_5-button-back btn-primary"> Back </button>
-                        <button className="Order_Form_5-button-next btn-primary"> Next </button>
+                        <Link to='/order-form-2' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
+                        <Link to='/order-form-4' className="rounded-pill btn btn-info fw-bold nav-hover">Next</Link>
                     </div>
                 </div>
             </div>

@@ -1,13 +1,12 @@
 import React, { Component } from "react";
-import NavBar from "./NavBar";
+import NavBarCustomerLoggedIn from "./NavBarCustomerLoggedIn";
 import './HomePage.css';
 
-class HomePage extends Component {
+class HomePageCustomerLoggedIn extends Component {
     render() {
         return (
-
             <div>
-                <NavBar />
+                <NavBarCustomerLoggedIn />
                 <h1 className="text-center fw-bold m-5">Custom-made Designs</h1>
                 <div className="horizontal-content m-5">
                     <div className="feed-frame mb-5">
@@ -36,4 +35,4 @@ class HomePage extends Component {
     }
 }
 
-export default HomePage;
+export default HomePageCustomerLoggedIn;

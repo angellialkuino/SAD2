@@ -11,7 +11,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-size: x-large;
+    font-size: large;
 }
 
 .about-us-center {
@@ -23,10 +23,12 @@
 .contact-info {
     border-radius: 40px;
     background: #179ad3;
-    padding: 10px;
+    padding: 15px;
     width: fit-content;
     height: fit-content;
-    position: absolute
+    position: absolute;
+    display: flex;
+    flex-direction: column;
 }
 
 .text-bg {

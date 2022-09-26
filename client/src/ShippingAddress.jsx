@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './ShippingAddress.css';
 
 class ShippingAddress extends Component {
@@ -35,8 +36,9 @@ class ShippingAddress extends Component {
                     </div>
                 </div>
                 <div className='footer'>
-                    <button className='text-button'>Back</button>
-                    <button className='button'>Proceed</button>
+                    <Link to='/order-pickup' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
+                    <Link to='/downpayment' className="rounded-pill btn btn-info fw-bold nav-hover">Next</Link>
+
                 </div>
             </div>
         );

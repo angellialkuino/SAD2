@@ -1,10 +1,5 @@
 import React, { Component } from 'react';
-import {
-    BrowserRouter,
-    Routes,
-    Route,
-    Link
-} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import "./TermsAndConditions.css";
 
 class TermsAndConditions extends Component {

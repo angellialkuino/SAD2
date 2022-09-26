@@ -14,12 +14,15 @@ class AboutUs extends Component {
 
                 <div className="contact-info fixed-bottom m-5">
                     <p className='ms-4 fw-bold'>Contact Us!</p>
-                    <div className="row ms-3">
+                    <div className='row'>
                         <div className="col-md-auto fw-bold">Email:</div>
                         <div className="col-md-auto">mail@mail.com</div>
-                        <div className="w-100"></div>
+                    </div>
+                    <div className='row'>
                         <div className="col-md-auto fw-bold">Phone Number:</div>
                         <div className="col-md-auto">09xxxxxxxxx</div>
+                    </div>
+                    <div className='row'>
                         <div className="col-md-auto fw-bold">Address:</div>
                         <div className="col-md-auto">Door 3, JADEG Bldg., 80 V. Mapa St, Poblacion District, Davao City, 8000 Davao del Sur</div>
                     </div>
