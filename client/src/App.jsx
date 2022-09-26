@@ -45,10 +45,12 @@ export default class App extends Component {
             <NavBar />
 
             <Routes>
-                {/* <Route path='/' element={<HomePage />} /> */}
+                {/* Main Page */}
+                <Route path='/' element={<HomePage />} />
                 <Route path='/about-us' element={<AboutUs />} />
                 <Route path='/sign-up' element={<Sign_up />} />
                 <Route path='/log-in' element={<LoginForm />} />
+                {/* Customer Order Form */}
                 <Route path='/order-form-login' element={<LoginPage />} />
                 <Route path='/terms-and-conditions' element={<TermsAndConditions />} />
                 <Route path='/order-form-1' element={<Order_Form_1 />} />
@@ -60,9 +62,11 @@ export default class App extends Component {
                 <Route path='/shipping-address' element={<ShippingAddress />} />
                 <Route path='/order-form-5' element={<Order_Form_5 />} />
                 <Route path='/order-payment' element={<OrderBeingConfirmed />} />
+                {/* Customer Account and Order Pages */}
                 <Route path='/account-details' element={<CustAccDetail />} />
                 <Route path='/order-details' element={<OrderDetailsCustomer />} />
                 <Route path='/invitation-draft' element={<InvitationDraftCustomer />} />
+                {/* Staff Pages */}
                 <Route path='/current-orders' element={<CustMyOrders />} />
                 <Route path='/documentation-of-changes' element={<Order_Documentation_Customer />} />
                 <Route path='/order-list-staff' element={<Order_List_STAFF />} />
@@ -70,6 +74,7 @@ export default class App extends Component {
                 <Route path='/invitation-draft-staff' element={<InvitationDraftStaff />} />
                 <Route path='/order-history-staff' element={<Order_History_STAFF />} />
                 {/* Documentaion of Changes for the staff? */}
+                {/* Owner Pages */}
                 <Route path='/create-staff' element={<CreateStaffAccountOwner />} />
                 <Route path='/view-staff' element={<StaffAccountViewOwner />} />
                 <Route path='/update-staff' element={<StaffAccountUpdateOwner />} />
