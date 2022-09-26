@@ -83,6 +83,9 @@ const Sign_up = () => {
                     email: email,
                     password: pwd,
                     fb_account: fb_account,
+                },
+                {
+                    withCredentials: true
                 }
             );
             // console.log(response?.data);
