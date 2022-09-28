@@ -42,8 +42,8 @@
 }
 
 .custMyOrders-body-color {
-    background-color: antiquewhite;
-    border-radius: 10px;
+    background-color: #d8ecf5;
+    border-radius: 2rem;
     padding: 20px;
     margin: 20px;
     display: flex;

@@ -97,14 +97,14 @@
     border-color: gray;
 }
 
-.order-details-button-row {
+.order-details-footer {
     display: flex;
     flex-direction: row;
     gap: 1rem;
-    justify-content: flex-end;
-    align-items: flex-end;
     position: relative;
-    bottom: 85px;
+    bottom: 80px;
+    right: 20px;
+    width: 90%;
 }
 
 .order-status-button-row {

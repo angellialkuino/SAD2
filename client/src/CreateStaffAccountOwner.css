@@ -1,0 +1,18 @@
+.profile-pic {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem;
+}
+
+.profile-div {
+    display: flex;
+    padding: 2rem;
+    margin: 2rem auto auto auto;
+    background-color: #d8ecf5;
+    height: 80vh;
+    width: 85vw;
+    border-radius: 2rem;
+    justify-content: space-between;
+}
