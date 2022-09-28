@@ -41,6 +41,14 @@ exports.createOrder = async (order, itemsArray) => {
         await trx("order_details").insert(itemsArray);
     })
 
+    const unitPrice = this.computePrice(itemsArray);
+
+    await db.transaction(async (trx) => {
+        await trx("billing_info").insert(
+            {OP_id: uuid.v4(), user_id: order.user_id, order_id: order.order_id, unit_cost: unitPrice, sub_total: unitPrice*order.num_of_invites, payment_method: "work on this"}
+        );
+    });
+
 };
 
 //find if order exists
