@@ -21,7 +21,7 @@
     border-radius: 10px;
 }
 
-.order_form_10-header h3{
+.order_form_10-header h3 {
     font-size: 30px;
     font-weight: 500;
     color: black;
@@ -38,8 +38,8 @@
     padding: 0px;
     margin: 0px;
     box-sizing: border-box;
-    background-color: antiquewhite;
-    border-radius: 10px;
+    background-color: #d8ecf5;
+    border-radius: 2rem;
 }
 
 .order_form_10-content-left {
@@ -58,12 +58,17 @@
     line-height: 20px;
 }
 
-.order_form_10-footer {
+.downpayment-footer {
+    margin-top: 2rem;
     display: flex;
-    padding: 0px;
-    margin: 0px;
-    box-sizing: border-box;
-    transform: translateX(185%);
+    justify-content: right;
+    align-items: center;
+    width: 50%;
+    text-align: center;
+    gap: 1rem;
+    position: relative;
+    left: 90px;
+    bottom: 20px;
 }
 
 .order_form_10-btn-back {

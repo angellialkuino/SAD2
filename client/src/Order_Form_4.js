@@ -114,7 +114,7 @@ function Order_Form_4() {
                     Total is subject to change <b>Total: Php</b>
                 </span>
             </div>
-            <div className='footer'>
+            <div className='form1-footer'>
                 <Link to='order-form-3' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
                 <Link to='/order-form-5' className="rounded-pill btn btn-info fw-bold nav-hover">Next</Link>
             </div>

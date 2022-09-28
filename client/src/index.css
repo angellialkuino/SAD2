@@ -2,13 +2,8 @@
     cursor: pointer;
 }
 
-.btn-info {
-    background-color: #179ad3;
-}
-
-.text-bg {
-    border-radius: 40px;
-    background: white;
+.white-text {
+    color: white;
 }
 
 .feed-frame {
@@ -26,12 +21,6 @@
     text-align: center;
     flex-direction: row;
     align-items: center;
-}
-
-img {
-    max-width: 85%;
-    max-height: 85%;
-    padding: 10px;
 }
 
 .nav {
@@ -164,25 +153,6 @@ ul {
     height: 500px;
     width: 500px;
     border-radius: 20rem;
-}
-
-.profile-pic {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 2rem;
-}
-
-.profile-div {
-    display: flex;
-    padding: 2rem;
-    margin: 2rem auto auto auto;
-    background-color: #a1d0e4;
-    height: 80vh;
-    width: 85vw;
-    border-radius: 2rem;
-    justify-content: space-between;
 }
 
 .button-row {
