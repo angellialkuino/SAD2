@@ -28,7 +28,7 @@ router.put('/update', controller.updateUser);
 router.delete('/delete', controller.deleteUser);
 //////account
 
-router.get('/my-account', controller.get);
+router.get('/my-account', controller.viewUser);
 
 
 
