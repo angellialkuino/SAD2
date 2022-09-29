@@ -1,7 +1,7 @@
 import React from 'react';
-import './Order_Documentation_Table.css'
+import './OrderDocumentationTable.css'
 
-const Order_Documentation_Table = ({ data }) => {
+const OrderDocumentationTableCustomer = ({ data }) => {
     return (
         <table className="oh_table-table">
             <tbody>
@@ -22,4 +22,4 @@ const Order_Documentation_Table = ({ data }) => {
     );
 };
 
-export default Order_Documentation_Table;
+export default OrderDocumentationTableCustomer;

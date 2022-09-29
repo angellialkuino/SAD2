@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import './Order_Form_5.css';
+import './OrderForm5.css';
 import { DatePickerComponent } from '@syncfusion/ej2-react-calendars';
 
-function Order_Form_5() {
+function OrderForm5() {
     const [dateValue, setDateValue] = useState('');
     setDateValue = new Date();
     return (
@@ -62,4 +62,4 @@ function Order_Form_5() {
     );
 }
 
-export default Order_Form_5;
+export default OrderForm5;

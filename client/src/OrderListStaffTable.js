@@ -1,7 +1,7 @@
 import React from 'react';
-import './Order_History_Staff_Table.css'
+import './OrderHistoryStaffTable.css'
 
-const Order_List_Staff_Table = ({ data }) => {
+const OrderListStaffTable = ({ data }) => {
     return (
         <table className="oh_table-table">
             <tbody>
@@ -34,4 +34,4 @@ const Order_List_Staff_Table = ({ data }) => {
     );
 };
 
-export default Order_List_Staff_Table;
+export default OrderListStaffTable;

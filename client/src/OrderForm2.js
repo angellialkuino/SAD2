@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Order_Form_2.css';
+import './OrderForm2.css';
 
-function Order_Form_2() {
+function OrderForm2() {
     return (
         <div>
             <div className='order-frame-2'>
@@ -111,4 +111,4 @@ function Order_Form_2() {
     );
 }
 
-export default Order_Form_2;
+export default OrderForm2;

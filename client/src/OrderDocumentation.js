@@ -1,10 +1,10 @@
-import React, { Component, useEffect, useState } from "react";
-import Order_Documentation_Table from "./Order_Documentation_Table";
-import './Order_Documentation_Table_Customer.css'
+import React, { useEffect, useState } from "react";
+import OrderDocumentationTable from "./OrderDocumentationTable";
+import './OrderDocumentationTable.css'
 
 var Orders = require("./OrderDocumentation_PLACEHOLDER.json");
 
-export default function Order_Documentation_Customer() {
+export default function OrderDocumentation() {
     const [query, setQuery] = useState("");
     const keys = ["date", "description"];
 
@@ -17,7 +17,11 @@ export default function Order_Documentation_Customer() {
             </div>
 
             <div className="oh_table">
-                <Order_Documentation_Table data={Orders} />
+                <OrderDocumentationTable data={Orders} />
+            </div>
+
+            <div className="od_add_entry">
+                <button className="od_button-add">Add Entry</button>
             </div>
 
         </div>

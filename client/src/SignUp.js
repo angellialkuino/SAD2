@@ -245,7 +245,6 @@ const Sign_up = () => {
                     <p>
                         Already registered?<br />
                         <span className="line">
-                            {/*put router link here*/}
                             <Link to='login'>Login</Link>
                         </span>
                     </p>

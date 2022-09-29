@@ -1,5 +1,5 @@
 import React from 'react';
-import './Order_List_Staff_Table.css'
+import './OrderListStaffTable.css'
 
 const Order_History_Staff_Table = ({ data }) => {
     return (
