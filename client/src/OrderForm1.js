@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Order_Form_1.css';
+import './OrderForm1.css';
 
-function Order_Form_1() {
+function OrderForm1() {
     return (
         <div>
             <div className='main-order-frame1'>
@@ -77,4 +77,4 @@ function Order_Form_1() {
     );
 }
 
-export default Order_Form_1;
+export default OrderForm1;

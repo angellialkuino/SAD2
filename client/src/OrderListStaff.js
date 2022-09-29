@@ -1,7 +1,7 @@
 import React, { Component, useEffect, useState } from "react";
 import NavBarStaff from "./NavBarStaff";
-import Order_List_Staff_Table from "./Order_List_Staff_Table";
-import './Order_List_Staff_Table.css'
+import OrderListStaffTable from "./OrderListStaffTable";
+import './OrderListStaffTable.css'
 
 var Orders = require("./OrderListStaff_PLACEHOLDER.json");
 
@@ -17,7 +17,7 @@ export default function Order_List() {
             </div>
 
             <div className="ol_table">
-                <Order_List_Staff_Table data={Orders} />
+                <OrderListStaffTable data={Orders} />
             </div>
 
             <div className="ol_buttons">

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Check_Order.css';
+import './CheckOrder.css';
 
-function Check_Order() {
+function CheckOrder() {
     return (
         <div className="Check_Order">
             <div className="Check_Order-container">
@@ -32,4 +32,4 @@ function Check_Order() {
     );
 }
 
-export default Check_Order;
+export default CheckOrder;

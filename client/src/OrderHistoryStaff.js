@@ -1,10 +1,10 @@
 import React, { Component, useEffect, useState } from "react";
-import Order_History_Staff_Table from "./Order_History_Staff_Table";
-import './Order_History_Staff_Table.css'
+import Order_History_Staff_Table from "./OrderHistoryStaffTable";
+import './OrderHistoryStaffTable.css'
 
 var Orders = require("./OrderHistoryStaff_PLACEHOLDER.json");
 
-export default function Order_History() {
+export default function OrderHistory() {
     const [query, setQuery] = useState("");
     const keys = ["cust_id", "name", "order_id", "date", "status"];
 
@@ -19,7 +19,7 @@ export default function Order_History() {
                 <Order_History_Staff_Table data={Orders} />
             </div>
 
-            <div className = "oh_buttons">
+            <div className="oh_buttons">
                 <button className="oh_button-back">Back</button>
                 <button className="oh_button-next">Next</button>
             </div>
