@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './OrderDetails.css';
 
 function OrderDetailsStaff() {
-    return (
+    return ( //change the <p> to input tags :")"
         <div className='order-details-main'>
             <div className='order-div'>
                 <h1>ORDER #00000000X</h1>

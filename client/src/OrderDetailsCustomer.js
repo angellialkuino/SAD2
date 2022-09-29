@@ -3,7 +3,37 @@ import { Link } from 'react-router-dom';
 import './OrderDetails.css';
 
 function OrderDetailsCustomer() {
-    return (
+
+    //shouldn't all this infor come from the previous page??? because the order is not saved in the database yet????
+    const [orderID, setOrderID] = useState("N/A");
+    const [userID, setUserID] = useState("N/A");
+    const [inviteType, setUserIinviteType] = useState("N/A");
+    const [material, setMaterial] = useState("N/A");
+    const [eventDate, setEventDate] = useState("N/A");
+    const [motif, setMotif] = useState("N/A");
+    const [inviteTitle, setInviteTitle] = useState("N/A");
+    const [fontStyle, setFontStyle] = useState("N/A");
+    const [contentLink, setContentLink] = useState("N/A");
+    const [numOfInv, setNumOfInv] = useState("N/A");
+    const [pegLink, setPegLink] = useState("N/A");
+    const [dateOrdered, setDateOrdered] = useState("N/A");
+    const [orderDeadline, setOrderDeadline] = useState("N/A");
+    const [claimType, setClaimType] = useState("N/A");
+    const [orderStatus, setOrderStatus] = useState("N/A"); //may be uneccessary info
+
+    const [itemsArray, setItemsArray] = useState([]);
+
+    const [unitCost, setUnitCost] = useState(0);
+    const [subTotal, setSubTotal] = useState(0);
+    const [paymentMethod, setPaymentMethod] = useState("N/A");
+
+
+
+    const [errMsg, setErrMsg] = useState('');
+    const [success, setSuccess] = useState(false);
+    const [successMsg, setSuccessMsg] = useState('');
+
+    return ( //this infor is wrong
         <div className='order-details-main'>
             <div className='order-div'>
                 <h1>ORDER #00000000X</h1>
