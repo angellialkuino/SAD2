@@ -30,6 +30,14 @@ Content-Type: application/json
 
 GET {{hostname}}/customer/log-out
 
+### create new customer
+
+GET {{hostname}}/customer/my-account
+Content-Type: application/json
+
+{
+    "user_id": "24753869-a2a9-4070-bc5e-e942ab341372"
+}
 
 ### update customer
 

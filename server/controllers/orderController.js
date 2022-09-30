@@ -13,10 +13,10 @@ exports.createOrder = async (req,res) => {
         //await service.createOrder(order, itemsArray);
         const unitPrice = await service.computePrice(itemsArray);
 
-        res.status(201).send({ status:'Successfully created new order', unitPrice});
+        res.status(201).send({ message:'Successfully created new order', unitPrice});
     } catch (err){
         console.log(err);
-        return res.status(400).send({ status:'Failed to create new order' });
+        return res.status(400).send({ message:'Failed to create new order' });
     }
 };
 
@@ -27,16 +27,16 @@ exports.viewOrder = async (req,res) => {
         orderInfo = await service.findOrder(req.body.order_id);
 
         if(!orderInfo){
-        res.status(400).send({ status:'Order does not exist'});
+        res.status(400).send({ message:'Order does not exist'});
         }
 
         orderInfo = await service.viewOrder(orderInfo);
 
-        res.status(200).send({ status:'Successfully retrieved order details', orderInfo});
+        res.status(200).send({ message:'Successfully retrieved order details', orderInfo});
         
     } catch (err) {
         console.log(err);
-        return res.status(400).send({ status:'Failed to retrieve order details' });
+        return res.status(400).send({ message:'Failed to retrieve order details' });
     }
 };
 
@@ -46,11 +46,11 @@ exports.updateStatus = async (req,res) => {
         const {order_id,order_status} = req.body;
         //console.log(`id is ${JSON.stringify({order_id})} stat is ${JSON.stringify({order_status})}`);
         orderInfo = await service.updateOrder("order",{order_id},{order_status});
-        res.status(200).send({ status:'Successfully updated order status', orderInfo});
+        res.status(200).send({ message:'Successfully updated order status', orderInfo});
 
     } catch (err) {
         console.log(err);
-        return res.status(400).send({ status:'Failed to update order status' });
+        return res.status(400).send({ message:'Failed to update order status' });
     }
 };
 
@@ -68,11 +68,11 @@ exports.updateOrderDetails = async (req,res) => {
         let orderInfo={};
         orderInfo.order_details = await service.updateOrder("order_details",{order_id},order_details);
         orderInfo.addtional_details = await service.updateOrder("additional_details",{additional_details_id},additional_details);
-        res.status(200).send({ status:'Successfully updated order details', orderInfo});
+        res.status(200).send({ message:'Successfully updated order details', orderInfo});
 
     } catch (err) {
         console.log(err);
-        return res.status(400).send({ status:'Failed to update order details' });
+        return res.status(400).send({ message:'Failed to update order details' });
     }
 };
 
@@ -82,11 +82,11 @@ exports.updateOrderPurchase = async (req,res) => {
         const {OP_id} = orderPurchase;
 
         orderInfo = await service.updateOrder("order_purchase",{OP_id},orderPurchase);
-        res.status(200).send({ status:'Successfully updated order purchase information', orderInfo});
+        res.status(200).send({ message:'Successfully updated order purchase information', orderInfo});
 
     } catch (err) {
         console.log(err);
-        return res.status(400).send({ status:'Failed to update order purchase information' });
+        return res.status(400).send({ message:'Failed to update order purchase information' });
     }
 };
 
@@ -95,11 +95,11 @@ exports.viewOrderHistory = async (req,res) => {
     try {
         
         orders = await service.orderHistory();
-        res.status(200).send({ status:'Successfully retrieved order history', orders});
+        res.status(200).send({ message:'Successfully retrieved order history', orders});
         
     } catch (err) {
         console.log(err);
-        return res.status(400).send({ status:'Failed to retrieve order history' });
+        return res.status(400).send({ message:'Failed to retrieve order history' });
     }
 };
 
@@ -108,11 +108,11 @@ exports.viewMyOrders = async (req,res) => {
     try {
         
         orders = await service.custOrders(req.body.user_id);
-        res.status(200).send({ status:'Successfully retrieved orders', orders});
+        res.status(200).send({ message:'Successfully retrieved orders', orders});
         
     } catch (err) {
         console.log(err);
-        return res.status(400).send({ status:'Failed to retrieve orders' });
+        return res.status(400).send({ message:'Failed to retrieve orders' });
     }
 };
 
@@ -121,11 +121,11 @@ exports.viewCurrentOrders = async (req,res) => {
     try {
         
         orders = await service.currentOrders();
-        res.status(200).send({ status:'Successfully retrieved list of current orders', orders});
+        res.status(200).send({ message:'Successfully retrieved list of current orders', orders});
         
     } catch (err) {
         console.log(err);
-        return res.status(400).send({ status:'Failed to retrieve list of current orders' });
+        return res.status(400).send({ message:'Failed to retrieve list of current orders' });
     }
 };
 
@@ -133,22 +133,22 @@ exports.docEntry = async (req, res) => {
     try {
         const entryInfo = req.body;
         entry = await service.docEntry(entryInfo);
-        res.status(200).send({ status:'Successfully created new documentation entry', entry});
+        res.status(200).send({ message:'Successfully created new documentation entry', entry});
 
     } catch (err) {
         console.log(err);
-        return res.status(400).send({ status:'Failed to create new documentation entry' });
+        return res.status(400).send({ message:'Failed to create new documentation entry' });
     }
 }
 
 exports.docEntryList = async (req,res) => {
     try {
         entries = await service.docEntryList(req.body.order_id);
-        res.status(200).send({ status:'Successfully retrieved list of documentation entries', entries});
+        res.status(200).send({ message:'Successfully retrieved list of documentation entries', entries});
 
     } catch (err) {
         console.log(err);
-        return res.status(400).send({ status:'Failed to retrieve list of documentation entries' });
+        return res.status(400).send({ message:'Failed to retrieve list of documentation entries' });
     }
 }
 

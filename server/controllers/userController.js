@@ -14,7 +14,7 @@ exports.createCust = async (req, res, next) => {
 
         if(existingUser){
             //console.log(existingUser);
-            return res.status(400).send({ status:'This email already has an existing account' });
+            return res.status(400).send({ message:'This email already has an existing account' });
         }
         
         const creation = await service.createUser(userData, 'customer');
@@ -22,7 +22,7 @@ exports.createCust = async (req, res, next) => {
 
     } catch (err){
         console.log('error at controller create cust');
-        return res.status(400).send({ status:'Failed to create new customer account' });
+        return res.status(400).send({ message:'Failed to create new customer account' });
     }
 };
 
@@ -34,17 +34,17 @@ exports.createStaff = async (req, res) => {
         const existingUser = await service.findUser(userData.email);
 
         if(existingUser){
-            //console.log(existingUser);
-            res.status(400).send({ status:'This email already has an existing account' });
+            //console.log(existingUser);            
+            res.status(400).send({ message:'This email already has an existing account' });
         }
 
         //var user is not used hnrm should it be returned??? meron na sa req.body ang info tho
         const user = await service.createUser(userData, 'staff');
-        res.status(201).send({ status:'Successfully created new staff account' });
+        res.status(201).send({ message:'Successfully created new staff account' });
 
     } catch (err){
         console.log('error at controller create staff');
-        return res.status(400).send({ status:'Failed to create new staff account' });
+        return res.status(400).send({ message:'Failed to create new staff account' });
     }
 };
 
@@ -58,14 +58,14 @@ exports.viewUser = async (req, res) => {
         const user = await service.findUserbyId(id); //coordinate with fat on this
 
         if(!user){
-            return res.status(400).send({ status:'This user does not exist'});
+            return res.status(400).send({ message:'This user does not exist'});
         }
         
-        return res.status(200).send({ status:'Successfully retrieved user account info' , user});
+        return res.status(200).send({ message:'Successfully retrieved user account info' , user});
 
     } catch (err) {
         console.log('error at controller view user');
-        return res.status(400).send({ status:'Failed to retrieve user account info' });
+        return res.status(400).send({ message:'Failed to retrieve user account info' });
     }
 }
 
@@ -74,11 +74,11 @@ exports.updateUser = async (req, res) => {
     try {
         const userData = req.body; //how will customer send id??? also user var not used
         const user = await service.updateUser(userData); //coordinate with fat on this
-        return res.status(200).send({ status:'Successfully updated user account info' , user});
+        return res.status(200).send({ message:'Successfully updated user account info' , user});
         
     } catch (err) {
         console.log('error at controller update user');
-        return res.status(400).send({ status:'Failed to update user account info' });
+        return res.status(400).send({ message:'Failed to update user account info' });
     }
 }
 
@@ -86,11 +86,11 @@ exports.updateUser = async (req, res) => {
 exports.deleteUser = async (req, res) => {
     try {
         const user = await service.deleteUser(req.body.user_id);
-        return res.status(200).send({ status:'Successfully deleted user account' , user});
+        return res.status(200).send({ message:'Successfully deleted user account' , user});
 
     } catch (err) {
         console.log('error at controller delete user');
-        return res.status(400).send({ status:'Failed to delete user account' });
+        return res.status(400).send({ message:'Failed to delete user account' });
 
     }
 }
@@ -99,11 +99,11 @@ exports.deleteUser = async (req, res) => {
 exports.viewStaffList = async (req, res) => {
     try {
         const staffList = await service.viewStaffList();
-        return res.status(200).send({ status:'Successfully retrieved staff list' , user});
+        return res.status(200).send({ message:'Successfully retrieved staff list' , user});
         
     } catch (err) {
         console.log('error at controller view staff list');
-        return res.status(400).send({ status:'Failed to retrieve staff list' });
+        return res.status(400).send({ message:'Failed to retrieve staff list' });
     }
 }
 
