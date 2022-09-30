@@ -4,7 +4,7 @@ function AboutUs() {
     return (
         <div className='about-us m-5' >
             <div className='about-us-center'>
-                <h1 className="fw-bold">About Us</h1>
+                <h3 className="fw-bold">About Us</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer elit dui, feugiat sed tellus ut, aliquet commodo magna. Pellentesque risus ex, placerat at vulputate vitae, aliquam ultrices erat. Sed lobortis vehicula semper. Morbi interdum neque sed tristique dictum. Sed vel mi eget enim dictum ullamcorper.
                 </p>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer elit dui, feugiat sed tellus ut, aliquet commodo magna. Pellentesque risus ex, placerat at vulputate vitae, aliquam ultrices erat. Sed lobortis vehicula semper. Morbi interdum neque sed tristique dictum. Sed vel mi eget enim dictum ullamcorper.

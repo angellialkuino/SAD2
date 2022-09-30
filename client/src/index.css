@@ -54,7 +54,7 @@ ul {
 }
 
 .site-title {
-    font-size: 1.5rem;
+    /* font-size: 1.5rem; */
     font-weight: bold;
 }
 
@@ -119,9 +119,9 @@ ul {
     margin-bottom: 2rem;
 }
 
-.title {
+/* .title {
     font-size: 2rem;
-}
+} */
 
 .textfield {
     border-radius: 2rem;
@@ -172,7 +172,7 @@ ul {
 
 .search {
     padding: 10px;
-    font-size: 20px;
+    /* font-size: 20px; */
     border-radius: 2rem;
 }
 
@@ -184,7 +184,7 @@ ul {
 
 .listItem {
     margin-bottom: 20px;
-    font-size: 25px;
+    /* font-size: 25px; */
     color: #444;
     font-weight: 300;
 }
@@ -205,10 +205,10 @@ ul {
 .th-th {
     width: 250px;
     text-align: left;
-    font-size: 20px;
+    /* font-size: 20px; */
 }
 
 .td-td {
     width: 250px;
-    font-size: 20px;
+    /* font-size: 20px; */
 }
