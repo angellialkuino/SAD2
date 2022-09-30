@@ -245,7 +245,7 @@ const Sign_up = () => {
                     <p>
                         Already registered?<br />
                         <span className="line">
-                            <Link to='login'>Login</Link>
+                            <Link to='/login'>Login</Link>
                         </span>
                     </p>
                 </section>
