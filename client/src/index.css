@@ -8,7 +8,7 @@
 
 .feed-frame {
     border-radius: 40px;
-    background: #179ad3;
+    background: #d5e0e6;
     padding: 10px;
     width: 600px;
     height: fit-content;
@@ -97,7 +97,7 @@ ul {
     display: flex;
     padding: 2rem;
     margin: 2rem auto auto auto;
-    background-color: #a1d0e4;
+    background-color: #d5e0e6;
     height: 800px;
     width: 1600px;
     border-radius: 2rem;
