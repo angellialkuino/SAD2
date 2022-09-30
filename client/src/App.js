@@ -10,7 +10,6 @@ import NavBarStaff from './NavBarStaff';
 import NavBarOwner from "./NavBarOwner";
 import TermsAndConditions from "./TermsAndConditions";
 import StaffList from "./StaffList";
-import LoginForm from "./Login";
 import StaffAccountViewOwner from "./StaffAccountViewOwner";
 import OrderForm1 from "./OrderForm1";
 import CreateStaffAccountOwner from "./CreateStaffAccountOwner";
@@ -46,9 +45,9 @@ function App() {
     return <React.Fragment>
         <NavBar />
         <Routes>
-            <Route path='*' element={<ErrorPage />} />
+            {/* <Route path='*' element={<ErrorPage />} /> */}
             {/* Main Page */}
-            <Route path='/' element={<HomePage />} />
+            {/* <Route path='/' element={<HomePage />} /> */}
             <Route path='/homepage' element={<HomePageCustomerLoggedIn />} />
             <Route path='/about-us' element={<AboutUs />} />
             <Route path='/sign-up' element={<SignUp />} />
@@ -84,7 +83,7 @@ function App() {
             <Route path='/update-staff' element={<StaffAccountUpdateOwner />} />
             <Route path='/staff-list' element={<StaffList />} />
         </Routes>
-        {/* <CreateStaffAccountOwner /> */}
+        <StaffList />
     </React.Fragment>
 }
 
