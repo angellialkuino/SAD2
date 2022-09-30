@@ -19,33 +19,33 @@ function CustAccDetail() {
     const [successMsg, setSuccessMsg] = useState('');
 
 
-    // useEffect(async () => {
-    //     console.log(JSON.stringify(res));
+    useEffect(async () => {
 
-    //     await Axios.get('http://localhost:5000/api/customer/my-account',
-    //         { user_id: "24753869-a2a9-4070-bc5e-e942ab341372" },
-    //         { withCredentials: true }
-    //     ).then((res) => {
-    //         if(res.status===200){
-    //             setSuccess(true);
-    //             setSuccessMsg(res.message);
-    //             setUser(res.user); //or is it res.body.user
-    //             setUserID(res.user.user_id);
-    //             setName(res.user.full_name);
-    //             setEmail(res.user.email);
-    //             setAddress(res.user.address);
-    //             setBarangay(res.user.barangay);
-    //             setPostalCode(res.user.postal_code);
-    //             setfbAcc(res.user.fb_account);
-    //             setcontactNum(res.user.phone_number);
-    //             //setPwd(res.user.password);
-    //         }else if (res.status===400){
-    //             setErrMsg(res.message); //or is it res.body.message
-    //         }
+        await Axios.get('http://localhost:5000/api/customer/my-account',
+            { user_id: "24753869-a2a9-4070-bc5e-e942ab341372" },
+            { withCredentials: true }
+        ).then((res) => {
+            console.log(JSON.stringify(res));
+            if(res.status===200){
+                setSuccess(true);
+                setSuccessMsg(res.body.message);
+                setUser(res.body.user); 
+                setUserID(res.body.user.user_id);
+                setName(res.body.user.full_name);
+                setEmail(res.body.user.email);
+                setAddress(res.body.user.address);
+                setBarangay(res.body.user.barangay);
+                setPostalCode(res.body.user.postal_code);
+                setfbAcc(res.body.user.fb_account);
+                setcontactNum(res.body.user.phone_number);
+                //setPwd(res.user.password);
+            }else if (res.status===400){
+                setErrMsg(res.body.message); //or is it res.body.message
+            }
             
-    //     });
+        });
     
-    // }, [])
+    }, [])
      
 
     const updateAccDetails = async () => {

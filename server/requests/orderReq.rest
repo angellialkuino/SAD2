@@ -6,17 +6,17 @@ GET {{hostname}}/order/order-info
 Content-Type: application/json
 
 {
-    "order_id": "bcb5b2ce-b3e7-4642-aac2-c6e93857b81a"
+    "order_id": "93ebc2e9-7b45-440f-b87d-43c7c8477267"
 }
 
 ### create new order
 
-POST {{hostname}}/order/order-form
+POST {{hostname}}/order/create-new-order
 Content-Type: application/json
 
 {
     "order": {
-        "user_id": "4d1e5e52-0979-4a2c-9e79-8b2b7b79d860",
+        "user_id": "3bd5ccaa-86d7-4180-89fe-7a64be46e503",
         "invite_type": "invite type",
         "material": "material",
         "event_date": "2022-09-01",

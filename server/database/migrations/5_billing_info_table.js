@@ -8,8 +8,9 @@ exports.up = function(knex) {
         table.uuid('user_id').notNullable().references('user_id').inTable('users');
         table.uuid('order_id').notNullable().references('order_id').inTable('order');
         table.float('unit_cost');
+        table.float('total_revision_fee');
         table.float('sub_total');
-        table.float('payment_method');
+        table.text('payment_method');
         table.dateTime('date_paid');
 
     })

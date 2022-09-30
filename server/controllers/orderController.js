@@ -10,7 +10,7 @@ exports.createOrder = async (req,res) => {
     try{
         const order = req.body.order; 
         const itemsArray = req.body.items_array;
-        //await service.createOrder(order, itemsArray);
+        await service.createOrder(order, itemsArray);
         const unitPrice = await service.computePrice(itemsArray);
 
         res.status(201).send({ message:'Successfully created new order', unitPrice});
@@ -30,9 +30,9 @@ exports.viewOrder = async (req,res) => {
         res.status(400).send({ message:'Order does not exist'});
         }
 
-        orderInfo = await service.viewOrder(orderInfo);
+        order_info = await service.viewOrder(orderInfo);
 
-        res.status(200).send({ message:'Successfully retrieved order details', orderInfo});
+        res.status(200).send({ message:'Successfully retrieved order details', order_info});
         
     } catch (err) {
         console.log(err);

@@ -15,7 +15,7 @@ router.get('/confimation', controller.get);
 router.get('/confimed-status', controller.get);
 
 //create new order
-router.post('/order-form', controller.createOrder);
+router.post('/create-new-order', controller.createOrder);
 
 
 //order pages

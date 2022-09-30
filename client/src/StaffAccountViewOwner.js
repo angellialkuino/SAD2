@@ -13,50 +13,50 @@ function StaffAccountViewOwner() {
     const [successMsg, setSuccessMsg] = useState('');
 
     //how to pass the id of the selected staff from previous page???
-    // useEffect(async () => {
-    //     console.log(JSON.stringify(res));
+    useEffect(async () => {
 
-    //     await Axios.get('http://localhost:5000/api/owner/staff-account',
-    //         { user_id: "24753869-a2a9-4070-bc5e-e942ab341372" }, //!!!!must be from prev page
-    //         { withCredentials: true }
-    //     ).then((res) => {
-    //         if(res.status===200){
-    //             setSuccess(true);
-    //             setSuccessMsg(res.message);
-    //             setUser(res.user); //or is it res.body.user
-    //             setUserID(res.user.user_id);
-    //             setName(res.user.full_name);
-    //             setEmail(res.user.email);
-    //             setcontactNum(res.user.phone_number);
-    //             //setPwd(res.user.password);
-    //         }else if (res.status===400){
-    //             setErrMsg(res.message); //or is it res.body.message
-    //         }
+        await Axios.get('http://localhost:5000/api/owner/staff-account',
+            { user_id: "24753869-a2a9-4070-bc5e-e942ab341372" }, //!!!!must be from prev page
+            { withCredentials: true }
+        ).then((res) => {
+            console.log(JSON.stringify(res));
+            if(res.status===200){
+                setSuccess(true);
+                setSuccessMsg(res.body.message);
+                setUser(res.body.user); //or is it res.body.user
+                setUserID(res.body.user.user_id);
+                setName(res.body.user.full_name);
+                setEmail(res.body.user.email);
+                setcontactNum(res.body.user.phone_number);
+                //setPwd(res.user.password);
+            }else if (res.status===400){
+                setErrMsg(res.body.message); //or is it res.body.message
+            }
             
-    //     });
+        });
     
-    // }, [])
+    }, [])
 
-    // const updateAccDetails = async () => {
-    //     await Axios.put('http://localhost:5000/api/customer/update',
-    //         { 
-    //             user_id: userID,
-    //             name: name,
-    //             email: email,
-    //             phone_number: contactNum
+    const updateAccDetails = async () => {
+        await Axios.put('http://localhost:5000/api/customer/update',
+            { 
+                user_id: userID,
+                name: name,
+                email: email,
+                phone_number: contactNum
         
-    //         },
-    //         { withCredentials: true }
-    //     ).then((res) => {
-    //         if(res.status===200){
-    //             setSuccess(true);
-    //             setSuccessMsg(res.message);
-    //         }else if (res.status===400){
-    //             setErrMsg(res.message); //or is it res.body.message
-    //         }
+            },
+            { withCredentials: true }
+        ).then((res) => {
+            if(res.status===200){
+                setSuccess(true);
+                setSuccessMsg(res.body.message);
+            }else if (res.status===400){
+                setErrMsg(res.body.message); //or is it res.body.message
+            }
             
-    //     });
-    // }
+        });
+    }
 
     return (
         <div className="profile-div">

@@ -41,7 +41,7 @@ exports.createOrder = async (order, itemsArray) => {
         await trx("order_details").insert(itemsArray);
     })
 
-    const unitPrice = this.computePrice(itemsArray);
+    const unitPrice = await this.computePrice(itemsArray);
 
     await db.transaction(async (trx) => {
         await trx("billing_info").insert(
@@ -67,14 +67,20 @@ exports.findOrder = async (orderId) => {
 exports.viewOrder = async (order) => {
 
     await db.transaction(async (trx) => {
-        orderDetails = await trx("order_details")
+        orderDetails = await trx("order_details AS od")
+        .join("items AS i", "od.item_id","=","i.item_id")
         .select('*')
         .where({ order_id: order.order_id});
+
+        billingInfo = await trx("billing_info")
+                        .select('*')
+                        .where({ order_id: order.order_id});
+    
     });
 
     //add query for order purchase details
 
-    return {order:order, order_details: orderDetails};
+    return {order:order, order_details: orderDetails, billing_info: billingInfo};
 
 }
 
