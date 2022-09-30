@@ -10,10 +10,10 @@ const Table = ({ staffListData }) => {
                     <th className="th-th">Contact</th>
                 </tr>
                 {staffListData.map((staff) => (
-                    <tr className="tr-tr" key={staff.id}>
-                        <td className="td-td">{staff.name}</td>
+                    <tr className="tr-tr" key={staff.user_id}>
+                        <td className="td-td">{staff.full_name}</td>
                         <td className="td-td">{staff.email}</td>
-                        <td className="td-td">{staff.contact}</td>
+                        <td className="td-td">{staff.phone_number}</td>
                     </tr>
                 ))}
             </tbody>
