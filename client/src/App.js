@@ -11,7 +11,6 @@ import NavBarOwner from "./NavBarOwner";
 import TermsAndConditions from "./TermsAndConditions";
 import StaffList from "./StaffList";
 import LoginForm from "./Login";
-import StaffProfile from "./StaffProfile";
 import StaffAccountViewOwner from "./StaffAccountViewOwner";
 import OrderForm1 from "./OrderForm1";
 import CreateStaffAccountOwner from "./CreateStaffAccountOwner";

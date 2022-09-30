@@ -1,5 +1,4 @@
 import React from "react";
-import StaffProfile from "./StaffProfile";
 import "./CreateStaffAccountOwner.css";
 
 function CreateStaffAccountOwner() {
