@@ -135,16 +135,6 @@ ul {
     border-style: none;
 }
 
-.profile-info {
-    display: flex;
-    flex-direction: column;
-    margin: 7.5rem 2rem 2rem 3rem;
-}
-
-.label-textfield {
-    margin-bottom: 2rem;
-}
-
 .second-div-frame {
     display: flex;
     padding: 2rem;

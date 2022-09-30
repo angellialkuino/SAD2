@@ -62,7 +62,7 @@ const Sign_up = () => {
         setErrMsg('');
     }, [user, email, pwd, matchPwd, fb_account])
 
-    const handleSubmit = async (e) => {
+    const handleSubmitSignUp = async (e) => {
         e.preventDefault();
         // // if button enabled with JS hack
         // const v1 = FULLNAME_REGEX.test(user);
@@ -112,8 +112,8 @@ const Sign_up = () => {
             <div className='signup-left-div'>
                 <h1 className='centered-text-on-img white-text'>Invitations for every occassion</h1>
                 <img className='signup-img' src={process.env.PUBLIC_URL + '/images/sample6.jpg'} alt="Debut Invitation" />
-
             </div>
+
             <div className='mt-5'>{success ? (
                 <section>
                     <h1>Success!</h1>
@@ -123,9 +123,9 @@ const Sign_up = () => {
                 </section>
             ) : (
                 <section>
-                    <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
+                    <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>{errMsg}</p>
                     <h1>Create Account</h1>
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmitSignUp}>
                         <label htmlFor="full_name">
                             Full Name:
                             <FontAwesomeIcon icon={faCheck} className={validName ? "valid" : "hide"} />
@@ -139,8 +139,6 @@ const Sign_up = () => {
                             onChange={(e) => setUser(e.target.value)}
                             value={user}
                             required
-                            aria-invalid={validName ? "false" : "true"}
-                            // aria-describedby="uidnote"
                             onFocus={() => setUserFocus(true)}
                             onBlur={() => setUserFocus(false)}
                         />
@@ -161,8 +159,6 @@ const Sign_up = () => {
                             onChange={(e) => setemail(e.target.value)}
                             value={email}
                             required
-                            aria-invalid={validEmail ? "false" : "true"}
-                            aria-describedby="uidnote"
                             onFocus={() => setEmailFocus(true)}
                             onBlur={() => setEmailFocus(false)}
                         />
@@ -183,8 +179,6 @@ const Sign_up = () => {
                             onChange={(e) => setPwd(e.target.value)}
                             value={pwd}
                             required
-                            aria-invalid={validPwd ? "false" : "true"}
-                            aria-describedby="pwdnote"
                             onFocus={() => setPwdFocus(true)}
                             onBlur={() => setPwdFocus(false)}
                         />
@@ -207,8 +201,6 @@ const Sign_up = () => {
                             onChange={(e) => setMatchPwd(e.target.value)}
                             value={matchPwd}
                             required
-                            aria-invalid={validMatch ? "false" : "true"}
-                            aria-describedby="confirmnote"
                             onFocus={() => setMatchFocus(true)}
                             onBlur={() => setMatchFocus(false)}
                         />
@@ -230,8 +222,6 @@ const Sign_up = () => {
                             onChange={(e) => setfb_account(e.target.value)}
                             value={fb_account}
                             required
-                            aria-invalid={validfb_account ? "false" : "true"}
-                            // aria-describedby="uidnote"
                             onFocus={() => setfb_accountFocus(true)}
                             onBlur={() => setfb_accountFocus(false)}
                         />

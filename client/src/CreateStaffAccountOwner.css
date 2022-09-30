@@ -11,8 +11,19 @@
     padding: 2rem;
     margin: 2rem auto auto auto;
     background-color: #d8ecf5;
-    height: 80vh;
-    width: 85vw;
+    height: 800px;
+    width: 1200px;
     border-radius: 2rem;
-    justify-content: space-between;
+    justify-content: space-evenly;
+}
+
+.create-staff-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    margin: 7.5rem 2rem 2rem 3rem;
 }
