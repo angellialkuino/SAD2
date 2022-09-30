@@ -106,6 +106,25 @@ function OrderDetailsCustomer() {
                     <h5>Claim Type</h5>
                     <p>{claimType}</p>
                 </div>
+                <div>
+                    <table>
+                        <tr>
+                            <th>Item Name</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                        </tr>
+                        {/* content of table */}
+                        {itemsArray.map((val,key) => {
+                            return(
+                                <tr>
+                                    <td>{val.item_name}</td>
+                                    <td>{val.quantity}</td>
+                                    <td>{val.price}</td>
+                                </tr>
+                            );
+                        })}                    
+                    </table>                    
+                </div>
                 <div className='order-details-footer'>
                     <Link to='/invitation-draft' className="rounded-pill btn btn-info fw-bold nav-hover">View Invitation</Link>
                     <Link to='/documentation-of-changes' className="rounded-pill btn btn-info fw-bold nav-hover">View Changes</Link>

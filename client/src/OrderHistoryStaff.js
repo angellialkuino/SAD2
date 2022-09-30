@@ -1,12 +1,21 @@
 import React, { Component, useEffect, useState } from "react";
+import Axios from 'axios';
 import Order_History_Staff_Table from "./OrderHistoryStaffTable";
 import './OrderHistoryStaffTable.css'
 
-var Orders = require("./OrderHistoryStaff_PLACEHOLDER.json");
+//var Orders = require("./OrderHistoryStaff_PLACEHOLDER.json");
 
 export default function OrderHistory() {
-    const [query, setQuery] = useState("");
-    const keys = ["cust_id", "name", "order_id", "date", "status"];
+    const [orderDocs, setOrderDocs] = useState([]);
+
+    useEffect( async () => {
+        await Axios.get('http://localhost:5000/api/order/order-history',
+            { withCredentials: true }
+        ).then((res) => {
+            setOrderDocs(res.body.orders);
+        });
+    }, [])
+
 
     return (
         <div className="oh_div-frame order-history">
@@ -16,7 +25,7 @@ export default function OrderHistory() {
             </div>
 
             <div className="oh_table">
-                <Order_History_Staff_Table data={Orders} />
+                <Order_History_Staff_Table data={orderDocs} />
             </div>
 
             <div className="oh_buttons">

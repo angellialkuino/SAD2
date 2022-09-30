@@ -8,14 +8,13 @@ exports.up = function(knex) {
     table.string('role').notNullable();
     table.string('full_name').notNullable();
     table.string('phone_number');
-    table.string('email').notNullable(); //tama ba data type ng email and password
+    table.string('email').notNullable();
     table.string('password').notNullable();
     table.string('fb_account').notNullable();
     table.string('address');
     table.string('barangay');
     table.string('postal_code');
 
-    //add roles table?????
   })
 };
 
