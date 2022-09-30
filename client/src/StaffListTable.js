@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Table = ({ staffListData }) => {
+const StaffListTable = ({ staffListData }) => {
     return (
         <table className="table-table">
             <tbody>
@@ -21,4 +21,4 @@ const Table = ({ staffListData }) => {
     );
 };
 
-export default Table;
+export default StaffListTable;

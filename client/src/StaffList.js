@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Axios } from "axios";
-import Table from "./Table";
+import StaffListTable from "./StaffListTable";
 
 // var Users = require("./StaffListPlaceholder.json");
 
@@ -47,7 +47,7 @@ function StaffList() {
                 />
                 <button className="button">Add</button>
             </div>
-            {<Table staffListData={search(staffList)} />}
+            {<StaffListTable staffListData={search(staffList)} />}
         </div>
     );
 }
