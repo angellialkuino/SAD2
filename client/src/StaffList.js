@@ -1,11 +1,33 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Axios } from "axios";
 import Table from "./Table";
 
-var Users = require("./StaffListPlaceholder.json");
+// var Users = require("./StaffListPlaceholder.json");
 
-export default function StaffList() {
+function StaffList() {
+    const [staffList, setStaffList] = useState([])
     const [query, setQuery] = useState("");
     const keys = ["name", "email", "contact"];
+    useEffect(() => {
+        const fetchStaff = async () => {
+            try {
+                const response = await Axios.get('http://localhost:5000/api/staff/staff-list');
+                setStaffList(response.data);
+            } catch (err) {
+                if (err.response) {
+                    // Not in the 200 response range 
+                    console.log(err.response.data);
+                    console.log(err.response.status);
+                    console.log(err.response.headers);
+                } else {
+                    console.log(`Error: ${err.message}`);
+                }
+            }
+        }
+
+        fetchStaff();
+    }, [])
+
     const search = (data) => {
         return data.filter((item) =>
             keys.some((key) => item[key].toLowerCase().includes(query))
@@ -25,7 +47,9 @@ export default function StaffList() {
                 />
                 <button className="button">Add</button>
             </div>
-            {<Table data={search(Users)} />}
+            {<Table staffListData={search(staffList)} />}
         </div>
     );
 }
+
+export default StaffList

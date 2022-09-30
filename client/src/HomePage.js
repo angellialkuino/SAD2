@@ -3,7 +3,7 @@ import './HomePage.css';
 
 function HomePage() {
     return (
-        <div>
+        <>
             <h3 className="text-center fw-bold m-5">Custom-made Designs</h3>
             <div className="horizontal-content m-5">
                 <div className="feed-frame mb-5">
@@ -27,7 +27,7 @@ function HomePage() {
                     <h5 className="">Wedding Invitation</h5>
                 </div>
             </div>
-        </div>
+        </>
     );
 }
 

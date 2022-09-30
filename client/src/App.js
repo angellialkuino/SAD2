@@ -45,9 +45,9 @@ function App() {
     return <React.Fragment>
         <NavBar />
         <Routes>
-            <Route path='*' element={<ErrorPage />} />
+            {/* <Route path='*' element={<ErrorPage />} /> */}
             {/* Main Page */}
-            <Route path='/' element={<HomePage />} />
+            {/* <Route path='/' element={<HomePage />} /> */}
             <Route path='/homepage' element={<HomePageCustomerLoggedIn />} />
             <Route path='/about-us' element={<AboutUs />} />
             <Route path='/sign-up' element={<SignUp />} />
@@ -83,7 +83,7 @@ function App() {
             <Route path='/update-staff' element={<StaffAccountUpdateOwner />} />
             <Route path='/staff-list' element={<StaffList />} />
         </Routes>
-        {/* <CreateStaffAccountOwner /> */}
+        <StaffList />
     </React.Fragment>
 }
 
