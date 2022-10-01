@@ -113,7 +113,7 @@ POST {{hostname}}/order/new-doc-entry
 Content-Type: application/json
 
 {
-    "order_id": "bcb5b2ce-b3e7-4642-aac2-c6e93857b81a",
+    "order_id": "93ebc2e9-7b45-440f-b87d-43c7c8477267",
     "date": "2022-09-08",
     "description": "Something something changed something"
 }
@@ -124,7 +124,7 @@ GET {{hostname}}/order/order-documentation
 Content-Type: application/json
 
 {
-    "order_id": "bcb5b2ce-b3e7-4642-aac2-c6e93857b81a"
+    "order_id": "93ebc2e9-7b45-440f-b87d-43c7c8477267"
 }
 
 

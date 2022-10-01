@@ -80,7 +80,7 @@ exports.viewOrder = async (order) => {
 
     //add query for order purchase details
 
-    return {order:order, order_details: orderDetails, billing_info: billingInfo};
+    return {order:order, order_details: orderDetails, billing_info: billingInfo[0]};
 
 }
 
