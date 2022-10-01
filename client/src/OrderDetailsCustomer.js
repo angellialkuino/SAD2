@@ -49,27 +49,27 @@ function OrderDetailsCustomer() {
                 setSuccessMsg(res.body.message);
                 setOrderInfo(res.body.order_info);
 
-                setOrderID(order_info.order.order_id);
-                setUserID(order_info.order.user_id);
-                setUserIinviteType(order_info.order.invite_typ);
-                setMaterial(order_info.order.material);
-                setEventDate(order_info.order.event_date);
-                setMotif(order_info.order.motif);
-                setInviteTitle(order_info.order.invite_title);
-                setFontStyle(order_info.order.font_style);
-                setContentLink(order_info.order.content_link);
-                setNumOfInv(order_info.order.num_of_invites);
-                setPegLink(order_info.order.peg_link);
-                setDateOrdered(order_info.order.date_ordered);
-                setOrderDeadline(order_info.order.order_deadline);
-                setClaimType(order_info.order.claim_type);
-                setOrderStatus(order_info.order.order_status); //might be unneccessary info
+                setOrderID(orderInfo.order.order_id);
+                setUserID(orderInfo.order.user_id);
+                setUserIinviteType(orderInfo.order.invite_typ);
+                setMaterial(orderInfo.order.material);
+                setEventDate(orderInfo.order.event_date);
+                setMotif(orderInfo.order.motif);
+                setInviteTitle(orderInfo.order.invite_title);
+                setFontStyle(orderInfo.order.font_style);
+                setContentLink(orderInfo.order.content_link);
+                setNumOfInv(orderInfo.order.num_of_invites);
+                setPegLink(orderInfo.order.peg_link);
+                setDateOrdered(orderInfo.order.date_ordered);
+                setOrderDeadline(orderInfo.order.order_deadline);
+                setClaimType(orderInfo.order.claim_type);
+                setOrderStatus(orderInfo.order.order_status); //might be unneccessary info
 
-                setItemsArray(order_info.order_details);
+                setItemsArray(orderInfo.order_details);
 
-                setUnitCost(order_info.billing_info.unit_cost);
-                setSubTotal(order_info.billing_info.sub_total);
-                setPaymentMethod(order_info.billing_info.payment_method);
+                setUnitCost(orderInfo.billing_info.unit_cost);
+                setSubTotal(orderInfo.billing_info.sub_total);
+                setPaymentMethod(orderInfo.billing_info.payment_method);
 
                 
             }else if (res.status===400){

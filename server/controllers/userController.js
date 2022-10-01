@@ -53,17 +53,18 @@ exports.viewUser = async (req, res) => {
     try {
         let id;
         if(req.user){ id=req.user.user_id;}
-        else{id=req.body.user_id}
+        else{id=req.query.user_id}
 
         const user = await service.findUserbyId(id); //coordinate with fat on this
 
         if(!user){
             return res.status(400).send({ message:'This user does not exist'});
         }
-        
+        //console.log(user);
         return res.status(200).send({ message:'Successfully retrieved user account info' , user});
 
     } catch (err) {
+        console.log(err);
         console.log('error at controller view user');
         return res.status(400).send({ message:'Failed to retrieve user account info' });
     }
@@ -99,7 +100,7 @@ exports.deleteUser = async (req, res) => {
 exports.viewStaffList = async (req, res) => {
     try {
         const staffList = await service.viewStaffList();
-        return res.status(200).send({ message:'Successfully retrieved staff list' , user});
+        return res.status(200).send({ message:'Successfully retrieved staff list' , staff_list});
         
     } catch (err) {
         console.log('error at controller view staff list');

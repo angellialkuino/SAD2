@@ -37,7 +37,6 @@ import OrderDocumentation from "./OrderDocumentation";
 import OrderDocumentationTable from "./OrderDocumentationTable";
 import CheckOrder from "./CheckOrder";
 import OrderDocumentationCustomer from "./OrderDocumentationCustomer";
-import OrderDocumentationTableCustomer from "./OrderDocumentationTableCustomer";
 import SignUp from "./SignUp";
 import Login from "./Login";
 

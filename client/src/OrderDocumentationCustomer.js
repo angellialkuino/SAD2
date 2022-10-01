@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Axios from 'axios';
 import OrderDocumentationTable from "./OrderDocumentationTable";
-import './OrderDocumentationTableCustomer.css'
+import './OrderDocumentationTable.css'
+
+//import './OrderDocumentationTableCustomer.css'
+
 
 //var Orders = require("./OrderDocumentation_PLACEHOLDER.json");
 
