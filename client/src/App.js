@@ -1,11 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import ErrorPage from "./ErrorPage";
 import AboutUs from "./AboutUs";
 import HomePage from "./HomePage";
 import HomePageCustomerLoggedIn from './HomePageCustomerLoggedIn';
-import NavBar from "./NavBar";
-import NavBarCustomerLoggedIn from "./NavBarCustomerLoggedIn";
 import NavBarStaff from './NavBarStaff';
 import NavBarOwner from "./NavBarOwner";
 import TermsAndConditions from "./TermsAndConditions";
@@ -41,16 +39,24 @@ import SignUp from "./SignUp";
 import Login from "./Login";
 
 function App() {
+    const [success, setSuccess] = useState(false);
+
     return <React.Fragment>
-        <NavBar />
         <Routes>
-            {/* <Route path='*' element={<ErrorPage />} /> */}
+            <Route path='*' element={<ErrorPage />} />
             {/* Main Page */}
-            {/* <Route path='/' element={<HomePage />} /> */}
+            <Route path='/' element=
+                {<HomePage
+                    success={success}
+                />} />
             <Route path='/homepage' element={<HomePageCustomerLoggedIn />} />
             <Route path='/about-us' element={<AboutUs />} />
             <Route path='/sign-up' element={<SignUp />} />
-            <Route path='/login' element={<Login />} />
+            <Route path='/login' element=
+                {<Login
+                    success={success}
+                    setSuccess={setSuccess}
+                />} />
             {/* Customer Order Form */}
             <Route path='/order-form-login' element={<LoginPage />} />
             <Route path='/terms-and-conditions' element={<TermsAndConditions />} />
@@ -82,7 +88,7 @@ function App() {
             <Route path='/update-staff' element={<StaffAccountUpdateOwner />} />
             <Route path='/staff-list' element={<StaffList />} />
         </Routes>
-        <StaffList />
+        {/* <StaffList /> */}
     </React.Fragment>
 }
 
