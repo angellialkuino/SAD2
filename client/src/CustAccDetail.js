@@ -23,11 +23,8 @@ function CustAccDetail() {
 
         const getAccDetails = async () => {
             await Axios.get('http://localhost:5000/api/customer/my-account',
-                {params:{
-                    user_id: "84000fad-c7ed-4041-8039-0826259a42b6"
-                }}
-                //{ withCredentials: true }                
-                //withCredentials: true }
+                {params:{user_id: "84000fad-c7ed-4041-8039-0826259a42b6"}, 
+                withCredentials: true } 
             ).then((res) => {
                 //console.log(res);
                 if(res.status===200){

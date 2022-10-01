@@ -37,53 +37,57 @@ function OrderDetailsCustomer() {
     const [success, setSuccess] = useState(false);
     const [successMsg, setSuccessMsg] = useState('');
 
-    useEffect(async () => {
+    useEffect( () => {
 
-        await Axios.get('http://localhost:5000/api/order/order-info',
-            { order_id: "bcb5b2ce-b3e7-4642-aac2-c6e93857b81a" }, //!!!!must be from prev page
-            { withCredentials: true }
-        ).then((res) => {
-            console.log(JSON.stringify(res));
-            if(res.status===200){
-                setSuccess(true);
-                setSuccessMsg(res.body.message);
-                setOrderInfo(res.body.order_info);
-
-                setOrderID(orderInfo.order.order_id);
-                setUserID(orderInfo.order.user_id);
-                setUserIinviteType(orderInfo.order.invite_typ);
-                setMaterial(orderInfo.order.material);
-                setEventDate(orderInfo.order.event_date);
-                setMotif(orderInfo.order.motif);
-                setInviteTitle(orderInfo.order.invite_title);
-                setFontStyle(orderInfo.order.font_style);
-                setContentLink(orderInfo.order.content_link);
-                setNumOfInv(orderInfo.order.num_of_invites);
-                setPegLink(orderInfo.order.peg_link);
-                setDateOrdered(orderInfo.order.date_ordered);
-                setOrderDeadline(orderInfo.order.order_deadline);
-                setClaimType(orderInfo.order.claim_type);
-                setOrderStatus(orderInfo.order.order_status); //might be unneccessary info
-
-                setItemsArray(orderInfo.order_details);
-
-                setUnitCost(orderInfo.billing_info.unit_cost);
-                setSubTotal(orderInfo.billing_info.sub_total);
-                setPaymentMethod(orderInfo.billing_info.payment_method);
-
+        const getOrderDetails = async () => {
+            await Axios.get('http://localhost:5000/api/order/order-info',
+                {params:{order_id: "bcb5b2ce-b3e7-4642-aac2-c6e93857b81a"}, 
+                    withCredentials: true }
+            ).then((res) => {
+                console.log(res);
+                if(res.status===200){
+                    setSuccess(true);
+                    setSuccessMsg(res.data.message);
+                    setOrderInfo(res.data.order_info);
+                    
+                }else if (res.status===400){
+                    setErrMsg(res.body.message); 
+                }
                 
-            }else if (res.status===400){
-                setErrMsg(res.body.message); 
-            }
-            
-        });
-    
+            });
+        }
+        
+    getOrderDetails();
     }, [])
+
+    useEffect(()=>{
+        setOrderID(orderInfo.order.order_id);
+        setUserID(orderInfo.order.user_id);
+        setUserIinviteType(orderInfo.order.invite_typ);
+        setMaterial(orderInfo.order.material);
+        setEventDate(orderInfo.order.event_date);
+        setMotif(orderInfo.order.motif);
+        setInviteTitle(orderInfo.order.invite_title);
+        setFontStyle(orderInfo.order.font_style);
+        setContentLink(orderInfo.order.content_link);
+        setNumOfInv(orderInfo.order.num_of_invites);
+        setPegLink(orderInfo.order.peg_link);
+        setDateOrdered(orderInfo.order.date_ordered);
+        setOrderDeadline(orderInfo.order.order_deadline);
+        setClaimType(orderInfo.order.claim_type);
+        setOrderStatus(orderInfo.order.order_status); //might be unneccessary info
+
+        setItemsArray(orderInfo.order_details);
+
+        setUnitCost(orderInfo.billing_info.unit_cost);
+        setSubTotal(orderInfo.billing_info.sub_total);
+        setPaymentMethod(orderInfo.billing_info.payment_method);
+    },[orderInfo])
 
     return ( //this infor is wrong
         <div className='order-details-main'>
             <div className='order-div'>
-                <h1>ORDER #00000000X</h1>
+                <h1>ORDER {orderID}</h1>
                 <div className='white-inner-div1'>
                     <h5>Date Ordered</h5>
                     <p>{dateOrdered}</p>
@@ -137,7 +141,7 @@ function OrderDetailsCustomer() {
                     <div className='white-inner-div1'>
                         <p>Number of Invites: {numOfInv}</p>
                         <p>Amount per Invite: {unitCost}</p>
-                        {/* <p>Revision Fee: {revFee}</p> */}
+                        {/* <p>Total Revision Fee: {revFee}</p> */}
                         <p>Subotal: {subTotal}</p>
                         <h5>TOTAL AMOUNT DUE:</h5>
                         <p>Payment Method: {paymentMethod}</p>
