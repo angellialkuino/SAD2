@@ -5,7 +5,7 @@ import './SignUpAndLogin.css';
 
 import Axios from 'axios';
 
-const LoginForm = ({ success, setSuccess }) => {
+const LoginForm = ({ success, setSuccess, roles, setRoles }) => {
     const { setAuth } = useContext(AuthContext);
     const userRef = useRef();
     const errRef = useRef();
@@ -38,7 +38,7 @@ const LoginForm = ({ success, setSuccess }) => {
             console.log(JSON.stringify(response?.data));
             console.log(JSON.stringify(response));
             const accessToken = response?.data?.accessToken;
-            const roles = response?.data?.roles;
+            setRoles(response?.data?.roles);
             setAuth({ email, pwd, roles, accessToken });
             setemail('');
             setPwd('');
