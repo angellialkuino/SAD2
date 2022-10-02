@@ -38,20 +38,20 @@ function OrderDetailsCustomer() {
     const [successMsg, setSuccessMsg] = useState('');
 
     useEffect( () => {
-
-        const getOrderDetails = async () => {
+        const getOrderDetails = async () => {        
             await Axios.get('http://localhost:5000/api/order/order-info',
-                {params:{order_id: "bcb5b2ce-b3e7-4642-aac2-c6e93857b81a"}, 
+                {params:{order_id: "93ebc2e9-7b45-440f-b87d-43c7c8477267"}, 
                     withCredentials: true }
             ).then((res) => {
-                console.log(res);
+                //console.log(res);
+                console.log(res.data.order_info);
                 if(res.status===200){
                     setSuccess(true);
                     setSuccessMsg(res.data.message);
                     setOrderInfo(res.data.order_info);
                     
                 }else if (res.status===400){
-                    setErrMsg(res.body.message); 
+                    setErrMsg(res.data.message); 
                 }
                 
             });
@@ -61,27 +61,32 @@ function OrderDetailsCustomer() {
     }, [])
 
     useEffect(()=>{
-        setOrderID(orderInfo.order.order_id);
-        setUserID(orderInfo.order.user_id);
-        setUserIinviteType(orderInfo.order.invite_typ);
-        setMaterial(orderInfo.order.material);
-        setEventDate(orderInfo.order.event_date);
-        setMotif(orderInfo.order.motif);
-        setInviteTitle(orderInfo.order.invite_title);
-        setFontStyle(orderInfo.order.font_style);
-        setContentLink(orderInfo.order.content_link);
-        setNumOfInv(orderInfo.order.num_of_invites);
-        setPegLink(orderInfo.order.peg_link);
-        setDateOrdered(orderInfo.order.date_ordered);
-        setOrderDeadline(orderInfo.order.order_deadline);
-        setClaimType(orderInfo.order.claim_type);
-        setOrderStatus(orderInfo.order.order_status); //might be unneccessary info
 
-        setItemsArray(orderInfo.order_details);
+        if (Object.keys(orderInfo).length !== 0){
+        console.log(`order info: \n${JSON.stringify(orderInfo)}`);
 
-        setUnitCost(orderInfo.billing_info.unit_cost);
-        setSubTotal(orderInfo.billing_info.sub_total);
-        setPaymentMethod(orderInfo.billing_info.payment_method);
+            setOrderID(orderInfo.order.order_id);
+            setUserID(orderInfo.order.user_id);
+            setUserIinviteType(orderInfo.order.invite_typ);
+            setMaterial(orderInfo.order.material);
+            setEventDate(orderInfo.order.event_date);
+            setMotif(orderInfo.order.motif);
+            setInviteTitle(orderInfo.order.invite_title);
+            setFontStyle(orderInfo.order.font_style);
+            setContentLink(orderInfo.order.content_link);
+            setNumOfInv(orderInfo.order.num_of_invites);
+            setPegLink(orderInfo.order.peg_link);
+            setDateOrdered(orderInfo.order.date_ordered);
+            setOrderDeadline(orderInfo.order.order_deadline);
+            setClaimType(orderInfo.order.claim_type);
+            setOrderStatus(orderInfo.order.order_status); //might be unneccessary info
+
+            setItemsArray(orderInfo.order_details);
+
+            setUnitCost(orderInfo.billing_info.unit_cost);
+            setSubTotal(orderInfo.billing_info.sub_total);
+            setPaymentMethod(orderInfo.billing_info.payment_method);
+        }
     },[orderInfo])
 
     return ( //this infor is wrong
@@ -112,21 +117,26 @@ function OrderDetailsCustomer() {
                 </div>
                 <div>
                     <table>
+                        <thead>
                         <tr>
                             <th>Item Name</th>
                             <th>Quantity</th>
                             <th>Price</th>
                         </tr>
+                        </thead>
+                        <tbody>
                         {/* content of table */}
                         {itemsArray.map((val,key) => {
                             return(
-                                <tr>
+                                //add unique key property
+                                <tr> 
                                     <td>{val.item_name}</td>
                                     <td>{val.quantity}</td>
                                     <td>{val.price}</td>
                                 </tr>
                             );
-                        })}                    
+                        })}  
+                        </tbody>                  
                     </table>                    
                 </div>
                 <div className='order-details-footer'>

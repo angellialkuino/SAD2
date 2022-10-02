@@ -38,10 +38,12 @@ function StaffAccountViewOwner() {
 
 
     useEffect(()=>{
-        setUserID(user.user_id);
-        setName(user.full_name);
-        setEmail(user.email);
-        setcontactNum(user.phone_number);
+        if(Object.keys(user).length !== 0){
+            setUserID(user.user_id);
+            setName(user.full_name);
+            setEmail(user.email);
+            setcontactNum(user.phone_number);
+        }        
     },[user])
 
     const updateAccDetails = async () => {
@@ -72,15 +74,15 @@ function StaffAccountViewOwner() {
             <div className="profile-info">
                 <div className='label-textfield'>
                     <h4>Name</h4>
-                    <input type='text' value={name || "N/A"} onChange={(e) => setName(e.target.value)} className='profile-textfield' />
+                    <input type='text' value={name} onChange={(e) => setName(e.target.value)} className='profile-textfield' />
                 </div>
                 <div className='label-textfield'>
                     <h4>Email</h4>
-                    <input type='text' value={email || "N/A"} onChange={(e) => setEmail(e.target.value)} className='profile-textfield' />
+                    <input type='text' value={email} onChange={(e) => setEmail(e.target.value)} className='profile-textfield' />
                 </div>
                 <div className='label-textfield'>
                     <h4>Contact Number</h4>
-                    <input type='text' value={contactNum || "N/A"} onChange={(e) => setcontactNum(e.target.value)} className='profile-textfield' />
+                    <input type='text' value={contactNum} onChange={(e) => setcontactNum(e.target.value)} className='profile-textfield' />
                 </div>
                 {/* <div className='label-textfield'>
                     <h4>Position</h4>

@@ -9,25 +9,28 @@ const OrderListStaffTable = ({ data }) => {
                     <th className="oh_th-th">Order ID</th>
                     <th className="oh_th-th">Name</th>
                     <th className="oh_th-th">Date Ordered</th>
-                    <th className="oh_th-th">Date of Event</th>
+                    <th className="oh_th-th">Order Deadline</th>
                     <th className="oh_th-th">Invitation Type</th>
-                    <th className="oh_th-th">Motif/Theme</th>
+                    <th className="oh_th-th">Motif</th>
                     <th className="oh_th-th">Quantity</th>
                     <th className="oh_th-th">Status</th>
                 </tr>
 
-                {data.map((item) => (
+                {data.map((item) => {
+                    return(
                     <tr className="oh_tr-tr" key={item.order_id}>
                         <td className="oh_td-td">{item.order_id}</td>
-                        <td className="oh_td-td">{item.name}</td>
-                        <td className="oh_td-td">{item.date_order}</td>
-                        <td className="oh_td-td">{item.date_event}</td>
-                        <td className="oh_td-td">{item.type}</td>
-                        <td className="oh_td-td">{item.theme}</td>
-                        <td className="oh_td-td">{item.quantity}</td>
-                        <td className="oh_td-td">{item.status}</td>
+                        <td className="oh_td-td">{item.full_name}</td>
+                        <td className="oh_td-td">{item.date_ordered}</td>
+                        <td className="oh_td-td">{item.order_deadline}</td>
+                        <td className="oh_td-td">{item.invite_type}</td>
+                        <td className="oh_td-td">{item.motif}</td>
+                        <td className="oh_td-td">{item.num_of_invites}</td>
+                        <td className="oh_td-td">{item.order_status}</td>
                     </tr>
-                ))}
+                    )
+                    
+                    })}
 
             </tbody>
         </table>

@@ -48,14 +48,16 @@ function CustAccDetail() {
     }, [])
 
     useEffect(()=>{
-        setUserID(user.user_id);
-        setName(user.full_name);
-        setEmail(user.email);
-        setAddress(user.address);
-        setBarangay(user.barangay);
-        setPostalCode(user.postal_code);
-        setfbAcc(user.fb_account);
-        setcontactNum(user.phone_number);
+        if(Object.keys(user).length !== 0){
+            setUserID(user.user_id);
+            setName(user.full_name);
+            setEmail(user.email);
+            setAddress(user.address);
+            setBarangay(user.barangay);
+            setPostalCode(user.postal_code);
+            setfbAcc(user.fb_account);
+            setcontactNum(user.phone_number);     
+        }           
     },[user]);
 
     const updateAccDetails = async () => {
@@ -101,37 +103,37 @@ function CustAccDetail() {
 
                         <div className="accDetail-body-field">
                             <h3>Name</h3>
-                            <input type="text" value={name || "N/A"} onChange={(e) => setName(e.target.value)} className="form-control" />
+                            <input type="text" value={name} onChange={(e) => setName(e.target.value)} className="form-control" />
                         </div>
 
                         <div className="accDetail-body-field">
                             <h3>Email</h3>
-                            <input type="text" value={email || "N/A"} onChange={(e) => setEmail(e.target.value)} className="form-control" />
+                            <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} className="form-control" />
                         </div>
 
                         <div className="accDetail-body-field">
                             <h3>Facebook Account</h3>
-                            <input type="text" value={fbAcc || "N/A"} onChange={(e) => setfbAcc(e.target.value)} className="form-control" />
+                            <input type="text" value={fbAcc} onChange={(e) => setfbAcc(e.target.value)} className="form-control" />
                         </div>
 
                         <div className="accDetail-body-field">
                             <h3>Contact Number</h3>
-                            <input type="text" value={contactNum || "N/A"} onChange={(e) => setcontactNum(e.target.value)} className="form-control" />
+                            <input type="text" value={contactNum} onChange={(e) => setcontactNum(e.target.value)} className="form-control" />
                         </div>
 
                         <div className="accDetail-body-field">
                             <h3>Barangay</h3>
-                            <input type="text" value={barangay || "N/A"} onChange={(e) => setBarangay(e.target.value)} className="form-control" />
+                            <input type="text" value={barangay} onChange={(e) => setBarangay(e.target.value)} className="form-control" />
                         </div>
 
                         <div className="accDetail-body-field">
                             <h3>Address</h3>
-                            <input type="text" value={address || "N/A"} onChange={(e) => setAddress(e.target.value)} className="form-control" />
+                            <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} className="form-control" />
                         </div>
 
                         <div className="accDetail-body-field">
                             <h3>Postal Code</h3>
-                            <input type="text" value={postalCode || "N/A"} onChange={(e) => setPostalCode(e.target.value)} className="form-control" />
+                            <input type="text" value={postalCode} onChange={(e) => setPostalCode(e.target.value)} className="form-control" />
                         </div>
                     </div>
                     </>}
