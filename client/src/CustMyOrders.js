@@ -5,13 +5,17 @@ import './CustMyOrders.css';
 function CustMyOrders() {
     const [myOrders, setMyOrders] = useState([]);
 
-    useEffect( async () => {
-        await Axios.get('http://localhost:5000/api/order/my-orders',
-            { user_id: "24753869-a2a9-4070-bc5e-e942ab341372" },
-            { withCredentials: true }
+    useEffect( () => {
+        const getMyOrders = async () => {
+            await Axios.get('http://localhost:5000/api/order/my-orders',
+            { params: {user_id: "3bd5ccaa-86d7-4180-89fe-7a64be46e503"},
+            withCredentials: true }
         ).then((res) => {
-            setMyOrders(res.body.orders);
+            console.log(res);            
+            setMyOrders(res.data.orders);
         });
+        }
+        getMyOrders();
     }, [])
 
     return (
@@ -25,12 +29,19 @@ function CustMyOrders() {
 
                     <div className="custMyOrders-body">
                         <div className="custMyOrders-body-labels-and-buttons">
-                            {myOrders.map((item) => {
+                                                        
+                            {(myOrders.length > 0) &&
+                            myOrders.map((item) => {
+                                return(
                                 <div className="custMyOrders-labels">
                                     <h3>Order ID {item.order_id}</h3> 
                                     <button type="view" className="btn btn-dark btn-lg btn-block">View Order Details</button>
                                 </div>
-                            })}
+                                )
+                            })
+                            }
+                            {(myOrders.length < 1) && <p>No Orders Made</p>}
+
                             {/* can pressing the button pass the order id to the next page????? */}
                         </div>
                     </div>

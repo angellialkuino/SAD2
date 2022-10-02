@@ -1,4 +1,5 @@
 import React, { Component, useEffect, useState } from "react";
+import Axios from 'axios';
 import NavBarStaff from "./NavBarStaff";
 import OrderListStaffTable from "./OrderListStaffTable";
 import './OrderListStaffTable.css'
@@ -6,16 +7,19 @@ import './OrderListStaffTable.css'
 //var Orders = require("./OrderListStaff_PLACEHOLDER.json");
 
 export default function Order_List() {
-    const [query, setQuery] = useState("");
-    const keys = ["order_id", "name", "date_order", "date_event", "type", "theme", "quantity", "status"];
     const [orderList, setOrderList] = useState([]);
 
-    useEffect( async () => {
-        await Axios.get('http://localhost:5000/api/order/current-orders',
-            { withCredentials: true }
-        ).then((res) => {
-            setOrderList(res.body.orders);
-        });
+    useEffect(  () => {
+        const getOrderList = async () => {
+            await Axios.get('http://localhost:5000/api/order/current-orders',
+                { withCredentials: true }
+            ).then((res) => {
+                console.log(res);
+                setOrderList(res.data.orders);
+            });
+        }
+        
+        getOrderList();
     }, [])
 
     return (
@@ -26,7 +30,7 @@ export default function Order_List() {
             </div>
 
             <div className="ol_table">
-                <OrderListStaffTable data={orderList} />
+                {(orderList.length > 0) && <OrderListStaffTable data={orderList} />}
             </div>
 
             <div className="ol_buttons">

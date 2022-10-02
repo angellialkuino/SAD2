@@ -6,14 +6,18 @@ import './OrderHistoryStaffTable.css'
 //var Orders = require("./OrderHistoryStaff_PLACEHOLDER.json");
 
 export default function OrderHistory() {
-    const [orderDocs, setOrderDocs] = useState([]);
+    const [orderHistory, setOrderHistory] = useState([]);
 
-    useEffect( async () => {
-        await Axios.get('http://localhost:5000/api/order/order-history',
-            { withCredentials: true }
-        ).then((res) => {
-            setOrderDocs(res.body.orders);
-        });
+    useEffect(  () => {
+        const getOrderHistory = async () => {
+            await Axios.get('http://localhost:5000/api/order/order-history',
+                { withCredentials: true }
+            ).then((res) => {
+                setOrderHistory(res.data.orders);
+            });
+        }
+        
+        getOrderHistory();
     }, [])
 
 
@@ -25,7 +29,9 @@ export default function OrderHistory() {
             </div>
 
             <div className="oh_table">
-                <Order_History_Staff_Table data={orderDocs} />
+                {(orderHistory.length > 0) && <Order_History_Staff_Table data={orderHistory} />}
+                {(orderHistory.length < 1) && <p>No Order History</p>}
+
             </div>
 
             <div className="oh_buttons">

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Axios } from "axios";
+import Axios from "axios";
 import StaffListTable from "./StaffListTable";
 
 // var Users = require("./StaffListPlaceholder.json");
@@ -11,8 +11,9 @@ function StaffList() {
     useEffect(() => {
         const fetchStaff = async () => {
             try {
-                const response = await Axios.get('http://localhost:5000/api/staff/staff-list');
-                setStaffList(response.data);
+                const response = await Axios.get('http://localhost:5000/api/owner/staff-list');
+                console.log(response);
+                setStaffList(response.data.staff_list);
             } catch (err) {
                 if (err.response) {
                     // Not in the 200 response range 

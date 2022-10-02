@@ -12,41 +12,53 @@ function CustAccDetail() {
     const [postalCode, setPostalCode] = useState("N/A");
     const [fbAcc, setfbAcc] = useState("N/A");
     const [contactNum, setcontactNum] = useState("N/A");
-    //const [pwd, setPwd] = useState("N/A");
 
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
     const [successMsg, setSuccessMsg] = useState('');
 
 
-    useEffect(async () => {
+    useEffect( () => {
+        console.log("Use Effect is Running!!!!!!!!!!");
 
-        await Axios.get('http://localhost:5000/api/customer/my-account',
-            { user_id: "24753869-a2a9-4070-bc5e-e942ab341372" },
-            { withCredentials: true }
-        ).then((res) => {
-            console.log(JSON.stringify(res));
-            if(res.status===200){
-                setSuccess(true);
-                setSuccessMsg(res.body.message);
-                setUser(res.body.user); 
-                setUserID(res.body.user.user_id);
-                setName(res.body.user.full_name);
-                setEmail(res.body.user.email);
-                setAddress(res.body.user.address);
-                setBarangay(res.body.user.barangay);
-                setPostalCode(res.body.user.postal_code);
-                setfbAcc(res.body.user.fb_account);
-                setcontactNum(res.body.user.phone_number);
-                //setPwd(res.user.password);
-            }else if (res.status===400){
-                setErrMsg(res.body.message); //or is it res.body.message
-            }
-            
-        });
+        const getAccDetails = async () => {
+            await Axios.get('http://localhost:5000/api/customer/my-account',
+                {params:{user_id: "84000fad-c7ed-4041-8039-0826259a42b6"}, 
+                withCredentials: true } 
+            ).then((res) => {
+                //console.log(res);
+                if(res.status===200){
+                    setSuccess(true);
+                    setSuccessMsg(res.data.message);
+                    setUser(res.data.user); 
+                    // console.log(res.data.user);
+                    // console.log(user);            
+                    
+                }else if (res.status===400){
+                    setErrMsg(res.data.message); 
+                }
+                
+            }).catch(err => {
+                console.log(err);
+            });
+        }
+
+        getAccDetails();
     
     }, [])
-     
+
+    useEffect(()=>{
+        if(Object.keys(user).length !== 0){
+            setUserID(user.user_id);
+            setName(user.full_name);
+            setEmail(user.email);
+            setAddress(user.address);
+            setBarangay(user.barangay);
+            setPostalCode(user.postal_code);
+            setfbAcc(user.fb_account);
+            setcontactNum(user.phone_number);     
+        }           
+    },[user]);
 
     const updateAccDetails = async () => {
         await Axios.put('http://localhost:5000/api/customer/update',
@@ -65,9 +77,9 @@ function CustAccDetail() {
         ).then((res) => {
             if(res.status===200){
                 setSuccess(true);
-                setSuccessMsg(res.message);
+                setSuccessMsg(res.data.message);
             }else if (res.status===400){
-                setErrMsg(res.message); //or is it res.body.message
+                setErrMsg(res.data.message); //or is it res.body.message
             }
             
         });
@@ -78,6 +90,7 @@ function CustAccDetail() {
 //kulang funcs to change read only bool and the buttons uehugeuh
 
     return (
+        
         <div className="accDetail">
             <div className="accDetailMain">
                 <div className="accDetail-body">
@@ -85,7 +98,7 @@ function CustAccDetail() {
                     <div className="accDetail-header">
                         <h2>Account Details</h2>
                     </div>
-
+                    {user && <>
                     <div className="accDetail-body-left">
 
                         <div className="accDetail-body-field">
@@ -99,6 +112,16 @@ function CustAccDetail() {
                         </div>
 
                         <div className="accDetail-body-field">
+                            <h3>Facebook Account</h3>
+                            <input type="text" value={fbAcc} onChange={(e) => setfbAcc(e.target.value)} className="form-control" />
+                        </div>
+
+                        <div className="accDetail-body-field">
+                            <h3>Contact Number</h3>
+                            <input type="text" value={contactNum} onChange={(e) => setcontactNum(e.target.value)} className="form-control" />
+                        </div>
+
+                        <div className="accDetail-body-field">
                             <h3>Barangay</h3>
                             <input type="text" value={barangay} onChange={(e) => setBarangay(e.target.value)} className="form-control" />
                         </div>
@@ -109,26 +132,11 @@ function CustAccDetail() {
                         </div>
 
                         <div className="accDetail-body-field">
-                            <h3>Facebook Account</h3>
-                            <input type="text" value={fbAcc} onChange={(e) => setfbAcc(e.target.value)} className="form-control" />
-                        </div>
-
-                        <div className="accDetail-body-field">
-                            <h3>Contact Number</h3>
-                            <input type="text" value={contactNum} onChange={(e) => setcontactNum(e.target.value)} className="form-control" />
-                        </div>
-
-                        {/* <div className="accDetail-body-field">
-                            <h3>Password</h3>
-                            <input type="text" value={pwd} className="form-control" />
-                        </div> */}
-
-                        <div className="accDetail-body-field">
                             <h3>Postal Code</h3>
                             <input type="text" value={postalCode} onChange={(e) => setPostalCode(e.target.value)} className="form-control" />
                         </div>
                     </div>
-
+                    </>}
                     <div className="accDetail-body-bottom">
                         <button className="btn btn-dark btn-lg btn-block">Log Out</button>
                         <button className="btn btn-dark btn-lg btn-block">Update Account</button>
@@ -137,7 +145,8 @@ function CustAccDetail() {
                 </div>
             </div>
         </div>
-    );
+        
+        );
 }
 
 export default CustAccDetail;

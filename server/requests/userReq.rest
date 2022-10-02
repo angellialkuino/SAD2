@@ -30,13 +30,13 @@ Content-Type: application/json
 
 GET {{hostname}}/customer/log-out
 
-### create new customer
+### view customer acc
 
 GET {{hostname}}/customer/my-account
 Content-Type: application/json
 
 {
-    "user_id": "24753869-a2a9-4070-bc5e-e942ab341372"
+    "user_id": "84000fad-c7ed-4041-8039-0826259a42b6"
 }
 
 ### update customer
@@ -86,7 +86,7 @@ Content-Type: application/json
     "user_id": "21d8fd2a-03d0-4574-9c77-d5de79bf729b"
 }
 
-### view list of staff acc
+### view list of staff list
 
 GET {{hostname}}/owner/staff-list
 

@@ -24,7 +24,7 @@ exports.createOrder = async (req,res) => {
 exports.viewOrder = async (req,res) => {
     try {
         //console.log(`order id: ${req.body.order_id}`);
-        orderInfo = await service.findOrder(req.body.order_id);
+        orderInfo = await service.findOrder(req.query.order_id);
 
         if(!orderInfo){
         res.status(400).send({ message:'Order does not exist'});
@@ -107,7 +107,7 @@ exports.viewOrderHistory = async (req,res) => {
 exports.viewMyOrders = async (req,res) => {
     try {
         
-        orders = await service.custOrders(req.body.user_id);
+        orders = await service.custOrders(req.query.user_id);
         res.status(200).send({ message:'Successfully retrieved orders', orders});
         
     } catch (err) {
@@ -143,7 +143,7 @@ exports.docEntry = async (req, res) => {
 
 exports.docEntryList = async (req,res) => {
     try {
-        entries = await service.docEntryList(req.body.order_id);
+        entries = await service.docEntryList(req.query.order_id);
         res.status(200).send({ message:'Successfully retrieved list of documentation entries', entries});
 
     } catch (err) {
