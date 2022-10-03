@@ -3,10 +3,10 @@ import './HomePage.css';
 import NavBar from "./NavBar";
 import NavBarCustomerLoggedIn from "./NavBarCustomerLoggedIn";
 
-function HomePage({ success }) {
+function HomePage({ success, roles }) {
     return (
         <>
-            {success ? (
+            {success && roles == 'customer' ? (
                 <section>
                     <NavBarCustomerLoggedIn />
                     <h3 className="text-center fw-bold m-5">Custom-made Designs</h3>
