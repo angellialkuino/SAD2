@@ -49,11 +49,10 @@ const storageEngine = multer.diskStorage({
 
 const upload = multer({storage: storageEngine});
 
-router.post('/update-invite-draft', upload.single('image'), 
+router.post('/update-invite-draft', upload.single('invite_draft'), 
 (req,res)=>{
-    console.log('update invite draft reached'); 
-    console.log(req.body);
-    res.send('ngano mn ni');
+    console.log('Successfully Uploaded Photo'); 
+    res.send({ message: 'Successfully Uploaded Photo', path: req.file.path});
 });
 //router.post('/update-invite-draft', (req,res)=>{console.log('butt whay')}, upload.single('invite_draft'), (req,res)=>{res.send('ngano mn ni')});
 

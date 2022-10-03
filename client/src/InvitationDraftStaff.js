@@ -20,9 +20,10 @@ function InvitationDraftStaff() {
     //         })
     // }, [])
 
-    const [fileData, setFileData] = useState();
+    const [fileData, setFileData] = useState(null);
 
     const imageChangeHandler = (e) => {
+        console.log(e.target.files[0]);
         setFileData(e.target.files[0]);
     };
 
@@ -31,11 +32,17 @@ function InvitationDraftStaff() {
 
         // Handle File Data from the state Before Sending
         const data = new FormData();
+        console.log('fileData: ',fileData);
 
-        data.append("image", fileData);
-        Axios.post('http://localhost:5000/api/order/update-invite-draft', {
-            invite_draft: fileData
-        }).then(() => {
+        data.append("invite_draft", fileData);
+        for (var key of data.entries()) {
+            console.log(key[0] + ', ' + key[1]);
+        }
+
+        Axios.post('http://localhost:5000/api/order/update-invite-draft',
+            data
+        ).then((res) => {
+            console.log(res.data.path); //path of image: image\filename.jpg
             console.log("success");
         }).catch(err => {
             console.log(err)
