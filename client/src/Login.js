@@ -22,28 +22,36 @@ const LoginForm = ({ success, setSuccess, roles, setRoles }) => {
         setErrMsg('');
     }, [email, pwd])
 
+    const testFunc = () => {
+        Axios.get('http://localhost:5000/api/customer/get-test',
+            { withCredentials: true }
+        ).then((res) => {
+            console.log(res);
+            
+        })
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        try {
-            const response = await Axios.post('http://localhost:5000/api/customer/log-in',
-                {
-                    email: email,
-                    password: pwd,
-                },
-                {
-                    withCredentials: true
-                }
-            );
-            console.log(JSON.stringify(response?.data));
-            console.log(JSON.stringify(response));
-            const accessToken = response?.data?.accessToken;
-            setRoles(response?.data?.roles);
-            setAuth({ email, pwd, roles, accessToken });
-            setemail('');
-            setPwd('');
-            setSuccess(true);
-        } catch (err) {
+        console.log("handleSubmit func");
+        await Axios.post('http://localhost:5000/api/customer/log-in',
+            { email: email, password: pwd },
+            { withCredentials: true }
+        ).then((res) => {
+            if(res.status===200){
+                console.log(res);
+                setSuccess(true);
+                //setSuccessMsg(res.data.message);
+                setRoles("customer"); //check if backend returns anythin pero dba matic cust naman toh?
+                //setAuth({ email, pwd, roles, accessToken });
+                setemail('');
+                setPwd('');
+            }else if (res.status===400){
+                setErrMsg(res.data.message); //or is it res.body.message
+            }
+            
+        }).catch( (err) => {
+            console.log("may error?", err);
             if (!err?.response) {
                 setErrMsg('No Server Response');
             } else if (err.response?.status === 400) {
@@ -54,7 +62,8 @@ const LoginForm = ({ success, setSuccess, roles, setRoles }) => {
                 setErrMsg('Login Failed');
             }
             errRef.current.focus();
-        }
+        });
+
     }
 
     return (
@@ -97,13 +106,16 @@ const LoginForm = ({ success, setSuccess, roles, setRoles }) => {
                                 value={pwd}
                                 required
                             />
-                            <button>Login</button>
+                            <button type="submit" >Login</button>
                         </form>
                         <p>
                             Need an Account?<br />
                             <span className="line">
                                 <Link to='/sign-up'>Sign Up</Link>
                             </span>
+                            
+                            <button onClick={testFunc}>Test Link</button>
+                            
                         </p>
                     </section>
                 )}

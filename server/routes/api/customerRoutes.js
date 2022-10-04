@@ -21,7 +21,7 @@ router.get('/log-out', (req,res)=>{req.logout(function(err) {
 
 
 //////enter log in or sign up info
-router.post('/log-in', passport.authenticate('local'), (req,res)=>{res.status(201).send({ status:'Successfully logged out' });}); 
+router.post('/log-in', passport.authenticate('local'), (req,res)=>{res.status(200).send({ message:'Successfully logged in' });}); 
 router.post('/sign-up', controller.createCust, passport.authenticate('local'), (req,res)=>{user=req.user; console.log(`req.user:\n${JSON.stringify(user)}`);res.status(201).send({ status:'Successfully created new customer account', user});});
 
 router.put('/update', controller.updateUser);

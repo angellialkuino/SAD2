@@ -36,35 +36,35 @@ import Login from "./Login";
 function App() {
     //if user is logged in and check role(?)
     const [success, setSuccess] = useState(false);
-    const [roles, setRoles] = useState()
+    const [roles, setRoles] = useState('');
 
     //order form data
-    const [inviteType, setInviteType] = useState('')
-    const [material, setMaterial] = useState('')
-    const [eventDate, setEventDate] = useState('')
-    const [motif, setMotif] = useState('')
-    const [invitationTitle, setInvitationTitle] = useState('')
-    const [font, setFont] = useState('')
-    const [contentLink, setContentLink] = useState('')
-    const [inviteNumbers, setInviteNumbers] = useState('')
-    const [pegLink, setPegLink] = useState('')
-    const [inner, setInner] = useState(false)
-    const [innerPaperAndColor, setInnerPaperAndColor] = useState('')
-    const [innerSize, setInnerSize] = useState('')
-    const [envelope, setEnvelope] = useState(false)
-    const [envelopePaperAndColor, setEnvelopePaperAndcolor] = useState('')
-    const [textDecor, setTextDecor] = useState('')
-    const [otherPages, setOtherPages] = useState('')
-    const [cover, setCover] = useState('')
-    const [cards, setCards] = useState('')
-    const [waxSeal, setWaxSeal] = useState('')
-    const [sealColor, setSealColor] = useState('')
-    const [driedFlowers, setDriedFlowers] = useState('')
-    const [brooch, setBrooch] = useState('')
-    const [orderFinish, setOrderFinish] = useState('')
-    const [receivalMethod, setReceivalMethod] = useState('')
-    const [priceTotal, setPriceTotal] = useState('')
-    const [payentMethod, setPaymentMethod] = useState('')
+    const [inviteType, setInviteType] = useState('');
+    const [material, setMaterial] = useState('');
+    const [eventDate, setEventDate] = useState('');
+    const [motif, setMotif] = useState('');
+    const [invitationTitle, setInvitationTitle] = useState('');
+    const [font, setFont] = useState('');
+    const [contentLink, setContentLink] = useState('');
+    const [inviteNumbers, setInviteNumbers] = useState('');
+    const [pegLink, setPegLink] = useState('');
+    const [inner, setInner] = useState(false);
+    const [innerPaperAndColor, setInnerPaperAndColor] = useState('');
+    const [innerSize, setInnerSize] = useState('');
+    const [envelope, setEnvelope] = useState(false);
+    const [envelopePaperAndColor, setEnvelopePaperAndcolor] = useState('');
+    const [textDecor, setTextDecor] = useState('');
+    const [otherPages, setOtherPages] = useState('');
+    const [cover, setCover] = useState('');
+    const [cards, setCards] = useState('');
+    const [waxSeal, setWaxSeal] = useState('');
+    const [sealColor, setSealColor] = useState('');
+    const [driedFlowers, setDriedFlowers] = useState('');
+    const [brooch, setBrooch] = useState('');
+    const [orderFinish, setOrderFinish] = useState('');
+    const [receivalMethod, setReceivalMethod] = useState('');
+    const [priceTotal, setPriceTotal] = useState('');
+    const [payentMethod, setPaymentMethod] = useState('');
     // const [emoboss, setEmboss] = useState(false)
     // const [allTextFoilPrint, setAllTextFoilPrint] = useState(false)
     // const [plainPrint, setPlainPrint] = useState(false)
@@ -124,7 +124,13 @@ function App() {
             <Route path='/update-staff' element={<StaffAccountUpdateOwner />} />
             <Route path='/staff-list' element={<StaffList />} />
         </Routes>
-        {/* <StaffList /> */}
+        {/* <LoginPage /> */}
+        <Login
+                    success={success}
+                    setSuccess={setSuccess}
+                    roles={roles}
+                    setRoles={setRoles}
+                />
     </React.Fragment>
 }
 
