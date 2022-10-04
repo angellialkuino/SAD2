@@ -1,12 +1,10 @@
 import React, { useRef, useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import AuthContext from "./context/AuthProvider";
 import './SignUpAndLogin.css';
 
 import Axios from 'axios';
 
 const LoginForm = ({ success, setSuccess, roles, setRoles }) => {
-    const { setAuth } = useContext(AuthContext);
     const userRef = useRef();
     const errRef = useRef();
 
@@ -43,7 +41,6 @@ const LoginForm = ({ success, setSuccess, roles, setRoles }) => {
                 setSuccess(true);
                 //setSuccessMsg(res.data.message);
                 setRoles("customer"); //check if backend returns anythin pero dba matic cust naman toh?
-                //setAuth({ email, pwd, roles, accessToken });
                 setemail('');
                 setPwd('');
             }else if (res.status===400){
