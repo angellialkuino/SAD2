@@ -39,51 +39,45 @@ function App() {
     const [roles, setRoles] = useState()
 
     //order form data
-    const [inviteType, setInviteType] = useState('')
-    const [material, setMaterial] = useState('')
-    const [eventDate, setEventDate] = useState('')
-    const [motif, setMotif] = useState('')
-    const [invitationTitle, setInvitationTitle] = useState('')
-    const [font, setFont] = useState('')
-    const [contentLink, setContentLink] = useState('')
-    const [inviteNumbers, setInviteNumbers] = useState('')
-    const [pegLink, setPegLink] = useState('')
-    const [inner, setInner] = useState(false)
-    const [innerPaperAndColor, setInnerPaperAndColor] = useState('')
-    const [innerSize, setInnerSize] = useState('')
-    const [envelope, setEnvelope] = useState(false)
-    const [envelopePaperAndColor, setEnvelopePaperAndcolor] = useState('')
-    const [textDecor, setTextDecor] = useState('')
-    const [otherPages, setOtherPages] = useState('')
-    const [cover, setCover] = useState('')
-    const [cards, setCards] = useState('')
-    const [waxSeal, setWaxSeal] = useState('')
-    const [sealColor, setSealColor] = useState('')
-    const [driedFlowers, setDriedFlowers] = useState('')
-    const [brooch, setBrooch] = useState('')
-    const [orderFinish, setOrderFinish] = useState('')
-    const [receivalMethod, setReceivalMethod] = useState('')
-    const [priceTotal, setPriceTotal] = useState('')
-    const [payentMethod, setPaymentMethod] = useState('')
-    // const [emoboss, setEmboss] = useState(false)
-    // const [allTextFoilPrint, setAllTextFoilPrint] = useState(false)
-    // const [plainPrint, setPlainPrint] = useState(false)
-    // const [headerFoilPrint, setHeaderFoilPrint] = useState(false)
-    // const [rsvp, setRsvp] = useState(false)
-    // const [monetaryGiftPage, setMonetaryGiftPage] = useState(false)
-    // const [vows, setVows] = useState(false)
-    // const [translucent, setTranslucent] = useState(false)
+    const [orderData, setOrderData] = useState({
+        inviteType: '',
+        material: '',
+        eventDate: '',
+        motif: '',
+        invitationTitle: '',
+        font: '',
+        contentLink: '',
+        inviteNumbers: '',
+        pegLink: '',
+        inner: false,
+        innerPaperAndColor: '',
+        innerSize: '',
+        envelope: false,
+        envelopePaperAndColor: '',
+        textDecor: '',
+        otherPages: '',
+        cover: '',
+        cards: '',
+        waxSeal: '',
+        sealColor: '',
+        driedFlowers: '',
+        brooch: '',
+        orderFinish: '',
+        receivalMethod: '',
+        priceTotal: '',
+        payentMethod: '',
+    })
 
 
     return <React.Fragment>
         <Routes>
-            <Route path='*' element={<ErrorPage />} />
+            {/* <Route path='*' element={<ErrorPage />} /> */}
             {/* Main Page */}
-            <Route path='/' element=
+            {/* <Route path='/' element=
                 {<HomePage
                     success={success}
                     roles={roles}
-                />} />
+                />} /> */}
             <Route path='/about-us' element={<AboutUs />} />
             <Route path='/sign-up' element={<SignUp />} />
             <Route path='/login' element=
@@ -96,7 +90,10 @@ function App() {
             {/* Customer Order Form */}
             <Route path='/order-form-login' element={<LoginPage />} />
             <Route path='/terms-and-conditions' element={<TermsAndConditions />} />
-            <Route path='/order-form-1' element={<OrderForm1 />} />
+            <Route path='/order-form-1' element=
+                {<OrderForm1
+                    setOrderData={setOrderData}
+                />} />
             <Route path='/order-form-2' element={<OrderForm2 />} />
             <Route path='/order-form-3' element={<OrderForm3 />} />
             <Route path='/order-form-4' element={<OrderForm4 />} />
@@ -124,7 +121,7 @@ function App() {
             <Route path='/update-staff' element={<StaffAccountUpdateOwner />} />
             <Route path='/staff-list' element={<StaffList />} />
         </Routes>
-        {/* <StaffList /> */}
+        <OrderForm1 />
     </React.Fragment>
 }
 

@@ -1,5 +1,5 @@
 import Axios from 'axios';
-import React, { Component, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import './InvitationDraft.css';
 
 function InvitationDraftStaff() {
@@ -32,7 +32,7 @@ function InvitationDraftStaff() {
 
         // Handle File Data from the state Before Sending
         const data = new FormData();
-        console.log('fileData: ',fileData);
+        console.log('fileData: ', fileData);
 
         data.append("invite_draft", fileData);
         for (var key of data.entries()) {
