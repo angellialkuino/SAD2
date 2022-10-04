@@ -29,8 +29,11 @@ function StaffList() {
         fetchStaff();
     }, [])
 
+    //search function of the data (staffList)
     const search = (data) => {
+        //filters the staffList array to get desired item (staff) based on user input
         return data.filter((item) =>
+            //keys.some((key) iterates to see if array contains some of the query input, converts the item (staff) to lower case
             keys.some((key) => item[key].toLowerCase().includes(query))
         );
     };
