@@ -6,13 +6,12 @@ import StaffListTable from "./StaffListTable";
 
 function StaffList() {
     const [staffList, setStaffList] = useState([])
-    const [query, setQuery] = useState("");
-    const keys = ["name", "email", "contact"];
+    
     useEffect(() => {
         const fetchStaff = async () => {
             try {
                 const response = await Axios.get('http://localhost:5000/api/owner/staff-list');
-                console.log(response);
+                //console.log(response);
                 setStaffList(response.data.staff_list);
             } catch (err) {
                 if (err.response) {
@@ -29,14 +28,7 @@ function StaffList() {
         fetchStaff();
     }, [])
 
-    //search function of the data (staffList)
-    const search = (data) => {
-        //filters the staffList array to get desired item (staff) based on user input
-        return data.filter((item) =>
-            //keys.some((key) iterates to see if array contains some of the query input, converts the item (staff) to lower case
-            keys.some((key) => item[key].toLowerCase().includes(query))
-        );
-    };
+
 
     return (
         <div className="div-frame staff-list">
@@ -49,7 +41,7 @@ function StaffList() {
                 />
                 <button className="button">Add</button>
             </div>
-            {<StaffListTable staffListData={search(staffList)} />}
+            {staffList.length>0 && <StaffListTable staffListData={staffList} />}
         </div>
     );
 }
