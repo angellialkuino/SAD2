@@ -36,7 +36,7 @@ import Login from "./Login";
 function App() {
     //if user is logged in and check role(?)
     const [success, setSuccess] = useState(false);
-    const [roles, setRoles] = useState()
+    const [roles, setRoles] = useState('');
 
     //order form data
     const [orderData, setOrderData] = useState({
@@ -71,13 +71,13 @@ function App() {
 
     return <React.Fragment>
         <Routes>
-            {/* <Route path='*' element={<ErrorPage />} /> */}
+            <Route path='*' element={<ErrorPage />} />
             {/* Main Page */}
-            {/* <Route path='/' element=
+            <Route path='/' element=
                 {<HomePage
                     success={success}
                     roles={roles}
-                />} /> */}
+                />} />
             <Route path='/about-us' element={<AboutUs />} />
             <Route path='/sign-up' element={<SignUp />} />
             <Route path='/login' element=
@@ -121,7 +121,6 @@ function App() {
             <Route path='/update-staff' element={<StaffAccountUpdateOwner />} />
             <Route path='/staff-list' element={<StaffList />} />
         </Routes>
-        <OrderForm1 />
     </React.Fragment>
 }
 

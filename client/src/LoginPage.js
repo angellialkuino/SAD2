@@ -26,25 +26,24 @@ const LoginPage = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        try {
-            const response = await Axios.post('http://localhost:5000/api/customer/log-in',
-                {
-                    email: email,
-                    password: pwd,
-                },
-                {
-                    withCredentials: true
-                }
-            );
-            console.log(JSON.stringify(response?.data));
-            console.log(JSON.stringify(response));
-            const accessToken = response?.data?.accessToken;
-            const roles = response?.data?.roles;
-            setAuth({ email, pwd, accessToken });
-            setemail('');
-            setPwd('');
-            setSuccess(true);
-        } catch (err) {
+        console.log("handleSubmit func");
+        await Axios.post('http://localhost:5000/api/customer/log-in',
+            { email: email, password: pwd },
+            { withCredentials: true }
+        ).then((res) => {
+            if(res.status===200){
+                console.log(res);
+                setSuccess(true);
+                //setSuccessMsg(res.data.message);
+                //setRoles("customer"); //check if backend returns anythin pero dba matic cust naman toh?
+                //setAuth({ email, pwd, roles, accessToken });
+                setemail('');
+                setPwd('');
+            }else if (res.status===400){
+                setErrMsg(res.data.message); //or is it res.body.message
+            }
+            
+        }).catch( (err) => {
             if (!err?.response) {
                 setErrMsg('No Server Response');
             } else if (err.response?.status === 400) {
@@ -55,7 +54,39 @@ const LoginPage = () => {
                 setErrMsg('Login Failed');
             }
             errRef.current.focus();
-        }
+        });
+
+
+        // try {
+        //     const response = await Axios.post('http://localhost:5000/api/customer/log-in',
+        //         {
+        //             email: email,
+        //             password: pwd,
+        //         },
+        //         {
+        //             withCredentials: true
+        //         }
+        //     );
+        //     console.log(JSON.stringify(response?.data));
+        //     console.log(JSON.stringify(response));
+        //     const accessToken = response?.data?.accessToken;
+        //     const roles = response?.data?.roles;
+        //     setAuth({ email, pwd, accessToken });
+        //     setemail('');
+        //     setPwd('');
+        //     setSuccess(true);
+        // } catch (err) {
+        //     if (!err?.response) {
+        //         setErrMsg('No Server Response');
+        //     } else if (err.response?.status === 400) {
+        //         setErrMsg('Missing Email or Password');
+        //     } else if (err.response?.status === 401) {
+        //         setErrMsg('Unauthorized');
+        //     } else {
+        //         setErrMsg('Login Failed');
+        //     }
+        //     errRef.current.focus();
+        // }
     }
 
     return (
