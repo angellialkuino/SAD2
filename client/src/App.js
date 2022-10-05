@@ -3,7 +3,6 @@ import { Route, Routes } from "react-router-dom";
 import ErrorPage from "./ErrorPage";
 import AboutUs from "./AboutUs";
 import HomePage from "./HomePage";
-import HomePageCustomerLoggedIn from './HomePageCustomerLoggedIn';
 import TermsAndConditions from "./TermsAndConditions";
 import StaffList from "./StaffList";
 import StaffAccountViewOwner from "./StaffAccountViewOwner";
@@ -49,12 +48,16 @@ function App() {
         contentLink: '',
         inviteNumbers: '',
         pegLink: '',
-        inner: false,
         innerPaperAndColor: '',
         innerSize: '',
         envelope: false,
         envelopePaperAndColor: '',
-        textDecor: '',
+        envelopeSize: '',
+        envelopeLiner: false,
+        envelopeLock: false,
+        allTextEmboss: false,
+        headerText: '',
+        bodyText: '',
         otherPages: '',
         cover: '',
         cards: '',
@@ -71,13 +74,13 @@ function App() {
 
     return <React.Fragment>
         <Routes>
-            <Route path='*' element={<ErrorPage />} />
+            {/* <Route path='*' element={<ErrorPage />} /> */}
             {/* Main Page */}
-            <Route path='/' element=
+            {/* <Route path='/' element=
                 {<HomePage
                     success={success}
                     roles={roles}
-                />} />
+                />} /> */}
             <Route path='/about-us' element={<AboutUs />} />
             <Route path='/sign-up' element={<SignUp />} />
             <Route path='/login' element=
@@ -92,10 +95,19 @@ function App() {
             <Route path='/terms-and-conditions' element={<TermsAndConditions />} />
             <Route path='/order-form-1' element=
                 {<OrderForm1
+                    orderData={orderData}
                     setOrderData={setOrderData}
                 />} />
-            <Route path='/order-form-2' element={<OrderForm2 />} />
-            <Route path='/order-form-3' element={<OrderForm3 />} />
+            <Route path='/order-form-2' element=
+                {<OrderForm2
+                    orderData={orderData}
+                    setOrderData={setOrderData}
+                />} />
+            <Route path='/order-form-3' element=
+                {<OrderForm3
+                    orderData={orderData}
+                    setOrderData={setOrderData}
+                />} />
             <Route path='/order-form-4' element={<OrderForm4 />} />
             <Route path='/order-form-5' element={<OrderForm5 />} />
             <Route path='/check-order' element={<CheckOrder />} />
@@ -121,6 +133,8 @@ function App() {
             <Route path='/update-staff' element={<StaffAccountUpdateOwner />} />
             <Route path='/staff-list' element={<StaffList />} />
         </Routes>
+        <OrderForm2 orderData={orderData}
+            setOrderData={setOrderData} />
     </React.Fragment>
 }
 

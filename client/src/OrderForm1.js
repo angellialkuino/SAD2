@@ -1,20 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import NavBarCustomerLoggedIn from './NavBarCustomerLoggedIn';
 import './OrderForm1.css';
 
-const OrderForm1 = ({ setOrderData }) => {
+const OrderForm1 = ({ orderData, setOrderData }) => {
     return (
         <>
+            <NavBarCustomerLoggedIn />
             <form className='main-order-frame1'>
                 <h3 className='category-h3'>TYPE OF INVITE</h3>
                 <div className='boxes'>
                     <div className='square-button-with-text'>
                         <label>
-                            <input type='radio' id='wedding' name='invite-type' value='wedding' onClick={(e) => {
+                            <input type='radio' id='wedding' name='invite-type' value='wedding' className='form1-radio' onClick={(e) => {
                                 setOrderData((previousState) => {
                                     return {
                                         ...previousState,
-                                        setInviteType: e.target.value
+                                        inviteType: e.target.value
                                     };
                                 });
                             }} />
@@ -24,7 +26,7 @@ const OrderForm1 = ({ setOrderData }) => {
                     </div>
                     <div className='square-button-with-text'>
                         <label>
-                            <input type='radio' id='birthday' name='invite-type' value='birthday' onClick={(e) => {
+                            <input type='radio' id='birthday' name='invite-type' value='birthday' className='form1-radio' onClick={(e) => {
                                 setOrderData((previousState) => {
                                     return {
                                         ...previousState,
@@ -38,7 +40,7 @@ const OrderForm1 = ({ setOrderData }) => {
                     </div>
                     <div className='square-button-with-text'>
                         <label>
-                            <input type='radio' id='debut' name='invite-type' value='debut' onClick={(e) => {
+                            <input type='radio' id='debut' name='invite-type' value='debut' className='form1-radio' onClick={(e) => {
                                 setOrderData((previousState) => {
                                     return {
                                         ...previousState,
@@ -52,7 +54,7 @@ const OrderForm1 = ({ setOrderData }) => {
                     </div>
                     <div className='square-button-with-text'>
                         <label>
-                            <input type='radio' id='other' name='invite-type' value='other' onClick={(e) => {
+                            <input type='radio' id='other' name='invite-type' value='other' className='form1-radio' onClick={(e) => {
                                 setOrderData((previousState) => {
                                     return {
                                         ...previousState,
@@ -69,7 +71,7 @@ const OrderForm1 = ({ setOrderData }) => {
                 <div className='boxes'>
                     <div className='square-button-with-text'>
                         <label>
-                            <input type='radio' id='paper' name='material' value='paper' onClick={(e) => {
+                            <input type='radio' id='paper' name='material' value='paper' className='form1-radio' onClick={(e) => {
                                 setOrderData((previousState) => {
                                     return {
                                         ...previousState,
@@ -83,7 +85,7 @@ const OrderForm1 = ({ setOrderData }) => {
                     </div>
                     <div className='square-button-with-text'>
                         <label>
-                            <input type='radio' id='acrylic' name='material' value='acrylic' onClick={(e) => {
+                            <input type='radio' id='acrylic' name='material' value='acrylic' className='form1-radio' onClick={(e) => {
                                 setOrderData((previousState) => {
                                     return {
                                         ...previousState,
