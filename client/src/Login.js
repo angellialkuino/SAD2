@@ -25,7 +25,7 @@ const LoginForm = ({ success, setSuccess, roles, setRoles }) => {
             { withCredentials: true }
         ).then((res) => {
             console.log(res);
-            
+
         })
     }
 
@@ -36,18 +36,18 @@ const LoginForm = ({ success, setSuccess, roles, setRoles }) => {
             { email: email, password: pwd },
             { withCredentials: true }
         ).then((res) => {
-            if(res.status===200){
+            if (res.status === 200) {
                 console.log(res);
                 setSuccess(true);
                 //setSuccessMsg(res.data.message);
                 setRoles("customer"); //check if backend returns anythin pero dba matic cust naman toh?
                 setemail('');
                 setPwd('');
-            }else if (res.status===400){
+            } else if (res.status === 400) {
                 setErrMsg(res.data.message); //or is it res.body.message
             }
-            
-        }).catch( (err) => {
+
+        }).catch((err) => {
             console.log("may error?", err);
             if (!err?.response) {
                 setErrMsg('No Server Response');
@@ -76,7 +76,7 @@ const LoginForm = ({ success, setSuccess, roles, setRoles }) => {
                         <h1>You are logged in!</h1>
                         <br />
                         <p>
-                            <Link to='homepage'>Go to Home</Link>
+                            <Link to='/'>Go to Home</Link>
                         </p>
                     </section>
                 ) : (
@@ -110,9 +110,9 @@ const LoginForm = ({ success, setSuccess, roles, setRoles }) => {
                             <span className="line">
                                 <Link to='/sign-up'>Sign Up</Link>
                             </span>
-                            
+
                             <button onClick={testFunc}>Test Link</button>
-                            
+
                         </p>
                     </section>
                 )}
