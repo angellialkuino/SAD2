@@ -6,10 +6,11 @@ function InvitationDraftStaff() {
 
     // return function to render uploaded file?
     //how to do this?
-    // useEffect(() => {
+    // const showImage = () => {
     //     Axios.get('http://localhost:5000/api/staff/invite-draft', {
     //         params: {
-    //             //how to get the right image based on the order?
+                    //the order id is the name of the image
+    //             order_id: "####"
     //         }
     //     })
     //         .then(res => {
@@ -18,9 +19,10 @@ function InvitationDraftStaff() {
     //         .catch(err => {
     //             console.log(err)
     //         })
-    // }, [])
+    // }
 
     const [fileData, setFileData] = useState(null);
+    const [orderID, setOrderID] = useState('do this work');
 
     const imageChangeHandler = (e) => {
         console.log(e.target.files[0]);
@@ -29,10 +31,15 @@ function InvitationDraftStaff() {
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
+        console.log('fileData: ',fileData);
+
+        const blob = fileData.slice(0, fileData.size, 'image/png');;
+        console.log('renamedFile fileData: ',blob);
+        const renamedFile = new File([blob], `${orderID}.png`, {type: 'image/png'});
+        console.log('renamedFile fileData: ',renamedFile);
 
         // Handle File Data from the state Before Sending
         const data = new FormData();
-        console.log('fileData: ',fileData);
 
         data.append("invite_draft", fileData);
         for (var key of data.entries()) {
@@ -44,6 +51,7 @@ function InvitationDraftStaff() {
         ).then((res) => {
             console.log(res.data.path); //path of image: image\filename.jpg
             console.log("success");
+            //showImage();
         }).catch(err => {
             console.log(err)
         });
@@ -53,7 +61,7 @@ function InvitationDraftStaff() {
         <div className='invitation-draft-frame'>
             <h1 className='invitation-draft-h1'>Invitation Draft</h1>
             <div className='invitation-draft-inner-frame'>
-                <img className='draft-img' src={process.env.PUBLIC_URL + '/images/invitationdraft.jpg'} alt="Invitation Draft" />
+                <img className='draft-img' src={`../../server/images/${orderID}.png`} alt="Invitation Draft" />
             </div>
 
             <div className='order-being-confirmed-footer'>
