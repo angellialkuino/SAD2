@@ -124,13 +124,13 @@ function App() {
             <Route path='/update-staff' element={<StaffAccountUpdateOwner />} />
             <Route path='/staff-list' element={<StaffList />} />
         </Routes>
-        {/* <LoginPage /> */}
-        <Login
+        <InvitationDraftStaff />
+        {/* <Login
                     success={success}
                     setSuccess={setSuccess}
                     roles={roles}
                     setRoles={setRoles}
-                />
+                /> */}
     </React.Fragment>
 }
 

@@ -37,7 +37,7 @@ app.use(passport.initialize()); //initialize passport middleware
 app.use(passport.session());
 
 app.use((req,res,next)=>{
-    console.log(req.sessionID);
+    console.log(`session ID: ${req.sessionID}`);
     console.log(req.session);
     console.log(req.user);
     next();
