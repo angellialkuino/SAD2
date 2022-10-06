@@ -41,6 +41,7 @@ function App() {
     const [orderData, setOrderData] = useState({
         inviteType: '',
         material: '',
+        materialPrice: '',
         eventDate: '',
         motif: '',
         invitationTitle: '',
@@ -48,8 +49,9 @@ function App() {
         contentLink: '',
         inviteNumbers: '',
         pegLink: '',
-        innerPaperAndColor: '',
-        innerSize: '',
+        pagesPaperAndColor: '',
+        pagesSize: '',
+        pagesSizePrice: '',
         envelope: false,
         envelopePaperAndColor: '',
         envelopeSize: '',
@@ -133,8 +135,10 @@ function App() {
             <Route path='/update-staff' element={<StaffAccountUpdateOwner />} />
             <Route path='/staff-list' element={<StaffList />} />
         </Routes>
-        <OrderForm2 orderData={orderData}
-            setOrderData={setOrderData} />
+        <OrderForm2
+            orderData={orderData}
+            setOrderData={setOrderData}
+        />
     </React.Fragment>
 }
 

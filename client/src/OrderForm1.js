@@ -1,9 +1,28 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import NavBarCustomerLoggedIn from './NavBarCustomerLoggedIn';
 import './OrderForm1.css';
 
 const OrderForm1 = ({ orderData, setOrderData }) => {
+    useEffect(() => console.log(orderData), [orderData]);
+
+    const handleInviteType = (e) => {
+        setOrderData((previousState) => {
+            return {
+                ...previousState,
+                inviteType: e.target.value
+            };
+        });
+    }
+    const handleMaterial = (e) => {
+        setOrderData((previousState) => {
+            return {
+                ...previousState,
+                material: e.target.id,
+                materialPrice: e.target.value
+            };
+        });
+    }
     return (
         <>
             <NavBarCustomerLoggedIn />
@@ -12,56 +31,28 @@ const OrderForm1 = ({ orderData, setOrderData }) => {
                 <div className='boxes'>
                     <div className='square-button-with-text'>
                         <label>
-                            <input type='radio' id='wedding' name='invite-type' value='wedding' className='form1-radio' onClick={(e) => {
-                                setOrderData((previousState) => {
-                                    return {
-                                        ...previousState,
-                                        inviteType: e.target.value
-                                    };
-                                });
-                            }} />
+                            <input type='radio' id='wedding' name='invite-type' value='wedding' className='form1-radio' onClick={handleInviteType} />
                             <img className='radio-img' src={process.env.PUBLIC_URL + '/images/wedding.jpg'} alt="wedding"></img>
                         </label>
                         <h5>Wedding</h5>
                     </div>
                     <div className='square-button-with-text'>
                         <label>
-                            <input type='radio' id='birthday' name='invite-type' value='birthday' className='form1-radio' onClick={(e) => {
-                                setOrderData((previousState) => {
-                                    return {
-                                        ...previousState,
-                                        inviteType: e.target.value
-                                    };
-                                });
-                            }} />
+                            <input type='radio' id='birthday' name='invite-type' value='birthday' className='form1-radio' onClick={handleInviteType} />
                             <img className='radio-img' src={process.env.PUBLIC_URL + '/images/birthday.jpg'} alt="birthday"></img>
                         </label>
                         <h5>Birthday</h5>
                     </div>
                     <div className='square-button-with-text'>
                         <label>
-                            <input type='radio' id='debut' name='invite-type' value='debut' className='form1-radio' onClick={(e) => {
-                                setOrderData((previousState) => {
-                                    return {
-                                        ...previousState,
-                                        inviteType: e.target.value
-                                    };
-                                });
-                            }} />
+                            <input type='radio' id='debut' name='invite-type' value='debut' className='form1-radio' onClick={handleInviteType} />
                             <img className='radio-img' src={process.env.PUBLIC_URL + '/images/debut.jpg'} alt="debut"></img>
                         </label>
                         <h5>Debut</h5>
                     </div>
                     <div className='square-button-with-text'>
                         <label>
-                            <input type='radio' id='other' name='invite-type' value='other' className='form1-radio' onClick={(e) => {
-                                setOrderData((previousState) => {
-                                    return {
-                                        ...previousState,
-                                        inviteType: e.target.value
-                                    };
-                                });
-                            }} />
+                            <input type='radio' id='other' name='invite-type' value='other' className='form1-radio' onClick={handleInviteType} />
                             <img className='radio-img' src={process.env.PUBLIC_URL + '/images/other.jpg'} alt="other"></img>
                         </label>
                         <h5>Other</h5>
@@ -71,28 +62,14 @@ const OrderForm1 = ({ orderData, setOrderData }) => {
                 <div className='boxes'>
                     <div className='square-button-with-text'>
                         <label>
-                            <input type='radio' id='paper' name='material' value='paper' className='form1-radio' onClick={(e) => {
-                                setOrderData((previousState) => {
-                                    return {
-                                        ...previousState,
-                                        material: e.target.value
-                                    };
-                                });
-                            }} />
+                            <input type='radio' id='paper' name='material' value='30' className='form1-radio' onClick={handleMaterial} />
                             <img className='radio-img' src={process.env.PUBLIC_URL + '/images/paper.jpg'} alt="paper"></img>
                         </label>
                         <h5>Paper</h5>
                     </div>
                     <div className='square-button-with-text'>
                         <label>
-                            <input type='radio' id='acrylic' name='material' value='acrylic' className='form1-radio' onClick={(e) => {
-                                setOrderData((previousState) => {
-                                    return {
-                                        ...previousState,
-                                        material: e.target.value
-                                    };
-                                });
-                            }} />
+                            <input type='radio' id='acrylic' name='material' value='180' className='form1-radio' onClick={handleMaterial} />
                             <img className='radio-img' src={process.env.PUBLIC_URL + '/images/acrylic.jpg'} alt="acrylic"></img>
                         </label>
                         <h5>Acrylic</h5>

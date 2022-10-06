@@ -1,9 +1,50 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './OrderForm2.css';
 import NavBarCustomerLoggedIn from './NavBarCustomerLoggedIn';
 
 function OrderForm2({ orderData, setOrderData }) {
+    useEffect(() => console.log(orderData), [orderData]);
+
+    const [checked, setChecked] = useState(false);
+
+    const handlePagesPaperAndColor = (e) => {
+        setOrderData((previousState) => {
+            return {
+                ...previousState,
+                pagesPaperAndColor: e.target.value
+            };
+        });
+    }
+
+    const handlePagesSize = (e) => {
+        setOrderData((previousState) => {
+            return {
+                ...previousState,
+                pagesSize: e.target.id,
+                pagesSizePrice: e.target.value
+            };
+        });
+    }
+
+    const handleEnvelopePaperAndColor = (e) => {
+        setOrderData((previousState) => {
+            return {
+                ...previousState,
+                envelopePaperAndColor: e.target.value
+            };
+        });
+    }
+
+    const handleEnvelopeSize = (e) => {
+        setOrderData((previousState) => {
+            return {
+                ...previousState,
+                envelopeSize: e.target.value
+            };
+        });
+    }
+
     const handleBodyText = (e) => {
         setOrderData((previousState) => {
             return {
@@ -11,7 +52,6 @@ function OrderForm2({ orderData, setOrderData }) {
                 bodyText: e.target.value
             };
         });
-        console.log(orderData.bodyText);
     }
 
     const handleHeaderText = (e) => {
@@ -21,7 +61,6 @@ function OrderForm2({ orderData, setOrderData }) {
                 headerText: e.target.value
             };
         });
-        console.log(orderData.headerText);
     }
 
     const handleOtherPages = (e) => {
@@ -68,34 +107,36 @@ function OrderForm2({ orderData, setOrderData }) {
                     <div className='grid-item'></div>
                     <div className='grid-item'><h5>Paper Type and Color</h5></div>
                     <div className='grid-item'><h5>Size of Card</h5></div>
-                    <div className='grid-item'><input type="checkbox" value="inner" className='checkbox-circle' />Inner</div>
+                    <div className='grid-item'><input type="checkbox" value="pages" className='checkbox-circle0' />Pages</div>
                     <div className='grid-item'>
-                        <select name="inner" id="inner-select" required>
+                        <select name="pages" id="pages-select" required onClick={handlePagesPaperAndColor}>
                             <option value="Let Crafters Haven handle it!">Let Crafters Haven handle it!</option>
                             <option value="Customize">Customize</option>
                         </select>
                     </div>
                     <div className='grid-item'>
                         <div className='grid-item'>
-                            <select name="inner" id="inner-select">
-                                <option value="30">4.75 x 5.75 in</option>
-                                <option value="30">5.75 x 7.75 in</option>
-                                <option value="40">6.75 x 8.75 in</option>
+                            <select name="pages" id="pages-select" onClick={handlePagesSize}>
+                                <option id="4.75 x 5.75 in" value="30">4.75 x 5.75 in</option>
+                                <option id="5.75 x 7.75 in" value="30">5.75 x 7.75 in</option>
+                                <option id="6.75 x 8.75 in" value="40">6.75 x 8.75 in</option>
                             </select>
                         </div></div>
 
-                    {/* How to disable select tag if envelope is not checked? */}
-                    <div className='grid-item'><input type="checkbox" value="envelope" className='checkbox-circle' />Envelope</div>
+                    <div className='grid-item'><input type="checkbox" value="envelope" className='checkbox-circle'
+                        onChange={(e) => {
+                            setChecked(e.target.checked);
+                        }} /> Envelope</div>
                     <div className='grid-item'>
-                        <select name="envelope" id="envelope-select">
+                        <select name="envelope" id="envelope-select" onClick={handleEnvelopePaperAndColor} disabled={!checked}>
                             <option value="Let Crafters Haven handle it!">Let Crafters Haven handle it!</option>
                             <option value="Customize">Customize</option>
                         </select>
                     </div>
                     <div className='grid-item'>
                         <div className='grid-item'>
-                            <select name="envelope" id="envelope-select">
-                                <option value="30">6 x 8 in</option>
+                            <select name="envelope" id="envelope-select" onClick={handleEnvelopeSize} disabled={!checked}>
+                                <option value="6 x 8 in">6 x 8 in</option>
                             </select>
                         </div>
                     </div>

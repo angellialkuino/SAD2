@@ -115,6 +115,20 @@
     background-color: #53c46d;
 }
 
+.checkbox-circle0:read-only {
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    vertical-align: middle;
+    border: 1px solid #53c46d;
+    background-color: #53c46d;
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+    margin: 1rem;
+    padding: 1rem;
+}
+
 select {
     width: 100%;
     /* padding: 16px 0px; */
