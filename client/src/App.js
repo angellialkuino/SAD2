@@ -55,6 +55,7 @@ function App() {
         envelope: false,
         envelopePaperAndColor: '',
         envelopeSize: '',
+        envelopeSizePrice: '',
         envelopeLiner: false,
         envelopeLock: false,
         allTextEmboss: false,

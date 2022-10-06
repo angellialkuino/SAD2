@@ -21,7 +21,8 @@ function OrderForm2({ orderData, setOrderData }) {
         setOrderData((previousState) => {
             return {
                 ...previousState,
-                pagesSize: e.target.id,
+                //magik words that gets the id of the selected option
+                pagesSize: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
                 pagesSizePrice: e.target.value
             };
         });
@@ -40,7 +41,8 @@ function OrderForm2({ orderData, setOrderData }) {
         setOrderData((previousState) => {
             return {
                 ...previousState,
-                envelopeSize: e.target.value
+                envelopeSize: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
+                envelopeSizePrice: e.target.value
             };
         });
     }
@@ -136,7 +138,7 @@ function OrderForm2({ orderData, setOrderData }) {
                     <div className='grid-item'>
                         <div className='grid-item'>
                             <select name="envelope" id="envelope-select" onClick={handleEnvelopeSize} disabled={!checked}>
-                                <option value="6 x 8 in">6 x 8 in</option>
+                                <option id="6 x 8 in" value='30'>6 x 8 in</option>
                             </select>
                         </div>
                     </div>
