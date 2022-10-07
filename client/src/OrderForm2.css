@@ -42,7 +42,7 @@
     width: 1100px;
     padding: 20px;
     background-color: #179ad3;
-    font-size: xx-large;
+    font-size: x-large;
     gap: 2rem;
 }
 
@@ -93,8 +93,6 @@
 }
 
 .checkbox-circle {
-    width: 1em;
-    height: 1em;
     border-radius: 50%;
     vertical-align: middle;
     border: 1px solid #53c46d;
@@ -102,8 +100,8 @@
     -webkit-appearance: none;
     outline: none;
     cursor: pointer;
-    margin: 1rem;
-    padding: 1rem;
+    margin: 0.2rem;
+    padding: 0.5rem;
 }
 
 .checkbox-circle:hover {
@@ -116,8 +114,6 @@
 }
 
 .checkbox-circle0:read-only {
-    width: 1em;
-    height: 1em;
     border-radius: 50%;
     vertical-align: middle;
     border: 1px solid #53c46d;
@@ -125,8 +121,8 @@
     appearance: none;
     -webkit-appearance: none;
     outline: none;
-    margin: 1rem;
-    padding: 1rem;
+    margin: 0.2rem;
+    padding: 0.5rem;
 }
 
 select {

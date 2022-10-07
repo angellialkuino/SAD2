@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Route, Routes } from "react-router-dom";
 import ErrorPage from "./ErrorPage";
 import AboutUs from "./AboutUs";
@@ -127,6 +127,7 @@ function App() {
         <OrderForm2
             orderData={orderData}
             setOrderData={setOrderData}
+            sumTotal={sumTotal}
         />
     </React.Fragment>
 }
