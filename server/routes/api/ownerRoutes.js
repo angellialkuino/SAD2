@@ -18,7 +18,7 @@ router.delete('/staff-delete', controller.deleteUser);
 
 const storageEngine = multer.diskStorage({
     destination: (req,file,cb) => {
-        cb(null, './images');
+        cb(null, './images/profile-pics');
     },
     filename: (req,file,cb) => {
         cb(null, file.originalname);

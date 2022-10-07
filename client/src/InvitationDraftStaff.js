@@ -11,10 +11,10 @@ function InvitationDraftStaff() {
 
     useEffect( () => {
         const showImage = async () => {
-                await Axios.head(`http://localhost:5000/${orderID}.png`)
+                await Axios.head(`http://localhost:5000/invite-draft/${orderID}.png`)
                     .then(res => {
                         console.log(res);
-                        setPath(`http://localhost:5000/${orderID}.png`);
+                        setPath(`http://localhost:5000/invite-draft/${orderID}.png`);
                         
                     })
                     .catch(err => {
@@ -45,7 +45,7 @@ function InvitationDraftStaff() {
         ).then((res) => {
             console.log("success");
             console.log(res.data.path); //path of image: image\filename.jpg
-            setPath(`http://localhost:5000/${orderID}.png?${Date.now()}`);
+            setPath(`http://localhost:5000/invite-draft/${orderID}.png?${Date.now()}`);
             setText('');
             //showImage();
         }).catch(err => {
@@ -57,8 +57,8 @@ function InvitationDraftStaff() {
         <div className='invitation-draft-frame'>
             <h1 className='invitation-draft-h1'>Invitation Draft</h1>
             <div className='invitation-draft-inner-frame'>
-                 {path && <img className='draft-img' src={path}/>}{/* alt="Invitation Draft" />} */}
-                 {text && <p>{text}</p>}{/* alt="Invitation Draft" />} */}
+                 {path && <img className='draft-img' src={path}/>}
+                 {text && <p>{text}</p>}
 
             </div>
 

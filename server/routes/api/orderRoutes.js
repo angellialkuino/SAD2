@@ -39,7 +39,7 @@ router.post('/new-doc-entry', controller.docEntry);
 
 const storageEngine = multer.diskStorage({
     destination: (req,file,cb) => {
-        cb(null, './images');
+        cb(null, './images/invite-draft');
     },
     filename: (req,file,cb) => {
         //cb(null, Date.now()+ 'draft' + path.extname(file.originalname));
