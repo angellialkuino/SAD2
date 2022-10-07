@@ -124,13 +124,10 @@ function App() {
             <Route path='/update-staff' element={<StaffAccountUpdateOwner />} />
             <Route path='/staff-list' element={<StaffList />} />
         </Routes>
-        <InvitationDraftStaff />
-        {/* <Login
-                    success={success}
-                    setSuccess={setSuccess}
-                    roles={roles}
-                    setRoles={setRoles}
-                /> */}
+        <OrderForm2
+            orderData={orderData}
+            setOrderData={setOrderData}
+        />
     </React.Fragment>
 }
 

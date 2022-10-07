@@ -3,34 +3,23 @@
     flex-direction: column;
     margin: 2rem auto auto auto;
     background-color: #d8ecf5;
-    height: 1154px;
+    /* height: 1154px; */
     width: 1100px;
     border-radius: 2rem;
     justify-content: center;
     align-items: center;
+    padding: 2rem;
 }
 
-h4 {
-    margin-top: 1rem;
-}
-
-h2 {
+.category-h3 {
     font-weight: bold;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
 }
 
 .form1-footer {
-    margin-top: 2rem;
     display: flex;
-    justify-content: right;
-    align-items: center;
     width: 50%;
-    text-align: center;
     gap: 1rem;
-    position: relative;
-    left: 550px;
-    bottom: 20px;
+    margin: auto auto 2rem auto;
 }
 
 .button {
@@ -61,18 +50,7 @@ h2 {
     border-radius: 2rem;
 }
 
-.square-button {
-    display: flex;
-    background-color: white;
-    height: 200px;
-    width: 200px;
-    border-radius: 2rem;
-    justify-content: center;
-    border-width: 5px;
-    border-color: #179ad3;
-}
-
-.square-button:hover {
+.main-order-frame1 button:hover {
     border-color: #53c46d;
 }
 
@@ -105,7 +83,7 @@ h2 {
 }
 
 .label-textfield {
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 
 .invite-details {
@@ -115,4 +93,32 @@ h2 {
     justify-content: center;
     gap: 1rem;
     padding: 1rem
+}
+
+.form1-radio {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.form1-radio+img:hover {
+    cursor: pointer;
+    outline: 2px solid #179ad3;
+}
+
+.form1-radio:checked+img {
+    outline: 2px solid #53c46d;
+}
+
+.img-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.radio-img {
+    height: 150px;
+    width: 150px;
+    border-radius: 2rem;
 }
