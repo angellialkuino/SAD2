@@ -3,10 +3,27 @@ import { Link } from 'react-router-dom';
 import './OrderForm2.css';
 import NavBarCustomerLoggedIn from './NavBarCustomerLoggedIn';
 
-function OrderForm2({ orderData, setOrderData }) {
-    useEffect(() => console.log(orderData), [orderData]);
-
+function OrderForm2({ orderData, setOrderData, sumTotal }) {
     const [checked, setChecked] = useState(false);
+    const [allTextChecked, setAllTextChecked] = useState(false);
+
+    useEffect(() => {
+        const sumValues = function (orderData) {
+            let sum = 0
+            for (const key in orderData) {
+                if (typeof orderData[key] === "number") {
+                    // console.log(orderData[key])
+                    sum = orderData[key] + sum;
+                } else if (typeof orderData[key] === 'object') {
+                    sum += sumValues(orderData[key]);
+                }
+            }
+            return sum;
+        }
+        sumTotal.current = sumValues(orderData);
+        // console.log(sumTotal.current);
+        console.log(orderData);
+    }, [orderData]);
 
     const handlePagesPaperAndColor = (e) => {
         setOrderData((previousState) => {
@@ -21,9 +38,12 @@ function OrderForm2({ orderData, setOrderData }) {
         setOrderData((previousState) => {
             return {
                 ...previousState,
-                //magik words that gets the id of the selected option
-                pagesSize: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
-                pagesSizePrice: e.target.value
+                pagesPrice: {
+                    ...previousState.pagesPrice,
+                    //magik words that gets the id of the selected option
+                    pagesSize: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
+                    pagesSizePrice: parseFloat(e.target.value)
+                }
             };
         });
     }
@@ -41,8 +61,11 @@ function OrderForm2({ orderData, setOrderData }) {
         setOrderData((previousState) => {
             return {
                 ...previousState,
-                envelopeSize: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
-                envelopeSizePrice: e.target.value
+                envelopePrice: {
+                    ...previousState.envelopePrice,
+                    envelopeSize: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
+                    envelopeSizePrice: parseFloat(e.target.value)
+                }
             };
         });
     }
@@ -51,7 +74,10 @@ function OrderForm2({ orderData, setOrderData }) {
         setOrderData((previousState) => {
             return {
                 ...previousState,
-                bodyText: e.target.value
+                bodyTextPricing: {
+                    bodyText: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
+                    bodyTextPrice: parseFloat(e.target.value)
+                }
             };
         });
     }
@@ -60,36 +86,74 @@ function OrderForm2({ orderData, setOrderData }) {
         setOrderData((previousState) => {
             return {
                 ...previousState,
-                headerText: e.target.value
+                headerTextPricing: {
+                    headerText: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
+                    headerTextPrice: parseFloat(e.target.value)
+                }
             };
         });
     }
 
     const handleOtherPages = (e) => {
-        setOrderData((previousState) => {
-            return {
-                ...previousState,
-                otherPages: e.target.value
-            };
-        });
+        if (e.target.checked === false) {
+            setOrderData((previousState) => {
+                return {
+                    ...previousState,
+                    otherPagesPricing: {
+                        otherPages: '',
+                        otherPagesPrice: 0
+                    }
+                };
+            });
+        }
+        else {
+            setOrderData((previousState) => {
+                return {
+                    ...previousState,
+                    otherPagesPricing: {
+                        otherPages: e.target.id,
+                        otherPagesPrice: parseFloat(e.target.value)
+                    }
+                };
+            });
+        }
     }
 
     const handleCover = (e) => {
         setOrderData((previousState) => {
             return {
                 ...previousState,
-                cover: e.target.value
+                coverPricing: {
+                    cover: e.target.id,
+                    coverPrice: parseFloat(e.target.value)
+                }
             };
         });
     }
 
     const handleCards = (e) => {
-        setOrderData((previousState) => {
-            return {
-                ...previousState,
-                cards: e.target.value
-            };
-        });
+        if (e.target.checked === false) {
+            setOrderData((previousState) => {
+                return {
+                    ...previousState,
+                    cardsPricing: {
+                        cards: '',
+                        cardsPrice: 0
+                    }
+                };
+            });
+        }
+        else {
+            setOrderData((previousState) => {
+                return {
+                    ...previousState,
+                    cardsPricing: {
+                        cardsPages: e.target.id,
+                        cardsPrice: parseFloat(e.target.value)
+                    }
+                };
+            });
+        }
     }
 
     return (
@@ -108,7 +172,7 @@ function OrderForm2({ orderData, setOrderData }) {
                 <div className='grid-container'>
                     <div className='grid-item'></div>
                     <div className='grid-item'><h5>Paper Type and Color</h5></div>
-                    <div className='grid-item'><h5>Size of Card</h5></div>
+                    <div className='grid-item'><h5>Sizes</h5></div>
                     <div className='grid-item'><input type="checkbox" value="pages" className='checkbox-circle0' />Pages</div>
                     <div className='grid-item'>
                         <select name="pages" id="pages-select" required onClick={handlePagesPaperAndColor}>
@@ -128,6 +192,26 @@ function OrderForm2({ orderData, setOrderData }) {
                     <div className='grid-item'><input type="checkbox" value="envelope" className='checkbox-circle'
                         onChange={(e) => {
                             setChecked(e.target.checked);
+                            if (e.target.checked === false) {
+                                setOrderData((previousState) => {
+                                    return {
+                                        ...previousState,
+                                        envelopePaperAndColor: '',
+                                        envelopePrice: {
+                                            envelopeSize: '',
+                                            envelopeSizePrice: 0
+                                        },
+                                        envelopeLinerPricing: {
+                                            envelopeLiner: false,
+                                            envelopeLinerPrice: 0
+                                        },
+                                        envelopeLockPricing: {
+                                            envelopeLock: false,
+                                            envelopeLockPrice: 0
+                                        },
+                                    };
+                                });
+                            }
                         }} /> Envelope</div>
                     <div className='grid-item'>
                         <select name="envelope" id="envelope-select" onClick={handleEnvelopePaperAndColor} disabled={!checked}>
@@ -136,30 +220,60 @@ function OrderForm2({ orderData, setOrderData }) {
                         </select>
                     </div>
                     <div className='grid-item'>
-                        <div className='grid-item'>
-                            <select name="envelope" id="envelope-select" onClick={handleEnvelopeSize} disabled={!checked}>
-                                <option id="6 x 8 in" value='30'>6 x 8 in</option>
-                            </select>
-                        </div>
+                        <select name="envelope" id="envelope-select" onClick={handleEnvelopeSize} disabled={!checked}>
+                            <option id="6 x 8 in" value='30'>6 x 8 in</option>
+                        </select>
                     </div>
                 </div>
                 <div className='row-group'>
-                    <input type="checkbox" value="liner" className='checkbox-circle' onChange={(e) => {
-                        setOrderData((previousState) => {
-                            return {
-                                ...previousState,
-                                envelopeLiner: e.target.checked
-                            };
-                        });
-                    }} />Envelope Liner
-                    <input type="checkbox" value="lock" className='checkbox-circle' onChange={(e) => {
-                        setOrderData((previousState) => {
-                            return {
-                                ...previousState,
-                                envelopeLock: e.target.checked
-                            };
-                        });
-                    }} />Envelope Lock
+                    <input type="checkbox" value="10" className='checkbox-circle' onChange={(e) => {
+                        if (e.target.checked === false) {
+                            setOrderData((previousState) => {
+                                return {
+                                    ...previousState,
+                                    envelopeLinerPricing: {
+                                        envelopeLiner: false,
+                                        envelopeLinerPrice: 0
+                                    }
+                                };
+                            });
+                        }
+                        else {
+                            setOrderData((previousState) => {
+                                return {
+                                    ...previousState,
+                                    envelopeLinerPricing: {
+                                        envelopeLiner: true,
+                                        envelopeLinerPrice: parseFloat(e.target.value)
+                                    }
+                                };
+                            });
+                        }
+                    }} disabled={!checked} />Envelope Liner
+                    <input type="checkbox" value="5" className='checkbox-circle' onChange={(e) => {
+                        if (e.target.checked === false) {
+                            setOrderData((previousState) => {
+                                return {
+                                    ...previousState,
+                                    envelopeLockPricing: {
+                                        envelopeLock: false,
+                                        envelopeLockPrice: 0
+                                    }
+                                };
+                            });
+                        }
+                        else {
+                            setOrderData((previousState) => {
+                                return {
+                                    ...previousState,
+                                    envelopeLockPricing: {
+                                        envelopeLock: true,
+                                        envelopeLockPrice: parseFloat(e.target.value)
+                                    }
+                                };
+                            });
+                        }
+                    }} disabled={!checked} />Envelope Lock
                 </div>
 
                 <div className='row-group'>
@@ -170,19 +284,51 @@ function OrderForm2({ orderData, setOrderData }) {
                     <div className='grid-item'><h5>All Text</h5></div>
                     <div className='grid-item'><h5>Header Text</h5></div>
                     <div className='grid-item'><h5>Body Text</h5></div>
-                    <div className='grid-item'><input type="checkbox" value="dry-emboss" name='all-text' className='checkbox-circle' onClick={(e) => {
-                        setOrderData((previousState) => {
-                            return {
-                                ...previousState,
-                                allTextEmboss: e.target.checked
-                            };
-                        });
+                    <div className='grid-item'><input type="checkbox" value="20" name='all-text' className='checkbox-circle' onChange={(e) => {
+                        setAllTextChecked(e.target.checked);
+                        if (e.target.checked === false) {
+                            setOrderData((previousState) => {
+                                return {
+                                    ...previousState,
+                                    allTextembossPricing: {
+                                        allTextEmboss: false,
+                                        allTextEmbossPrice: 0
+                                    },
+                                };
+                            });
+                        }
+                        else {
+                            setOrderData((previousState) => {
+                                return {
+                                    ...previousState,
+                                    allTextembossPricing: {
+                                        allTextEmboss: true,
+                                        allTextEmbossPrice: parseFloat(e.target.value)
+                                    },
+                                    headerTextPricing: {
+                                        headerText: '',
+                                        headerTextPrice: 0
+                                    },
+                                    bodyTextPricing: {
+                                        bodyText: '',
+                                        bodyTextPrice: 0
+                                    }
+                                };
+                            });
+                        }
                     }} />Dry Emboss</div>
-                    <div className='grid-item'><input type="radio" value="header-plain-print" name='header-text' className='checkbox-circle' onClick={handleHeaderText} />Plain Print</div>
-                    <div className='grid-item'><input type="radio" value="body-plain-print" name='body-text' className='checkbox-circle' onClick={handleBodyText} />Plain Print</div>
-                    <div className='grid-item'></div>
-                    <div className='grid-item'><input type="radio" value="header-foil-print" name='header-text' className='checkbox-circle' onClick={handleHeaderText} />Foil Print</div>
-                    <div className='grid-item'><input type="radio" value="body-foil-print" name='body-text' className='checkbox-circle' onClick={handleBodyText} />Foil Print</div>
+                    <div className='grid-item'>
+                        <select name="header-text" id="header-select" onClick={handleHeaderText} disabled={allTextChecked}>
+                            <option id="plain-print" value="30">Plain Print</option>
+                            <option id="foil-print" value="40">Foil Print</option>
+                        </select>
+                    </div>
+                    <div className='grid-item'>
+                        <select name="body-text" id="body-select" onClick={handleBodyText} disabled={allTextChecked}>
+                            <option id="plain-print" value="30">Plain Print</option>
+                            <option id="foil-print" value="60">Foil Print</option>
+                        </select>
+                    </div>
                 </div>
 
                 <div className='row-group'>
@@ -190,32 +336,34 @@ function OrderForm2({ orderData, setOrderData }) {
                     <h3>Other Pages</h3>
                 </div>
                 <div className='grid-container'>
-                    <div className='grid-item'><input type="radio" value="rsvp" name='other-pages' className='checkbox-circle' onClick={handleOtherPages} />RSVP</div>
-                    <div className='grid-item'><input type="radio" value="monetary-gift-page" name='other-pages' className='checkbox-circle' onClick={handleOtherPages} />Monetary Gift Page</div>
-                    <div className='grid-item'><input type="radio" value="vows" name='other-pages' className='checkbox-circle' onClick={handleOtherPages} />His/Her Vows</div>
+                    <div className='grid-item'><input type="checkbox" id="rsvp" value="20" name='other-pages' className='checkbox-circle' onChange={handleOtherPages} />RSVP</div>
+                    <div className='grid-item'><input type="checkbox" id="monetary-gift-page" value="20" name='other-pages' className='checkbox-circle' onClick={handleOtherPages} />Monetary Gift Page</div>
+                    <div className='grid-item'><input type="checkbox" id="vows" value="80" name='other-pages' className='checkbox-circle' onClick={handleOtherPages} />His/Her Vows</div>
                 </div>
 
                 <div className='row-group'>
                     <div className="number-circle">4</div>
                     <h3>Cover</h3>
                 </div>
-                <div className='grid-container-2x2'>
-                    <div className='grid-item'><input type="radio" value="translucent" name='cover' className='checkbox-circle' onClick={handleCover} />Translucent Cover</div>
-                    <div className='grid-item'><input type="radio" value="printed" name='cover' className='checkbox-circle' onClick={handleCover} />Printed Cover</div>
-                    <div className='grid-item'><input type="radio" value="trifold" name='cover' className='checkbox-circle' onClick={handleCover} />Trifold Cover</div>
-                    <div className='grid-item'><input type="radio" value="lasercut" name='cover' className='checkbox-circle' onClick={handleCover} />Lasercut Cover</div>
+                <div className='grid-item'>
+                    <select name="cover" id="cover-select" required onClick={handleCover}>
+                        <option id="translucent" value="60">Translucent</option>
+                        <option id="printed" value="120">Printed</option>
+                        <option id="trifold" value="60">Trifold</option>
+                        <option id="lasercut" value="60">Lasercut</option>
+                    </select>
                 </div>
                 <div className='row-group'>
                     <div className="number-circle">5</div>
                     <h3>Cards</h3>
                 </div>
                 <div className='grid-container'>
-                    <div className='grid-item'><input type="radio" value="menu" className='checkbox-circle' onClick={handleCards} />Menu Cards</div>
-                    <div className='grid-item'><input type="radio" value="table" className='checkbox-circle' onClick={handleCards} />Table Cards</div>
-                    <div className='grid-item'><input type="radio" value="seat" className='checkbox-circle' onClick={handleCards} />Seat Cards</div>
+                    <div className='grid-item'><input type="checkbox" id="menu" value="20" name='cards' className='checkbox-circle' onClick={handleCards} />Menu Cards</div>
+                    <div className='grid-item'><input type="checkbox" id="table" value="20" name='cards' className='checkbox-circle' onClick={handleCards} />Table Cards</div>
+                    <div className='grid-item'><input type="checkbox" id="seat" value="20" name='cards' className='checkbox-circle' onClick={handleCards} />Seat Cards</div>
                 </div>
                 <span className='total-footer'>
-                    Total is subject to change <b>Total: Php</b>
+                    Total is subject to change <b>Total: {sumTotal.current} Php</b>
                 </span>
                 <div className='form1-footer'>
                     <Link to='/order-form-1' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>

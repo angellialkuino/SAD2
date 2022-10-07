@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Route, Routes } from "react-router-dom";
 import ErrorPage from "./ErrorPage";
 import AboutUs from "./AboutUs";
@@ -36,12 +36,13 @@ function App() {
     //if user is logged in and check role(?)
     const [success, setSuccess] = useState(false);
     const [roles, setRoles] = useState('');
+    const sumTotal = useRef(0);
 
     //order form data
     const [orderData, setOrderData] = useState({
         inviteType: '',
         material: '',
-        materialPrice: '',
+        materialPrice: 0,
         eventDate: '',
         motif: '',
         invitationTitle: '',
@@ -50,20 +51,48 @@ function App() {
         inviteNumbers: '',
         pegLink: '',
         pagesPaperAndColor: '',
-        pagesSize: '',
-        pagesSizePrice: '',
+        pagesPrice: {
+            pagesSize: '',
+            pagesSizePrice: 0,
+        },
         envelope: false,
         envelopePaperAndColor: '',
-        envelopeSize: '',
-        envelopeSizePrice: '',
-        envelopeLiner: false,
-        envelopeLock: false,
-        allTextEmboss: false,
-        headerText: '',
-        bodyText: '',
-        otherPages: '',
-        cover: '',
-        cards: '',
+        envelopePrice: {
+            envelopeSize: '',
+            envelopeSizePrice: 0,
+        },
+        envelopeLinerPricing: {
+            envelopeLiner: false,
+            envelopeLinerPrice: 0
+        },
+        envelopeLockPricing: {
+            envelopeLock: false,
+            envelopeLockPrice: 0
+        },
+        allTextembossPricing: {
+            allTextEmboss: false,
+            allTextEmbossPrice: 0
+        },
+        headerTextPricing: {
+            headerText: '',
+            headerTextPrice: 0
+        },
+        bodyTextPricing: {
+            bodyText: '',
+            bodyTextPrice: 0
+        },
+        otherPagesPricing: {
+            otherPages: '',
+            otherPagesPrice: 0
+        },
+        coverPricing: {
+            cover: '',
+            coverPrice: 0
+        },
+        cardsPricing: {
+            cards: '',
+            cardPrice: 0
+        },
         waxSeal: '',
         sealColor: '',
         driedFlowers: '',
@@ -100,16 +129,19 @@ function App() {
                 {<OrderForm1
                     orderData={orderData}
                     setOrderData={setOrderData}
+                    sumTotal={sumTotal}
                 />} />
             <Route path='/order-form-2' element=
                 {<OrderForm2
                     orderData={orderData}
                     setOrderData={setOrderData}
+                    sumTotal={sumTotal}
                 />} />
             <Route path='/order-form-3' element=
                 {<OrderForm3
                     orderData={orderData}
                     setOrderData={setOrderData}
+                    sumTotal={sumTotal}
                 />} />
             <Route path='/order-form-4' element={<OrderForm4 />} />
             <Route path='/order-form-5' element={<OrderForm5 />} />
@@ -139,6 +171,7 @@ function App() {
         <OrderForm2
             orderData={orderData}
             setOrderData={setOrderData}
+            sumTotal={sumTotal}
         />
     </React.Fragment>
 }
