@@ -16,6 +16,7 @@ app.use(cors({
 //parses incomming JSON requests and puts the parsed data in req.body
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static('images'))
 
 /* ask kuya raph? 
 const server = require('http').createServer(app);

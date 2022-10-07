@@ -21,7 +21,7 @@ const storageEngine = multer.diskStorage({
         cb(null, './images');
     },
     filename: (req,file,cb) => {
-        cb(null, Date.now()+ 'profpic' + path.extname(file.originalname));
+        cb(null, file.originalname);
     }
 });
 
