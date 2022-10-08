@@ -21,6 +21,7 @@ exports.createCust = async (req, res, next) => {
         next();
 
     } catch (err){
+        console.log(err);
         console.log('error at controller create cust');
         return res.status(400).send({ message:'Failed to create new customer account' });
     }
@@ -78,6 +79,7 @@ exports.updateUser = async (req, res) => {
         return res.status(200).send({ message:'Successfully updated user account info' , user});
         
     } catch (err) {
+        console.log(err);
         console.log('error at controller update user');
         return res.status(400).send({ message:'Failed to update user account info' });
     }

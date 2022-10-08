@@ -39,7 +39,7 @@ router.post('/new-doc-entry', controller.docEntry);
 
 const storageEngine = multer.diskStorage({
     destination: (req,file,cb) => {
-        cb(null, './images');
+        cb(null, './images/invite-draft');
     },
     filename: (req,file,cb) => {
         //cb(null, Date.now()+ 'draft' + path.extname(file.originalname));
@@ -54,33 +54,6 @@ router.post('/update-invite-draft', upload.single('invite_draft'),
     console.log('Successfully Uploaded Photo'); 
     res.send({ message: 'Successfully Uploaded Photo', path: req.file.path});
 });
-//router.post('/update-invite-draft', (req,res)=>{console.log('butt whay')}, upload.single('invite_draft'), (req,res)=>{res.send('ngano mn ni')});
-
-// router.post('/update-invite-draft', (req,res)=>{
-//     try {
-//         upload.single('invite_draft');
-//         console.log('no err???');
-//     } catch (err) {
-//         console.log(err);
-//     }
-//     // upload(req, res, function (err) {
-//     //     if (err instanceof multer.MulterError) {
-//     //       // A Multer error occurred when uploading.
-//     //       console.log(err);
-//     //     } else if (err) {
-//     //       // An unknown error occurred when uploading.S
-//     //       console.log(err);
-//     //     } else {
-//     //     // Everything went fine.
-//     //       console.log(req.file);
-//     //     }
-    
-//     //  })
-// });
-
-
-                                  
-
 
 
 module.exports = router;

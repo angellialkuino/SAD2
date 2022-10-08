@@ -16,6 +16,7 @@ app.use(cors({
 //parses incomming JSON requests and puts the parsed data in req.body
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static('images'))
 
 /* ask kuya raph? 
 const server = require('http').createServer(app);
@@ -37,7 +38,7 @@ app.use(passport.initialize()); //initialize passport middleware
 app.use(passport.session());
 
 app.use((req,res,next)=>{
-    console.log(req.sessionID);
+    console.log(`session ID: ${req.sessionID}`);
     console.log(req.session);
     console.log(req.user);
     next();
