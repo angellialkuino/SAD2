@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Axios from 'axios';
 
 function StaffAccountViewOwner() {
+    const [isDisabled, setIsDisabled] =useState(true);
     const [user, setUser] = useState({});
     const [userID, setUserID] = useState("");
     const [name, setName] = useState("N/A");
@@ -12,7 +13,6 @@ function StaffAccountViewOwner() {
     const [success, setSuccess] = useState(false);
     const [successMsg, setSuccessMsg] = useState('');
 
-    //how to pass the id of the selected staff from previous page???
     useEffect( () => {
 
         const getAccDetails = async () => {
@@ -46,11 +46,15 @@ function StaffAccountViewOwner() {
         }        
     },[user])
 
+    const allowEdit = () => {
+        setIsDisabled(false);
+    }
+
     const updateAccDetails = async () => {
-        await Axios.put('http://localhost:5000/api/customer/update',
+        await Axios.put('http://localhost:5000/api/owner/update-staff',
             { 
                 user_id: userID,
-                name: name,
+                full_name: name,
                 email: email,
                 phone_number: contactNum
         
@@ -59,39 +63,53 @@ function StaffAccountViewOwner() {
         ).then((res) => {
             if(res.status===200){
                 setSuccess(true);
-                setSuccessMsg(res.body.message);
+                setSuccessMsg(res.data.message);
+                setIsDisabled(true);
             }else if (res.status===400){
-                setErrMsg(res.body.message); //or is it res.body.message
+                setErrMsg(res.data.message); //or is it res.body.message
             }
             
+        }).catch((err) => {
+            console.log(err);
+        });
+    }
+
+    const deleteAcc = async () => {
+        await Axios.delete('http://localhost:5000/api/owner/staff-delete',
+            { user_id: userID },
+            { withCredentials: true }
+        ).then((res) => {
+            if(res.status===200){
+                setSuccess(true);
+                setSuccessMsg(res.data.message);
+                //Navigate to staff list
+            }else if (res.status===400){
+                setErrMsg(res.data.message); //or is it res.body.message
+            }
+            
+        }).catch((err) => {
+            console.log(err);
         });
     }
 
     return (
         <div className="profile-div">
-            <h2 className="site-title">CREATE STAFF PROFILE</h2>
+            <h2 className="site-title">STAFF PROFILE</h2>
             {user && <>
             <div className="profile-info">
                 <div className='label-textfield'>
                     <h4>Name</h4>
-                    <input type='text' value={name} onChange={(e) => setName(e.target.value)} className='profile-textfield' />
+                    <input disabled={isDisabled} type='text' value={name} onChange={(e) => setName(e.target.value)} className='profile-textfield' />
                 </div>
                 <div className='label-textfield'>
                     <h4>Email</h4>
-                    <input type='text' value={email} onChange={(e) => setEmail(e.target.value)} className='profile-textfield' />
+                    <input disabled={isDisabled} type='text' value={email} onChange={(e) => setEmail(e.target.value)} className='profile-textfield' />
                 </div>
                 <div className='label-textfield'>
                     <h4>Contact Number</h4>
-                    <input type='text' value={contactNum} onChange={(e) => setcontactNum(e.target.value)} className='profile-textfield' />
+                    <input disabled={isDisabled} type='text' value={contactNum} onChange={(e) => setcontactNum(e.target.value)} className='profile-textfield' />
                 </div>
-                {/* <div className='label-textfield'>
-                    <h4>Position</h4>
-                    <input type='text' className='profile-textfield' />
-                </div>
-                <div className='label-textfield'>
-                    <h4>Status</h4>
-                    <input type='text' className='profile-textfield' />
-                </div> */}
+                
             </div>
             </>}
             <div className='profile-pic'>
@@ -101,8 +119,13 @@ function StaffAccountViewOwner() {
 
             </div>
             <div className="button-row">
-                <button className="sub-button">Delete</button>
-                <button className="sub-button">Update</button>
+
+                {isDisabled && <>
+                <button onClick={allowEdit} className="sub-button">Edit Account</button>
+                <button onClick={deleteAcc} className="sub-button">Delete</button>
+                </> }
+
+                {!isDisabled && <button onClick={updateAccDetails} className="sub-button">Update Account</button>}
             </div>
         </div>
     );

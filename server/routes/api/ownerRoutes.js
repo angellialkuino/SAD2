@@ -12,6 +12,8 @@ router.get('/staff-list', controller.viewStaffList);
 
 router.get('/staff-account', controller.viewUser);
 
+router.put('/update-staff', controller.updateUser);
+
 router.delete('/staff-delete', controller.deleteUser);
 
 //upload prof pics
