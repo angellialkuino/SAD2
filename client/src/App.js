@@ -38,7 +38,7 @@ function App() {
     const [roles, setRoles] = useState('');
     const sumTotal = useRef(0);
 
-    //order form data
+    //order form data for the order form
     const [orderData, setOrderData] = useState({
         inviteType: '',
         material: '',

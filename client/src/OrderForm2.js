@@ -164,7 +164,7 @@ function OrderForm2({ orderData, setOrderData, sumTotal }) {
                 <div className='running-price-frame'>
                 </div>
 
-                <div className='row-group'>
+                <div className='row-group mt-5'>
                     <div className="number-circle">1</div>
                     <h3>Details of the Invite</h3>
                 </div>
@@ -276,7 +276,7 @@ function OrderForm2({ orderData, setOrderData, sumTotal }) {
                     }} disabled={!checked} />Envelope Lock
                 </div>
 
-                <div className='row-group'>
+                <div className='row-group mt-5'>
                     <div className="number-circle">2</div>
                     <h3>Text Decor</h3>
                 </div>
@@ -331,7 +331,7 @@ function OrderForm2({ orderData, setOrderData, sumTotal }) {
                     </div>
                 </div>
 
-                <div className='row-group'>
+                <div className='row-group mt-5'>
                     <div className="number-circle">3</div>
                     <h3>Other Pages</h3>
                 </div>
@@ -341,7 +341,7 @@ function OrderForm2({ orderData, setOrderData, sumTotal }) {
                     <div className='grid-item'><input type="checkbox" id="vows" value="80" name='other-pages' className='checkbox-circle' onClick={handleOtherPages} />His/Her Vows</div>
                 </div>
 
-                <div className='row-group'>
+                <div className='row-group mt-5'>
                     <div className="number-circle">4</div>
                     <h3>Cover</h3>
                 </div>
@@ -353,7 +353,7 @@ function OrderForm2({ orderData, setOrderData, sumTotal }) {
                         <option id="lasercut" value="60">Lasercut</option>
                     </select>
                 </div>
-                <div className='row-group'>
+                <div className='row-group mt-5'>
                     <div className="number-circle">5</div>
                     <h3>Cards</h3>
                 </div>
