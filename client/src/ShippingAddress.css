@@ -2,7 +2,6 @@
     display: flex;
     margin: 2rem auto auto auto;
     background-color: #d8ecf5;
-    height: 710px;
     width: 1000px;
     border-radius: 2rem;
     flex-direction: column;
@@ -15,11 +14,9 @@
 
 .address-details {
     display: flex;
-    flex-flow: row wrap;
     align-items: center;
     justify-content: center;
     gap: 1rem;
-    padding: 1rem
 }
 
 .long-textfield {

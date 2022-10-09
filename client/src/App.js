@@ -21,6 +21,7 @@ import InvitationDraftCustomer from './InvitationDraftCustomer'
 import InvitationDraftStaff from './InvitationDraftStaff'
 import OrderDetailsCustomer from "./OrderDetailsCustomer";
 import OrderDetailsStaff from "./OrderDetailsStaff";
+import OrderDetailsUpdate from "./OrderDetailsUpdate";
 import OrderForm4 from "./OrderForm4";
 import OrderForm3 from "./OrderForm3";
 import OrderHistoryStaff from "./OrderHistoryStaff";
@@ -102,16 +103,15 @@ function App() {
         payentMethod: '',
     })
 
-
     return <React.Fragment>
         <Routes>
-            {/* <Route path='*' element={<ErrorPage />} /> */}
+            <Route path='*' element={<ErrorPage />} />
             {/* Main Page */}
-            {/* <Route path='/' element=
+            <Route path='/' element=
                 {<HomePage
                     success={success}
                     roles={roles}
-                />} /> */}
+                />} />
             <Route path='/about-us' element={<AboutUs />} />
             <Route path='/sign-up' element={<SignUp />} />
             <Route path='/login' element=
@@ -142,8 +142,18 @@ function App() {
                     setOrderData={setOrderData}
                     sumTotal={sumTotal}
                 />} />
-            <Route path='/order-form-4' element={<OrderForm4 />} />
-            <Route path='/order-form-5' element={<OrderForm5 />} />
+            <Route path='/order-form-4' element=
+                {<OrderForm4
+                    orderData={orderData}
+                    setOrderData={setOrderData}
+                    sumTotal={sumTotal}
+                />} />
+            <Route path='/order-form-5' element=
+                {<OrderForm5
+                    orderData={orderData}
+                    setOrderData={setOrderData}
+                    sumTotal={sumTotal}
+                />} />
             <Route path='/check-order' element={<CheckOrder />} />
             <Route path='/order-pickup' element={<OrderPickup />} />
             <Route path='/shipping-address' element={<ShippingAddress />} />
@@ -158,6 +168,7 @@ function App() {
             {/* Staff Pages */}
             <Route path='/order-list-staff' element={<OrderListStaff />} />
             <Route path='/order-details-staff' element={<OrderDetailsStaff />} />
+            <Route path='/order-details-update' element={<OrderDetailsUpdate />} />
             <Route path='/invitation-draft-staff' element={<InvitationDraftStaff />} />
             <Route path='/order-history-staff' element={<OrderHistoryStaff />} />
             {/* Documentaion of Changes for the staff? */}
@@ -166,12 +177,6 @@ function App() {
             <Route path='/staff' element={<StaffAccountOwner />} />
             <Route path='/staff-list' element={<StaffList />} />
         </Routes>
-        {/* <OrderForm2
-            orderData={orderData}
-            setOrderData={setOrderData}
-            sumTotal={sumTotal}
-        /> */}
-        <StaffAccountOwner />
     </React.Fragment>
 }
 

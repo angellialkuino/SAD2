@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './OrderForm2.css';
 import NavBarCustomerLoggedIn from './NavBarCustomerLoggedIn';
+import { RunningPrice } from './RunningPrice';
 
 function OrderForm2({ orderData, setOrderData, sumTotal }) {
     const [checked, setChecked] = useState(false);
     const [allTextChecked, setAllTextChecked] = useState(false);
+    const [orderArr, setOrderArr] = useState([orderData])
 
     useEffect(() => {
         const sumValues = function (orderData) {
@@ -22,7 +24,8 @@ function OrderForm2({ orderData, setOrderData, sumTotal }) {
         }
         sumTotal.current = sumValues(orderData);
         // console.log(sumTotal.current);
-        console.log(orderData);
+        setOrderArr([orderData])
+        console.log(orderArr);
     }, [orderData]);
 
     const handlePagesPaperAndColor = (e) => {
@@ -162,6 +165,8 @@ function OrderForm2({ orderData, setOrderData, sumTotal }) {
             <div className='order-frame-2'>
                 <h2>Running Price</h2>
                 <div className='running-price-frame'>
+                    <ul><RunningPrice orderData={orderData} />
+                    </ul>
                 </div>
 
                 <div className='row-group mt-5'>
