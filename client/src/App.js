@@ -5,10 +5,9 @@ import AboutUs from "./AboutUs";
 import HomePage from "./HomePage";
 import TermsAndConditions from "./TermsAndConditions";
 import StaffList from "./StaffList";
-import StaffAccountViewOwner from "./StaffAccountViewOwner";
+import StaffAccountOwner from "./StaffAccountOwner";
 import OrderForm1 from "./OrderForm1";
-import CreateStaffAccountOwner from "./CreateStaffAccountOwner";
-import StaffAccountUpdateOwner from "./StaffAccountUpdate";
+import StaffAccountCreateOwner from "./StaffAccountCreateOwner";
 import OrderPickup from "./OrderPickup";
 import ShippingAddress from "./ShippingAddress";
 import CustAccDetail from "./CustAccDetail";
@@ -162,16 +161,16 @@ function App() {
             <Route path='/order-history-staff' element={<OrderHistoryStaff />} />
             {/* Documentaion of Changes for the staff? */}
             {/* Owner Pages */}
-            <Route path='/create-staff' element={<CreateStaffAccountOwner />} />
-            <Route path='/view-staff' element={<StaffAccountViewOwner />} />
-            <Route path='/update-staff' element={<StaffAccountUpdateOwner />} />
+            <Route path='/create-staff' element={<StaffAccountCreateOwner />} />
+            <Route path='/staff' element={<StaffAccountOwner />} />
             <Route path='/staff-list' element={<StaffList />} />
         </Routes>
-        <OrderForm3
+        {/* <OrderForm2
             orderData={orderData}
             setOrderData={setOrderData}
             sumTotal={sumTotal}
-        />
+        /> */}
+        <StaffAccountOwner />
     </React.Fragment>
 }
 

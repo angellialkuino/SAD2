@@ -92,6 +92,17 @@ function CustAccDetail() {
         });
     }
 
+    const logOut = async () => {
+        await Axios.get('http://localhost:5000/api/customer/log-out',
+            { withCredentials: true }
+        ).then((res) => {
+            setSuccess(true);
+            setSuccessMsg(res.data.message);
+            // Navigate to home page without cust navbar
+        }).catch((err) => {
+            console.log(err);
+        });
+    }
 
 //push update info button makes read only false; update calls func and makes read onlye true
 //kulang funcs to change read only bool and the buttons uehugeuh
@@ -147,7 +158,7 @@ function CustAccDetail() {
                     <div className="accDetail-body-bottom">
                         {isDisabled && <button onClick={allowEdit} className="btn btn-dark btn-lg btn-block">Edit Account</button>}
                         {!isDisabled && <button onClick={updateAccDetails} className="btn btn-dark btn-lg btn-block">Update Account</button>}
-                        <button className="btn btn-dark btn-lg btn-block">Log Out</button>
+                        <button onClick={logOut} className="btn btn-dark btn-lg btn-block">Log Out</button>
                         
                     </div>
 

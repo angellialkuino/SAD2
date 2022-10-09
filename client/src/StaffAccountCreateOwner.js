@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Axios } from "axios";
+import Axios from "axios";
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "./CreateStaffAccountOwner.css";
+import "./StaffAccountCreateOwner.css";
 
 const FULLNAME_REGEX = /(^[A-Za-z]{3,16})([ ]{0,1})([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})/; //was USER_REGEX
 const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -22,6 +22,8 @@ function CreateStaffAccountOwner() {
     const [phoneFocus, setPhoneFocus] = useState(false);
 
     const [errMsg, setErrMsg] = useState('');
+    const [success, setSuccess] = useState(false);
+    const [successMsg, setSuccessMsg] = useState('');
 
     const userRef = useRef();
     const errRef = useRef();
@@ -48,39 +50,47 @@ function CreateStaffAccountOwner() {
 
     const handleSubmitCreate = async (e) => {
         e.preventDefault();
-        try {
-            const response = await Axios.post('http://localhost:5000/api/owner/new-staff',
-                {
-                    full_name: name,
-                    email: email,
-                    phone_number: phoneNumber,
-                }
-            );
-            // console.log(response?.data);
-            // console.log(response?.accessToken);
-            console.log(JSON.stringify(response))
-            //clear state and controlled inputs
-            //need value attrib on inputs for this
-            setName('');
-            setEmail('');
-            setPhoneNumber('');
-
-        } catch (err) {
-            if (!err?.response) {
-                setErrMsg('No Server Response');
-            } else if (err.response?.status === 409) {
-                setErrMsg('Registered Already');
-            } else {
-                setErrMsg('Registration Failed')
-            }
-            errRef.current.focus();
-        }
+        await Axios.post('http://localhost:5000/api/owner/new-staff',
+            {
+                full_name: name,
+                email: email,
+                phone_number: phoneNumber        
+            },
+            { withCredentials: true }
+        ).then((res) => {
+            if(res.status===200){
+                setSuccess(true);
+                setSuccessMsg(res.data.message);
+                // navigate to new staff profile!!!!
+            }else if (res.status===400){
+                setErrMsg(res.data.message); //or is it res.body.message
+        }}).catch((err) => {
+            console.log(err);
+        });
     }
+
+    // const onSubmitPicture = (e) => {
+    //     e.preventDefault();
+
+    //     // Handle File Data from the state Before Sending
+    //     const data = new FormData();
+
+    //     data.append("invite_draft", fileData);
+
+    //     Axios.post('http://localhost:5000/api/owner/upload-prof-pic',
+    //         data
+    //     ).then((res) => {
+    //         console.log(res.data.path); //path of image: image\filename.jpg
+    //         console.log("success");
+    //     }).catch(err => {
+    //         console.log(err)
+    //     });
+    // };
 
     return (
         <div className="profile-div">
             <form onSubmit={handleSubmitCreate}>
-                <h3>CREATE STAFF PROFILE</h3>
+                <h3>CREATE STAFF ACCOUNT</h3>
                 <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>{errMsg}</p>
                 <div className="profile-info">
                     <label htmlFor="full_name">Full Name

@@ -41,9 +41,10 @@ exports.createStaff = async (req, res) => {
 
         //var user is not used hnrm should it be returned??? meron na sa req.body ang info tho
         const user = await service.createUser(userData, 'staff');
-        res.status(201).send({ message:'Successfully created new staff account' });
+        res.status(201).send({ message:'Successfully created new staff account', user });
 
     } catch (err){
+        console.log(err);
         console.log('error at controller create staff');
         return res.status(400).send({ message:'Failed to create new staff account' });
     }

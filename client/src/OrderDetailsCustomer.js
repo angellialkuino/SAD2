@@ -1,14 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
 import Axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './OrderDetails.css';
 
 function OrderDetailsCustomer() {
+    const location = useLocation();
+    const {orderID} = location.state;
 
-    //shouldn't all this infor come from the previous page??? because the order is not saved in the database yet????
     const [orderInfo, setOrderInfo] = useState({});    
     
-    const [orderID, setOrderID] = useState("N/A");
+    //const [orderID, setOrderID] = useState("N/A");
     const [userID, setUserID] = useState("N/A");
     const [inviteType, setUserIinviteType] = useState("N/A");
     const [material, setMaterial] = useState("N/A");
@@ -38,13 +39,14 @@ function OrderDetailsCustomer() {
     const [successMsg, setSuccessMsg] = useState('');
 
     useEffect( () => {
+        console.log(orderID);
         const getOrderDetails = async () => {        
             await Axios.get('http://localhost:5000/api/order/order-info',
-                {params:{order_id: "93ebc2e9-7b45-440f-b87d-43c7c8477267"}, 
+                {params:{order_id: orderID}, 
                     withCredentials: true }
             ).then((res) => {
                 //console.log(res);
-                console.log(res.data.order_info);
+                //console.log(res.data.order_info);
                 if(res.status===200){
                     setSuccess(true);
                     setSuccessMsg(res.data.message);
@@ -58,14 +60,14 @@ function OrderDetailsCustomer() {
         }
         
     getOrderDetails();
-    }, [])
+    }, [orderID])
 
     useEffect(()=>{
 
         if (Object.keys(orderInfo).length !== 0){
-        console.log(`order info: \n${JSON.stringify(orderInfo)}`);
+        //console.log(`order info: \n${JSON.stringify(orderInfo)}`);
 
-            setOrderID(orderInfo.order.order_id);
+            //setOrderID(orderInfo.order.order_id);
             setUserID(orderInfo.order.user_id);
             setUserIinviteType(orderInfo.order.invite_typ);
             setMaterial(orderInfo.order.material);

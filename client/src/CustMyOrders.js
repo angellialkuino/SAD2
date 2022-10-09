@@ -1,4 +1,5 @@
 import React, { Component, useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
 import Axios from 'axios';
 import './CustMyOrders.css';
 
@@ -35,7 +36,9 @@ function CustMyOrders() {
                                 return(
                                 <div className="custMyOrders-labels">
                                     <h3>Order ID {item.order_id}</h3> 
+                                    {/* <Link to="/order-details" state={{orderID: item.order_id}}>
                                     <button type="view" className="btn btn-dark btn-lg btn-block">View Order Details</button>
+                                    </Link> */}
                                 </div>
                                 )
                             })
