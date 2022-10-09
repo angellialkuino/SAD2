@@ -4,7 +4,8 @@ import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icon
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./StaffAccountCreateOwner.css";
 
-const FULLNAME_REGEX = /(^[A-Za-z]{3,16})([ ]{0,1})([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})/; //was USER_REGEX
+const FULLNAME_REGEX = /(^[A-Za-z]{3,16})([ ]{0,1})([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})/;
+const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 const PHONENUMBER_REGEX = /^[0][1-9]\d{9}$|^[1-9]\d{9}$/g;
 
@@ -16,6 +17,14 @@ function CreateStaffAccountOwner() {
     const [email, setEmail] = useState('')
     const [validEmail, setValidEmail] = useState(false);
     const [emailFocus, setEmailFocus] = useState(false);
+
+    const [pwd, setPwd] = useState('');
+    const [validPwd, setValidPwd] = useState(false);
+    const [pwdFocus, setPwdFocus] = useState(false);
+
+    const [matchPwd, setMatchPwd] = useState('');
+    const [validMatch, setValidMatch] = useState(false);
+    const [matchFocus, setMatchFocus] = useState(false);
 
     const [phoneNumber, setPhoneNumber] = useState('')
     const [validPhone, setValidPhone] = useState(false);
@@ -41,12 +50,17 @@ function CreateStaffAccountOwner() {
     }, [email])
 
     useEffect(() => {
+        setValidPwd(PWD_REGEX.test(pwd));
+        setValidMatch(pwd === matchPwd);
+    }, [pwd, matchPwd])
+
+    useEffect(() => {
         setValidPhone(PHONENUMBER_REGEX.test(phoneNumber));
     }, [phoneNumber])
 
     useEffect(() => {
         setErrMsg('');
-    }, [name, email, phoneNumber])
+    }, [name, email, pwd, matchPwd, phoneNumber])
 
     const handleSubmitCreate = async (e) => {
         e.preventDefault();
@@ -54,17 +68,19 @@ function CreateStaffAccountOwner() {
             {
                 full_name: name,
                 email: email,
-                phone_number: phoneNumber        
+                password: pwd,
+                phone_number: phoneNumber
             },
             { withCredentials: true }
         ).then((res) => {
-            if(res.status===200){
+            if (res.status === 200) {
                 setSuccess(true);
                 setSuccessMsg(res.data.message);
                 // navigate to new staff profile!!!!
-            }else if (res.status===400){
+            } else if (res.status === 400) {
                 setErrMsg(res.data.message); //or is it res.body.message
-        }}).catch((err) => {
+            }
+        }).catch((err) => {
             console.log(err);
         });
     }
@@ -130,6 +146,48 @@ function CreateStaffAccountOwner() {
                     <p id="emailnote" className={emailFocus && email && !validEmail ? "instructions" : "offscreen"}>
                         <FontAwesomeIcon icon={faInfoCircle} />
                         Must contain full email address.<br />
+                    </p>
+
+                    <label htmlFor="password">
+                        Password:
+                        <FontAwesomeIcon icon={faCheck} className={validPwd ? "valid" : "hide"} />
+                        <FontAwesomeIcon icon={faTimes} className={validPwd || !pwd ? "hide" : "invalid"} />
+                    </label>
+                    <input
+                        type="password"
+                        id="password"
+                        onChange={(e) => setPwd(e.target.value)}
+                        value={pwd}
+                        required
+                        onFocus={() => setPwdFocus(true)}
+                        onBlur={() => setPwdFocus(false)}
+                        className='profile-textfield'
+                    />
+                    <p id="pwdnote" className={pwdFocus && !validPwd ? "instructions" : "offscreen"}>
+                        <FontAwesomeIcon icon={faInfoCircle} />
+                        8 to 24 characters.<br />
+                        Must include uppercase and lowercase letters, a number and a special character.<br />
+                        Allowed special characters: <span aria-label="exclamation mark">!</span> <span aria-label="at symbol">@</span> <span aria-label="hashtag">#</span> <span aria-label="dollar sign">$</span> <span aria-label="percent">%</span>
+                    </p>
+
+                    <label htmlFor="confirm_pwd">
+                        Confirm Password:
+                        <FontAwesomeIcon icon={faCheck} className={validMatch && matchPwd ? "valid" : "hide"} />
+                        <FontAwesomeIcon icon={faTimes} className={validMatch || !matchPwd ? "hide" : "invalid"} />
+                    </label>
+                    <input
+                        type="password"
+                        id="confirm_pwd"
+                        onChange={(e) => setMatchPwd(e.target.value)}
+                        value={matchPwd}
+                        required
+                        onFocus={() => setMatchFocus(true)}
+                        onBlur={() => setMatchFocus(false)}
+                        className='profile-textfield'
+                    />
+                    <p id="confirmnote" className={matchFocus && !validMatch ? "instructions" : "offscreen"}>
+                        <FontAwesomeIcon icon={faInfoCircle} />
+                        Must match the first password input field.
                     </p>
 
                     <label htmlFor="phone_number">Phone Number
