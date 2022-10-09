@@ -165,12 +165,11 @@ function App() {
             <Route path='/staff' element={<StaffAccountOwner />} />
             <Route path='/staff-list' element={<StaffList />} />
         </Routes>
-        <OrderForm3
+        <OrderForm4
             orderData={orderData}
             setOrderData={setOrderData}
             sumTotal={sumTotal}
         />
-        <StaffAccountOwner />
     </React.Fragment>
 }
 

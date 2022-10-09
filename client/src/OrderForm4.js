@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from 'react-router-dom';
 import "./OrderForm4.css";
 import React from 'react';
+import NavBarCustomerLoggedIn from "./NavBarCustomerLoggedIn";
 
 function OrderForm4() {
     const [toggleState, setToggleState] = useState(1);
@@ -11,7 +12,8 @@ function OrderForm4() {
     };
 
     return (
-        <div>
+        <>
+            <NavBarCustomerLoggedIn />
             <div className='order-frame-4'>
                 <h2>Running Price</h2>
                 <div className='running-price-frame'>
@@ -40,14 +42,45 @@ function OrderForm4() {
                         <div
                             className={toggleState === 1 ? "content  active-content" : "content"}>
                             <h4>Designs:</h4>
-                            <div className='boxes'>
-                                <button className='square-button-4'>NO WAX SEAL</button>
-                                <button className='square-button-4'> LET CRAFTER'S HAVEN HANDLE IT</button>
-                                <button className='square-button-4'></button>
-                                <button className='square-button-4'></button>
-                                <button className='square-button-4'></button>
+                            <div className='boxes3'>
+                                <div className='square-button-with-text'>
+                                    <label>
+                                        <input type='radio' id='celeste-blue' name='color-type' className='form1-radio' onClick={0} />
+                                        <img className='radio-img' src={process.env.PUBLIC_URL + '/images/papers/IMG_7703.jpg'} alt="celeste blue"></img>
+                                    </label>
+                                    <h5>Celeste Blue</h5>
+                                </div>
+                                <div className='square-button-with-text'>
+                                    <label>
+                                        <input type='radio' id='silver' name='color-type' className='form1-radio' onClick={0} />
+                                        <img className='radio-img' src={process.env.PUBLIC_URL + '/images/papers/IMG_7704.jpg'} alt="silver"></img>
+                                    </label>
+                                    <h5>Silver</h5>
+                                </div>
+                                <div className='square-button-with-text'>
+                                    <label>
+                                        <input type='radio' id='green' name='color-type' className='form1-radio' onClick={0} />
+                                        <img className='radio-img' src={process.env.PUBLIC_URL + '/images/papers/IMG_7705.jpg'} alt="green"></img>
+                                    </label>
+                                    <h5>Green</h5>
+                                </div>
+                                <div className='square-button-with-text'>
+                                    <label>
+                                        <input type='radio' id='royal-blue' name='color-type' className='form1-radio' onClick={0} />
+                                        <img className='radio-img' src={process.env.PUBLIC_URL + '/images/papers/IMG_7706.jpg'} alt="royal blue"></img>
+                                    </label>
+                                    <h5>Royal Blue</h5>
+                                </div>
+                                <div className='square-button-with-text'>
+                                    <label>
+                                        <input type='radio' id='denim-blue' name='color-type' className='form1-radio' onClick={0} />
+                                        <img className='radio-img' src={process.env.PUBLIC_URL + '/images/papers/IMG_7707.jpg'} alt="denim-blue"></img>
+                                    </label>
+                                    <h5>Denim Blue</h5>
+                                </div>
 
                             </div>
+
                             <h4>Color:</h4>
                             <div className='boxes-4'>
                                 <button className='small-square-button-4'></button>
@@ -110,7 +143,7 @@ function OrderForm4() {
                         </div>
                     </div>
                 </div>
-                <span className='total-footer-4'>
+                <span className='total-footer'>
                     Total is subject to change <b>Total: Php</b>
                 </span>
             </div>
@@ -118,7 +151,7 @@ function OrderForm4() {
                 <Link to='order-form-3' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
                 <Link to='/order-form-5' className="rounded-pill btn btn-info fw-bold nav-hover">Next</Link>
             </div>
-        </div>
+        </>
     );
 }
 
