@@ -103,7 +103,6 @@ function App() {
         payentMethod: '',
     })
 
-
     return <React.Fragment>
         <Routes>
             {/* <Route path='*' element={<ErrorPage />} /> */}
@@ -168,7 +167,7 @@ function App() {
             <Route path='/update-staff' element={<StaffAccountUpdateOwner />} />
             <Route path='/staff-list' element={<StaffList />} />
         </Routes>
-        <OrderForm2
+        <OrderForm3
             orderData={orderData}
             setOrderData={setOrderData}
             sumTotal={sumTotal}
