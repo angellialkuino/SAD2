@@ -15,8 +15,9 @@ POST {{hostname}}/order/create-new-order
 Content-Type: application/json
 
 {
+    "payment_method": "bank",
     "order": {
-        "user_id": "3bd5ccaa-86d7-4180-89fe-7a64be46e503",
+        "user_id": "08078e7c-4af1-4973-a988-d5ce25b38b26",
         "invite_type": "invite type",
         "material": "material",
         "event_date": "2022-09-01",
@@ -53,31 +54,35 @@ Content-Type: application/json
     "order_status": "confimed"
 }
 
-### update order details and additonal details
+### update order
 
 PUT {{hostname}}/order/update-order
 Content-Type: application/json
 
 {
-    "order_details": {
-        "order_id": "e40d7d80-032d-4421-b393-b2501945a0cb",
+    "order": {
+        "order_id": "93ebc2e9-7b45-440f-b87d-43c7c8477267",
         "font_style": "COMIC SANS",
-        "peg_link": "abcd.com"
-    },
-
-    "additional_details": {
-        "additional_details_id": "f711a839-2efc-492c-b08f-aaf077182d16",
-        "brooch": "some brooch design"
+        "material": "iron"
     }
 }
 
-### update order purchase
+### update order details
 
-PUT {{hostname}}/order/update-order-purchase
+PUT {{hostname}}/order/update-order-details
 Content-Type: application/json
 
 {
-    "??": "???"
+    "order_id": "93ebc2e9-7b45-440f-b87d-43c7c8477267",
+    "order_details": [
+    {"item_id": "m1", "type": "blue", "size": "5.75 x 6.75", "quantity": 3},
+    {"item_id": "e1", "type": "blue", "size": "6 x 7"},
+    {"item_id": "e3", "type": "blue"},
+    {"item_id": "co2", "type": "bluecovertype"},
+    {"item_id": "d1", "type": "blueleaves", "color": "blue"},
+    {"item_id": "t2", "type": "blueblue", "color": "blue"}
+
+    ]
 }
 
 ### cancel order
@@ -109,18 +114,18 @@ GET {{hostname}}/order/current-orders
 
 ### new doc entry
 
-POST {{hostname}}/order/new-doc-entry
+POST {{hostname}}/order/new-log-entry
 Content-Type: application/json
 
 {
-    "order_id": "93ebc2e9-7b45-440f-b87d-43c7c8477267",
+    "order_id": "aeca3c94-90ab-42a7-a7ac-116cbc3b73e0",
     "date": "2022-09-08",
-    "description": "Something something changed something"
+    "description": "layout changed 1st time"
 }
 
 ### view list of doc entry
 
-GET {{hostname}}/order/order-documentation
+GET {{hostname}}/order/order-log-list
 Content-Type: application/json
 
 {
