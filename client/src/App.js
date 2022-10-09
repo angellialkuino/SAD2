@@ -141,8 +141,18 @@ function App() {
                     setOrderData={setOrderData}
                     sumTotal={sumTotal}
                 />} />
-            <Route path='/order-form-4' element={<OrderForm4 />} />
-            <Route path='/order-form-5' element={<OrderForm5 />} />
+            <Route path='/order-form-4' element=
+                {<OrderForm4
+                    orderData={orderData}
+                    setOrderData={setOrderData}
+                    sumTotal={sumTotal}
+                />} />
+            <Route path='/order-form-5' element=
+                {<OrderForm5
+                    orderData={orderData}
+                    setOrderData={setOrderData}
+                    sumTotal={sumTotal}
+                />} />
             <Route path='/check-order' element={<CheckOrder />} />
             <Route path='/order-pickup' element={<OrderPickup />} />
             <Route path='/shipping-address' element={<ShippingAddress />} />
@@ -165,10 +175,7 @@ function App() {
             <Route path='/staff' element={<StaffAccountOwner />} />
             <Route path='/staff-list' element={<StaffList />} />
         </Routes>
-        <OrderForm4
-            orderData={orderData}
-            setOrderData={setOrderData}
-            sumTotal={sumTotal}
+        <ShippingAddress
         />
     </React.Fragment>
 }
