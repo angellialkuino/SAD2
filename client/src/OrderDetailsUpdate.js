@@ -1,8 +1,7 @@
-import React from 'react';
+import React from 'react'
 import { Link } from 'react-router-dom';
-import './OrderDetails.css';
 
-function OrderDetailsStaff() {
+const OrderDetailsUpdate = () => {
     return ( //change the <p> to input tags :")"
         <>
             <div className='order-details-main'>
@@ -127,4 +126,4 @@ function OrderDetailsStaff() {
     );
 }
 
-export default OrderDetailsStaff;
+export default OrderDetailsUpdate;

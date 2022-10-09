@@ -8,6 +8,10 @@
     align-items: center;
 }
 
+.input-field {
+    width: 225px;
+}
+
 .order-details-main h1 {
     font-weight: bold;
 }

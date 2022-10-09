@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import NavBarCustomerLoggedIn from './NavBarCustomerLoggedIn';
 import './OrderForm1.css';
 
@@ -23,6 +23,14 @@ const OrderForm1 = ({ orderData, setOrderData }) => {
             };
         });
     }
+
+    const handleCancel = (e) => {
+        if (window.confirm("Are you sure you want to cancel the order?")) {
+            <Navigate replace to="/" />
+            setOrderData({})
+        }
+    }
+
     return (
         <>
             <NavBarCustomerLoggedIn />
@@ -199,6 +207,7 @@ const OrderForm1 = ({ orderData, setOrderData }) => {
                 </div>
                 <div className='form1-footer'>
                     <Link to='/terms-and-conditions' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
+                    <button className="rounded-pill btn btn-danger fw-bold nav-hover" onClick={handleCancel}>Cancel Order</button>
                     <Link to='/order-form-2' className="rounded-pill btn btn-info fw-bold nav-hover">Next</Link>
                 </div>
             </form>
