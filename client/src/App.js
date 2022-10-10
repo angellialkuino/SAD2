@@ -163,7 +163,7 @@ function App() {
             <Route path='/account-details' element={<CustAccDetail />} />
             <Route path='/current-orders' element={<CustMyOrders />} />
             <Route path='/order-details' element={<OrderDetailsCustomer />} />
-            <Route path='/documentation-of-changes' element={<OrderDocumentationCustomer />} />
+            <Route path='/order-doc-cust' element={<OrderDocumentationCustomer />} />
             <Route path='/invitation-draft' element={<InvitationDraftCustomer />} />
             {/* Staff Pages */}
             <Route path='/order-list-staff' element={<OrderListStaff />} />
@@ -171,12 +171,15 @@ function App() {
             <Route path='/order-details-update' element={<OrderDetailsUpdate />} />
             <Route path='/invitation-draft-staff' element={<InvitationDraftStaff />} />
             <Route path='/order-history-staff' element={<OrderHistoryStaff />} />
+            <Route path='/order-doc' element={<OrderDocumentation />} />
             {/* Documentaion of Changes for the staff? */}
             {/* Owner Pages */}
             <Route path='/create-staff' element={<StaffAccountCreateOwner />} />
             <Route path='/staff' element={<StaffAccountOwner />} />
             <Route path='/staff-list' element={<StaffList />} />
         </Routes>
+        <OrderDocumentation />
+
     </React.Fragment>
 }
 

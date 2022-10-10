@@ -9,6 +9,10 @@ function StaffAccountViewOwner() {
     const [email, setEmail] = useState("N/A");
     const [contactNum, setcontactNum] = useState("N/A");
 
+    const [errMsg, setErrMsg] = useState('');
+    const [success, setSuccess] = useState(false);
+    const [successMsg, setSuccessMsg] = useState('');
+
     useEffect(() => {
 
         const getAccDetails = async () => {

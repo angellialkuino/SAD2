@@ -6,21 +6,22 @@ import './OrderDocumentationTable.css'
 //var Orders = require("./OrderDocumentation_PLACEHOLDER.json");
 
 export default function OrderDocumentation() {
-    const [orderID, setOrderID] = useState("");
+    const [orderID, setOrderID] = useState("2993f16f-5ea2-4177-9d5e-1a4ac76586be");
     const [orderDocs, setOrderDocs] = useState([]);
 
-    const [date, setDate] = useState(new Date().toLocaleString());
+    const [date, setDate] = useState(new Date().toISOString().slice(0, 19).replace('T', ' '));
     const [description, setDescription] = useState("");
 
     
+    
     useEffect(  () => {
         const getOrderDocs = async () => {
-            await Axios.get('http://localhost:5000/api/order/order-documentation',
-                { params: {order_id: "93ebc2e9-7b45-440f-b87d-43c7c8477267"}},
+            await Axios.get('http://localhost:5000/api/order/order-log-list',
+                { params: {order_id: orderID}},
                 {withCredentials: true }
             ).then((res) => {
                 if(res.data.entries.length > 0){
-                    setOrderID(res.data.entries[0].order_id);//use only the last 4 characters!!!
+                    setOrderID(orderID);//use only the last 4 characters!!!
                 }
                 setOrderDocs(res.data.entries);
             });
@@ -30,24 +31,24 @@ export default function OrderDocumentation() {
 
     const addEntry = async () => {
 
-        setDate(new Date().toLocaleString());
-
-        setOrderDocs([...orderDocs,{
-            order_id: orderID,
-            date: date,
-            description: description}]);
-
         await Axios.post('http://localhost:5000/api/order/new-log-entry',
             { 
                 order_id: orderID,
-                date: date,
+                date: new Date().toISOString().slice(0, 19).replace('T', ' '),
                 description: description
             },
             {withCredentials: true }
         ).then((res) => {
-            setDate(new Date().toLocaleString());
+            setOrderDocs([...orderDocs,{
+                order_id: orderID,
+                date: date,
+                description: description}]);
+            setDate(new Date().toISOString().slice(0, 19).replace('T', ' '));
             setDescription("");            
         });
+
+        console.log(date);
+
     }
 
     return (
@@ -59,19 +60,18 @@ export default function OrderDocumentation() {
             </div>
 
             <div className="oh_table">
-                {(orderDocs.length < 0 ) ? (<p>No Order Log Entries</p>) : 
-                (
+                  
                     <table className="oh_table-table">
                         <tbody>
                             <tr className="oh_tr-tr">
                                 <th className="oh_th-th">Date</th>
                                 <th className="oh_th-th">Description</th>
                             </tr>
-
-                            {data.map((orderDocs) => (
+                            {(orderDocs.length > 0 ) &&
+                            orderDocs.map((entry) => (
                                 <tr className="oh_tr-tr">
-                                    <td className="oh_td-td">{item.date}</td>
-                                    <td className="oh_td-td">{item.description}</td>
+                                    <td className="oh_td-td">{entry.date}</td>
+                                    <td className="oh_td-td">{entry.description}</td>
 
                                 </tr>
                             ))}
@@ -84,14 +84,13 @@ export default function OrderDocumentation() {
                                 </tr>
                         </tbody>
                     </table>
-                )}
                 
             </div>
 
 
 
             <div onClick = {addEntry} className="od_add_entry">
-                <button className="od_button-add">Add Entry</button>
+                <button onClick = {addEntry} className="od_button-add">Add Entry</button>
             </div>
 
         </div>
