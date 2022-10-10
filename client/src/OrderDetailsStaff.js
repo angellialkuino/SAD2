@@ -176,12 +176,12 @@ const updateOrderStatus = async (e) => {
     return ( //change the <p> to input tags :")"
         <div className='order-details-main'>
             <div className='order-div'>
-                <h1>ORDER {orderID}</h1>
+                <h1>ORDER {orderID.slice(32, 36)}</h1>
                 <div className='white-inner-div1'>
                     {/* Note: Copy pated from CustAccDetails so css styling classnames dont match!!!!!!! */}
                     <div className="accDetail-body-field">
                         <h3>Date Ordered</h3>
-                        <input value={dateOrdered} type="text" disabled={true} onChange={(e) => setDateOrdered(e.target.value)} className="form-control" />
+                        <input value={dateOrdered.slice(0, 10)} type="text" disabled={true} onChange={(e) => setDateOrdered(e.target.value)} className="form-control" />
                     </div>
 
                     <div className="accDetail-body-field">
@@ -196,7 +196,7 @@ const updateOrderStatus = async (e) => {
 
                     <div className="accDetail-body-field">
                         <h3>Date of Event</h3>
-                        <input value={eventDate} type="text" disabled={isDisabled} onChange={(e) => setEventDate(e.target.value)} className="form-control" />
+                        <input value={eventDate.slice(0, 10)} type="text" disabled={isDisabled} onChange={(e) => setEventDate(e.target.value)} className="form-control" />
                     </div>
 
                     <div className="accDetail-body-field">
@@ -279,7 +279,7 @@ const updateOrderStatus = async (e) => {
                     <h1>Order Status</h1>
                     <div className='white-inner-div2'>
                         <h5>Invites Should Be Finished by:</h5>
-                        <p>{orderDeadline}</p>
+                        <p>{orderDeadline.slice(0, 10)}</p>
 
                         <select name="orderStatus" onChange={updateOrderStatus}>
                             <option value="none" selected disabled hidden>{orderStatus}</option>

@@ -4,12 +4,12 @@ import { Link, useLocation } from 'react-router-dom';
 import './OrderDetails.css';
 
 function OrderDetailsCustomer() {
-    const location = useLocation();
-    const {orderID} = location.state;
+    // const location = useLocation();
+    // const {orderID} = location.state;
 
     const [orderInfo, setOrderInfo] = useState({});    
     
-    //const [orderID, setOrderID] = useState("N/A");
+    const [orderID, setOrderID] = useState("2993f16f-5ea2-4177-9d5e-1a4ac76586be");
     const [userID, setUserID] = useState("N/A");
     const [inviteType, setUserIinviteType] = useState("N/A");
     const [material, setMaterial] = useState("N/A");
@@ -28,7 +28,7 @@ function OrderDetailsCustomer() {
     const [itemsArray, setItemsArray] = useState([]);
 
     const [unitCost, setUnitCost] = useState(0);
-    //const [revFee, setRevFee] = useState(0);
+    const [revFee, setRevFee] = useState(0);
     const [subTotal, setSubTotal] = useState(0);
     const [paymentMethod, setPaymentMethod] = useState("N/A");
 
@@ -42,13 +42,12 @@ function OrderDetailsCustomer() {
         console.log(orderID);
         const getOrderDetails = async () => {        
             await Axios.get('http://localhost:5000/api/order/order-info',
-                {params:{order_id: orderID}, 
-                    withCredentials: true }
+                {params:{order_id: orderID}}, 
+                {withCredentials: true }
             ).then((res) => {
                 //console.log(res);
                 //console.log(res.data.order_info);
                 if(res.status===200){
-                    setSuccess(true);
                     setSuccessMsg(res.data.message);
                     setOrderInfo(res.data.order_info);
                     
@@ -71,15 +70,15 @@ function OrderDetailsCustomer() {
             setUserID(orderInfo.order.user_id);
             setUserIinviteType(orderInfo.order.invite_typ);
             setMaterial(orderInfo.order.material);
-            setEventDate(orderInfo.order.event_date);
+            setEventDate(orderInfo.order.event_date.slice(0, 10));
             setMotif(orderInfo.order.motif);
             setInviteTitle(orderInfo.order.invite_title);
             setFontStyle(orderInfo.order.font_style);
             setContentLink(orderInfo.order.content_link);
             setNumOfInv(orderInfo.order.num_of_invites);
             setPegLink(orderInfo.order.peg_link);
-            setDateOrdered(orderInfo.order.date_ordered);
-            setOrderDeadline(orderInfo.order.order_deadline);
+            setDateOrdered(orderInfo.order.date_ordered.slice(0, 10));
+            setOrderDeadline(orderInfo.order.order_deadline.slice(0, 10));
             setClaimType(orderInfo.order.claim_type);
             setOrderStatus(orderInfo.order.order_status); //might be unneccessary info
 
@@ -87,6 +86,7 @@ function OrderDetailsCustomer() {
 
             setUnitCost(orderInfo.billing_info.unit_cost);
             setSubTotal(orderInfo.billing_info.sub_total);
+            setRevFee(orderInfo.billing_info.total_revision_fee);
             setPaymentMethod(orderInfo.billing_info.payment_method);
         }
     },[orderInfo])
@@ -94,7 +94,7 @@ function OrderDetailsCustomer() {
     return ( 
         <div className='order-details-main'>
             <div className='order-div'>
-                <h1>ORDER {orderID}</h1>
+                <h1>ORDER {orderID.slice(-4)}</h1>
                 <div className='white-inner-div1'>
                     <h5>Date Ordered</h5>
                     <p>{dateOrdered}</p>
@@ -153,7 +153,7 @@ function OrderDetailsCustomer() {
                     <div className='white-inner-div1'>
                         <p>Number of Invites: {numOfInv}</p>
                         <p>Amount per Invite: {unitCost}</p>
-                        {/* <p>Total Revision Fee: {revFee}</p> */}
+                        <p>Total Revision Fee: {revFee}</p>
                         <h5>TOTAL AMOUNT DUE: {subTotal}</h5>
                         <p>Payment Method: {paymentMethod}</p>
 
@@ -164,13 +164,7 @@ function OrderDetailsCustomer() {
                     <div className='white-inner-div2'>
                         <h5>Invites Should Be Finished by:</h5>
                         <p>{orderDeadline}</p>
-                        <ul className="timeline-order">
-                            <li className='pending' status="Pending"></li>
-                            <li status="Creating"></li>
-                            <li status="Finalizing"></li>
-                            <li status="Ready to Check"></li>
-                            <li status="Ready to Claim!"></li>
-                        </ul>
+                        <h3>Status: {orderStatus}</h3>
                         <button className='button'>Cancel Order</button>
                     </div>
                 </div>

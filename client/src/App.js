@@ -180,8 +180,8 @@ function App() {
             <Route path='/staff' element={<StaffAccountOwner />} />
             <Route path='/staff-list' element={<StaffList />} />
         </Routes>
-        <OrderDetailsStaff />
-        {/* <OrderDetailsUpdate /> */}
+        {/* <OrderDetailsStaff /> */}
+        <OrderDetailsCustomer />
 
 
     </React.Fragment>
