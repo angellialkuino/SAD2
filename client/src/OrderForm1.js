@@ -3,27 +3,33 @@ import { Link, Navigate, useNavigate } from 'react-router-dom';
 import NavBarCustomerLoggedIn from './NavBarCustomerLoggedIn';
 import './OrderForm1.css';
 
-const OrderForm1 = ({ orderData, setOrderData }) => {
-    useEffect(() => console.log(orderData), [orderData]);
+const OrderForm1 = ({ orderData, setOrderData, orderItems, setOrderItems }) => {
+    // useEffect(() => console.log(orderData), [orderData]);
+    useEffect(() => console.log(orderItems), [orderItems]);
 
     const navigate = useNavigate()
 
     const handleInviteType = (e) => {
-        setOrderData((previousState) => {
-            return {
-                ...previousState,
-                inviteType: e.target.value
-            };
-        });
+        setOrderItems(prevState => {
+            const newState = prevState.map(obj => {
+                if ('inviteType' in obj) {
+                    return { ...obj, inviteType: e.target.value };
+                }
+                return obj;
+            });
+            return newState;
+        })
     }
     const handleMaterial = (e) => {
-        setOrderData((previousState) => {
-            return {
-                ...previousState,
-                material: e.target.id,
-                materialPrice: e.target.value
-            };
-        });
+        setOrderItems(prevState => {
+            const newState = prevState.map(obj => {
+                if ('material' in obj) {
+                    return { ...obj, material: e.target.id, price: e.target.value };
+                }
+                return obj;
+            });
+            return newState;
+        })
     }
 
     const handleCancel = (e) => {
@@ -93,12 +99,15 @@ const OrderForm1 = ({ orderData, setOrderData }) => {
                             id="event_date"
                             autoComplete="off"
                             onChange={(e) => {
-                                setOrderData((previousState) => {
-                                    return {
-                                        ...previousState,
-                                        eventDate: e.target.value
-                                    };
-                                });
+                                setOrderItems(prevState => {
+                                    const newState = prevState.map(obj => {
+                                        if ('eventDate' in obj) {
+                                            return { ...obj, eventDate: e.target.value };
+                                        }
+                                        return obj;
+                                    });
+                                    return newState;
+                                })
                             }}
                             required
                             className='profile-textfield' />
@@ -110,12 +119,15 @@ const OrderForm1 = ({ orderData, setOrderData }) => {
                             id="motif"
                             autoComplete="off"
                             onChange={(e) => {
-                                setOrderData((previousState) => {
-                                    return {
-                                        ...previousState,
-                                        motif: e.target.value
-                                    };
-                                });
+                                setOrderItems(prevState => {
+                                    const newState = prevState.map(obj => {
+                                        if ('motif' in obj) {
+                                            return { ...obj, motif: e.target.value };
+                                        }
+                                        return obj;
+                                    });
+                                    return newState;
+                                })
                             }}
                             required
                             className='profile-textfield' />
@@ -127,12 +139,15 @@ const OrderForm1 = ({ orderData, setOrderData }) => {
                             id="invitation_title"
                             autoComplete="off"
                             onChange={(e) => {
-                                setOrderData((previousState) => {
-                                    return {
-                                        ...previousState,
-                                        invitationTitle: e.target.value
-                                    };
-                                });
+                                setOrderItems(prevState => {
+                                    const newState = prevState.map(obj => {
+                                        if ('invite_title' in obj) {
+                                            return { ...obj, invite_title: e.target.value };
+                                        }
+                                        return obj;
+                                    });
+                                    return newState;
+                                })
                             }}
                             required
                             className='profile-textfield' />
@@ -144,12 +159,15 @@ const OrderForm1 = ({ orderData, setOrderData }) => {
                             id="font"
                             autoComplete="off"
                             onChange={(e) => {
-                                setOrderData((previousState) => {
-                                    return {
-                                        ...previousState,
-                                        font: e.target.value
-                                    };
-                                });
+                                setOrderItems(prevState => {
+                                    const newState = prevState.map(obj => {
+                                        if ('font_style' in obj) {
+                                            return { ...obj, font_style: e.target.value };
+                                        }
+                                        return obj;
+                                    });
+                                    return newState;
+                                })
                             }}
                             required
                             className='profile-textfield' />
@@ -161,12 +179,15 @@ const OrderForm1 = ({ orderData, setOrderData }) => {
                             id="content_link"
                             autoComplete="off"
                             onChange={(e) => {
-                                setOrderData((previousState) => {
-                                    return {
-                                        ...previousState,
-                                        contentLink: e.target.value
-                                    };
-                                });
+                                setOrderItems(prevState => {
+                                    const newState = prevState.map(obj => {
+                                        if ('content_link' in obj) {
+                                            return { ...obj, content_link: e.target.value };
+                                        }
+                                        return obj;
+                                    });
+                                    return newState;
+                                })
                             }}
                             required
                             className='profile-textfield' />
@@ -179,12 +200,15 @@ const OrderForm1 = ({ orderData, setOrderData }) => {
                             id="invite_number"
                             autoComplete="off"
                             onChange={(e) => {
-                                setOrderData((previousState) => {
-                                    return {
-                                        ...previousState,
-                                        inviteNumbers: e.target.value
-                                    };
-                                });
+                                setOrderItems(prevState => {
+                                    const newState = prevState.map(obj => {
+                                        if ('num_of_invites' in obj) {
+                                            return { ...obj, num_of_invites: parseInt(e.target.value) };
+                                        }
+                                        return obj;
+                                    });
+                                    return newState;
+                                })
                             }}
                             required
                             className='profile-textfield' />
@@ -196,12 +220,15 @@ const OrderForm1 = ({ orderData, setOrderData }) => {
                             id="peg_link"
                             autoComplete="off"
                             onChange={(e) => {
-                                setOrderData((previousState) => {
-                                    return {
-                                        ...previousState,
-                                        pegLink: e.target.value
-                                    };
-                                });
+                                setOrderItems(prevState => {
+                                    const newState = prevState.map(obj => {
+                                        if ('peg_link' in obj) {
+                                            return { ...obj, peg_link: e.target.value };
+                                        }
+                                        return obj;
+                                    });
+                                    return newState;
+                                })
                             }}
                             required
                             className='profile-textfield' />

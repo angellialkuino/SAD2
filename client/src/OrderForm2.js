@@ -4,159 +4,155 @@ import './OrderForm2.css';
 import NavBarCustomerLoggedIn from './NavBarCustomerLoggedIn';
 import { RunningPrice } from './RunningPrice';
 
-function OrderForm2({ orderData, setOrderData, sumTotal }) {
+function OrderForm2({ sumTotal, orderItems, setOrderItems }) {
     const [checked, setChecked] = useState(false);
     const [allTextChecked, setAllTextChecked] = useState(false);
-    const [orderArr, setOrderArr] = useState([orderData])
 
     useEffect(() => {
-        const sumValues = function (orderData) {
-            let sum = 0
-            for (const key in orderData) {
-                if (typeof orderData[key] === "number") {
-                    // console.log(orderData[key])
-                    sum = orderData[key] + sum;
-                } else if (typeof orderData[key] === 'object') {
-                    sum += sumValues(orderData[key]);
-                }
+        sumTotal.current = 0;
+        orderItems.forEach(element => {
+            if ('price' in element) {
+                sumTotal.current += element.price;
             }
-            return sum;
-        }
-        sumTotal.current = sumValues(orderData);
-        // console.log(sumTotal.current);
-        setOrderArr([orderData])
-        console.log(orderArr);
-    }, [orderData]);
+        });
+        console.log(orderItems);
+    }, [orderItems]);
 
     const handlePagesPaperAndColor = (e) => {
-        setOrderData((previousState) => {
-            return {
-                ...previousState,
-                pagesPaperAndColor: e.target.value
-            };
-        });
+        setOrderItems(prevState => {
+            const newState = prevState.map(obj => {
+                if ('paper_size' in obj) {
+                    return { ...obj, color: e.target.value };
+                }
+                return obj;
+            });
+            return newState;
+        })
     }
 
     const handlePagesSize = (e) => {
-        setOrderData((previousState) => {
-            return {
-                ...previousState,
-                pagesPrice: {
-                    ...previousState.pagesPrice,
-                    //magik words that gets the id of the selected option
-                    pagesSize: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
-                    pagesSizePrice: parseFloat(e.target.value)
+        setOrderItems(prevState => {
+            const newState = prevState.map(obj => {
+                if ('paper_size' in obj) {
+                    return {
+                        ...obj,
+                        paper_size: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
+                        price: parseFloat(e.target.value)
+                    };
                 }
-            };
-        });
+                return obj;
+            });
+            return newState;
+        })
     }
 
     const handleEnvelopePaperAndColor = (e) => {
-        setOrderData((previousState) => {
-            return {
-                ...previousState,
-                envelopePaperAndColor: e.target.value
-            };
-        });
+        if (orderItems.some(item => item.hasOwnProperty('e1'))) {
+            setOrderItems(prevState => {
+                const newState = prevState.map(obj => {
+                    if ('e1' in obj) {
+                        return {
+                            ...obj,
+                            color: e.target.value
+                        };
+                    }
+                    return obj;
+                });
+                return newState;
+            })
+        } else {
+            setOrderItems(prevState =>
+                [...prevState, { e1: 'envelope', color: e.target.value }]);
+        }
     }
 
     const handleEnvelopeSize = (e) => {
-        setOrderData((previousState) => {
-            return {
-                ...previousState,
-                envelopePrice: {
-                    ...previousState.envelopePrice,
-                    envelopeSize: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
-                    envelopeSizePrice: parseFloat(e.target.value)
-                }
-            };
-        });
+        if (orderItems.some(item => item.hasOwnProperty('e1'))) {
+            setOrderItems(prevState => {
+                const newState = prevState.map(obj => {
+                    if ('e1' in obj) {
+                        return {
+                            ...obj,
+                            size: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
+                            price: parseFloat(e.target.value)
+                        };
+                    }
+                    return obj;
+                });
+                return newState;
+            })
+        } else {
+            setOrderItems(prevState =>
+                [...prevState, {
+                    e1: 'envelope',
+                    size: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
+                    price: parseFloat(e.target.value)
+                }]);
+        }
     }
 
     const handleBodyText = (e) => {
-        setOrderData((previousState) => {
-            return {
-                ...previousState,
-                bodyTextPricing: {
-                    bodyText: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
-                    bodyTextPrice: parseFloat(e.target.value)
-                }
-            };
-        });
+        if (orderItems.some(item => item.hasOwnProperty('bt'))) {
+            setOrderItems(prevState => {
+                const newState = prevState.map(obj => {
+                    if ('bt' in obj) {
+                        return {
+                            ...obj,
+                            bt: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
+                            price: parseFloat(e.target.value)
+                        };
+                    }
+                    return obj;
+                });
+                return newState;
+            })
+        } else {
+            setOrderItems(prevState =>
+                [...prevState, {
+                    bt: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
+                    price: parseFloat(e.target.value)
+                }]);
+        }
     }
 
     const handleHeaderText = (e) => {
-        setOrderData((previousState) => {
-            return {
-                ...previousState,
-                headerTextPricing: {
-                    headerText: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
-                    headerTextPrice: parseFloat(e.target.value)
-                }
-            };
-        });
-    }
-
-    const handleOtherPages = (e) => {
-        if (e.target.checked === false) {
-            setOrderData((previousState) => {
-                return {
-                    ...previousState,
-                    otherPagesPricing: {
-                        otherPages: '',
-                        otherPagesPrice: 0
+        if (orderItems.some(item => item.hasOwnProperty('ht'))) {
+            setOrderItems(prevState => {
+                const newState = prevState.map(obj => {
+                    if ('ht' in obj) {
+                        return {
+                            ...obj,
+                            ht: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
+                            price: parseFloat(e.target.value)
+                        };
                     }
-                };
-            });
-        }
-        else {
-            setOrderData((previousState) => {
-                return {
-                    ...previousState,
-                    otherPagesPricing: {
-                        otherPages: e.target.id,
-                        otherPagesPrice: parseFloat(e.target.value)
-                    }
-                };
-            });
+                    return obj;
+                });
+                return newState;
+            })
+        } else {
+            setOrderItems(prevState =>
+                [...prevState, {
+                    ht: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
+                    price: parseFloat(e.target.value)
+                }]);
         }
     }
 
     const handleCover = (e) => {
-        setOrderData((previousState) => {
-            return {
-                ...previousState,
-                coverPricing: {
-                    cover: e.target.id,
-                    coverPrice: parseFloat(e.target.value)
+        setOrderItems(prevState => {
+            const newState = prevState.map(obj => {
+                if ('cover' in obj) {
+                    return {
+                        ...obj,
+                        cover: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
+                        price: parseFloat(e.target.value)
+                    };
                 }
-            };
-        });
-    }
-
-    const handleCards = (e) => {
-        if (e.target.checked === false) {
-            setOrderData((previousState) => {
-                return {
-                    ...previousState,
-                    cardsPricing: {
-                        cards: '',
-                        cardsPrice: 0
-                    }
-                };
+                return obj;
             });
-        }
-        else {
-            setOrderData((previousState) => {
-                return {
-                    ...previousState,
-                    cardsPricing: {
-                        cardsPages: e.target.id,
-                        cardsPrice: parseFloat(e.target.value)
-                    }
-                };
-            });
-        }
+            return newState;
+        })
     }
 
     return (
@@ -165,7 +161,7 @@ function OrderForm2({ orderData, setOrderData, sumTotal }) {
             <div className='order-frame-2'>
                 <h2>Running Price</h2>
                 <div className='running-price-frame'>
-                    <ul><RunningPrice orderData={orderData} />
+                    <ul><RunningPrice orderItems={orderItems} />
                     </ul>
                 </div>
 
@@ -198,24 +194,11 @@ function OrderForm2({ orderData, setOrderData, sumTotal }) {
                         onChange={(e) => {
                             setChecked(e.target.checked);
                             if (e.target.checked === false) {
-                                setOrderData((previousState) => {
-                                    return {
-                                        ...previousState,
-                                        envelopePaperAndColor: '',
-                                        envelopePrice: {
-                                            envelopeSize: '',
-                                            envelopeSizePrice: 0
-                                        },
-                                        envelopeLinerPricing: {
-                                            envelopeLiner: false,
-                                            envelopeLinerPrice: 0
-                                        },
-                                        envelopeLockPricing: {
-                                            envelopeLock: false,
-                                            envelopeLockPrice: 0
-                                        },
-                                    };
-                                });
+                                setOrderItems(prevState =>
+                                    prevState.filter(item => {
+                                        return item.e2 !== 'envelope liner' && item.e3 !== 'envelope lock';
+                                    }),
+                                );
                             }
                         }} /> Envelope</div>
                     <div className='grid-item'>
@@ -233,50 +216,34 @@ function OrderForm2({ orderData, setOrderData, sumTotal }) {
                 <div className='row-group'>
                     <input type="checkbox" value="10" className='checkbox-circle' onChange={(e) => {
                         if (e.target.checked === false) {
-                            setOrderData((previousState) => {
-                                return {
-                                    ...previousState,
-                                    envelopeLinerPricing: {
-                                        envelopeLiner: false,
-                                        envelopeLinerPrice: 0
-                                    }
-                                };
-                            });
+                            setOrderItems(prevState =>
+                                prevState.filter(item => {
+                                    return item.e2 !== 'envelope liner';
+                                }),
+                            );
                         }
                         else {
-                            setOrderData((previousState) => {
-                                return {
-                                    ...previousState,
-                                    envelopeLinerPricing: {
-                                        envelopeLiner: true,
-                                        envelopeLinerPrice: parseFloat(e.target.value)
-                                    }
-                                };
-                            });
+                            setOrderItems(prevState =>
+                                [...prevState, {
+                                    e2: 'envelope liner',
+                                    price: parseFloat(e.target.value)
+                                }]);
                         }
                     }} disabled={!checked} />Envelope Liner
                     <input type="checkbox" value="5" className='checkbox-circle' onChange={(e) => {
                         if (e.target.checked === false) {
-                            setOrderData((previousState) => {
-                                return {
-                                    ...previousState,
-                                    envelopeLockPricing: {
-                                        envelopeLock: false,
-                                        envelopeLockPrice: 0
-                                    }
-                                };
-                            });
+                            setOrderItems(prevState =>
+                                prevState.filter(item => {
+                                    return item.e3 !== 'envelope lock';
+                                }),
+                            );
                         }
                         else {
-                            setOrderData((previousState) => {
-                                return {
-                                    ...previousState,
-                                    envelopeLockPricing: {
-                                        envelopeLock: true,
-                                        envelopeLockPrice: parseFloat(e.target.value)
-                                    }
-                                };
-                            });
+                            setOrderItems(prevState =>
+                                [...prevState, {
+                                    e3: 'envelope lock',
+                                    price: parseFloat(e.target.value)
+                                }]);
                         }
                     }} disabled={!checked} />Envelope Lock
                 </div>
@@ -292,46 +259,35 @@ function OrderForm2({ orderData, setOrderData, sumTotal }) {
                     <div className='grid-item'><input type="checkbox" value="20" name='all-text' className='checkbox-circle' onChange={(e) => {
                         setAllTextChecked(e.target.checked);
                         if (e.target.checked === false) {
-                            setOrderData((previousState) => {
-                                return {
-                                    ...previousState,
-                                    allTextembossPricing: {
-                                        allTextEmboss: false,
-                                        allTextEmbossPrice: 0
-                                    },
-                                };
-                            });
+                            setOrderItems(prevState =>
+                                prevState.filter(item => {
+                                    return item.at !== 'dry emboss';
+                                }),
+                            );
                         }
                         else {
-                            setOrderData((previousState) => {
-                                return {
-                                    ...previousState,
-                                    allTextembossPricing: {
-                                        allTextEmboss: true,
-                                        allTextEmbossPrice: parseFloat(e.target.value)
-                                    },
-                                    headerTextPricing: {
-                                        headerText: '',
-                                        headerTextPrice: 0
-                                    },
-                                    bodyTextPricing: {
-                                        bodyText: '',
-                                        bodyTextPrice: 0
-                                    }
-                                };
-                            });
+                            setOrderItems(prevState =>
+                                [...prevState, {
+                                    at: 'dry emboss',
+                                    price: parseFloat(e.target.value)
+                                }]);
+                            setOrderItems(prevState =>
+                                prevState.filter(item => {
+                                    return !item.ht && !item.bt;
+                                }),
+                            );
                         }
                     }} />Dry Emboss</div>
                     <div className='grid-item'>
                         <select name="header-text" id="header-select" onClick={handleHeaderText} disabled={allTextChecked}>
-                            <option id="plain-print" value="30">Plain Print</option>
-                            <option id="foil-print" value="40">Foil Print</option>
+                            <option id="plain print" value="30">Plain Print</option>
+                            <option id="foil print" value="40">Foil Print</option>
                         </select>
                     </div>
                     <div className='grid-item'>
                         <select name="body-text" id="body-select" onClick={handleBodyText} disabled={allTextChecked}>
-                            <option id="plain-print" value="30">Plain Print</option>
-                            <option id="foil-print" value="60">Foil Print</option>
+                            <option id="plain print" value="30">Plain Print</option>
+                            <option id="foil print" value="60">Foil Print</option>
                         </select>
                     </div>
                 </div>
@@ -341,9 +297,54 @@ function OrderForm2({ orderData, setOrderData, sumTotal }) {
                     <h3>Other Pages</h3>
                 </div>
                 <div className='grid-container'>
-                    <div className='grid-item'><input type="checkbox" id="rsvp" value="20" name='other-pages' className='checkbox-circle' onChange={handleOtherPages} />RSVP</div>
-                    <div className='grid-item'><input type="checkbox" id="monetary-gift-page" value="20" name='other-pages' className='checkbox-circle' onClick={handleOtherPages} />Monetary Gift Page</div>
-                    <div className='grid-item'><input type="checkbox" id="vows" value="80" name='other-pages' className='checkbox-circle' onClick={handleOtherPages} />His/Her Vows</div>
+                    <div className='grid-item'><input type="checkbox" id="rsvp" value="20" name='other-pages' className='checkbox-circle' onChange={(e) => {
+                        if (e.target.checked === false) {
+                            setOrderItems(prevState =>
+                                prevState.filter(item => {
+                                    return item.p1 !== 'RSVP';
+                                }),
+                            );
+                        }
+                        else {
+                            setOrderItems(prevState =>
+                                [...prevState, {
+                                    p1: 'RSVP',
+                                    price: parseFloat(e.target.value)
+                                }]);
+                        }
+                    }} />RSVP</div>
+                    <div className='grid-item'><input type="checkbox" id="monetary-gift-page" value="20" name='other-pages' className='checkbox-circle' onChange={(e) => {
+                        if (e.target.checked === false) {
+                            setOrderItems(prevState =>
+                                prevState.filter(item => {
+                                    return item.p2 !== 'monetary gift page';
+                                }),
+                            );
+                        }
+                        else {
+                            setOrderItems(prevState =>
+                                [...prevState, {
+                                    p2: 'monetary gift page',
+                                    price: parseFloat(e.target.value)
+                                }]);
+                        }
+                    }} />Monetary Gift Page</div>
+                    <div className='grid-item'><input type="checkbox" id="vows" value="80" name='other-pages' className='checkbox-circle' onChange={(e) => {
+                        if (e.target.checked === false) {
+                            setOrderItems(prevState =>
+                                prevState.filter(item => {
+                                    return item.p3 !== 'his/her vows';
+                                }),
+                            );
+                        }
+                        else {
+                            setOrderItems(prevState =>
+                                [...prevState, {
+                                    p3: 'his/her vows',
+                                    price: parseFloat(e.target.value)
+                                }]);
+                        }
+                    }} />His/Her Vows</div>
                 </div>
 
                 <div className='row-group mt-5'>
@@ -363,9 +364,54 @@ function OrderForm2({ orderData, setOrderData, sumTotal }) {
                     <h3>Cards</h3>
                 </div>
                 <div className='grid-container'>
-                    <div className='grid-item'><input type="checkbox" id="menu" value="20" name='cards' className='checkbox-circle' onClick={handleCards} />Menu Cards</div>
-                    <div className='grid-item'><input type="checkbox" id="table" value="20" name='cards' className='checkbox-circle' onClick={handleCards} />Table Cards</div>
-                    <div className='grid-item'><input type="checkbox" id="seat" value="20" name='cards' className='checkbox-circle' onClick={handleCards} />Seat Cards</div>
+                    <div className='grid-item'><input type="checkbox" id="menu" value="20" name='cards' className='checkbox-circle' onChange={(e) => {
+                        if (e.target.checked === false) {
+                            setOrderItems(prevState =>
+                                prevState.filter(item => {
+                                    return item.ca1 !== 'menu cards';
+                                }),
+                            );
+                        }
+                        else {
+                            setOrderItems(prevState =>
+                                [...prevState, {
+                                    ca1: 'menu cards',
+                                    price: parseFloat(e.target.value)
+                                }]);
+                        }
+                    }} />Menu Cards</div>
+                    <div className='grid-item'><input type="checkbox" id="seat" value="20" name='cards' className='checkbox-circle' onChange={(e) => {
+                        if (e.target.checked === false) {
+                            setOrderItems(prevState =>
+                                prevState.filter(item => {
+                                    return item.ca2 !== 'menu seat';
+                                }),
+                            );
+                        }
+                        else {
+                            setOrderItems(prevState =>
+                                [...prevState, {
+                                    ca2: 'seat cards',
+                                    price: parseFloat(e.target.value)
+                                }]);
+                        }
+                    }} />Seat Cards</div>
+                    <div className='grid-item'><input type="checkbox" id="table" value="20" name='cards' className='checkbox-circle' onChange={(e) => {
+                        if (e.target.checked === false) {
+                            setOrderItems(prevState =>
+                                prevState.filter(item => {
+                                    return item.ca3 !== 'table cards';
+                                }),
+                            );
+                        }
+                        else {
+                            setOrderItems(prevState =>
+                                [...prevState, {
+                                    ca3: 'table cards',
+                                    price: parseFloat(e.target.value)
+                                }]);
+                        }
+                    }} />Table Cards</div>
                 </div>
                 <span className='total-footer'>
                     Total is subject to change <b>Total: {sumTotal.current} Php</b>

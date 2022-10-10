@@ -33,7 +33,7 @@ Content-Type: application/json
         "order_status": "pending"
 
     },
-
+//pass an array of objects for the order details
 "items_array": [
     {"item_id": "m1", "type": "orange", "size": "5.75 x 6.75", "quantity": 3},
     {"item_id": "e1", "type": "red", "size": "6 x 7"},

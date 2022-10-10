@@ -1,8 +1,10 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 
-export const RunningPrice = ({ orderData }) => {
-    const [orderArr, setOrderArr] = useState([orderData])
+export const RunningPrice = ({ orderItems }) => {
+
     return (
+
         <div></div>
+
     )
 }

@@ -40,16 +40,6 @@ function App() {
 
     //order form data
     const [orderData, setOrderData] = useState({
-        inviteType: '',
-        material: '',
-        materialPrice: 0,
-        eventDate: '',
-        motif: '',
-        invitationTitle: '',
-        font: '',
-        contentLink: '',
-        inviteNumbers: '',
-        pegLink: '',
         pagesPaperAndColor: '',
         pagesPrice: {
             pagesSize: '',
@@ -104,18 +94,29 @@ function App() {
     })
 
     const [orderItems, setOrderItems] = useState([
-
+        { inviteType: '' },
+        //sets pages color type and size
+        { material: '' },
+        { paper_size: '', color: '', price: 0 },
+        { eventDate: '' },
+        { motif: '' },
+        { invite_title: '' },
+        { font_style: '' },
+        { content_link: '' },
+        { num_of_invites: 0 },
+        { peg_link: '' },
+        { cover: '', price: 0 }
     ])
 
     return <React.Fragment>
         <Routes>
-            <Route path='*' element={<ErrorPage />} />
+            {/* <Route path='*' element={<ErrorPage />} /> */}
             {/* Main Page */}
-            <Route path='/' element=
+            {/* <Route path='/' element=
                 {<HomePage
                     success={success}
                     roles={roles}
-                />} />
+                />} /> */}
             <Route path='/about-us' element={<AboutUs />} />
             <Route path='/sign-up' element={<SignUp />} />
             <Route path='/login' element=
@@ -130,12 +131,16 @@ function App() {
             <Route path='/terms-and-conditions' element={<TermsAndConditions />} />
             <Route path='/order-form-1' element=
                 {<OrderForm1
+                    orderItems={orderItems}
+                    setOrderItems={setOrderItems}
                     orderData={orderData}
                     setOrderData={setOrderData}
                     sumTotal={sumTotal}
                 />} />
             <Route path='/order-form-2' element=
                 {<OrderForm2
+                    orderItems={orderItems}
+                    setOrderItems={setOrderItems}
                     orderData={orderData}
                     setOrderData={setOrderData}
                     sumTotal={sumTotal}
@@ -182,7 +187,12 @@ function App() {
             <Route path='/staff' element={<StaffAccountOwner />} />
             <Route path='/staff-list' element={<StaffList />} />
         </Routes>
-        <OrderDocumentation />
+        <OrderForm2
+            orderItems={orderItems}
+            setOrderItems={setOrderItems}
+            orderData={orderData}
+            setOrderData={setOrderData}
+            sumTotal={sumTotal} />
 
     </React.Fragment>
 }
