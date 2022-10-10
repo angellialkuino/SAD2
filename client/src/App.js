@@ -21,7 +21,6 @@ import InvitationDraftCustomer from './InvitationDraftCustomer'
 import InvitationDraftStaff from './InvitationDraftStaff'
 import OrderDetailsCustomer from "./OrderDetailsCustomer";
 import OrderDetailsStaff from "./OrderDetailsStaff";
-import OrderDetailsUpdate from "./OrderDetailsUpdate";
 import OrderForm4 from "./OrderForm4";
 import OrderForm3 from "./OrderForm3";
 import OrderHistoryStaff from "./OrderHistoryStaff";
@@ -39,63 +38,8 @@ function App() {
     const sumTotal = useRef(0);
 
     //order form data
-    const [orderData, setOrderData] = useState({
-        pagesPaperAndColor: '',
-        pagesPrice: {
-            pagesSize: '',
-            pagesSizePrice: 0,
-        },
-        envelope: false,
-        envelopePaperAndColor: '',
-        envelopePrice: {
-            envelopeSize: '',
-            envelopeSizePrice: 0,
-        },
-        envelopeLinerPricing: {
-            envelopeLiner: false,
-            envelopeLinerPrice: 0
-        },
-        envelopeLockPricing: {
-            envelopeLock: false,
-            envelopeLockPrice: 0
-        },
-        allTextembossPricing: {
-            allTextEmboss: false,
-            allTextEmbossPrice: 0
-        },
-        headerTextPricing: {
-            headerText: '',
-            headerTextPrice: 0
-        },
-        bodyTextPricing: {
-            bodyText: '',
-            bodyTextPrice: 0
-        },
-        otherPagesPricing: {
-            otherPages: '',
-            otherPagesPrice: 0
-        },
-        coverPricing: {
-            cover: '',
-            coverPrice: 0
-        },
-        cardsPricing: {
-            cards: '',
-            cardPrice: 0
-        },
-        waxSeal: '',
-        sealColor: '',
-        driedFlowers: '',
-        brooch: '',
-        orderFinish: '',
-        receivalMethod: '',
-        priceTotal: '',
-        payentMethod: '',
-    })
-
     const [orderItems, setOrderItems] = useState([
         { inviteType: '' },
-        //sets pages color type and size
         { material: '' },
         { paper_size: '', color: '', price: 0 },
         { eventDate: '' },
@@ -133,34 +77,24 @@ function App() {
                 {<OrderForm1
                     orderItems={orderItems}
                     setOrderItems={setOrderItems}
-                    orderData={orderData}
-                    setOrderData={setOrderData}
                     sumTotal={sumTotal}
                 />} />
             <Route path='/order-form-2' element=
                 {<OrderForm2
                     orderItems={orderItems}
                     setOrderItems={setOrderItems}
-                    orderData={orderData}
-                    setOrderData={setOrderData}
                     sumTotal={sumTotal}
                 />} />
             <Route path='/order-form-3' element=
                 {<OrderForm3
-                    orderData={orderData}
-                    setOrderData={setOrderData}
                     sumTotal={sumTotal}
                 />} />
             <Route path='/order-form-4' element=
                 {<OrderForm4
-                    orderData={orderData}
-                    setOrderData={setOrderData}
                     sumTotal={sumTotal}
                 />} />
             <Route path='/order-form-5' element=
                 {<OrderForm5
-                    orderData={orderData}
-                    setOrderData={setOrderData}
                     sumTotal={sumTotal}
                 />} />
             <Route path='/check-order' element={<CheckOrder />} />
@@ -177,7 +111,6 @@ function App() {
             {/* Staff Pages */}
             <Route path='/order-list-staff' element={<OrderListStaff />} />
             <Route path='/order-details-staff' element={<OrderDetailsStaff />} />
-            <Route path='/order-details-update' element={<OrderDetailsUpdate />} />
             <Route path='/invitation-draft-staff' element={<InvitationDraftStaff />} />
             <Route path='/order-history-staff' element={<OrderHistoryStaff />} />
             <Route path='/order-doc' element={<OrderDocumentation />} />
@@ -187,12 +120,9 @@ function App() {
             <Route path='/staff' element={<StaffAccountOwner />} />
             <Route path='/staff-list' element={<StaffList />} />
         </Routes>
-        <OrderForm2
-            orderItems={orderItems}
-            setOrderItems={setOrderItems}
-            orderData={orderData}
-            setOrderData={setOrderData}
-            sumTotal={sumTotal} />
+        <OrderDetailsStaff />
+        {/* <OrderDetailsUpdate /> */}
+
 
     </React.Fragment>
 }

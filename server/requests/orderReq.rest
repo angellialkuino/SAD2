@@ -15,20 +15,20 @@ POST {{hostname}}/order/create-new-order
 Content-Type: application/json
 
 {
-    "payment_method": "bank",
+    "payment_method": "gcash",
     "order": {
         "user_id": "08078e7c-4af1-4973-a988-d5ce25b38b26",
-        "invite_type": "invite type",
+        "invite_type": "INVTYPE",
         "material": "material",
-        "event_date": "2022-09-01",
+        "event_date": "2022-09-01 1:01:01",
         "motif": "motif",
         "invite_title": "material",
-        "font_style": "font style",
+        "font_style": "italics",
         "content_link": "material",
         "num_of_invites": 30,
         "peg_link": "pinterest.com",
         "date_ordered": "2022-09-20 15:30:30",
-        "order_deadline": "2022-09-20",
+        "order_deadline": "2022-09-20 1:01:01",
         "claim_type": "delivery",
         "order_status": "pending"
 
@@ -50,7 +50,7 @@ PUT {{hostname}}/order/update-status
 Content-Type: application/json
 
 {
-    "order_id": "bcb5b2ce-b3e7-4642-aac2-c6e93857b81a",
+    "order_id": "da5060cc-7d09-4848-8270-df519a1e58f4",
     "order_status": "confimed"
 }
 

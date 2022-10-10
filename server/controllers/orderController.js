@@ -46,7 +46,7 @@ exports.updateStatus = async (req,res) => {
     try {
         const {order_id,order_status} = req.body;
         //console.log(`id is ${JSON.stringify({order_id})} stat is ${JSON.stringify({order_status})}`);
-        orderInfo = await service.updateOrder("order",{order_id},{order_status});
+        orderInfo = await service.updateOrder({order_id},{order_status});
         res.status(200).send({ message:'Successfully updated order status', orderInfo});
 
     } catch (err) {
