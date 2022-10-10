@@ -4,7 +4,9 @@ import { Link } from 'react-router-dom';
 import './OrderDetails.css';
 
 function OrderDetailsStaff() {
-//const [orderID, setOrderID] = useState("N/A");
+const [orderID, setOrderID] = useState("N/A");
+const [orderInfo, setOrderInfo] = useState({});
+
 const [userID, setUserID] = useState("N/A");
 const [inviteType, setUserIinviteType] = useState("N/A");
 const [material, setMaterial] = useState("N/A");
@@ -180,52 +182,52 @@ const updateOrderDetails = async () => {
                     {/* Note: Copy pated from CustAccDetails so css styling classnames dont match!!!!!!! */}
                     <div className="accDetail-body-field">
                         <h3>Date Ordered</h3>
-                        <input vale={dateOrdered} type="text" disabled="true" onChange={(e) => setName(e.target.value)} className="form-control" />
+                        <input vale={dateOrdered} type="text" disabled="true" onChange={(e) => setDateOrdered(e.target.value)} className="form-control" />
                     </div>
 
                     <div className="accDetail-body-field">
                         <h3>Invitation Type</h3>
-                        <input vale={inviteType} type="text" disabled={isDisabled} onChange={(e) => setName(e.target.value)} className="form-control" />
+                        <input vale={inviteType} type="text" disabled={isDisabled} onChange={(e) => setUserIinviteType(e.target.value)} className="form-control" />
                     </div>
 
                     <div className="accDetail-body-field">
                         <h3>Material</h3>
-                        <input vale={material} type="text" disabled={isDisabled} onChange={(e) => setName(e.target.value)} className="form-control" />
+                        <input vale={material} type="text" disabled={isDisabled} onChange={(e) => setMaterial(e.target.value)} className="form-control" />
                     </div>
 
                     <div className="accDetail-body-field">
                         <h3>Date of Event</h3>
-                        <input vale={eventDate} type="text" disabled={isDisabled} onChange={(e) => setName(e.target.value)} className="form-control" />
+                        <input vale={eventDate} type="text" disabled={isDisabled} onChange={(e) => setEventDate(e.target.value)} className="form-control" />
                     </div>
 
                     <div className="accDetail-body-field">
                         <h3>Motif</h3>
-                        <input vale={motif} type="text" disabled={isDisabled} onChange={(e) => setName(e.target.value)} className="form-control" />
+                        <input vale={motif} type="text" disabled={isDisabled} onChange={(e) => setMotif(e.target.value)} className="form-control" />
                     </div>
 
                     <div className="accDetail-body-field">
                         <h3>Invitation Title</h3>
-                        <input vale={inviteTitle} type="text" disabled={isDisabled} onChange={(e) => setName(e.target.value)} className="form-control" />
+                        <input vale={inviteTitle} type="text" disabled={isDisabled} onChange={(e) => setInviteTitle(e.target.value)} className="form-control" />
                     </div>
 
                     <div className="accDetail-body-field">
                         <h3>Font Style</h3>
-                        <input vale={fontStyle} type="text" disabled={isDisabled} onChange={(e) => setName(e.target.value)} className="form-control" />
+                        <input vale={fontStyle} type="text" disabled={isDisabled} onChange={(e) => setFontStyle(e.target.value)} className="form-control" />
                     </div>
 
                     <div className="accDetail-body-field">
                         <h3>Content Link</h3>
-                        <input vale={contentLink} type="text" disabled={isDisabled} onChange={(e) => setName(e.target.value)} className="form-control" />
+                        <input vale={contentLink} type="text" disabled={isDisabled} onChange={(e) => setContentLink(e.target.value)} className="form-control" />
                     </div>
 
                     <div className="accDetail-body-field">
                         <h3>PEG Link</h3>
-                        <input vale={pegLink} type="text" disabled={isDisabled} onChange={(e) => setName(e.target.value)} className="form-control" />
+                        <input vale={pegLink} type="text" disabled={isDisabled} onChange={(e) => setPegLink(e.target.value)} className="form-control" />
                     </div>
 
                     <div className="accDetail-body-field">
                         <h3>Claim Type</h3>
-                        <input vale={claimType} type="text" disabled={isDisabled} onChange={(e) => setName(e.target.value)} className="form-control" />
+                        <input vale={claimType} type="text" disabled={isDisabled} onChange={(e) => setClaimType(e.target.value)} className="form-control" />
                     </div>
 
                     {isDisabled && <button onClick={allowEdit} className="btn btn-dark btn-lg btn-block">Edit Order</button>}
