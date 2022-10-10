@@ -10,7 +10,8 @@ exports.createOrder = async (req,res) => {
     try{
         const order = req.body.order; 
         const itemsArray = req.body.items_array;
-        await service.createOrder(order, itemsArray);
+        const paymentMethod = req.body.payment_method;
+        await service.createOrder(order, itemsArray, paymentMethod);
         const unitPrice = await service.computePrice(itemsArray);
 
         res.status(201).send({ message:'Successfully created new order', unitPrice});
@@ -54,39 +55,33 @@ exports.updateStatus = async (req,res) => {
     }
 };
 
+exports.updateOrder = async (req,res) => {
+    try {
+        const {order} = req.body;
+        const {order_id} = order;
+        //console.log(`od is ${JSON.stringify({order})} )}`);
+
+        await service.updateOrder({order_id},order);
+        res.status(200).send({ message:'Successfully updated order', order});
+
+    } catch (err) {
+        console.log(err);
+        return res.status(400).send({ message:'Failed to update order' });
+    }
+};
+
 exports.updateOrderDetails = async (req,res) => {
     try {
-        //how???? should i just delete all details with specific order_id then add whole new ones????
+        const {order_id} = req.body;
+        const {order_details} = req.body;
+        //console.log(`od is ${JSON.stringify({order_details})} )}`);
 
-        //order id and additional id is assumed to be in req body
-        const {order_details,additional_details} = req.body;
-        const {order_id} = order_details;
-        const {additional_details_id} = additional_details;
-        //console.log(`od is ${JSON.stringify({order_details})} \n dd is ${JSON.stringify({additional_details})}`);
-        //console.log(`od is ${JSON.stringify({order_id})} \ndd is ${JSON.stringify({additional_details_id})}`);
-
-        let orderInfo={};
-        orderInfo.order_details = await service.updateOrder("order_details",{order_id},order_details);
-        orderInfo.addtional_details = await service.updateOrder("additional_details",{additional_details_id},additional_details);
-        res.status(200).send({ message:'Successfully updated order details', orderInfo});
+        await service.updateOrderDetails({order_id},order_details);
+        res.status(200).send({ message:'Successfully updated order details', order_details});
 
     } catch (err) {
         console.log(err);
         return res.status(400).send({ message:'Failed to update order details' });
-    }
-};
-
-exports.updateOrderPurchase = async (req,res) => {
-    try {
-        const orderPurchase = req.body;
-        const {OP_id} = orderPurchase;
-
-        orderInfo = await service.updateOrder("order_purchase",{OP_id},orderPurchase);
-        res.status(200).send({ message:'Successfully updated order purchase information', orderInfo});
-
-    } catch (err) {
-        console.log(err);
-        return res.status(400).send({ message:'Failed to update order purchase information' });
     }
 };
 
@@ -129,10 +124,10 @@ exports.viewCurrentOrders = async (req,res) => {
     }
 };
 
-exports.docEntry = async (req, res) => {
+exports.logEntry = async (req, res) => {
     try {
         const entryInfo = req.body;
-        entry = await service.docEntry(entryInfo);
+        entry = await service.logEntry(entryInfo);
         res.status(200).send({ message:'Successfully created new documentation entry', entry});
 
     } catch (err) {
@@ -141,9 +136,9 @@ exports.docEntry = async (req, res) => {
     }
 }
 
-exports.docEntryList = async (req,res) => {
+exports.logEntryList = async (req,res) => {
     try {
-        entries = await service.docEntryList(req.query.order_id);
+        entries = await service.logEntryList(req.query.order_id);
         res.status(200).send({ message:'Successfully retrieved list of documentation entries', entries});
 
     } catch (err) {

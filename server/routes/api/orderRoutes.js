@@ -22,21 +22,21 @@ router.post('/create-new-order', controller.createOrder);
 router.get('/order-info', controller.viewOrder);
 router.get('/my-orders', controller.viewMyOrders); //customer order list
 router.get('/current-orders', controller.viewCurrentOrders); //staff current order list
-router.get('/order-documentation', controller.docEntryList);
+router.get('/order-log-list', controller.logEntryList);
 router.get('/order-history', controller.viewOrderHistory);
 router.get('/invite-draft', controller.get);
 
 //update order infos
 router.put('/update-status', controller.updateStatus);
-router.put('/update-order', controller.updateOrderDetails);
-router.put('/update-order-purchase', controller.updateOrderPurchase);
+router.put('/update-order', controller.updateOrder);
+router.put('/update-order-details', controller.updateOrderDetails);
 router.put('/cancel-order', controller.updateStatus); 
 
 //new doc entry
-router.post('/new-doc-entry', controller.docEntry);
+router.post('/new-log-entry', controller.logEntry);
+
 
 //upload invite draft pic
-
 const storageEngine = multer.diskStorage({
     destination: (req,file,cb) => {
         cb(null, './images/invite-draft');

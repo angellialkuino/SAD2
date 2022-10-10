@@ -26,7 +26,7 @@ exports.currentOrders = async () => {
 }
 
 //create new order
-exports.createOrder = async (order, itemsArray) => {
+exports.createOrder = async (order, itemsArray, paymentMethod) => {
     
     await db.transaction(async (trx) => {
         order.order_id = uuid.v4();
@@ -45,7 +45,7 @@ exports.createOrder = async (order, itemsArray) => {
 
     await db.transaction(async (trx) => {
         await trx("billing_info").insert(
-            {OP_id: uuid.v4(), user_id: order.user_id, order_id: order.order_id, unit_cost: unitPrice, sub_total: unitPrice*order.num_of_invites, payment_method: "work on this"}
+            {OP_id: uuid.v4(), user_id: order.user_id, order_id: order.order_id, unit_cost: unitPrice, sub_total: unitPrice*order.num_of_invites, payment_method: paymentMethod}
         );
     });
 
@@ -85,19 +85,41 @@ exports.viewOrder = async (order) => {
 }
 
 //update order details, general func for order details, additional details, order, and purchase
-exports.updateOrder = async (tblName,id,orderData) => {
+exports.updateOrder = async (OrderId,orderData) => {
     //delete orderData.order_id;
     //console.log(`data: ${JSON.stringify(id)}`);
 
     await db.transaction(async (trx) => {
-        await trx(tblName)
+        await trx("order")
                     .update(orderData)
-                    .where(id);
-        order = await trx(tblName)
+                    .where(OrderId);
+        order = await trx("order")
                     .select('*')
-                    .where(id);
+                    .where(OrderId);
     });
-    return order;
+};
+
+exports.updateOrderDetails = async (orderId,itemsArray) => {
+    //delete orderData.order_id;
+    //console.log(`data: ${JSON.stringify(id)}`);
+
+    itemsArray.forEach((item) => {
+        item.order_id = orderId.order_id;
+    });
+
+    await db.transaction(async (trx) => {
+        await trx("order_details").where(orderId).del();
+        await trx("order_details").insert(itemsArray);
+    })
+
+    const unitPrice = await this.computePrice(itemsArray);
+
+    await db.transaction(async (trx) => {
+        const numOfInvites = await trx("order").select('num_of_invites').where(orderId);
+        await trx("billing_info").update(
+            {unit_cost: unitPrice, sub_total: unitPrice*numOfInvites[0].num_of_invites}
+        ).where(orderId);
+    });
 };
 
 
@@ -112,24 +134,43 @@ exports.orderHistory = async () => {
     return order;
 };
 
-exports.docEntry = async (entryData) => {
+exports.logEntry = async (entryData) => {
     await db.transaction( async(trx) => {
-        entryData.doc_id = uuid.v4();
-        await trx("order_documentation")
+        entryData.log_id = uuid.v4();
+        await trx("order_log")
                     .insert(entryData);
-        entry = await trx("order_documentation")
+        entry = await trx("order_log")
                     .select('*')
-                    .where({doc_id: entryData.doc_id});
+                    .where({log_id: entryData.log_id});
+        logs = await trx("order_log")
+                .select('*')
+                .where({ order_id: entryData.order_id});
     });
+
+    if(logs.length>1){
+        revFee = (logs.length-1)*1500;
+        await db.transaction( async(trx) => {
+            nums = await trx("billing_info")
+                        .select("total_revision_fee","sub_total")
+                        .where({ order_id: entryData.order_id});
+            prevRevFee = nums[0].total_revision_fee; 
+            console.log(prevRevFee);
+            prevSubTotal = nums[0].sub_total;             
+            await trx("billing_info")
+                        .update({total_revision_fee:(prevRevFee ? prevRevFee+1500 : 1500), sub_total:prevSubTotal+1500})
+                        .where({ order_id: entryData.order_id});
+        });
+    }
+
 
     return entry;
 };
 
 //view list of entry documentation
-exports.docEntryList = async (orderId) => {
+exports.logEntryList = async (orderId) => {
 
     await db.transaction(async (trx) => {
-        entries = await trx("order_documentation")
+        entries = await trx("order_log")
         .select('*')
         .where({ order_id: orderId});
     });

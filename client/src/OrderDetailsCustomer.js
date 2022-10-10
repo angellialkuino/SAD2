@@ -91,7 +91,7 @@ function OrderDetailsCustomer() {
         }
     },[orderInfo])
 
-    return ( //this infor is wrong
+    return ( 
         <div className='order-details-main'>
             <div className='order-div'>
                 <h1>ORDER {orderID}</h1>
@@ -104,7 +104,7 @@ function OrderDetailsCustomer() {
                     <p>{material}</p>
                     <h5>Date of Event</h5>
                     <p>{eventDate}</p>
-                    <h5>Motif/Theme</h5>
+                    <h5>Motif</h5>
                     <p>{motif}</p>                    
                     <h5>Invitation Title</h5>
                     <p>{inviteTitle}</p>
@@ -143,7 +143,7 @@ function OrderDetailsCustomer() {
                 </div>
                 <div className='order-details-footer'>
                     <Link to='/invitation-draft' className="rounded-pill btn btn-info fw-bold nav-hover">View Invitation</Link>
-                    <Link to='/documentation-of-changes' className="rounded-pill btn btn-info fw-bold nav-hover">View Changes</Link>
+                    <Link to='/documentation-of-changes' className="rounded-pill btn btn-info fw-bold nav-hover">View Order Log</Link>
                 </div>
 
             </div>
@@ -154,8 +154,7 @@ function OrderDetailsCustomer() {
                         <p>Number of Invites: {numOfInv}</p>
                         <p>Amount per Invite: {unitCost}</p>
                         {/* <p>Total Revision Fee: {revFee}</p> */}
-                        <p>Subotal: {subTotal}</p>
-                        <h5>TOTAL AMOUNT DUE:</h5>
+                        <h5>TOTAL AMOUNT DUE: {subTotal}</h5>
                         <p>Payment Method: {paymentMethod}</p>
 
                     </div>
