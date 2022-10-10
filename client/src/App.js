@@ -102,6 +102,10 @@ function App() {
         payentMethod: '',
     })
 
+    const [orderItems, setOrderItems] = useState([
+
+    ])
+
     return <React.Fragment>
         <Routes>
             <Route path='*' element={<ErrorPage />} />
