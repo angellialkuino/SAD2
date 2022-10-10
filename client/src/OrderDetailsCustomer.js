@@ -29,6 +29,8 @@ function OrderDetailsCustomer() {
 
     const [unitCost, setUnitCost] = useState(0);
     const [revFee, setRevFee] = useState(0);
+    const [rushFee, setRushFee] = useState(0);
+    const [lessMinFee, setLessMinFee] = useState(0);
     const [subTotal, setSubTotal] = useState(0);
     const [paymentMethod, setPaymentMethod] = useState("N/A");
 
@@ -87,6 +89,8 @@ function OrderDetailsCustomer() {
             setUnitCost(orderInfo.billing_info.unit_cost);
             setSubTotal(orderInfo.billing_info.sub_total);
             setRevFee(orderInfo.billing_info.total_revision_fee);
+            setRushFee(orderInfo.billing_info.rush_fee);
+            setLessMinFee(orderInfo.billing_info.less_min_fee);
             setPaymentMethod(orderInfo.billing_info.payment_method);
         }
     },[orderInfo])
@@ -153,7 +157,10 @@ function OrderDetailsCustomer() {
                     <div className='white-inner-div1'>
                         <p>Number of Invites: {numOfInv}</p>
                         <p>Amount per Invite: {unitCost}</p>
-                        <p>Total Revision Fee: {revFee}</p>
+                        <p>Additional Fees:</p>
+                        <p>Total Revision Fee: {revFee || 0}</p>
+                        <p>Total Rush Fee: {rushFee || 0}</p>
+                        <p>Total Less than Min Fee: {lessMinFee || 0}</p>
                         <h5>TOTAL AMOUNT DUE: {subTotal}</h5>
                         <p>Payment Method: {paymentMethod}</p>
 

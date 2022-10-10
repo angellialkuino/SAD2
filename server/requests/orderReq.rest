@@ -15,17 +15,17 @@ POST {{hostname}}/order/create-new-order
 Content-Type: application/json
 
 {
-    "payment_method": "gcash",
+    "payment_method": "cash",
     "order": {
-        "user_id": "08078e7c-4af1-4973-a988-d5ce25b38b26",
+        "user_id": "d93dbea1-b90b-440d-b423-003e00260930",
         "invite_type": "INVTYPE",
         "material": "material",
-        "event_date": "2022-09-01 1:01:01",
+        "event_date": "2022-10-13 1:01:01",
         "motif": "motif",
         "invite_title": "material",
         "font_style": "italics",
         "content_link": "material",
-        "num_of_invites": 30,
+        "num_of_invites": 20,
         "peg_link": "pinterest.com",
         "date_ordered": "2022-09-20 15:30:30",
         "order_deadline": "2022-09-20 1:01:01",
@@ -35,11 +35,11 @@ Content-Type: application/json
     },
 //pass an array of objects for the order details
 "items_array": [
-    {"item_id": "m1", "type": "orange", "size": "5.75 x 6.75", "quantity": 3},
-    {"item_id": "e1", "type": "red", "size": "6 x 7"},
-    {"item_id": "e3", "type": "euhue"},
-    {"item_id": "co2", "type": "covertype"},
-    {"item_id": "d1", "type": "leaves", "color": "blue"}
+    {"item_id": "m1", "item_name":"name", "price":20, "type": "orange", "size": "5.75 x 6.75", "quantity": 3},
+    {"item_id": "e1", "item_name":"name", "price":20, "type": "red", "size": "6 x 7"},
+    {"item_id": "e3", "item_name":"name", "price":20, "type": "euhue"},
+    {"item_id": "co2", "item_name":"name", "price":20, "type": "covertype"},
+    {"item_id": "d1", "item_name":"name", "price":20, "type": "leaves", "color": "blue"}
     ]
 
 }
