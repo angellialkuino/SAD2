@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import NavBarCustomerLoggedIn from './NavBarCustomerLoggedIn';
 import './OrderForm1.css';
 
 const OrderForm1 = ({ orderData, setOrderData }) => {
     useEffect(() => console.log(orderData), [orderData]);
+
+    const navigate = useNavigate()
 
     const handleInviteType = (e) => {
         setOrderData((previousState) => {
@@ -26,7 +28,7 @@ const OrderForm1 = ({ orderData, setOrderData }) => {
 
     const handleCancel = (e) => {
         if (window.confirm("Are you sure you want to cancel the order?")) {
-            <Navigate replace to="/" />
+            navigate("/")
             setOrderData({})
         }
     }

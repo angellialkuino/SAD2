@@ -1,10 +1,11 @@
 import React, { useRef, useState, useEffect, useContext } from 'react';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import './SignUpAndLogin.css';
 
 import Axios from 'axios';
 
 const LoginPage = () => {
+    const navigate = useNavigate()
     const userRef = useRef();
     const errRef = useRef();
 
@@ -56,7 +57,7 @@ const LoginPage = () => {
     }
 
     return (
-        <> {success ? (<Navigate replace to="/terms-and-conditions" />) : (
+        <> {success ? (navigate("/terms-and-conditions")) : (
             <section>
                 <div className='center-div'>
                     <div className='mt-5'>
