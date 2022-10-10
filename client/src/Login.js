@@ -71,7 +71,7 @@ const LoginForm = ({ success, setSuccess, roles, setRoles }) => {
 
             </div>
             <div className='mt-5'>
-                {success ? (
+                {success && roles == 'customer' ? (
                     <section>
                         <h1>You are logged in!</h1>
                         <br />
@@ -79,43 +79,53 @@ const LoginForm = ({ success, setSuccess, roles, setRoles }) => {
                             <Link to='/'>Go to Home</Link>
                         </p>
                     </section>
-                ) : (
-                    <section>
-                        <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
-                        <h1>Login to Account</h1>
-                        <form onSubmit={handleSubmit}>
-                            <label htmlFor="email">Email Address:</label>
-                            <input
-                                type="email"
-                                id="email"
-                                ref={userRef}
-                                autoComplete="off"
-                                onChange={(e) => setemail(e.target.value)}
-                                value={email}
-                                required
-                            />
+                ) :
+                    success && roles == 'staff' ? (
+                        <section>
+                            <h1>You are logged in!</h1>
+                            <br />
+                            <p>
+                                <Link to='/order-list-staff'>Go to Order List</Link>
+                            </p>
+                        </section>
+                    ) :
+                        (
+                            <section>
+                                <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
+                                <h1>Login to Account</h1>
+                                <form onSubmit={handleSubmit}>
+                                    <label htmlFor="email">Email Address:</label>
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        ref={userRef}
+                                        autoComplete="off"
+                                        onChange={(e) => setemail(e.target.value)}
+                                        value={email}
+                                        required
+                                    />
 
-                            <label htmlFor="password">Password:</label>
-                            <input
-                                type="password"
-                                id="password"
-                                onChange={(e) => setPwd(e.target.value)}
-                                value={pwd}
-                                required
-                            />
-                            <button type="submit" >Login</button>
-                        </form>
-                        <p>
-                            Need an Account?<br />
-                            <span className="line">
-                                <Link to='/sign-up'>Sign Up</Link>
-                            </span>
+                                    <label htmlFor="password">Password:</label>
+                                    <input
+                                        type="password"
+                                        id="password"
+                                        onChange={(e) => setPwd(e.target.value)}
+                                        value={pwd}
+                                        required
+                                    />
+                                    <button type="submit" >Login</button>
+                                </form>
+                                <p>
+                                    Need an Account?<br />
+                                    <span className="line">
+                                        <Link to='/sign-up'>Sign Up</Link>
+                                    </span>
 
-                            <button onClick={testFunc}>Test Link</button>
+                                    <button onClick={testFunc}>Test Link</button>
 
-                        </p>
-                    </section>
-                )}
+                                </p>
+                            </section>
+                        )}
             </div>
         </div></>
     )
