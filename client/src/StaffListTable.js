@@ -10,7 +10,7 @@ const StaffListTable = ({ staffListData }) => {
                     <th className="th-th">Contact</th>
                 </tr>
                 {staffListData.map((staff) => (
-                    <tr className="tr-tr" key={staff.user_id}>
+                    <tr className="tr-tr" key={staff.user_id.slice(-4)}>
                         <td className="td-td">{staff.full_name}</td>
                         <td className="td-td">{staff.email}</td>
                         <td className="td-td">{staff.phone_number}</td>

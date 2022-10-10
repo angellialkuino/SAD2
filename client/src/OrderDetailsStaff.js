@@ -176,7 +176,7 @@ const updateOrderStatus = async (e) => {
     return ( //change the <p> to input tags :")"
         <div className='order-details-main'>
             <div className='order-div'>
-                <h1>ORDER {orderID.slice(32, 36)}</h1>
+                <h1>ORDER {orderID.slice(-4)}</h1>
                 <div className='white-inner-div1'>
                     {/* Note: Copy pated from CustAccDetails so css styling classnames dont match!!!!!!! */}
                     <div className="accDetail-body-field">

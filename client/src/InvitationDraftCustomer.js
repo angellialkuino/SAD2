@@ -6,7 +6,7 @@ import './InvitationDraft.css';
 function InvitationDraftCustomer() {
     const [path, setPath] = useState('');
     const [text, setText] = useState('');
-    const [orderID, setOrderID] = useState('93ebc2e9-7b45-440f-b87d-43c7c8477267');
+    const [orderID, setOrderID] = useState('a7a40b63-dbe8-4bcc-bec0-5111b86588af');
 
     useEffect( () => {
         const showImage = async () => {
@@ -27,7 +27,7 @@ function InvitationDraftCustomer() {
 
     return (
         <div className='invitation-draft-frame'>
-            <h1 className='invitation-draft-h1'>Invitation Draft</h1>
+            <h1 className='invitation-draft-h1'>Invitation Draft for Order {orderID.slice(-4)}</h1>
             <div className='invitation-draft-inner-frame'>
                 {path && <img className='draft-img' src={path}/>}
                 {text && <p>{text}</p>}
