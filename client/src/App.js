@@ -21,7 +21,6 @@ import InvitationDraftCustomer from './InvitationDraftCustomer'
 import InvitationDraftStaff from './InvitationDraftStaff'
 import OrderDetailsCustomer from "./OrderDetailsCustomer";
 import OrderDetailsStaff from "./OrderDetailsStaff";
-import OrderDetailsUpdate from "./OrderDetailsUpdate";
 import OrderForm4 from "./OrderForm4";
 import OrderForm3 from "./OrderForm3";
 import OrderHistoryStaff from "./OrderHistoryStaff";
@@ -168,7 +167,6 @@ function App() {
             {/* Staff Pages */}
             <Route path='/order-list-staff' element={<OrderListStaff />} />
             <Route path='/order-details-staff' element={<OrderDetailsStaff />} />
-            <Route path='/order-details-update' element={<OrderDetailsUpdate />} />
             <Route path='/invitation-draft-staff' element={<InvitationDraftStaff />} />
             <Route path='/order-history-staff' element={<OrderHistoryStaff />} />
             <Route path='/order-doc' element={<OrderDocumentation />} />
@@ -178,7 +176,9 @@ function App() {
             <Route path='/staff' element={<StaffAccountOwner />} />
             <Route path='/staff-list' element={<StaffList />} />
         </Routes>
-        <OrderDocumentation />
+        <OrderDetailsStaff />
+        {/* <OrderDetailsUpdate /> */}
+
 
     </React.Fragment>
 }
