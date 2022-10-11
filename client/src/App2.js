@@ -38,9 +38,7 @@ import StaffNavBar from "./NavBarStaff";
 
 
 function App() {
-    //if user is logged in and check role(?)
-    const [success, setSuccess] = useState(false);
-    const [roles, setRoles] = useState('');
+    
     const sumTotal = useRef(0);
 
     //order form data
@@ -111,88 +109,88 @@ function App() {
 
     return <React.Fragment>
         <Routes>
+            {/* <Route path='*' element={<ErrorPage />} /> */}                
 
             {/* Main Pages */}
-            <Route path="/" element={NavBar}>
-                {/* <Route path='*' element={<ErrorPage />} /> */}                
-                {/* <Route path='/' element=
+            <Route path="/" element={<NavBar/>}>
+                {/* <Route index element=
                     {<HomePage
                         success={success}
                         roles={roles}
                     />} /> */}
-                <Route path='/about-us' element={<AboutUs />} />
-                <Route path='/sign-up' element={<SignUp />} />
-                <Route path='/login' element=
-                    {<Login
-                        success={success}
-                        setSuccess={setSuccess}
-                        roles={roles}
-                        setRoles={setRoles}
-                    />} />
+                <Route path='about-us' element={<AboutUs/>} />
+                <Route path='sign-up' element={<SignUp />} />
+                <Route path='login' element={<Login />} />
+                <Route path='order-form-login' element={<LoginPage />} />
             </Route>
 
 
             {/* Customer Order Form */}
-            <Route path="/form" element={OrderFormsNavbar}>
-                <Route path='/order-form-login' element={<LoginPage />} />
-                <Route path='/terms-and-conditions' element={<TermsAndConditions />} />
-                <Route path='/order-form-1' element=
+            <Route path="/form" element={<CustNavBar/>}>
+                {/* <Route index element=
+                    {<HomePage
+                        success={success}
+                        roles={roles}
+                    />} /> */}
+                <Route path='about-us' element={<AboutUs/>} />
+                <Route path='terms-and-conditions' element={<TermsAndConditions />} />
+                <Route path='order-form-1' element=
                     {<OrderForm1
                         orderData={orderData}
                         setOrderData={setOrderData}
                         sumTotal={sumTotal}
                     />} />
-                <Route path='/order-form-2' element=
+                <Route path='order-form-2' element=
                     {<OrderForm2
                         orderData={orderData}
                         setOrderData={setOrderData}
                         sumTotal={sumTotal}
                     />} />
-                <Route path='/order-form-3' element=
+                <Route path='order-form-3' element=
                     {<OrderForm3
                         sumTotal={sumTotal}
                     />} />
-                <Route path='/order-form-4' element=
+                <Route path='order-form-4' element=
                     {<OrderForm4
                         sumTotal={sumTotal}
                     />} />
-                <Route path='/order-form-5' element=
+                <Route path='order-form-5' element=
                     {<OrderForm5
                         sumTotal={sumTotal}
                     />} />
-                <Route path='/check-order' element={<CheckOrder />} />
-                <Route path='/order-pickup' element={<OrderPickup />} />
-                <Route path='/shipping-address' element={<ShippingAddress />} />
+                <Route path='check-order' element={<CheckOrder />} />
+                <Route path='order-pickup' element={<OrderPickup />} />
+                <Route path='shipping-address' element={<ShippingAddress />} />
                 <Route path='downpayment' element={<Downpayment />} />
-                <Route path='/order-payment' element={<OrderBeingConfirmed />} />
+                <Route path='order-payment' element={<OrderBeingConfirmed />} />
             </Route>
 
             {/* Customer Account and Order Pages */}
-            <Route path="/customer" element={CustNavBar}>
-                <Route path='/account-details' element={<CustAccDetail />} />
-                <Route path='/current-orders' element={<CustMyOrders />} />
-                <Route path='/order-details' element={<OrderDetailsCustomer />} />
-                <Route path='/order-loc-cust' element={<OrderDocumentationCustomer />} />
-                <Route path='/invitation-draft' element={<InvitationDraftCustomer />} />
+            <Route path="/customer" element={<CustNavBar/>}>
+                <Route path='account-details' element={<CustAccDetail />} />
+                <Route path='current-orders' element={<CustMyOrders />} />
+                <Route path='order-details' element={<OrderDetailsCustomer />} />
+                <Route path='order-loc-cust' element={<OrderDocumentationCustomer />} />
+                <Route path='invitation-draft' element={<InvitationDraftCustomer />} />
             </Route>
 
             {/* Staff Pages */}
-            <Route path="/staff" element={StaffNavBar}>
-                <Route path='/order-list-staff' element={<OrderListStaff />} />
-                <Route path='/order-details-staff' element={<OrderDetailsStaff />} />
-                <Route path='/invitation-draft-staff' element={<InvitationDraftStaff />} />
-                <Route path='/order-history-staff' element={<OrderHistoryStaff />} />
-                <Route path='/order-log' element={<OrderDocumentation />} />
-                {/* Documentaion of Changes for the staff? */}
+            <Route path="/staff" element={<StaffNavBar/>}>
+                <Route path='order-list-staff' element={<OrderListStaff />} />
+                <Route path='order-details-staff' element={<OrderDetailsStaff />} />
+                <Route path='invitation-draft-staff' element={<InvitationDraftStaff />} />
+                <Route path='order-history-staff' element={<OrderHistoryStaff />} />
+                <Route path='order-log' element={<OrderDocumentation />} />
             </Route>
 
             {/* Owner Pages */}
-            <Route path="/staff" element={OwnerNavBar}>
-                <Route path='/create-staff' element={<StaffAccountCreateOwner />} />
-                <Route path='/staff' element={<StaffAccountOwner />} />
-                <Route path='/staff-list' element={<StaffList />} />
+            <Route path="/staff" element={<OwnerNavBar/>}>
+                <Route path='create-staff' element={<StaffAccountCreateOwner />} />
+                <Route path='staff' element={<StaffAccountOwner />} />
+                <Route path='staff-list' element={<StaffList />} />
             </Route>
         </Routes>
+        {/* <AboutUs /> */}
     </React.Fragment>
 }
 

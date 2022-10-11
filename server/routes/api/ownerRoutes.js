@@ -5,6 +5,8 @@ const controller = require('../../controllers/userController');
 const isAuth = require('../../middleware/auth').isAuth;
 const multer = require('multer');
 
+router.get('/auth', controller.get);
+
 //this has search funtionaity ehmm hooow
 router.post('/new-staff', controller.createStaff);
 

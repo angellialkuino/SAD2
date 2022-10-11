@@ -8,6 +8,8 @@ const {isAuth} = require('../../middleware/auth');
 
 router.get('/get-test', controller.get);
 
+router.get('/auth', controller.get);
+
 //these routes may not be needed? sa front end na ba toh na routing?
 router.get('/about-us', controller.get);
 router.get('/log-in', controller.get); //cannot access when logged in

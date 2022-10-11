@@ -20,8 +20,8 @@ const LoginForm = ({ success, setSuccess, roles, setRoles }) => {
         setErrMsg('');
     }, [email, pwd])
 
-    const testFunc = () => {
-        Axios.get('http://localhost:5000/api/customer/get-test',
+    const testFunc = async () => {
+        await Axios.get('http://localhost:5000/api/customer/get-test',
             { withCredentials: true }
         ).then((res) => {
             console.log(res);

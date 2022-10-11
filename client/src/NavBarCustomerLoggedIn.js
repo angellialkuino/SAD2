@@ -1,8 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import Axios from 'axios';
 import { Link, Outlet } from 'react-router-dom';
 
 
 function NavBarCustomerLoggedIn() {
+    useEffect(() => {
+        const custAuth = async () => {
+            await Axios.get('http://localhost:5000/api/customer/get-test',
+                { withCredentials: true }
+            ).then((res) => {
+                console.log(res);
+    
+            })
+        }
+    }
+        ,[])
     return (
         <React.Fragment>
             <nav className='nav'>
