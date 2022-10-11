@@ -5,10 +5,9 @@ import AboutUs from "./AboutUs";
 import HomePage from "./HomePage";
 import TermsAndConditions from "./TermsAndConditions";
 import StaffList from "./StaffList";
-import StaffAccountViewOwner from "./StaffAccountViewOwner";
+import StaffAccountOwner from "./StaffAccountOwner";
 import OrderForm1 from "./OrderForm1";
-import CreateStaffAccountOwner from "./CreateStaffAccountOwner";
-import StaffAccountUpdateOwner from "./StaffAccountUpdate";
+import StaffAccountCreateOwner from "./StaffAccountCreateOwner";
 import OrderPickup from "./OrderPickup";
 import ShippingAddress from "./ShippingAddress";
 import CustAccDetail from "./CustAccDetail";
@@ -31,6 +30,12 @@ import CheckOrder from "./CheckOrder";
 import OrderDocumentationCustomer from "./OrderDocumentationCustomer";
 import SignUp from "./SignUp";
 import Login from "./Login";
+
+import NavBar from "./NavBar";
+import CustNavBar from "./NavBarCustomerLoggedIn";
+import OwnerNavBar from "./NavBarOwner";
+import StaffNavBar from "./NavBarStaff";
+
 
 function App() {
     //if user is logged in and check role(?)
@@ -108,7 +113,7 @@ function App() {
         <Routes>
 
             {/* Main Pages */}
-            <Route path="/" element={navbarNoLogIn}>
+            <Route path="/" element={NavBar}>
                 {/* <Route path='*' element={<ErrorPage />} /> */}                
                 {/* <Route path='/' element=
                     {<HomePage
@@ -145,12 +150,16 @@ function App() {
                     />} />
                 <Route path='/order-form-3' element=
                     {<OrderForm3
-                        orderData={orderData}
-                        setOrderData={setOrderData}
                         sumTotal={sumTotal}
                     />} />
-                <Route path='/order-form-4' element={<OrderForm4 />} />
-                <Route path='/order-form-5' element={<OrderForm5 />} />
+                <Route path='/order-form-4' element=
+                    {<OrderForm4
+                        sumTotal={sumTotal}
+                    />} />
+                <Route path='/order-form-5' element=
+                    {<OrderForm5
+                        sumTotal={sumTotal}
+                    />} />
                 <Route path='/check-order' element={<CheckOrder />} />
                 <Route path='/order-pickup' element={<OrderPickup />} />
                 <Route path='/shipping-address' element={<ShippingAddress />} />
@@ -159,43 +168,31 @@ function App() {
             </Route>
 
             {/* Customer Account and Order Pages */}
-            <Route path="/customer" element={CustomerNavbar}>
+            <Route path="/customer" element={CustNavBar}>
                 <Route path='/account-details' element={<CustAccDetail />} />
                 <Route path='/current-orders' element={<CustMyOrders />} />
                 <Route path='/order-details' element={<OrderDetailsCustomer />} />
-                <Route path='/documentation-of-changes' element={<OrderDocumentationCustomer />} />
+                <Route path='/order-loc-cust' element={<OrderDocumentationCustomer />} />
                 <Route path='/invitation-draft' element={<InvitationDraftCustomer />} />
             </Route>
 
             {/* Staff Pages */}
-            <Route path="/staff" element={StaffNavbar}>
+            <Route path="/staff" element={StaffNavBar}>
                 <Route path='/order-list-staff' element={<OrderListStaff />} />
                 <Route path='/order-details-staff' element={<OrderDetailsStaff />} />
                 <Route path='/invitation-draft-staff' element={<InvitationDraftStaff />} />
                 <Route path='/order-history-staff' element={<OrderHistoryStaff />} />
+                <Route path='/order-log' element={<OrderDocumentation />} />
                 {/* Documentaion of Changes for the staff? */}
             </Route>
 
             {/* Owner Pages */}
-            <Route path="/staff" element={OwnerNavbar}>
-                <Route path='/create-staff' element={<CreateStaffAccountOwner />} />
-                <Route path='/view-staff' element={<StaffAccountViewOwner />} />
-                <Route path='/update-staff' element={<StaffAccountUpdateOwner />} />
+            <Route path="/staff" element={OwnerNavBar}>
+                <Route path='/create-staff' element={<StaffAccountCreateOwner />} />
+                <Route path='/staff' element={<StaffAccountOwner />} />
                 <Route path='/staff-list' element={<StaffList />} />
             </Route>
         </Routes>
-        {/* <OrderForm2
-            orderData={orderData}
-            setOrderData={setOrderData}
-            sumTotal={sumTotal}
-        /> */}
-        {/* <CustMyOrders /> */}
-        <Login
-                    success={success}
-                    setSuccess={setSuccess}
-                    roles={roles}
-                    setRoles={setRoles}
-                />
     </React.Fragment>
 }
 

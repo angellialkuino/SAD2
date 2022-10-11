@@ -14,7 +14,6 @@ function NavBarCustomerLoggedIn() {
                 <ul>
                     <li><Link to='/current-orders' className="rounded-pill btn btn-info fw-bold nav-hover">My Orders</Link></li>
                     <li><Link to='/account-details' className="rounded-pill btn btn-info fw-bold nav-hover">My Account</Link></li>
-                    <li><Link to='' className="rounded-pill btn btn-info fw-bold nav-hover">Logout</Link></li>
                 </ul>
             </nav>
 
