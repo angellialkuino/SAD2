@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom';
 import './OrderForm2.css';
 import NavBarCustomerLoggedIn from './NavBarCustomerLoggedIn';
 import { RunningPrice } from './RunningPrice';
+import OrderForm3 from './OrderForm3';
 
-function OrderForm2({ sumTotal, orderItems, orderDetails, setOrderDetails }) {
+function OrderForm2({ sumTotal, setOrderItems, orderItems, orderDetails, setOrderDetails }) {
     const [checked, setChecked] = useState(false);
     const [allTextChecked, setAllTextChecked] = useState(false);
+    const [hidden, setHidden] = useState(true)
 
     useEffect(() => {
         <RunningPrice orderDetails={orderDetails} />
@@ -18,7 +20,7 @@ function OrderForm2({ sumTotal, orderItems, orderDetails, setOrderDetails }) {
             }
         });
         sumTotal.current += orderItems.material_price;
-        console.log(orderDetails);
+        // console.log(orderDetails);
     }, [orderDetails]);
 
     const handlePagesPaperAndColor = (e) => {
@@ -30,7 +32,13 @@ function OrderForm2({ sumTotal, orderItems, orderDetails, setOrderDetails }) {
                 };
             }
             return obj;
+
         }));
+        orderDetails.some(element => {
+            if (element.color === 'Customize') {
+                setHidden(s => !s)
+            }
+        });
     }
 
     const handlePagesSize = (e) => {
@@ -66,6 +74,11 @@ function OrderForm2({ sumTotal, orderItems, orderDetails, setOrderDetails }) {
                 return obj;
             }));
         }
+        orderDetails.some(element => {
+            if (element.color === 'Customize') {
+                setHidden(s => !s)
+            }
+        });
     }
 
     const handleEnvelopeSize = (e) => {
@@ -375,14 +388,14 @@ function OrderForm2({ sumTotal, orderItems, orderDetails, setOrderDetails }) {
                     <div className='grid-item'><h5>Sizes</h5></div>
                     <div className='grid-item'><input type="checkbox" value="pages" className='checkbox-circle0' />Pages</div>
                     <div className='grid-item'>
-                        <select name="pages" id="pages-select" required onClick={handlePagesPaperAndColor}>
+                        <select name="pages" id="pages-select" required onChange={handlePagesPaperAndColor}>
                             <option value="Let Crafters Haven handle it!">Let Crafters Haven handle it!</option>
                             <option value="Customize">Customize</option>
                         </select>
                     </div>
                     <div className='grid-item'>
                         <div className='grid-item'>
-                            <select name="pages" id="pages-select" onClick={handlePagesSize}>
+                            <select name="pages" id="pages-select" onChange={handlePagesSize}>
                                 <option id="4.75 x 5.75 in" value="30">4.75 x 5.75 in</option>
                                 <option id="5.75 x 7.75 in" value="30">5.75 x 7.75 in</option>
                                 <option id="6.75 x 8.75 in" value="40">6.75 x 8.75 in</option>
@@ -392,21 +405,27 @@ function OrderForm2({ sumTotal, orderItems, orderDetails, setOrderDetails }) {
                     <div className='grid-item'><input type="checkbox" value="envelope" className='checkbox-circle'
                         onChange={handleEnvelope} /> Envelope</div>
                     <div className='grid-item'>
-                        <select name="envelope" id="envelope-select" onClick={handleEnvelopePaperAndColor} disabled={!checked}>
+                        <select name="envelope" id="envelope-select" onChange={handleEnvelopePaperAndColor} disabled={!checked}>
                             <option value="Let Crafters Haven handle it!">Let Crafters Haven handle it!</option>
                             <option value="Customize">Customize</option>
                         </select>
                     </div>
                     <div className='grid-item'>
-                        <select name="envelope" id="envelope-select" onClick={handleEnvelopeSize} disabled={!checked}>
+                        <select name="envelope" id="envelope-select" onChange={handleEnvelopeSize} disabled={!checked}>
                             <option id="6 x 8 in" value='30'>6 x 8 in</option>
                         </select>
                     </div>
                 </div>
                 <div className='row-group'>
-                    <input type="checkbox" value="10" className='checkbox-circle' onChange={handleEnvelopeLiner} disabled={!checked} />Envelope Liner
-                    <input type="checkbox" value="5" className='checkbox-circle' onChange={handleEnvelopeLock} disabled={!checked} />Envelope Lock
+                    <input type="checkbox" value="10" className='checkbox-circle' onClick={handleEnvelopeLiner} disabled={!checked} />Envelope Liner
+                    <input type="checkbox" value="5" className='checkbox-circle' onClick={handleEnvelopeLock} disabled={!checked} />Envelope Lock
                 </div>
+                {!hidden ? <OrderForm3
+                    orderItems={orderItems}
+                    setOrderItems={setOrderItems}
+                    orderDetails={orderDetails}
+                    setOrderDetails={setOrderDetails}
+                /> : null}
 
                 <div className='row-group mt-5'>
                     <div className="number-circle">2</div>
@@ -416,15 +435,15 @@ function OrderForm2({ sumTotal, orderItems, orderDetails, setOrderDetails }) {
                     <div className='grid-item'><h5>All Text</h5></div>
                     <div className='grid-item'><h5>Header Text</h5></div>
                     <div className='grid-item'><h5>Body Text</h5></div>
-                    <div className='grid-item'><input type="checkbox" value="20" name='all-text' className='checkbox-circle' onChange={handleAllText} />Dry Emboss</div>
+                    <div className='grid-item'><input type="checkbox" value="20" name='all-text' className='checkbox-circle' onClick={handleAllText} />Dry Emboss</div>
                     <div className='grid-item'>
-                        <select name="header-text" id="header-select" onClick={handleHeaderText} disabled={allTextChecked}>
+                        <select name="header-text" id="header-select" onChange={handleHeaderText} disabled={allTextChecked}>
                             <option id="t1" title="header plain print" value="30">Plain Print</option>
                             <option id="t2" title="header foil print" value="40">Foil Print</option>
                         </select>
                     </div>
                     <div className='grid-item'>
-                        <select name="body-text" id="body-select" onClick={handleBodyText} disabled={allTextChecked}>
+                        <select name="body-text" id="body-select" onChange={handleBodyText} disabled={allTextChecked}>
                             <option id="t1" title="body plain print" value="30">Plain Print</option>
                             <option id="t3" title="body foil print" value="60">Foil Print</option>
                         </select>
@@ -436,9 +455,9 @@ function OrderForm2({ sumTotal, orderItems, orderDetails, setOrderDetails }) {
                     <h3>Other Pages</h3>
                 </div>
                 <div className='grid-container'>
-                    <div className='grid-item'><input type="checkbox" id="rsvp" value="20" name='other-pages' className='checkbox-circle' onChange={handleRSVP} />RSVP</div>
-                    <div className='grid-item'><input type="checkbox" id="monetary-gift-page" value="20" name='other-pages' className='checkbox-circle' onChange={handleMonetaryGiftPackage} />Monetary Gift Page</div>
-                    <div className='grid-item'><input type="checkbox" id="vows" value="80" name='other-pages' className='checkbox-circle' onChange={handleHisHerVows} />His/Her Vows</div>
+                    <div className='grid-item'><input type="checkbox" id="rsvp" value="20" name='other-pages' className='checkbox-circle' onClick={handleRSVP} />RSVP</div>
+                    <div className='grid-item'><input type="checkbox" id="monetary-gift-page" value="20" name='other-pages' className='checkbox-circle' onClick={handleMonetaryGiftPackage} />Monetary Gift Page</div>
+                    <div className='grid-item'><input type="checkbox" id="vows" value="80" name='other-pages' className='checkbox-circle' onClick={handleHisHerVows} />His/Her Vows</div>
                 </div>
 
                 <div className='row-group mt-5'>
@@ -446,7 +465,7 @@ function OrderForm2({ sumTotal, orderItems, orderDetails, setOrderDetails }) {
                     <h3>Cover</h3>
                 </div>
                 <div className='grid-item'>
-                    <select name="cover" id="cover-select" required onClick={handleCover}>
+                    <select name="cover" id="cover-select" onChange={handleCover}>
                         <option id="co1" title='translucent cover' value="60">Translucent</option>
                         <option id="co2" title='trifold cover' value="60">Trifold</option>
                         <option id="co3" title='cover with print' value="120">Printed</option>
@@ -458,9 +477,9 @@ function OrderForm2({ sumTotal, orderItems, orderDetails, setOrderDetails }) {
                     <h3>Cards</h3>
                 </div>
                 <div className='grid-container'>
-                    <div className='grid-item'><input type="checkbox" id="menu" value="20" name='cards' className='checkbox-circle' onChange={handleMenuCards} />Menu Cards</div>
-                    <div className='grid-item'><input type="checkbox" id="seat" value="20" name='cards' className='checkbox-circle' onChange={handleSeatCards} />Seat Cards</div>
-                    <div className='grid-item'><input type="checkbox" id="table" value="20" name='cards' className='checkbox-circle' onChange={handleTableCards} />Table Cards</div>
+                    <div className='grid-item'><input type="checkbox" id="menu" value="20" name='cards' className='checkbox-circle' onClick={handleMenuCards} />Menu Cards</div>
+                    <div className='grid-item'><input type="checkbox" id="seat" value="20" name='cards' className='checkbox-circle' onClick={handleSeatCards} />Seat Cards</div>
+                    <div className='grid-item'><input type="checkbox" id="table" value="20" name='cards' className='checkbox-circle' onClick={handleTableCards} />Table Cards</div>
                 </div>
                 <span className='total-footer'>
                     Total is subject to change <b>Total: {sumTotal.current} Php</b>
