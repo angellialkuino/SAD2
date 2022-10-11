@@ -4,155 +4,352 @@ import './OrderForm2.css';
 import NavBarCustomerLoggedIn from './NavBarCustomerLoggedIn';
 import { RunningPrice } from './RunningPrice';
 
-function OrderForm2({ sumTotal, orderItems, setOrderItems }) {
+function OrderForm2({ sumTotal, orderItems, orderDetails, setOrderDetails }) {
     const [checked, setChecked] = useState(false);
     const [allTextChecked, setAllTextChecked] = useState(false);
 
     useEffect(() => {
+        <RunningPrice orderDetails={orderDetails} />
+
         sumTotal.current = 0;
-        orderItems.forEach(element => {
+        orderDetails.forEach(element => {
             if ('price' in element) {
                 sumTotal.current += element.price;
             }
         });
-        console.log(orderItems);
-    }, [orderItems]);
+        sumTotal.current += orderItems.material_price;
+        console.log(orderDetails);
+    }, [orderDetails]);
 
     const handlePagesPaperAndColor = (e) => {
-        setOrderItems(prevState => {
-            const newState = prevState.map(obj => {
-                if ('paper_size' in obj) {
-                    return { ...obj, color: e.target.value };
-                }
-                return obj;
-            });
-            return newState;
-        })
+        setOrderDetails(orderDetails.map(obj => {
+            if (obj.item_id === 'm1') {
+                return {
+                    ...obj,
+                    color: e.target.value
+                };
+            }
+            return obj;
+        }));
     }
 
     const handlePagesSize = (e) => {
-        setOrderItems(prevState => {
-            const newState = prevState.map(obj => {
-                if ('paper_size' in obj) {
-                    return {
-                        ...obj,
-                        paper_size: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
-                        price: parseFloat(e.target.value)
-                    };
-                }
-                return obj;
-            });
-            return newState;
-        })
+        setOrderDetails(orderDetails.map(obj => {
+            if (obj.item_id === 'm1') {
+                return {
+                    ...obj,
+                    size: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
+                    price: parseFloat(e.target.value)
+                };
+            }
+            return obj;
+        }));
     }
 
     const handleEnvelopePaperAndColor = (e) => {
-        if (orderItems.some(item => item.hasOwnProperty('e1'))) {
-            setOrderItems(prevState => {
-                const newState = prevState.map(obj => {
-                    if ('e1' in obj) {
-                        return {
-                            ...obj,
-                            color: e.target.value
-                        };
-                    }
-                    return obj;
-                });
-                return newState;
-            })
-        } else {
-            setOrderItems(prevState =>
-                [...prevState, { e1: 'envelope', color: e.target.value }]);
+        if (orderDetails.findIndex(object => object.item_id === 'e1') === -1) {
+            setOrderDetails(prevState =>
+                [...prevState, {
+                    item_id: 'e1',
+                    item_name: 'envelope',
+                    color: e.target.value
+                }]);;
+        }
+        else {
+            setOrderDetails(orderDetails.map(obj => {
+                if (obj.item_id === 'e1') {
+                    return {
+                        ...obj,
+                        color: e.target.value
+                    };
+                }
+                return obj;
+            }));
         }
     }
 
     const handleEnvelopeSize = (e) => {
-        if (orderItems.some(item => item.hasOwnProperty('e1'))) {
-            setOrderItems(prevState => {
-                const newState = prevState.map(obj => {
-                    if ('e1' in obj) {
-                        return {
-                            ...obj,
-                            size: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
-                            price: parseFloat(e.target.value)
-                        };
-                    }
-                    return obj;
-                });
-                return newState;
-            })
-        } else {
-            setOrderItems(prevState =>
+        if (orderDetails.findIndex(object => object.item_id === 'e1') === -1) {
+            setOrderDetails(prevState =>
                 [...prevState, {
-                    e1: 'envelope',
+                    item_id: 'e1',
+                    item_name: 'envelope',
                     size: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
                     price: parseFloat(e.target.value)
                 }]);
         }
-    }
-
-    const handleBodyText = (e) => {
-        if (orderItems.some(item => item.hasOwnProperty('bt'))) {
-            setOrderItems(prevState => {
-                const newState = prevState.map(obj => {
-                    if ('bt' in obj) {
-                        return {
-                            ...obj,
-                            bt: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
-                            price: parseFloat(e.target.value)
-                        };
-                    }
-                    return obj;
-                });
-                return newState;
-            })
-        } else {
-            setOrderItems(prevState =>
-                [...prevState, {
-                    bt: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
-                    price: parseFloat(e.target.value)
-                }]);
-        }
-    }
-
-    const handleHeaderText = (e) => {
-        if (orderItems.some(item => item.hasOwnProperty('ht'))) {
-            setOrderItems(prevState => {
-                const newState = prevState.map(obj => {
-                    if ('ht' in obj) {
-                        return {
-                            ...obj,
-                            ht: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
-                            price: parseFloat(e.target.value)
-                        };
-                    }
-                    return obj;
-                });
-                return newState;
-            })
-        } else {
-            setOrderItems(prevState =>
-                [...prevState, {
-                    ht: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
-                    price: parseFloat(e.target.value)
-                }]);
-        }
-    }
-
-    const handleCover = (e) => {
-        setOrderItems(prevState => {
-            const newState = prevState.map(obj => {
-                if ('cover' in obj) {
+        else {
+            setOrderDetails(orderDetails.map(obj => {
+                if (obj.item_id === 'e1') {
                     return {
                         ...obj,
-                        cover: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
+                        size: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
                         price: parseFloat(e.target.value)
                     };
                 }
                 return obj;
-            });
-            return newState;
-        })
+            }));
+        }
+    }
+
+    const handleEnvelope = (e) => {
+        setChecked(e.target.checked);
+        if (e.target.checked === false) {
+            setOrderDetails(prevState =>
+                prevState.filter(item => {
+                    return item.item_id !== 'e1' && item.item_id !== 'e2' && item.item_id !== 'e3';
+                }),
+            );
+        }
+    }
+
+    const handleEnvelopeLiner = (e) => {
+        if (orderDetails.findIndex(object => object.item_id === 'e2') === -1) {
+            setOrderDetails(prevState =>
+                [...prevState, {
+                    item_id: 'e2',
+                    item_name: 'envelope liner',
+                    price: parseFloat(e.target.value)
+                }]);
+        }
+        if (e.target.checked === false) {
+            setOrderDetails(prevState =>
+                prevState.filter(item => {
+                    return item.item_id !== 'e2';
+                }),
+            );
+        }
+    }
+
+    const handleEnvelopeLock = (e) => {
+        if (orderDetails.findIndex(object => object.item_id === 'e3') === -1) {
+            setOrderDetails(prevState =>
+                [...prevState, {
+                    item_id: 'e3',
+                    item_name: 'envelope lock',
+                    price: parseFloat(e.target.value)
+                }]);
+        }
+        if (e.target.checked === false) {
+            setOrderDetails(prevState =>
+                prevState.filter(item => {
+                    return item.item_id !== 'e3';
+                }),
+            );
+        }
+    }
+
+    const handleAllText = (e) => {
+        setAllTextChecked(e.target.checked);
+        if (e.target.checked === false) {
+            setOrderDetails(prevState =>
+                prevState.filter(item => {
+                    return item.item_id !== 't4';
+                }),
+            );
+        }
+        else {
+            setOrderDetails(prevState =>
+                [...prevState, {
+                    item_id: 't4',
+                    item_name: 'dry emboss',
+                    type: 'all text',
+                    price: parseFloat(e.target.value)
+                }]);
+            setOrderDetails(prevState =>
+                prevState.filter(item => {
+                    return item.type !== 'header' && item.type !== 'body';
+                }),
+            );
+        }
+    }
+
+    const handleHeaderText = (e) => {
+        if (orderDetails.findIndex(object => object.type === 'header') === -1) {
+            setOrderDetails(prevState =>
+                [...prevState, {
+                    item_id: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
+                    item_name: e.target.childNodes[e.target.selectedIndex].getAttribute('title'),
+                    type: 'header',
+                    price: parseFloat(e.target.value)
+                }]);
+        }
+        else {
+            setOrderDetails(orderDetails.map(obj => {
+                if (obj.type === 'header') {
+                    return {
+                        ...obj,
+                        item_id: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
+                        item_name: e.target.childNodes[e.target.selectedIndex].getAttribute('title'),
+                        price: parseFloat(e.target.value)
+                    };
+                }
+                return obj;
+            }));
+        }
+    }
+
+    const handleBodyText = (e) => {
+        if (orderDetails.findIndex(object => object.type === 'body') === -1) {
+            setOrderDetails(prevState =>
+                [...prevState, {
+                    item_id: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
+                    item_name: e.target.childNodes[e.target.selectedIndex].getAttribute('title'),
+                    type: 'body',
+                    price: parseFloat(e.target.value)
+                }]);
+        }
+        else {
+            setOrderDetails(orderDetails.map(obj => {
+                if (obj.type === 'body') {
+                    return {
+                        ...obj,
+                        item_id: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
+                        item_name: e.target.childNodes[e.target.selectedIndex].getAttribute('title'),
+                        price: parseFloat(e.target.value)
+                    };
+                }
+                return obj;
+            }));
+        }
+    }
+
+    const handleRSVP = (e) => {
+        if (orderDetails.findIndex(object => object.item_id === 'p1') === -1) {
+            setOrderDetails(prevState =>
+                [...prevState, {
+                    item_id: 'p1',
+                    item_name: 'RSVP',
+                    price: parseFloat(e.target.value)
+                }]);
+        }
+        if (e.target.checked === false) {
+            setOrderDetails(prevState =>
+                prevState.filter(item => {
+                    return item.item_id !== 'p1';
+                }),
+            );
+        }
+    }
+
+    const handleMonetaryGiftPackage = (e) => {
+        if (orderDetails.findIndex(object => object.item_id === 'p2') === -1) {
+            setOrderDetails(prevState =>
+                [...prevState, {
+                    item_id: 'p2',
+                    item_name: 'monetary gift package',
+                    price: parseFloat(e.target.value)
+                }]);
+        }
+        if (e.target.checked === false) {
+            setOrderDetails(prevState =>
+                prevState.filter(item => {
+                    return item.item_id !== 'p2';
+                }),
+            );
+        }
+    }
+
+    const handleHisHerVows = (e) => {
+        if (orderDetails.findIndex(object => object.item_id === 'p3') === -1) {
+            setOrderDetails(prevState =>
+                [...prevState, {
+                    item_id: 'p3',
+                    item_name: 'his/her vows',
+                    price: parseFloat(e.target.value)
+                }]);
+        }
+        if (e.target.checked === false) {
+            setOrderDetails(prevState =>
+                prevState.filter(item => {
+                    return item.item_id !== 'p3';
+                }),
+            );
+        }
+    }
+
+    const handleCover = (e) => {
+        if (orderDetails.findIndex(object => object.item_id === 'co1') === -1
+            && orderDetails.findIndex(object => object.item_id === 'co2') === -1
+            && orderDetails.findIndex(object => object.item_id === 'co3') === -1
+            && orderDetails.findIndex(object => object.item_id === 'co4') === -1) {
+            setOrderDetails(prevState =>
+                [...prevState, {
+                    item_id: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
+                    item_name: e.target.childNodes[e.target.selectedIndex].getAttribute('title'),
+                    price: parseFloat(e.target.value)
+                }]);
+        }
+        else {
+            setOrderDetails(orderDetails.map(obj => {
+                if (obj.item_id === 'co1'
+                    || obj.item_id === 'co2'
+                    || obj.item_id === 'co3'
+                    || obj.item_id === 'co4') {
+                    return {
+                        ...obj,
+                        item_id: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
+                        item_name: e.target.childNodes[e.target.selectedIndex].getAttribute('title'),
+                        price: parseFloat(e.target.value)
+                    };
+                }
+                return obj;
+            }));
+        }
+    }
+
+    const handleMenuCards = (e) => {
+        if (orderDetails.findIndex(object => object.item_id === 'ca1') === -1) {
+            setOrderDetails(prevState =>
+                [...prevState, {
+                    item_id: 'ca1',
+                    item_name: 'menu cards',
+                    price: parseFloat(e.target.value)
+                }]);
+        }
+        if (e.target.checked === false) {
+            setOrderDetails(prevState =>
+                prevState.filter(item => {
+                    return item.item_id !== 'ca1';
+                }),
+            );
+        }
+    }
+
+    const handleSeatCards = (e) => {
+        if (orderDetails.findIndex(object => object.item_id === 'ca2') === -1) {
+            setOrderDetails(prevState =>
+                [...prevState, {
+                    item_id: 'ca2',
+                    item_name: 'seat cards',
+                    price: parseFloat(e.target.value)
+                }]);
+        }
+        if (e.target.checked === false) {
+            setOrderDetails(prevState =>
+                prevState.filter(item => {
+                    return item.item_id !== 'ca2';
+                }),
+            );
+        }
+    }
+
+    const handleTableCards = (e) => {
+        if (orderDetails.findIndex(object => object.item_id === 'ca3') === -1) {
+            setOrderDetails(prevState =>
+                [...prevState, {
+                    item_id: 'ca3',
+                    item_name: 'table cards',
+                    price: parseFloat(e.target.value)
+                }]);
+        }
+        if (e.target.checked === false) {
+            setOrderDetails(prevState =>
+                prevState.filter(item => {
+                    return item.item_id !== 'ca3';
+                }),
+            );
+        }
     }
 
     return (
@@ -160,9 +357,11 @@ function OrderForm2({ sumTotal, orderItems, setOrderItems }) {
             <NavBarCustomerLoggedIn />
             <div className='order-frame-2'>
                 <h2>Running Price</h2>
-                <div className='running-price-frame'>
-                    <ul><RunningPrice orderItems={orderItems} />
-                    </ul>
+                <div className='running-price-frame p-4'>
+                    <RunningPrice
+                        orderItems={orderItems}
+                        orderDetails={orderDetails} />
+
                 </div>
 
                 <div className='row-group mt-5'>
@@ -191,16 +390,7 @@ function OrderForm2({ sumTotal, orderItems, setOrderItems }) {
                         </div></div>
 
                     <div className='grid-item'><input type="checkbox" value="envelope" className='checkbox-circle'
-                        onChange={(e) => {
-                            setChecked(e.target.checked);
-                            if (e.target.checked === false) {
-                                setOrderItems(prevState =>
-                                    prevState.filter(item => {
-                                        return item.e2 !== 'envelope liner' && item.e3 !== 'envelope lock';
-                                    }),
-                                );
-                            }
-                        }} /> Envelope</div>
+                        onChange={handleEnvelope} /> Envelope</div>
                     <div className='grid-item'>
                         <select name="envelope" id="envelope-select" onClick={handleEnvelopePaperAndColor} disabled={!checked}>
                             <option value="Let Crafters Haven handle it!">Let Crafters Haven handle it!</option>
@@ -214,38 +404,8 @@ function OrderForm2({ sumTotal, orderItems, setOrderItems }) {
                     </div>
                 </div>
                 <div className='row-group'>
-                    <input type="checkbox" value="10" className='checkbox-circle' onChange={(e) => {
-                        if (e.target.checked === false) {
-                            setOrderItems(prevState =>
-                                prevState.filter(item => {
-                                    return item.e2 !== 'envelope liner';
-                                }),
-                            );
-                        }
-                        else {
-                            setOrderItems(prevState =>
-                                [...prevState, {
-                                    e2: 'envelope liner',
-                                    price: parseFloat(e.target.value)
-                                }]);
-                        }
-                    }} disabled={!checked} />Envelope Liner
-                    <input type="checkbox" value="5" className='checkbox-circle' onChange={(e) => {
-                        if (e.target.checked === false) {
-                            setOrderItems(prevState =>
-                                prevState.filter(item => {
-                                    return item.e3 !== 'envelope lock';
-                                }),
-                            );
-                        }
-                        else {
-                            setOrderItems(prevState =>
-                                [...prevState, {
-                                    e3: 'envelope lock',
-                                    price: parseFloat(e.target.value)
-                                }]);
-                        }
-                    }} disabled={!checked} />Envelope Lock
+                    <input type="checkbox" value="10" className='checkbox-circle' onChange={handleEnvelopeLiner} disabled={!checked} />Envelope Liner
+                    <input type="checkbox" value="5" className='checkbox-circle' onChange={handleEnvelopeLock} disabled={!checked} />Envelope Lock
                 </div>
 
                 <div className='row-group mt-5'>
@@ -256,38 +416,17 @@ function OrderForm2({ sumTotal, orderItems, setOrderItems }) {
                     <div className='grid-item'><h5>All Text</h5></div>
                     <div className='grid-item'><h5>Header Text</h5></div>
                     <div className='grid-item'><h5>Body Text</h5></div>
-                    <div className='grid-item'><input type="checkbox" value="20" name='all-text' className='checkbox-circle' onChange={(e) => {
-                        setAllTextChecked(e.target.checked);
-                        if (e.target.checked === false) {
-                            setOrderItems(prevState =>
-                                prevState.filter(item => {
-                                    return item.at !== 'dry emboss';
-                                }),
-                            );
-                        }
-                        else {
-                            setOrderItems(prevState =>
-                                [...prevState, {
-                                    at: 'dry emboss',
-                                    price: parseFloat(e.target.value)
-                                }]);
-                            setOrderItems(prevState =>
-                                prevState.filter(item => {
-                                    return !item.ht && !item.bt;
-                                }),
-                            );
-                        }
-                    }} />Dry Emboss</div>
+                    <div className='grid-item'><input type="checkbox" value="20" name='all-text' className='checkbox-circle' onChange={handleAllText} />Dry Emboss</div>
                     <div className='grid-item'>
                         <select name="header-text" id="header-select" onClick={handleHeaderText} disabled={allTextChecked}>
-                            <option id="plain print" value="30">Plain Print</option>
-                            <option id="foil print" value="40">Foil Print</option>
+                            <option id="t1" title="header plain print" value="30">Plain Print</option>
+                            <option id="t2" title="header foil print" value="40">Foil Print</option>
                         </select>
                     </div>
                     <div className='grid-item'>
                         <select name="body-text" id="body-select" onClick={handleBodyText} disabled={allTextChecked}>
-                            <option id="plain print" value="30">Plain Print</option>
-                            <option id="foil print" value="60">Foil Print</option>
+                            <option id="t1" title="body plain print" value="30">Plain Print</option>
+                            <option id="t3" title="body foil print" value="60">Foil Print</option>
                         </select>
                     </div>
                 </div>
@@ -297,54 +436,9 @@ function OrderForm2({ sumTotal, orderItems, setOrderItems }) {
                     <h3>Other Pages</h3>
                 </div>
                 <div className='grid-container'>
-                    <div className='grid-item'><input type="checkbox" id="rsvp" value="20" name='other-pages' className='checkbox-circle' onChange={(e) => {
-                        if (e.target.checked === false) {
-                            setOrderItems(prevState =>
-                                prevState.filter(item => {
-                                    return item.p1 !== 'RSVP';
-                                }),
-                            );
-                        }
-                        else {
-                            setOrderItems(prevState =>
-                                [...prevState, {
-                                    p1: 'RSVP',
-                                    price: parseFloat(e.target.value)
-                                }]);
-                        }
-                    }} />RSVP</div>
-                    <div className='grid-item'><input type="checkbox" id="monetary-gift-page" value="20" name='other-pages' className='checkbox-circle' onChange={(e) => {
-                        if (e.target.checked === false) {
-                            setOrderItems(prevState =>
-                                prevState.filter(item => {
-                                    return item.p2 !== 'monetary gift page';
-                                }),
-                            );
-                        }
-                        else {
-                            setOrderItems(prevState =>
-                                [...prevState, {
-                                    p2: 'monetary gift page',
-                                    price: parseFloat(e.target.value)
-                                }]);
-                        }
-                    }} />Monetary Gift Page</div>
-                    <div className='grid-item'><input type="checkbox" id="vows" value="80" name='other-pages' className='checkbox-circle' onChange={(e) => {
-                        if (e.target.checked === false) {
-                            setOrderItems(prevState =>
-                                prevState.filter(item => {
-                                    return item.p3 !== 'his/her vows';
-                                }),
-                            );
-                        }
-                        else {
-                            setOrderItems(prevState =>
-                                [...prevState, {
-                                    p3: 'his/her vows',
-                                    price: parseFloat(e.target.value)
-                                }]);
-                        }
-                    }} />His/Her Vows</div>
+                    <div className='grid-item'><input type="checkbox" id="rsvp" value="20" name='other-pages' className='checkbox-circle' onChange={handleRSVP} />RSVP</div>
+                    <div className='grid-item'><input type="checkbox" id="monetary-gift-page" value="20" name='other-pages' className='checkbox-circle' onChange={handleMonetaryGiftPackage} />Monetary Gift Page</div>
+                    <div className='grid-item'><input type="checkbox" id="vows" value="80" name='other-pages' className='checkbox-circle' onChange={handleHisHerVows} />His/Her Vows</div>
                 </div>
 
                 <div className='row-group mt-5'>
@@ -353,10 +447,10 @@ function OrderForm2({ sumTotal, orderItems, setOrderItems }) {
                 </div>
                 <div className='grid-item'>
                     <select name="cover" id="cover-select" required onClick={handleCover}>
-                        <option id="translucent" value="60">Translucent</option>
-                        <option id="printed" value="120">Printed</option>
-                        <option id="trifold" value="60">Trifold</option>
-                        <option id="lasercut" value="60">Lasercut</option>
+                        <option id="co1" title='translucent cover' value="60">Translucent</option>
+                        <option id="co2" title='trifold cover' value="60">Trifold</option>
+                        <option id="co3" title='cover with print' value="120">Printed</option>
+                        <option id="co4" title='lasercut cover' value="60">Lasercut</option>
                     </select>
                 </div>
                 <div className='row-group mt-5'>
@@ -364,54 +458,9 @@ function OrderForm2({ sumTotal, orderItems, setOrderItems }) {
                     <h3>Cards</h3>
                 </div>
                 <div className='grid-container'>
-                    <div className='grid-item'><input type="checkbox" id="menu" value="20" name='cards' className='checkbox-circle' onChange={(e) => {
-                        if (e.target.checked === false) {
-                            setOrderItems(prevState =>
-                                prevState.filter(item => {
-                                    return item.ca1 !== 'menu cards';
-                                }),
-                            );
-                        }
-                        else {
-                            setOrderItems(prevState =>
-                                [...prevState, {
-                                    ca1: 'menu cards',
-                                    price: parseFloat(e.target.value)
-                                }]);
-                        }
-                    }} />Menu Cards</div>
-                    <div className='grid-item'><input type="checkbox" id="seat" value="20" name='cards' className='checkbox-circle' onChange={(e) => {
-                        if (e.target.checked === false) {
-                            setOrderItems(prevState =>
-                                prevState.filter(item => {
-                                    return item.ca2 !== 'menu seat';
-                                }),
-                            );
-                        }
-                        else {
-                            setOrderItems(prevState =>
-                                [...prevState, {
-                                    ca2: 'seat cards',
-                                    price: parseFloat(e.target.value)
-                                }]);
-                        }
-                    }} />Seat Cards</div>
-                    <div className='grid-item'><input type="checkbox" id="table" value="20" name='cards' className='checkbox-circle' onChange={(e) => {
-                        if (e.target.checked === false) {
-                            setOrderItems(prevState =>
-                                prevState.filter(item => {
-                                    return item.ca3 !== 'table cards';
-                                }),
-                            );
-                        }
-                        else {
-                            setOrderItems(prevState =>
-                                [...prevState, {
-                                    ca3: 'table cards',
-                                    price: parseFloat(e.target.value)
-                                }]);
-                        }
-                    }} />Table Cards</div>
+                    <div className='grid-item'><input type="checkbox" id="menu" value="20" name='cards' className='checkbox-circle' onChange={handleMenuCards} />Menu Cards</div>
+                    <div className='grid-item'><input type="checkbox" id="seat" value="20" name='cards' className='checkbox-circle' onChange={handleSeatCards} />Seat Cards</div>
+                    <div className='grid-item'><input type="checkbox" id="table" value="20" name='cards' className='checkbox-circle' onChange={handleTableCards} />Table Cards</div>
                 </div>
                 <span className='total-footer'>
                     Total is subject to change <b>Total: {sumTotal.current} Php</b>

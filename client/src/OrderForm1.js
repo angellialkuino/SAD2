@@ -3,39 +3,32 @@ import { Link, Navigate, useNavigate } from 'react-router-dom';
 import NavBarCustomerLoggedIn from './NavBarCustomerLoggedIn';
 import './OrderForm1.css';
 
-const OrderForm1 = ({ orderData, setOrderData, orderItems, setOrderItems }) => {
-    // useEffect(() => console.log(orderData), [orderData]);
+const OrderForm1 = ({ orderItems, setOrderItems }) => {
     useEffect(() => console.log(orderItems), [orderItems]);
 
     const navigate = useNavigate()
 
     const handleInviteType = (e) => {
-        setOrderItems(prevState => {
-            const newState = prevState.map(obj => {
-                if ('inviteType' in obj) {
-                    return { ...obj, inviteType: e.target.value };
-                }
-                return obj;
-            });
-            return newState;
-        })
+        setOrderItems((previousState) => {
+            return {
+                ...previousState,
+                invite_type: e.target.value
+            };
+        });
     }
     const handleMaterial = (e) => {
-        setOrderItems(prevState => {
-            const newState = prevState.map(obj => {
-                if ('material' in obj) {
-                    return { ...obj, material: e.target.id, price: e.target.value };
-                }
-                return obj;
-            });
-            return newState;
-        })
+        setOrderItems((previousState) => {
+            return {
+                ...previousState,
+                material: e.target.id,
+                material_price: parseFloat(e.target.value)
+            };
+        });
     }
 
     const handleCancel = (e) => {
         if (window.confirm("Are you sure you want to cancel the order?")) {
             navigate("/")
-            setOrderData({})
         }
     }
 
@@ -99,15 +92,12 @@ const OrderForm1 = ({ orderData, setOrderData, orderItems, setOrderItems }) => {
                             id="event_date"
                             autoComplete="off"
                             onChange={(e) => {
-                                setOrderItems(prevState => {
-                                    const newState = prevState.map(obj => {
-                                        if ('eventDate' in obj) {
-                                            return { ...obj, eventDate: e.target.value };
-                                        }
-                                        return obj;
-                                    });
-                                    return newState;
-                                })
+                                setOrderItems((previousState) => {
+                                    return {
+                                        ...previousState,
+                                        event_date: e.target.value
+                                    };
+                                });
                             }}
                             required
                             className='profile-textfield' />
@@ -119,15 +109,12 @@ const OrderForm1 = ({ orderData, setOrderData, orderItems, setOrderItems }) => {
                             id="motif"
                             autoComplete="off"
                             onChange={(e) => {
-                                setOrderItems(prevState => {
-                                    const newState = prevState.map(obj => {
-                                        if ('motif' in obj) {
-                                            return { ...obj, motif: e.target.value };
-                                        }
-                                        return obj;
-                                    });
-                                    return newState;
-                                })
+                                setOrderItems((previousState) => {
+                                    return {
+                                        ...previousState,
+                                        motif: e.target.value
+                                    };
+                                });
                             }}
                             required
                             className='profile-textfield' />
@@ -139,15 +126,12 @@ const OrderForm1 = ({ orderData, setOrderData, orderItems, setOrderItems }) => {
                             id="invitation_title"
                             autoComplete="off"
                             onChange={(e) => {
-                                setOrderItems(prevState => {
-                                    const newState = prevState.map(obj => {
-                                        if ('invite_title' in obj) {
-                                            return { ...obj, invite_title: e.target.value };
-                                        }
-                                        return obj;
-                                    });
-                                    return newState;
-                                })
+                                setOrderItems((previousState) => {
+                                    return {
+                                        ...previousState,
+                                        invite_title: e.target.value
+                                    };
+                                });
                             }}
                             required
                             className='profile-textfield' />
@@ -159,15 +143,12 @@ const OrderForm1 = ({ orderData, setOrderData, orderItems, setOrderItems }) => {
                             id="font"
                             autoComplete="off"
                             onChange={(e) => {
-                                setOrderItems(prevState => {
-                                    const newState = prevState.map(obj => {
-                                        if ('font_style' in obj) {
-                                            return { ...obj, font_style: e.target.value };
-                                        }
-                                        return obj;
-                                    });
-                                    return newState;
-                                })
+                                setOrderItems((previousState) => {
+                                    return {
+                                        ...previousState,
+                                        font_style: e.target.value
+                                    };
+                                });
                             }}
                             required
                             className='profile-textfield' />
@@ -179,15 +160,12 @@ const OrderForm1 = ({ orderData, setOrderData, orderItems, setOrderItems }) => {
                             id="content_link"
                             autoComplete="off"
                             onChange={(e) => {
-                                setOrderItems(prevState => {
-                                    const newState = prevState.map(obj => {
-                                        if ('content_link' in obj) {
-                                            return { ...obj, content_link: e.target.value };
-                                        }
-                                        return obj;
-                                    });
-                                    return newState;
-                                })
+                                setOrderItems((previousState) => {
+                                    return {
+                                        ...previousState,
+                                        content_link: e.target.value
+                                    };
+                                });
                             }}
                             required
                             className='profile-textfield' />
@@ -200,15 +178,12 @@ const OrderForm1 = ({ orderData, setOrderData, orderItems, setOrderItems }) => {
                             id="invite_number"
                             autoComplete="off"
                             onChange={(e) => {
-                                setOrderItems(prevState => {
-                                    const newState = prevState.map(obj => {
-                                        if ('num_of_invites' in obj) {
-                                            return { ...obj, num_of_invites: parseInt(e.target.value) };
-                                        }
-                                        return obj;
-                                    });
-                                    return newState;
-                                })
+                                setOrderItems((previousState) => {
+                                    return {
+                                        ...previousState,
+                                        num_of_invites: e.target.value
+                                    };
+                                });
                             }}
                             required
                             className='profile-textfield' />
@@ -220,15 +195,12 @@ const OrderForm1 = ({ orderData, setOrderData, orderItems, setOrderItems }) => {
                             id="peg_link"
                             autoComplete="off"
                             onChange={(e) => {
-                                setOrderItems(prevState => {
-                                    const newState = prevState.map(obj => {
-                                        if ('peg_link' in obj) {
-                                            return { ...obj, peg_link: e.target.value };
-                                        }
-                                        return obj;
-                                    });
-                                    return newState;
-                                })
+                                setOrderItems((previousState) => {
+                                    return {
+                                        ...previousState,
+                                        peg_link: e.target.value
+                                    };
+                                });
                             }}
                             required
                             className='profile-textfield' />

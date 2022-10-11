@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 
-export const RunningPrice = ({ orderItems }) => {
-
+export const RunningPrice = ({ orderItems, orderDetails }) => {
     return (
-
-        <div></div>
-
+        <>
+            {orderDetails.map((item) =>
+                <ul key={item.item_id}>
+                    <li>- {item.item_name} {item.price}Php</li>
+                </ul>)
+            }
+        </>
     )
 }

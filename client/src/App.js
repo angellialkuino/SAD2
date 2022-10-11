@@ -38,18 +38,23 @@ function App() {
     const sumTotal = useRef(0);
 
     //order form data
-    const [orderItems, setOrderItems] = useState([
-        { inviteType: '' },
-        { material: '' },
-        { paper_size: '', color: '', price: 0 },
-        { eventDate: '' },
-        { motif: '' },
-        { invite_title: '' },
-        { font_style: '' },
-        { content_link: '' },
-        { num_of_invites: 0 },
-        { peg_link: '' },
-        { cover: '', price: 0 }
+    const [orderItems, setOrderItems] = useState(
+        {
+            invite_type: '',
+            material: '',
+            material_price: 0,
+            event_date: '',
+            motif: '',
+            invite_title: '',
+            font_style: '',
+            content_link: '',
+            num_of_invites: 0,
+            peg_link: ''
+        }
+    )
+
+    const [orderDetails, setOrderDetails] = useState([
+        { item_id: 'm1', item_name: 'page' }
     ])
 
     return <React.Fragment>
@@ -77,16 +82,18 @@ function App() {
                 {<OrderForm1
                     orderItems={orderItems}
                     setOrderItems={setOrderItems}
-                    sumTotal={sumTotal}
                 />} />
             <Route path='/order-form-2' element=
                 {<OrderForm2
                     orderItems={orderItems}
-                    setOrderItems={setOrderItems}
+                    orderDetails={orderDetails}
+                    SetOrderDetails={setOrderDetails}
                     sumTotal={sumTotal}
                 />} />
             <Route path='/order-form-3' element=
                 {<OrderForm3
+                    orderDetails={orderDetails}
+                    setOrderDetails={setOrderDetails}
                     sumTotal={sumTotal}
                 />} />
             <Route path='/order-form-4' element=
@@ -120,9 +127,12 @@ function App() {
             <Route path='/staff' element={<StaffAccountOwner />} />
             <Route path='/staff-list' element={<StaffList />} />
         </Routes>
-        {/* <OrderDetailsStaff /> */}
-        <OrderDetailsCustomer />
-
+        <OrderForm3
+            orderItems={orderItems}
+            setOrderItems={setOrderItems}
+            orderDetails={orderDetails}
+            setOrderDetails={setOrderDetails}
+            sumTotal={sumTotal} />
 
     </React.Fragment>
 }
