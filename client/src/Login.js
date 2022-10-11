@@ -1,12 +1,13 @@
 import React, { useRef, useState, useEffect, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import './SignUpAndLogin.css';
 
 import Axios from 'axios';
 
-const LoginForm = ({ success, setSuccess, roles, setRoles }) => {
+const LoginForm = () => {
     const userRef = useRef();
     const errRef = useRef();
+    const navigate = useNavigate();
 
     const [email, setemail] = useState('');
     const [pwd, setPwd] = useState('');
@@ -20,8 +21,8 @@ const LoginForm = ({ success, setSuccess, roles, setRoles }) => {
         setErrMsg('');
     }, [email, pwd])
 
-    const testFunc = () => {
-        Axios.get('http://localhost:5000/api/customer/get-test',
+    const testFunc = async () => {
+        await Axios.get('http://localhost:5000/api/customer/get-test',
             { withCredentials: true }
         ).then((res) => {
             console.log(res);
@@ -31,20 +32,20 @@ const LoginForm = ({ success, setSuccess, roles, setRoles }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("handleSubmit func");
+
         await Axios.post('http://localhost:5000/api/customer/log-in',
             { email: email, password: pwd },
             { withCredentials: true }
         ).then((res) => {
             if (res.status === 200) {
                 console.log(res);
-                setSuccess(true);
-                //setSuccessMsg(res.data.message);
-                setRoles("customer"); //check if backend returns anythin pero dba matic cust naman toh?
-                setemail('');
-                setPwd('');
-            } else if (res.status === 400) {
-                setErrMsg(res.data.message); //or is it res.body.message
+                if(res.data.role=='customer'){
+                    navigate('/customer');
+                }else if(res.data.role=='staff'){
+                    navigate('/staff/order-list');                    
+                }else if(res.data.role=='owner'){
+                    navigate('/owner/staff-list');                    
+                }
             }
 
         }).catch((err) => {
@@ -52,7 +53,7 @@ const LoginForm = ({ success, setSuccess, roles, setRoles }) => {
             if (!err?.response) {
                 setErrMsg('No Server Response');
             } else if (err.response?.status === 400) {
-                setErrMsg('Missing Email or Password');
+                setErrMsg(err.response.message);
             } else if (err.response?.status === 401) {
                 setErrMsg('Unauthorized');
             } else {
@@ -70,26 +71,7 @@ const LoginForm = ({ success, setSuccess, roles, setRoles }) => {
                 <img className='signup-img' src={process.env.PUBLIC_URL + '/images/sample6.jpg'} alt="Debut Invitation" />
 
             </div>
-            <div className='mt-5'>
-                {success && roles == 'customer' ? (
-                    <section>
-                        <h1>You are logged in!</h1>
-                        <br />
-                        <p>
-                            <Link to='/'>Go to Home</Link>
-                        </p>
-                    </section>
-                ) :
-                    success && roles == 'staff' ? (
-                        <section>
-                            <h1>You are logged in!</h1>
-                            <br />
-                            <p>
-                                <Link to='/order-list-staff'>Go to Order List</Link>
-                            </p>
-                        </section>
-                    ) :
-                        (
+            <div className='mt-5'>                
                             <section>
                                 <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
                                 <h1>Login to Account</h1>
@@ -125,7 +107,6 @@ const LoginForm = ({ success, setSuccess, roles, setRoles }) => {
 
                                 </p>
                             </section>
-                        )}
             </div>
         </div></>
     )

@@ -1,10 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 
 
 function NavBar() {
     return (
-        <React.Fragment>
+        <>
             <nav className='nav'>
                 <Link to="/" className="navbar-brand nav-link site-title nav-hover">Crafter's Haven</Link>
                 <ul>
@@ -17,7 +17,8 @@ function NavBar() {
                 </ul>
             </nav>
 
-        </React.Fragment>
+        <Outlet/>
+        </>
     );
 }
 

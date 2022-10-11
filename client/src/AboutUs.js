@@ -1,10 +1,8 @@
 import './AboutUs.css';
-import NavBar from './NavBar';
 
 function AboutUs() {
     return (
         <>
-            <NavBar />
             <div className='about-us m-5' >
                 <div className='about-us-center'>
                     <h3 className="fw-bold">About Us</h3>

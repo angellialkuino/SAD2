@@ -3,6 +3,18 @@
 ### test route http://localhost:5000/api/customer/get-test
 GET {{hostname}}/customer/get-test
 
+
+### authenticate customer
+GET {{hostname}}/customer/auth
+
+### authenticate staff
+GET {{hostname}}/staff/auth
+
+### authenticate owner
+GET {{hostname}}/owner/auth
+
+
+
 ### create new customer
 
 POST {{hostname}}/customer/sign-up
@@ -24,6 +36,16 @@ Content-Type: application/json
 {
     "email": "YLT@gmail.com",
     "password": "hush"
+}
+
+### staff log in
+
+POST {{hostname}}/customer/log-in
+Content-Type: application/json
+
+{
+    "email": "eee@gmail.com",
+    "password": "password"
 }
 
 ### customer log out
