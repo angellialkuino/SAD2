@@ -92,6 +92,8 @@ function App() {
                 />} />
             <Route path='/order-form-3' element=
                 {<OrderForm3
+                    orderDetails={orderDetails}
+                    setOrderDetails={setOrderDetails}
                     sumTotal={sumTotal}
                 />} />
             <Route path='/order-form-4' element=
@@ -125,7 +127,7 @@ function App() {
             <Route path='/staff' element={<StaffAccountOwner />} />
             <Route path='/staff-list' element={<StaffList />} />
         </Routes>
-        <OrderForm2
+        <OrderForm3
             orderItems={orderItems}
             setOrderItems={setOrderItems}
             orderDetails={orderDetails}
