@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link,Outlet } from 'react-router-dom';
 
 function NavBarOwner() {
     return (
@@ -13,6 +13,7 @@ function NavBarOwner() {
                     <li><Link to='' className="rounded-pill btn btn-info fw-bold nav-hover">Logout</Link></li>
                 </ul>
             </nav>
+            <Outlet/>
         </React.Fragment>
     );
 }

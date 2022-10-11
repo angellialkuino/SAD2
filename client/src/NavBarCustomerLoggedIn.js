@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 
 
 function NavBarCustomerLoggedIn() {
@@ -16,6 +16,7 @@ function NavBarCustomerLoggedIn() {
                     <li><Link to='/account-details' className="rounded-pill btn btn-info fw-bold nav-hover">My Account</Link></li>
                 </ul>
             </nav>
+            <Outlet/>
 
         </React.Fragment>
     );
