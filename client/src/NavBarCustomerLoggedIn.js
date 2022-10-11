@@ -1,22 +1,32 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
 
 
 function NavBarCustomerLoggedIn() {
+    const navigate = useNavigate();
+    const [isAuth, setIsAuth] = useState(false);
+
     useEffect(() => {
         const custAuth = async () => {
-            await Axios.get('http://localhost:5000/api/customer/get-test',
+            await Axios.get('http://localhost:5000/api/customer/auth',
                 { withCredentials: true }
-            ).then((res) => {
-                console.log(res);
-    
-            })
+            ).then().catch((err) => {
+                console.log(err.response.status);
+                if(err.response.status == 401){
+                    //navigate to unautherized page
+                    navigate("/");
+                }
+            });
+            setIsAuth(true);
         }
-    }
-        ,[])
+
+        custAuth();
+    },[])
+
     return (
         <React.Fragment>
+            {isAuth && <>
             <nav className='nav'>
                 <Link to="/" className="navbar-brand nav-link site-title nav-hover">Crafter's Haven</Link>
                 <ul>
@@ -29,6 +39,7 @@ function NavBarCustomerLoggedIn() {
                 </ul>
             </nav>
             <Outlet/>
+            </>}
 
         </React.Fragment>
     );

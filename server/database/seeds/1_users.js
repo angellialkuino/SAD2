@@ -17,7 +17,7 @@ exports.seed = async function(knex) {
     {user_id: uuid.v4(), role: 'staff', full_name: 'Aabe Korry M. Alkuino', phone_number: '89899898', email: 'eee@gmail.com', password: await bcrypt.hash('password', 10), fb_account: 'aabe.alkuino', address: 'address', barangay: '20B', postal_code: '8000'},
     {user_id: uuid.v4(), role: 'staff', full_name: 'Aaron Kill M. Alkuino', phone_number: '78', email: 'fff@gmail.com', password: await bcrypt.hash('password123', 10), fb_account: 'dyin.a', address: 'addadd', barangay: '20B', postal_code: '8000'},
     {user_id: uuid.v4(), role: 'staff', full_name: 'Amm Kigh M. Alkuino', phone_number: '9999', email: 'hhh@gmail.com', password: await bcrypt.hash('testpass', 10), fb_account: 'ehm.alkuino', address: 'addresssssss', barangay: '20B', postal_code: '8000'},
-
+    {user_id: uuid.v4(), role: 'owner', full_name: 'Mommy Yancy', phone_number: '9999', email: 'craft@gmail.com', password: await bcrypt.hash('craft', 10), fb_account: 'hvn.tupas', address: 'addresssssss', barangay: '20B', postal_code: '8000'}
     
   ]);
 };

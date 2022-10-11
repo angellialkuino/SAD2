@@ -15,7 +15,6 @@ function CustAccDetail() {
     const [contactNum, setcontactNum] = useState("N/A");
 
     const [errMsg, setErrMsg] = useState('');
-    const [success, setSuccess] = useState(false);
     const [successMsg, setSuccessMsg] = useState('');
 
 
@@ -28,7 +27,6 @@ function CustAccDetail() {
             ).then((res) => {
                 //console.log(res);
                 if(res.status===200){
-                    setSuccess(true);
                     setSuccessMsg(res.data.message);
                     setUser(res.data.user); 
                     // console.log(res.data.user);
@@ -80,7 +78,6 @@ function CustAccDetail() {
             { withCredentials: true }
         ).then((res) => {
             if(res.status===200){
-                setSuccess(true);
                 setSuccessMsg(res.data.message);
                 setIsDisabled(true);
             }else if (res.status===400){
@@ -96,7 +93,6 @@ function CustAccDetail() {
         await Axios.get('http://localhost:5000/api/customer/log-out',
             { withCredentials: true }
         ).then((res) => {
-            setSuccess(true);
             setSuccessMsg(res.data.message);
             // Navigate to home page without cust navbar
         }).catch((err) => {

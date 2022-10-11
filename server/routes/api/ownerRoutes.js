@@ -2,10 +2,10 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const controller = require('../../controllers/userController');
-const isAuth = require('../../middleware/auth').isAuth;
+const {isAuthOwner} = require('../../middleware/auth');
 const multer = require('multer');
 
-router.get('/auth', controller.get);
+router.get('/auth', isAuthOwner);
 
 //this has search funtionaity ehmm hooow
 router.post('/new-staff', controller.createStaff);
@@ -17,6 +17,10 @@ router.get('/staff-account', controller.viewUser);
 router.put('/update-staff', controller.updateUser);
 
 router.delete('/staff-delete', controller.deleteUser);
+
+//login logout
+
+
 
 //upload prof pics
 

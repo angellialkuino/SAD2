@@ -113,11 +113,7 @@ function App() {
 
             {/* Main Pages */}
             <Route path="/" element={<NavBar/>}>
-                {/* <Route index element=
-                    {<HomePage
-                        success={success}
-                        roles={roles}
-                    />} /> */}
+                {/* <Route index element= {<HomePage/>} /> */}
                 <Route path='about-us' element={<AboutUs/>} />
                 <Route path='sign-up' element={<SignUp />} />
                 <Route path='login' element={<Login />} />
@@ -127,12 +123,6 @@ function App() {
 
             {/* Customer Order Form */}
             <Route path="/form" element={<CustNavBar/>}>
-                {/* <Route index element=
-                    {<HomePage
-                        success={success}
-                        roles={roles}
-                    />} /> */}
-                <Route path='about-us' element={<AboutUs/>} />
                 <Route path='terms-and-conditions' element={<TermsAndConditions />} />
                 <Route path='order-form-1' element=
                     {<OrderForm1
@@ -167,26 +157,28 @@ function App() {
 
             {/* Customer Account and Order Pages */}
             <Route path="/customer" element={<CustNavBar/>}>
+                {/* <Route index element= {<HomePage/>} /> */}
+                <Route path='about-us' element={<AboutUs/>} />
                 <Route path='account-details' element={<CustAccDetail />} />
                 <Route path='current-orders' element={<CustMyOrders />} />
                 <Route path='order-details' element={<OrderDetailsCustomer />} />
-                <Route path='order-loc-cust' element={<OrderDocumentationCustomer />} />
+                <Route path='order-log' element={<OrderDocumentationCustomer />} />
                 <Route path='invitation-draft' element={<InvitationDraftCustomer />} />
             </Route>
 
             {/* Staff Pages */}
             <Route path="/staff" element={<StaffNavBar/>}>
-                <Route path='order-list-staff' element={<OrderListStaff />} />
-                <Route path='order-details-staff' element={<OrderDetailsStaff />} />
-                <Route path='invitation-draft-staff' element={<InvitationDraftStaff />} />
-                <Route path='order-history-staff' element={<OrderHistoryStaff />} />
+                <Route path='order-list' element={<OrderListStaff />} />
+                <Route path='order-details' element={<OrderDetailsStaff />} />
+                <Route path='invitation-draft' element={<InvitationDraftStaff />} />
+                <Route path='order-history' element={<OrderHistoryStaff />} />
                 <Route path='order-log' element={<OrderDocumentation />} />
             </Route>
 
             {/* Owner Pages */}
-            <Route path="/staff" element={<OwnerNavBar/>}>
+            <Route path="/owner" element={<OwnerNavBar/>}>
                 <Route path='create-staff' element={<StaffAccountCreateOwner />} />
-                <Route path='staff' element={<StaffAccountOwner />} />
+                <Route path='view-staff' element={<StaffAccountOwner />} />
                 <Route path='staff-list' element={<StaffList />} />
             </Route>
         </Routes>
