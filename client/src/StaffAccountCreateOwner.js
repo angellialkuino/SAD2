@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 import Axios from "axios";
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,6 +11,8 @@ const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 const PHONENUMBER_REGEX = /^[0][1-9]\d{9}$|^[1-9]\d{9}$/g;
 
 function CreateStaffAccountOwner() {
+    const navigate = useNavigate();
+
     const [name, setName] = useState('')
     const [validName, setValidName] = useState(false);
     const [userFocus, setUserFocus] = useState(false);
@@ -31,7 +34,6 @@ function CreateStaffAccountOwner() {
     const [phoneFocus, setPhoneFocus] = useState(false);
 
     const [errMsg, setErrMsg] = useState('');
-    const [success, setSuccess] = useState(false);
     const [successMsg, setSuccessMsg] = useState('');
 
     const userRef = useRef();
@@ -74,7 +76,6 @@ function CreateStaffAccountOwner() {
             { withCredentials: true }
         ).then((res) => {
             if (res.status === 200) {
-                setSuccess(true);
                 setSuccessMsg(res.data.message);
                 // navigate to new staff profile!!!!
             } else if (res.status === 400) {
@@ -209,7 +210,8 @@ function CreateStaffAccountOwner() {
                     </p>
 
                     <div className="button-row">
-                        <button className="rounded-pill btn btn-info nav-hover">Create</button>
+                        <button type="submit" className="rounded-pill btn btn-info nav-hover">Create</button>
+                        <button onClick={navigate(-1)} className="rounded-pill btn btn-info nav-hover">Cancel</button>
                     </div>
                 </div>
             </form>

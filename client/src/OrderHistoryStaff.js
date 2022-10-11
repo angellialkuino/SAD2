@@ -1,4 +1,5 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import Axios from 'axios';
 import Order_History_Staff_Table from "./OrderHistoryStaffTable";
 import './OrderHistoryStaffTable.css'
@@ -6,6 +7,8 @@ import './OrderHistoryStaffTable.css'
 //var Orders = require("./OrderHistoryStaff_PLACEHOLDER.json");
 
 export default function OrderHistory() {
+    const navigate = useNavigate();
+
     const [orderHistory, setOrderHistory] = useState([]);
 
     useEffect(  () => {
@@ -35,8 +38,8 @@ export default function OrderHistory() {
             </div>
 
             <div className="oh_buttons">
-                <button className="oh_button-back">Back</button>
-                <button className="oh_button-next">Next</button>
+                <button className="oh_button-back" onClick={() => navigate(-1)}>Back</button>
+
             </div>
         </div>
     );

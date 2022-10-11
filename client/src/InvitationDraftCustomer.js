@@ -1,12 +1,17 @@
 import Axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './InvitationDraft.css';
 
 function InvitationDraftCustomer() {
+    const navigate = useNavigate();
+
+    const location = useLocation();
+    const {orderID} = location.state;
+
     const [path, setPath] = useState('');
     const [text, setText] = useState('');
-    const [orderID, setOrderID] = useState('a7a40b63-dbe8-4bcc-bec0-5111b86588af');
+    //const [orderID, setOrderID] = useState('a7a40b63-dbe8-4bcc-bec0-5111b86588af');
 
     useEffect( () => {
         const showImage = async () => {
@@ -34,7 +39,7 @@ function InvitationDraftCustomer() {
             </div>
 
             <div className='order-being-confirmed-footer'>
-                <Link to='/order-details' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
+                <button onClick={() => navigate(-1)} className="rounded-pill btn btn-info fw-bold nav-hover">Back</button>
             </div>
         </div>
     );

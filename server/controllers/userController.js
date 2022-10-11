@@ -53,12 +53,14 @@ exports.createStaff = async (req, res) => {
 //VIEW USER ACC INFO
 exports.viewUser = async (req, res) => {
     try {
-        let id;
-        if(req.user){ id=req.user.user_id;}
-        else{id=req.query.user_id}
-
-        const user = await service.findUserbyId(id); //coordinate with fat on this
-
+        const userID=req.query.user_id;
+        // if(req.user){ id=req.user.user_id;}
+        // else if(req.query){id=req.query.user_id;}
+        // else{id=req.body.user_id;}
+        
+        console.log(`ID: ${userID}`);
+        const user = await service.findUserbyId(userID); //coordinate with fat on this
+        console.log(`User: \n${user}`);
         if(!user){
             return res.status(400).send({ message:'This user does not exist'});
         }

@@ -38,11 +38,11 @@ function NavBarOwner() {
         <React.Fragment>
             {isAuth && <>
             <nav className='nav'>
-                <Link to="/" className="navbar-brand nav-link site-title nav-hover">Crafter's Haven</Link>
+                <Link to="/owner" className="navbar-brand nav-link site-title nav-hover">Crafter's Haven</Link>
                 <ul>
-                    <li><Link to='/staff-list' className="rounded-pill btn btn-info fw-bold nav-hover">Staff List</Link></li>
-                    <li><Link to='/order-list-staff' className="rounded-pill btn btn-info fw-bold nav-hover">Order List</Link></li>
-                    <li><Link to='/order-history-staff' className="rounded-pill btn btn-info fw-bold nav-hover">Order History</Link></li>
+                    <li><Link to='/owner/staff-list' className="rounded-pill btn btn-info fw-bold nav-hover">Staff List</Link></li>
+                    <li><Link to='/owner/order-list' className="rounded-pill btn btn-info fw-bold nav-hover">Order List</Link></li>
+                    <li><Link to='/owner/order-history' className="rounded-pill btn btn-info fw-bold nav-hover">Order History</Link></li>
                     <li><button onClick={logOut} className="btn btn-dark btn-lg btn-block">Log Out</button></li>
                 </ul>
             </nav>

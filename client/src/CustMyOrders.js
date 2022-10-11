@@ -1,18 +1,19 @@
-import React, { Component, useEffect, useState } from "react";
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { useOutletContext,Link } from "react-router-dom";
 import Axios from 'axios';
 import './CustMyOrders.css';
 
 function CustMyOrders() {
     const [myOrders, setMyOrders] = useState([]);
+    const userID = useOutletContext();
 
     useEffect( () => {
         const getMyOrders = async () => {
             await Axios.get('http://localhost:5000/api/order/my-orders',
-            { params: {user_id: "08078e7c-4af1-4973-a988-d5ce25b38b26"},
-            withCredentials: true }
+            { params: {user_id: userID}},
+            {withCredentials: true }
         ).then((res) => {
-            console.log(res);            
+            //console.log(res);            
             setMyOrders(res.data.orders);
         });
         }
@@ -36,9 +37,9 @@ function CustMyOrders() {
                                 return(
                                 <div className="custMyOrders-labels">
                                     <h3>Order {item.order_id.slice(-4)}</h3> 
-                                    {/* <Link to="/order-details" state={{orderID: item.order_id}}>
-                                    <button type="view" className="btn btn-dark btn-lg btn-block">View Order Details</button>
-                                    </Link> */}
+                                    <Link to="/customer/order-details" state={{orderID: item.order_id}}>
+                                    View Order Details
+                                    </Link>
                                 </div>
                                 )
                             })

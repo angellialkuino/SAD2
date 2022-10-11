@@ -1,13 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
 import Axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './OrderDetails.css';
 
 function OrderDetailsStaff() {
-const [orderID, setOrderID] = useState("4a1a6e3a-7d8c-4b99-8302-b665cfe37015");
+const location = useLocation();
+const {orderID} = location.state;
+//const [orderID, setOrderID] = useState("4a1a6e3a-7d8c-4b99-8302-b665cfe37015");
 const [orderInfo, setOrderInfo] = useState({});
 
-const [userID, setUserID] = useState("N/A");
+//const [userID, setUserID] = useState("N/A");
 const [inviteType, setUserIinviteType] = useState("N/A");
 const [material, setMaterial] = useState("N/A");
 const [eventDate, setEventDate] = useState("N/A");
@@ -34,7 +36,6 @@ const [paymentMethod, setPaymentMethod] = useState("N/A");
 const [isDisabled, setIsDisabled] = useState(true);
 
 const [errMsg, setErrMsg] = useState('');
-const [success, setSuccess] = useState(false);
 const [successMsg, setSuccessMsg] = useState('');
 
 useEffect( () => {
@@ -63,10 +64,8 @@ getOrderDetails();
 useEffect(()=>{
 
     if (Object.keys(orderInfo).length !== 0){
-    //console.log(`order info: \n${JSON.stringify(orderInfo)}`);
-
         //setOrderID(orderInfo.order.order_id);
-        setUserID(orderInfo.order.user_id);
+        //setUserID(orderInfo.order.user_id);
         setUserIinviteType(orderInfo.order.invite_type);
         setMaterial(orderInfo.order.material);
         setEventDate(orderInfo.order.event_date.slice(0, 19).replace('T', ' '));
@@ -263,8 +262,8 @@ const updateOrderStatus = async (e) => {
                     <button className='rounded-pill btn btn-info fw-bold nav-hover'>Edit Order Details</button>
                 </div>
                 <div className='order-details-footer'>
-                    <Link to='/invitation-draft-staff' className="rounded-pill btn btn-info fw-bold nav-hover">View Invitation</Link>
-                    <Link to='/documentation-of-changes' className="rounded-pill btn btn-info fw-bold nav-hover">View Order Log</Link>
+                    <Link to='/staff/invitation-draft' state={{orderID:orderID}} className="rounded-pill btn btn-info fw-bold nav-hover">View Invitation</Link>
+                    <Link to='/staff/order-log' state={{orderID:orderID}} className="rounded-pill btn btn-info fw-bold nav-hover">View Order Log</Link>
                 </div>
 
             </div>

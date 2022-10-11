@@ -38,10 +38,10 @@ function NavBarStaff() {
         <React.Fragment>
             {isAuth && <>
             <nav className='nav'>
-                <Link to="/" className="navbar-brand nav-link site-title nav-hover">Crafter's Haven</Link>
+                <Link to="/staff" className="navbar-brand nav-link site-title nav-hover">Crafter's Haven</Link>
                 <ul>
-                    <li><Link to='/order-list-staff' className="rounded-pill btn btn-info fw-bold nav-hover">Order List</Link></li>
-                    <li><Link to='/order-history-staff' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link></li>
+                    <li><Link to='/staff/order-list' className="rounded-pill btn btn-info fw-bold nav-hover">Order List</Link></li>
+                    <li><Link to='/staff/order-history' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link></li>
                     <li><button onClick={logOut} className="btn btn-dark btn-lg btn-block">Log Out</button></li>
                 </ul>
             </nav>

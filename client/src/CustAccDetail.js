@@ -1,11 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import Axios from 'axios';
 import './CustAccDetail.css';
+import { useOutletContext,useNavigate } from "react-router-dom";
 
 function CustAccDetail() {
+    const navigate = useNavigate();
+
+    const userID = useOutletContext();
     const [isDisabled, setIsDisabled] =useState(true);
     const [user, setUser] = useState({});
-    const [userID, setUserID] = useState("");
     const [name, setName] = useState("N/A");
     const [email, setEmail] = useState("N/A");
     const [address, setAddress] = useState("N/A");
@@ -14,15 +17,17 @@ function CustAccDetail() {
     const [fbAcc, setfbAcc] = useState("N/A");
     const [contactNum, setcontactNum] = useState("N/A");
 
+
     const [errMsg, setErrMsg] = useState('');
     const [successMsg, setSuccessMsg] = useState('');
 
 
     useEffect( () => {
+        console.log('userID: ', userID);
 
         const getAccDetails = async () => {
             await Axios.get('http://localhost:5000/api/customer/my-account',
-                {params:{user_id: "49f79034-971b-4042-8795-49da1293f959"}}, 
+                {params:{user_id: userID}}, 
                 {withCredentials: true } 
             ).then((res) => {
                 //console.log(res);
@@ -30,14 +35,12 @@ function CustAccDetail() {
                     setSuccessMsg(res.data.message);
                     setUser(res.data.user); 
                     // console.log(res.data.user);
-                    // console.log(user);            
+                    console.log(user);            
                     
-                }else if (res.status===400){
-                    setErrMsg(res.data.message); 
                 }
-                
             }).catch(err => {
-                console.log(err);
+                console.log(err.response.message);
+
             });
         }
 
@@ -47,7 +50,6 @@ function CustAccDetail() {
 
     useEffect(()=>{
         if(Object.keys(user).length !== 0){
-            setUserID(user.user_id);
             setName(user.full_name);
             setEmail(user.email);
             setAddress(user.address);
@@ -94,7 +96,7 @@ function CustAccDetail() {
             { withCredentials: true }
         ).then((res) => {
             setSuccessMsg(res.data.message);
-            // Navigate to home page without cust navbar
+            navigate("/");
         }).catch((err) => {
             console.log(err);
         });

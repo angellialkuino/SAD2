@@ -32,7 +32,7 @@ const LoginForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        console.log('submitting login info');
         await Axios.post('http://localhost:5000/api/customer/log-in',
             { email: email, password: pwd },
             { withCredentials: true }

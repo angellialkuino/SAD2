@@ -1,8 +1,30 @@
-import React from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import React, { useEffect} from 'react';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
 
 
 function NavBar() {
+    // useEffect(() => {
+    //     const custAuth = async () => {
+    //         await Axios.get('http://localhost:5000/api/customer/auth',
+    //             { withCredentials: true }
+    //         ).then((res)=>{
+    //             setUserID(res.data.user_id);
+    //         }).catch((err) => {
+    //             console.log(res);
+    //             if(res.data.role=='customer'){
+    //                 navigate('/customer');
+    //             }else if(res.data.role=='staff'){
+    //                 navigate('/staff/order-list');                    
+    //             }else if(res.data.role=='owner'){
+    //                 navigate('/owner/staff-list');                    
+    //             }
+    //         });
+    //         setIsAuth(true);
+    //     }
+
+    //     custAuth();
+    // },[])
+
     return (
         <>
             <nav className='nav'>
