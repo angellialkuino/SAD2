@@ -40,16 +40,21 @@ function App() {
     //order form data
     const [orderItems, setOrderItems] = useState(
         {
-            invite_type: '',
-            material: '',
-            material_price: 0,
-            event_date: '',
-            motif: '',
-            invite_title: '',
-            font_style: '',
-            content_link: '',
-            num_of_invites: 0,
-            peg_link: ''
+            payment_method: '',
+            order: {
+                invite_type: '',
+                material: '',
+                material_price: 0,
+                event_date: '',
+                motif: '',
+                invite_title: '',
+                font_style: '',
+                content_link: '',
+                num_of_invites: 0,
+                peg_link: '',
+                order_deadline: '',
+                claim_type: ''
+            }
         }
     )
 
@@ -86,8 +91,9 @@ function App() {
             <Route path='/order-form-2' element=
                 {<OrderForm2
                     orderItems={orderItems}
+                    setOrderItems={setOrderItems}
                     orderDetails={orderDetails}
-                    SetOrderDetails={setOrderDetails}
+                    setOrderDetails={setOrderDetails}
                     sumTotal={sumTotal}
                 />} />
             <Route path='/order-form-3' element=
@@ -98,11 +104,18 @@ function App() {
                 />} />
             <Route path='/order-form-4' element=
                 {<OrderForm4
+                    orderItems={orderItems}
+                    setOrderItems={setOrderItems}
+                    orderDetails={orderDetails}
+                    setOrderDetails={setOrderDetails}
                     sumTotal={sumTotal}
                 />} />
             <Route path='/order-form-5' element=
                 {<OrderForm5
-                    sumTotal={sumTotal}
+                    orderItems={orderItems}
+                    setOrderItems={setOrderItems}
+                    orderDetails={orderDetails}
+                    setOrderDetails={setOrderDetails}
                 />} />
             <Route path='/check-order' element={<CheckOrder />} />
             <Route path='/order-pickup' element={<OrderPickup />} />
@@ -127,12 +140,12 @@ function App() {
             <Route path='/staff' element={<StaffAccountOwner />} />
             <Route path='/staff-list' element={<StaffList />} />
         </Routes>
-        <OrderForm3
+        <Downpayment
             orderItems={orderItems}
             setOrderItems={setOrderItems}
             orderDetails={orderDetails}
             setOrderDetails={setOrderDetails}
-            sumTotal={sumTotal} />
+        />
 
     </React.Fragment>
 }

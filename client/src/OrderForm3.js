@@ -19,7 +19,7 @@ function OrderForm3({ orderDetails, setOrderDetails }) {
 
     return (
         <>
-            <NavBarCustomerLoggedIn />
+            {/* <NavBarCustomerLoggedIn /> */}
             <form className='main-order-frame1'>
                 <h3 className='category-h3'>Paper and Envelope Color</h3>
                 <div className='boxes3'>
@@ -95,10 +95,10 @@ function OrderForm3({ orderDetails, setOrderDetails }) {
                     </div>
                 </div>
 
-                <div className='form1-footer'>
+                {/* <div className='form1-footer'>
                     <Link to='/order-form-2' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
                     <Link to='/order-form-4' className="rounded-pill btn btn-info fw-bold nav-hover">Next</Link>
-                </div>
+                </div> */}
             </form>
         </>
     );

@@ -9,19 +9,25 @@ const OrderForm1 = ({ orderItems, setOrderItems }) => {
     const navigate = useNavigate()
 
     const handleInviteType = (e) => {
-        setOrderItems((previousState) => {
+        setOrderItems((prevState) => {
             return {
-                ...previousState,
-                invite_type: e.target.value
+                ...prevState,
+                order: {
+                    ...prevState.order,
+                    invite_type: e.target.value
+                }
             };
         });
     }
     const handleMaterial = (e) => {
-        setOrderItems((previousState) => {
+        setOrderItems((prevState) => {
             return {
-                ...previousState,
-                material: e.target.id,
-                material_price: parseFloat(e.target.value)
+                ...prevState,
+                order: {
+                    ...prevState.order,
+                    material: e.target.id,
+                    material_price: parseFloat(e.target.value)
+                }
             };
         });
     }
@@ -92,10 +98,13 @@ const OrderForm1 = ({ orderItems, setOrderItems }) => {
                             id="event_date"
                             autoComplete="off"
                             onChange={(e) => {
-                                setOrderItems((previousState) => {
+                                setOrderItems((prevState) => {
                                     return {
-                                        ...previousState,
-                                        event_date: e.target.value
+                                        ...prevState,
+                                        order: {
+                                            ...prevState.order,
+                                            event_date: e.target.value
+                                        }
                                     };
                                 });
                             }}
@@ -109,10 +118,13 @@ const OrderForm1 = ({ orderItems, setOrderItems }) => {
                             id="motif"
                             autoComplete="off"
                             onChange={(e) => {
-                                setOrderItems((previousState) => {
+                                setOrderItems((prevState) => {
                                     return {
-                                        ...previousState,
-                                        motif: e.target.value
+                                        ...prevState,
+                                        order: {
+                                            ...prevState.order,
+                                            motif: e.target.value
+                                        }
                                     };
                                 });
                             }}
@@ -126,10 +138,13 @@ const OrderForm1 = ({ orderItems, setOrderItems }) => {
                             id="invitation_title"
                             autoComplete="off"
                             onChange={(e) => {
-                                setOrderItems((previousState) => {
+                                setOrderItems((prevState) => {
                                     return {
-                                        ...previousState,
-                                        invite_title: e.target.value
+                                        ...prevState,
+                                        order: {
+                                            ...prevState.order,
+                                            invite_title: e.target.value
+                                        }
                                     };
                                 });
                             }}
@@ -143,10 +158,13 @@ const OrderForm1 = ({ orderItems, setOrderItems }) => {
                             id="font"
                             autoComplete="off"
                             onChange={(e) => {
-                                setOrderItems((previousState) => {
+                                setOrderItems((prevState) => {
                                     return {
-                                        ...previousState,
-                                        font_style: e.target.value
+                                        ...prevState,
+                                        order: {
+                                            ...prevState.order,
+                                            font_style: e.target.value
+                                        }
                                     };
                                 });
                             }}
@@ -160,10 +178,13 @@ const OrderForm1 = ({ orderItems, setOrderItems }) => {
                             id="content_link"
                             autoComplete="off"
                             onChange={(e) => {
-                                setOrderItems((previousState) => {
+                                setOrderItems((prevState) => {
                                     return {
-                                        ...previousState,
-                                        content_link: e.target.value
+                                        ...prevState,
+                                        order: {
+                                            ...prevState.order,
+                                            content_link: e.target.value
+                                        }
                                     };
                                 });
                             }}
@@ -178,10 +199,13 @@ const OrderForm1 = ({ orderItems, setOrderItems }) => {
                             id="invite_number"
                             autoComplete="off"
                             onChange={(e) => {
-                                setOrderItems((previousState) => {
+                                setOrderItems((prevState) => {
                                     return {
-                                        ...previousState,
-                                        num_of_invites: e.target.value
+                                        ...prevState,
+                                        order: {
+                                            ...prevState.order,
+                                            num_of_invites: e.target.value
+                                        }
                                     };
                                 });
                             }}
@@ -195,10 +219,13 @@ const OrderForm1 = ({ orderItems, setOrderItems }) => {
                             id="peg_link"
                             autoComplete="off"
                             onChange={(e) => {
-                                setOrderItems((previousState) => {
+                                setOrderItems((prevState) => {
                                     return {
-                                        ...previousState,
-                                        peg_link: e.target.value
+                                        ...prevState,
+                                        order: {
+                                            ...prevState.order,
+                                            peg_link: e.target.value
+                                        }
                                     };
                                 });
                             }}

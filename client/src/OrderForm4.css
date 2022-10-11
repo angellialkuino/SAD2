@@ -52,6 +52,13 @@
     border-color: #53c46d;
 }
 
+.radio-img4 {
+    height: 100px;
+    width: 100px;
+    border-radius: 2rem;
+    margin: 0.5rem;
+}
+
 .small-square-button-4 {
     display: flex;
     background-color: white;
