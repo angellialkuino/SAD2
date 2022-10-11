@@ -18,11 +18,11 @@ const OrderListStaffTable = ({ data }) => {
 
                 {data.map((item) => {
                     return(
-                    <tr className="oh_tr-tr" key={item.order_id}>
-                        <td className="oh_td-td">{item.order_id}</td>
+                    <tr className="oh_tr-tr" key={item.order_id.slice(-4)}>
+                        <td className="oh_td-td">{item.order_id.slice(-4)}</td>
                         <td className="oh_td-td">{item.full_name}</td>
-                        <td className="oh_td-td">{item.date_ordered}</td>
-                        <td className="oh_td-td">{item.order_deadline}</td>
+                        <td className="oh_td-td">{item.date_ordered.slice(0, 10)}</td>
+                        <td className="oh_td-td">{item.order_deadline.slice(0, 10)}</td>
                         <td className="oh_td-td">{item.invite_type}</td>
                         <td className="oh_td-td">{item.motif}</td>
                         <td className="oh_td-td">{item.num_of_invites}</td>

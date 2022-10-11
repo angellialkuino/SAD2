@@ -28,12 +28,12 @@ exports.viewOrder = async (req,res) => {
         orderInfo = await service.findOrder(req.query.order_id);
 
         if(!orderInfo){
-        res.status(400).send({ message:'Order does not exist'});
+        return res.status(400).send({ message:'Order does not exist'});
         }
 
         order_info = await service.viewOrder(orderInfo);
 
-        res.status(200).send({ message:'Successfully retrieved order details', order_info});
+        return res.status(200).send({ message:'Successfully retrieved order details', order_info});
         
     } catch (err) {
         console.log(err);

@@ -25,6 +25,56 @@ exports.currentOrders = async () => {
     return orders;
 }
 
+//compute price of order
+exports.computePrice = async (itemsArray) => {
+
+    let unitPrice=0;
+
+    await db.transaction( async (trx) => {
+        for( let x in itemsArray){
+
+            price = await trx("items")
+            .select('price')
+            .where({ item_id: itemsArray[x].item_id});
+
+            unitPrice += price[0].price;
+            // console.log(itemsArray[x].item_id);
+            // console.log(price[0].price);
+            // console.log(unitPrice);
+
+        }}); 
+    
+    return unitPrice;
+};
+
+const isRush = (date) => {
+    const today = new Date();
+    const deadline = new Date(date.slice(0,10));
+
+    let time_diff = deadline.getTime() - today.getTime();
+    let days = time_diff / (1000 * 3600 * 24);
+
+    //subtract one weekend day for every week
+    let weeks = Math.floor(days / 7);
+    days = days - weeks;
+
+    // Handle special cases
+    let startDay = today.getDay();
+    let endDay = deadline.getDay();
+
+    // Remove weekend not previously removed.   
+    if (startDay - endDay > 1){ days = days--; }
+
+    // Remove start day if span starts on Sunday but ends before Saturday
+    if (startDay == 0 && endDay != 6){ days = days--; }
+
+    // Remove end day if span ends on Saturday but starts after Sunday
+    //if (endDay == 6 && startDay != 0){ days = days-- }
+
+    if(days<15){ return true }else{ return false }
+
+}
+
 //create new order
 exports.createOrder = async (order, itemsArray, paymentMethod) => {
     
@@ -35,17 +85,32 @@ exports.createOrder = async (order, itemsArray, paymentMethod) => {
 
     itemsArray.forEach((item) => {
         item.order_id = order.order_id;
+        delete item.price;
+        delete item.item_name;
     });
 
     await db.transaction(async (trx) => {
         await trx("order_details").insert(itemsArray);
     })
 
+    //compute price and/or additional fees
+
+    //unit price
     const unitPrice = await this.computePrice(itemsArray);
+
+    
+    //is number of order less than 30
+    let lessMin=0,rush = 0;
+    if(order.num_of_invites<30){ lessMin =1500; }
+
+    const partialTotal = unitPrice*order.num_of_invites+lessMin;
+
+    //is order a rush
+    if(isRush(order.order_deadline)){ rush = partialTotal*0.4; }
 
     await db.transaction(async (trx) => {
         await trx("billing_info").insert(
-            {OP_id: uuid.v4(), user_id: order.user_id, order_id: order.order_id, unit_cost: unitPrice, sub_total: unitPrice*order.num_of_invites, payment_method: paymentMethod}
+            {OP_id: uuid.v4(), user_id: order.user_id, order_id: order.order_id, less_min_fee:lessMin, rush_fee:rush, unit_cost: unitPrice, sub_total: partialTotal+rush, payment_method: paymentMethod}
         );
     });
 
@@ -179,25 +244,3 @@ exports.logEntryList = async (orderId) => {
 
 }
 
-//compute price of order
-exports.computePrice = async (itemsArray) => {
-
-    let unitPrice=0;
-
-    await db.transaction( async (trx) => {
-        for( let x in itemsArray){
-
-            price = await trx("items")
-            .select('price')
-            .where({ item_id: itemsArray[x].item_id});
-
-            unitPrice += price[0].price;
-            // console.log(itemsArray[x].item_id);
-            // console.log(price[0].price);
-            // console.log(unitPrice);
-
-        }}); 
-    
-    return unitPrice;
-
-};

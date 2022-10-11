@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import './OrderDetails.css';
 
 function OrderDetailsStaff() {
-const [orderID, setOrderID] = useState("a7a40b63-dbe8-4bcc-bec0-5111b86588af");
+const [orderID, setOrderID] = useState("4a1a6e3a-7d8c-4b99-8302-b665cfe37015");
 const [orderInfo, setOrderInfo] = useState({});
 
 const [userID, setUserID] = useState("N/A");
@@ -26,6 +26,8 @@ const [itemsArray, setItemsArray] = useState([]);
 
 const [unitCost, setUnitCost] = useState(0);
 const [revFee, setRevFee] = useState(0);
+const [rushFee, setRushFee] = useState(0);
+const [lessMinFee, setLessMinFee] = useState(0);
 const [subTotal, setSubTotal] = useState(0);
 const [paymentMethod, setPaymentMethod] = useState("N/A");
 
@@ -84,6 +86,8 @@ useEffect(()=>{
         setUnitCost(orderInfo.billing_info.unit_cost);
         setSubTotal(orderInfo.billing_info.sub_total);
         setRevFee(orderInfo.billing_info.total_revision_fee);
+        setRushFee(orderInfo.billing_info.rush_fee);
+        setLessMinFee(orderInfo.billing_info.less_min_fee);
         setPaymentMethod(orderInfo.billing_info.payment_method);
     }
 },[orderInfo])
@@ -176,12 +180,12 @@ const updateOrderStatus = async (e) => {
     return ( //change the <p> to input tags :")"
         <div className='order-details-main'>
             <div className='order-div'>
-                <h1>ORDER {orderID}</h1>
+                <h1>ORDER {orderID.slice(-4)}</h1>
                 <div className='white-inner-div1'>
                     {/* Note: Copy pated from CustAccDetails so css styling classnames dont match!!!!!!! */}
                     <div className="accDetail-body-field">
                         <h3>Date Ordered</h3>
-                        <input value={dateOrdered} type="text" disabled={true} onChange={(e) => setDateOrdered(e.target.value)} className="form-control" />
+                        <input value={dateOrdered.slice(0, 10)} type="text" disabled={true} onChange={(e) => setDateOrdered(e.target.value)} className="form-control" />
                     </div>
 
                     <div className="accDetail-body-field">
@@ -196,7 +200,7 @@ const updateOrderStatus = async (e) => {
 
                     <div className="accDetail-body-field">
                         <h3>Date of Event</h3>
-                        <input value={eventDate} type="text" disabled={isDisabled} onChange={(e) => setEventDate(e.target.value)} className="form-control" />
+                        <input value={eventDate.slice(0, 10)} type="text" disabled={isDisabled} onChange={(e) => setEventDate(e.target.value)} className="form-control" />
                     </div>
 
                     <div className="accDetail-body-field">
@@ -270,7 +274,10 @@ const updateOrderStatus = async (e) => {
                     <div className='white-inner-div1'>
                     <p>Number of Invites: {numOfInv}</p>
                         <p>Amount per Invite: {unitCost}</p>
+                        <p>Additional Fees:</p>
                         <p>Total Revision Fee: {revFee || 0}</p>
+                        <p>Total Rush Fee: {rushFee || 0}</p>
+                        <p>Total Less than Min Fee: {lessMinFee || 0}</p>
                         <h5>TOTAL AMOUNT DUE: {subTotal}</h5>
                         <p>Payment Method: {paymentMethod}</p>
                     </div>
@@ -279,7 +286,7 @@ const updateOrderStatus = async (e) => {
                     <h1>Order Status</h1>
                     <div className='white-inner-div2'>
                         <h5>Invites Should Be Finished by:</h5>
-                        <p>{orderDeadline}</p>
+                        <p>{orderDeadline.slice(0, 10)}</p>
 
                         <select name="orderStatus" onChange={updateOrderStatus}>
                             <option value="none" selected disabled hidden>{orderStatus}</option>

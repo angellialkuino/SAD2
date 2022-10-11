@@ -9,7 +9,7 @@ function CustMyOrders() {
     useEffect( () => {
         const getMyOrders = async () => {
             await Axios.get('http://localhost:5000/api/order/my-orders',
-            { params: {user_id: "3bd5ccaa-86d7-4180-89fe-7a64be46e503"},
+            { params: {user_id: "08078e7c-4af1-4973-a988-d5ce25b38b26"},
             withCredentials: true }
         ).then((res) => {
             console.log(res);            
@@ -35,7 +35,7 @@ function CustMyOrders() {
                             myOrders.map((item) => {
                                 return(
                                 <div className="custMyOrders-labels">
-                                    <h3>Order ID {item.order_id}</h3> 
+                                    <h3>Order {item.order_id.slice(-4)}</h3> 
                                     {/* <Link to="/order-details" state={{orderID: item.order_id}}>
                                     <button type="view" className="btn btn-dark btn-lg btn-block">View Order Details</button>
                                     </Link> */}

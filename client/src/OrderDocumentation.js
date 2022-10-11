@@ -56,7 +56,7 @@ export default function OrderDocumentation() {
 
             <div className="oh_headers">
                 <h4 className="od_title">Order Log of Layout Changes</h4>
-                {orderID && <h6 className="od_title">For Order ID {orderID}</h6>}
+                {orderID && <h6 className="od_title">For Order {orderID.slice(-4)}</h6>}
             </div>
 
             <div className="oh_table">
