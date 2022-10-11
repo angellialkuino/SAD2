@@ -53,7 +53,9 @@ function App() {
         }
     )
 
-    const [orderDetails, setOrderDetails] = useState([])
+    const [orderDetails, setOrderDetails] = useState([
+        { item_id: 'm1', item_name: 'page' }
+    ])
 
     return <React.Fragment>
         <Routes>
@@ -80,12 +82,10 @@ function App() {
                 {<OrderForm1
                     orderItems={orderItems}
                     setOrderItems={setOrderItems}
-                    sumTotal={sumTotal}
                 />} />
             <Route path='/order-form-2' element=
                 {<OrderForm2
                     orderItems={orderItems}
-                    setOrderItems={setOrderItems}
                     orderDetails={orderDetails}
                     SetOrderDetails={setOrderDetails}
                     sumTotal={sumTotal}
@@ -125,8 +125,11 @@ function App() {
             <Route path='/staff' element={<StaffAccountOwner />} />
             <Route path='/staff-list' element={<StaffList />} />
         </Routes>
-        <OrderForm2 orderItems={orderItems}
+        <OrderForm2
+            orderItems={orderItems}
             setOrderItems={setOrderItems}
+            orderDetails={orderDetails}
+            setOrderDetails={setOrderDetails}
             sumTotal={sumTotal} />
 
     </React.Fragment>
