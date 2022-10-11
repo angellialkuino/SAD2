@@ -9,12 +9,14 @@ function OrderForm2({ sumTotal, orderItems, setOrderItems }) {
     const [allTextChecked, setAllTextChecked] = useState(false);
 
     useEffect(() => {
-        sumTotal.current = 0;
-        orderItems.forEach(element => {
-            if ('price' in element) {
-                sumTotal.current += element.price;
-            }
-        });
+        // <RunningPrice orderItems={orderItems} />
+
+        // sumTotal.current = 0;
+        // orderItems.forEach(element => {
+        //     if ('price' in element) {
+        //         sumTotal.current += element.price;
+        //     }
+        // });
         console.log(orderItems);
     }, [orderItems]);
 
@@ -36,7 +38,7 @@ function OrderForm2({ sumTotal, orderItems, setOrderItems }) {
                 if ('paper_size' in obj) {
                     return {
                         ...obj,
-                        paper_size: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
+                        size: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
                         price: parseFloat(e.target.value)
                     };
                 }
