@@ -1,13 +1,13 @@
 .order_form_10-container {
     display: flex;
     flex-direction: column;
+    margin: 2rem auto auto auto;
+    background-color: #d8ecf5;
+    width: 1100px;
+    border-radius: 2rem;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 100%;
-    padding: 0 0 0 0;
-    gap: 1rem;
-    margin-top: 50px;
+    padding: 2rem;
 }
 
 .order_form_10-body {

@@ -19,7 +19,7 @@ function OrderForm4({ orderItems, orderDetails, setOrderDetails, sumTotal }) {
                 sumTotal.current += element.price;
             }
         });
-        sumTotal.current += orderItems.material_price;
+        sumTotal.current += orderItems.order.material_price;
         console.log(orderDetails);
     }, [orderDetails]);
 
