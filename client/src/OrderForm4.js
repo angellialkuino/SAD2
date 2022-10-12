@@ -21,6 +21,18 @@ function OrderForm4({ orderItems, orderDetails, setOrderDetails, sumTotal }) {
             }
         });
         sumTotal.current += orderItems.order.material_price;
+        if (orderItems.order.num_of_invites < 30) {
+            sumTotal.current += 1500;
+            let date1 = new Date().toJSON().slice(0, 10);
+            let date2 = orderItems.order.event_date;
+            const date1new = new Date(date1);
+            const date2new = new Date(date2);
+            let Difference_In_Time = date2new.getTime() - date1new.getTime();
+            let Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+            if (Difference_In_Days < 14) {
+                sumTotal.current += sumTotal.current * 0.40;
+            }
+        }
         console.log(orderItems);
         console.log(orderDetails);
     }, [orderDetails]);

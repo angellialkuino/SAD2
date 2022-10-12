@@ -29,9 +29,10 @@ function OrderForm2({ sumTotal, setOrderItems, orderItems, orderDetails, setOrde
             let Difference_In_Time = date2new.getTime() - date1new.getTime();
             let Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
             if (Difference_In_Days < 14) {
-                sumTotal.current = sumTotal.current + (sumTotal.current * 0.40);
+                sumTotal.current += sumTotal.current * 0.40;
             }
         }
+
         console.log(orderItems);
         console.log(orderDetails);
     }, [orderDetails, sumTotal]);
