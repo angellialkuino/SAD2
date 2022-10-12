@@ -5,7 +5,7 @@ import React from 'react';
 import NavBarCustomerLoggedIn from "./NavBarCustomerLoggedIn";
 import { RunningPrice } from "./RunningPrice";
 
-function OrderForm4({ orderItems, orderDetails, setOrderDetails, sumTotal }) {
+function OrderForm4({ order, items_array, setItems_array, sumTotal }) {
 
     const [toggleState, setToggleState] = useState(1);
 
@@ -15,16 +15,16 @@ function OrderForm4({ orderItems, orderDetails, setOrderDetails, sumTotal }) {
 
     useEffect(() => {
         sumTotal.current = 0;
-        orderDetails.forEach(element => {
+        items_array.forEach(element => {
             if ('price' in element) {
                 sumTotal.current += element.price;
             }
         });
-        sumTotal.current += orderItems.order.material_price;
-        if (orderItems.order.num_of_invites < 30) {
+        sumTotal.current += order.material_price;
+        if (order.num_of_invites < 30) {
             sumTotal.current += 1500;
             let date1 = new Date().toJSON().slice(0, 10);
-            let date2 = orderItems.order.event_date;
+            let date2 = order.event_date;
             const date1new = new Date(date1);
             const date2new = new Date(date2);
             let Difference_In_Time = date2new.getTime() - date1new.getTime();
@@ -33,13 +33,13 @@ function OrderForm4({ orderItems, orderDetails, setOrderDetails, sumTotal }) {
                 sumTotal.current += sumTotal.current * 0.40;
             }
         }
-        console.log(orderItems);
-        console.log(orderDetails);
-    }, [orderDetails]);
+        console.log(order);
+        console.log(items_array);
+    }, [items_array]);
 
     const handleWaxDesign = (e) => {
-        if (orderDetails.findIndex(object => object.item_id === 'd1') === -1) {
-            setOrderDetails(prevState =>
+        if (items_array.findIndex(object => object.item_id === 'd1') === -1) {
+            setItems_array(prevState =>
                 [...prevState, {
                     item_id: 'd1',
                     item_name: e.target.id,
@@ -47,14 +47,14 @@ function OrderForm4({ orderItems, orderDetails, setOrderDetails, sumTotal }) {
                 }]);
         }
         else if (e.target.id === 'no wax') {
-            setOrderDetails(prevState =>
+            setItems_array(prevState =>
                 prevState.filter(item => {
                     return item.item_id !== 'd1';
                 }),
             );
         }
         else {
-            setOrderDetails(orderDetails.map(obj => {
+            setItems_array(items_array.map(obj => {
                 if (obj.item_id === 'd1') {
                     return {
                         ...obj,
@@ -68,8 +68,8 @@ function OrderForm4({ orderItems, orderDetails, setOrderDetails, sumTotal }) {
     }
 
     const handleWaxColor = (e) => {
-        if (orderDetails.findIndex(object => object.item_id === 'd1') === -1) {
-            setOrderDetails(prevState =>
+        if (items_array.findIndex(object => object.item_id === 'd1') === -1) {
+            setItems_array(prevState =>
                 [...prevState, {
                     item_id: 'd1',
                     color: e.target.id,
@@ -77,14 +77,14 @@ function OrderForm4({ orderItems, orderDetails, setOrderDetails, sumTotal }) {
                 }]);
         }
         else if (e.target.id === 'no wax') {
-            setOrderDetails(prevState =>
+            setItems_array(prevState =>
                 prevState.filter(item => {
                     return item.item_id !== 'd1';
                 }),
             );
         }
         else {
-            setOrderDetails(orderDetails.map(obj => {
+            setItems_array(items_array.map(obj => {
                 if (obj.item_id === 'd1') {
                     return {
                         ...obj,
@@ -98,8 +98,8 @@ function OrderForm4({ orderItems, orderDetails, setOrderDetails, sumTotal }) {
     }
 
     const handleDriedFlower = (e) => {
-        if (orderDetails.findIndex(object => object.item_id === 'd2') === -1) {
-            setOrderDetails(prevState =>
+        if (items_array.findIndex(object => object.item_id === 'd2') === -1) {
+            setItems_array(prevState =>
                 [...prevState, {
                     item_id: 'd2',
                     item_name: e.target.id,
@@ -107,14 +107,14 @@ function OrderForm4({ orderItems, orderDetails, setOrderDetails, sumTotal }) {
                 }]);
         }
         else if (e.target.id === 'no flower') {
-            setOrderDetails(prevState =>
+            setItems_array(prevState =>
                 prevState.filter(item => {
                     return item.item_id !== 'd2';
                 }),
             );
         }
         else {
-            setOrderDetails(orderDetails.map(obj => {
+            setItems_array(items_array.map(obj => {
                 if (obj.item_id === 'd2') {
                     return {
                         ...obj,
@@ -128,8 +128,8 @@ function OrderForm4({ orderItems, orderDetails, setOrderDetails, sumTotal }) {
     }
 
     const handleBroochDesign = (e) => {
-        if (orderDetails.findIndex(object => object.item_id === 'd3') === -1) {
-            setOrderDetails(prevState =>
+        if (items_array.findIndex(object => object.item_id === 'd3') === -1) {
+            setItems_array(prevState =>
                 [...prevState, {
                     item_id: 'd3',
                     item_name: e.target.id,
@@ -137,14 +137,14 @@ function OrderForm4({ orderItems, orderDetails, setOrderDetails, sumTotal }) {
                 }]);
         }
         else if (e.target.id === 'no brooch') {
-            setOrderDetails(prevState =>
+            setItems_array(prevState =>
                 prevState.filter(item => {
                     return item.item_id !== 'd3';
                 }),
             );
         }
         else {
-            setOrderDetails(orderDetails.map(obj => {
+            setItems_array(items_array.map(obj => {
                 if (obj.item_id === 'd3') {
                     return {
                         ...obj,
@@ -164,8 +164,8 @@ function OrderForm4({ orderItems, orderDetails, setOrderDetails, sumTotal }) {
                 <h2>Running Price</h2>
                 <div className='running-price-frame p-4'>
                     <RunningPrice
-                        orderItems={orderItems}
-                        orderDetails={orderDetails} />
+                        order={order}
+                        items_array={items_array} />
 
                 </div>
                 <h2>Decor</h2>

@@ -4,26 +4,26 @@ import './CheckOrder.css';
 import { CheckOrderList } from './CheckOrderList';
 import Axios from 'axios';
 
-function CheckOrder({ orderItems, orderDetails, sumTotal }) {
+function CheckOrder({ order, items_array, sumTotal, payment_method }) {
     const errRef = useRef();
     const [errMsg, setErrMsg] = useState('');
 
     useEffect(() => {
         <CheckOrderList
-            orderDetails={orderDetails}
-            orderItems={orderItems}
+            items_array={items_array}
+            order={order}
             sumTotal={sumTotal}
         />
-    }, [orderItems, orderDetails, sumTotal]);
+    }, [order, items_array, sumTotal]);
 
     const handleSubmitOrder = async (e) => {
         e.preventDefault();
         try {
             const response = await Axios.post('http://localhost:5000/api/order/create-new-order',
                 {
-                    //how to properly pass them to backend?
-                    orderItems,
-                    orderDetails
+                    payment_method,
+                    order,
+                    items_array
                 },
                 {
                     withCredentials: true
@@ -38,7 +38,7 @@ function CheckOrder({ orderItems, orderDetails, sumTotal }) {
             } else {
                 setErrMsg('Submission Failed')
             }
-            errRef.current.focus();
+            // errRef.current.focus();
         }
     }
 
@@ -51,8 +51,8 @@ function CheckOrder({ orderItems, orderDetails, sumTotal }) {
 
                 <div className="Check_Order_body">
                     <CheckOrderList
-                        orderItems={orderItems}
-                        orderDetails={orderDetails}
+                        order={order}
+                        items_array={items_array}
                         sumTotal={sumTotal}
                     />
                 </div>

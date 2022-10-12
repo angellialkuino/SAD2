@@ -38,27 +38,25 @@ function App() {
 
     //order form data
     const sumTotal = useRef(0.00);
-    const [orderItems, setOrderItems] = useState(
+    const [payment_method, setPayment_method] = useState('')
+    const [order, setOrder] = useState(
         {
-            payment_method: '',
-            order: {
-                invite_type: '',
-                material: '',
-                material_price: 0,
-                event_date: '',
-                motif: '',
-                invite_title: '',
-                font_style: '',
-                content_link: '',
-                num_of_invites: 0,
-                peg_link: '',
-                order_deadline: '',
-                claim_type: ''
-            }
+            invite_type: '',
+            material: '',
+            material_price: 0,
+            event_date: '',
+            motif: '',
+            invite_title: '',
+            font_style: '',
+            content_link: '',
+            num_of_invites: 0,
+            peg_link: '',
+            order_deadline: '',
+            claim_type: ''
         }
     )
 
-    const [orderDetails, setOrderDetails] = useState([
+    const [items_array, setItems_array] = useState([
         { item_id: 'm1', item_name: 'page' }
     ])
 
@@ -85,49 +83,54 @@ function App() {
             <Route path='/terms-and-conditions' element={<TermsAndConditions />} />
             <Route path='/order-form-1' element=
                 {<OrderForm1
-                    orderItems={orderItems}
-                    setOrderItems={setOrderItems}
+                    order={order}
+                    setOrder={setOrder}
                 />} />
             <Route path='/order-form-2' element=
                 {<OrderForm2
-                    orderItems={orderItems}
-                    setOrderItems={setOrderItems}
-                    orderDetails={orderDetails}
-                    setOrderDetails={setOrderDetails}
+                    order={order}
+                    setOrder={setOrder}
+                    items_array={items_array}
+                    setItems_array={setItems_array}
                     sumTotal={sumTotal}
                 />} />
             <Route path='/order-form-3' element=
                 {<OrderForm3
-                    orderDetails={orderDetails}
-                    setOrderDetails={setOrderDetails}
+                    items_array={items_array}
+                    setItems_array={setItems_array}
                     sumTotal={sumTotal}
                 />} />
             <Route path='/order-form-4' element=
                 {<OrderForm4
-                    orderItems={orderItems}
-                    setOrderItems={setOrderItems}
-                    orderDetails={orderDetails}
-                    setOrderDetails={setOrderDetails}
+                    order={order}
+                    setOrder={setOrder}
+                    items_array={items_array}
+                    setItems_array={setItems_array}
                     sumTotal={sumTotal}
                 />} />
             <Route path='/order-form-5' element=
                 {<OrderForm5
-                    orderItems={orderItems}
-                    setOrderItems={setOrderItems}
-                    orderDetails={orderDetails}
-                    setOrderDetails={setOrderDetails}
+                    order={order}
+                    setOrder={setOrder}
+                    items_array={items_array}
+                    setItems_array={setItems_array}
                 />} />
             <Route path='/check-order' element=
                 {<CheckOrder
-                    orderItems={orderItems}
-                    setOrderItems={setOrderItems}
-                    orderDetails={orderDetails}
-                    setOrderDetails={setOrderDetails}
+                    order={order}
+                    setOrder={setOrder}
+                    items_array={items_array}
+                    setItems_array={setItems_array}
                     sumTotal={sumTotal}
+                    payment_method={payment_method}
                 />} />
             <Route path='/order-pickup' element={<OrderPickup />} />
             <Route path='/shipping-address' element={<ShippingAddress />} />
-            <Route path='downpayment' element={<Downpayment />} />
+            <Route path='downpayment' element=
+                {<Downpayment
+                    payment_method={payment_method}
+                    setPayment_method={setPayment_method}
+                />} />
             <Route path='/order-payment' element={<OrderBeingConfirmed />} />
             {/* Customer Account and Order Pages */}
             <Route path='/account-details' element={<CustAccDetail />} />

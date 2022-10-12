@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const CheckOrderList = ({ orderItems, orderDetails, sumTotal }) => {
+export const CheckOrderList = ({ order, items_array, sumTotal }) => {
     return (
         <>
             <div className='check-order-list'>
@@ -8,17 +8,17 @@ export const CheckOrderList = ({ orderItems, orderDetails, sumTotal }) => {
                     <h5>Main Order</h5>
                     {
                         <ul>
-                            <li>Invitation Type: {orderItems.order.invite_type}</li>
-                            <li>Material: {orderItems.order.material}</li>
-                            <li>Event Date: {orderItems.order.event_date}</li>
-                            <li>Motif: {orderItems.order.motif}</li>
-                            <li>Invitation Title: {orderItems.order.invite_title}</li>
-                            <li>Font Style: {orderItems.order.font_style}</li>
-                            <li>Content Link: {orderItems.order.content_link}</li>
-                            <li>Number of Invites: {orderItems.order.num_of_invites}</li>
-                            <li>Peg Link: {orderItems.order.peg_link}</li>
-                            <li>Order Deadline: {orderItems.order.order_deadline}</li>
-                            <li>Claim Type: {orderItems.order.claim_type}</li>
+                            <li>Invitation Type: {order.invite_type}</li>
+                            <li>Material: {order.material}</li>
+                            <li>Event Date: {order.event_date}</li>
+                            <li>Motif: {order.motif}</li>
+                            <li>Invitation Title: {order.invite_title}</li>
+                            <li>Font Style: {order.font_style}</li>
+                            <li>Content Link: {order.content_link}</li>
+                            <li>Number of Invites: {order.num_of_invites}</li>
+                            <li>Peg Link: {order.peg_link}</li>
+                            <li>Order Deadline: {order.order_deadline}</li>
+                            <li>Claim Type: {order.claim_type}</li>
                         </ul>
                     }
                 </div>
@@ -34,7 +34,7 @@ export const CheckOrderList = ({ orderItems, orderDetails, sumTotal }) => {
                             </tr>
                         </thead>
                         <tbody>
-                            {orderDetails.map((val, key) => {
+                            {items_array.map((val, key) => {
                                 return (
                                     <tr>
                                         <td className='td'>{val.item_name}</td>
