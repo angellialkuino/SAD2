@@ -5,7 +5,8 @@ import React from 'react';
 import NavBarCustomerLoggedIn from "./NavBarCustomerLoggedIn";
 import { RunningPrice } from "./RunningPrice";
 
-function OrderForm4({ orderItems, orderDetails, setOrderDetails, sumTotal }) {
+function OrderForm4({ order, items_array, setItems_array, sumTotal }) {
+
     const [toggleState, setToggleState] = useState(1);
 
     const toggleTab = (index) => {
@@ -14,18 +15,31 @@ function OrderForm4({ orderItems, orderDetails, setOrderDetails, sumTotal }) {
 
     useEffect(() => {
         sumTotal.current = 0;
-        orderDetails.forEach(element => {
+        items_array.forEach(element => {
             if ('price' in element) {
                 sumTotal.current += element.price;
             }
         });
-        sumTotal.current += orderItems.order.material_price;
-        console.log(orderDetails);
-    }, [orderDetails]);
+        sumTotal.current += order.material_price;
+        if (order.num_of_invites < 30) {
+            sumTotal.current += 1500;
+            let date1 = new Date().toJSON().slice(0, 10);
+            let date2 = order.event_date;
+            const date1new = new Date(date1);
+            const date2new = new Date(date2);
+            let Difference_In_Time = date2new.getTime() - date1new.getTime();
+            let Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+            if (Difference_In_Days < 14) {
+                sumTotal.current += sumTotal.current * 0.40;
+            }
+        }
+        console.log(order);
+        console.log(items_array);
+    }, [items_array]);
 
     const handleWaxDesign = (e) => {
-        if (orderDetails.findIndex(object => object.item_id === 'd1') === -1) {
-            setOrderDetails(prevState =>
+        if (items_array.findIndex(object => object.item_id === 'd1') === -1) {
+            setItems_array(prevState =>
                 [...prevState, {
                     item_id: 'd1',
                     item_name: e.target.id,
@@ -33,14 +47,14 @@ function OrderForm4({ orderItems, orderDetails, setOrderDetails, sumTotal }) {
                 }]);
         }
         else if (e.target.id === 'no wax') {
-            setOrderDetails(prevState =>
+            setItems_array(prevState =>
                 prevState.filter(item => {
                     return item.item_id !== 'd1';
                 }),
             );
         }
         else {
-            setOrderDetails(orderDetails.map(obj => {
+            setItems_array(items_array.map(obj => {
                 if (obj.item_id === 'd1') {
                     return {
                         ...obj,
@@ -54,8 +68,8 @@ function OrderForm4({ orderItems, orderDetails, setOrderDetails, sumTotal }) {
     }
 
     const handleWaxColor = (e) => {
-        if (orderDetails.findIndex(object => object.item_id === 'd1') === -1) {
-            setOrderDetails(prevState =>
+        if (items_array.findIndex(object => object.item_id === 'd1') === -1) {
+            setItems_array(prevState =>
                 [...prevState, {
                     item_id: 'd1',
                     color: e.target.id,
@@ -63,14 +77,14 @@ function OrderForm4({ orderItems, orderDetails, setOrderDetails, sumTotal }) {
                 }]);
         }
         else if (e.target.id === 'no wax') {
-            setOrderDetails(prevState =>
+            setItems_array(prevState =>
                 prevState.filter(item => {
                     return item.item_id !== 'd1';
                 }),
             );
         }
         else {
-            setOrderDetails(orderDetails.map(obj => {
+            setItems_array(items_array.map(obj => {
                 if (obj.item_id === 'd1') {
                     return {
                         ...obj,
@@ -84,8 +98,8 @@ function OrderForm4({ orderItems, orderDetails, setOrderDetails, sumTotal }) {
     }
 
     const handleDriedFlower = (e) => {
-        if (orderDetails.findIndex(object => object.item_id === 'd2') === -1) {
-            setOrderDetails(prevState =>
+        if (items_array.findIndex(object => object.item_id === 'd2') === -1) {
+            setItems_array(prevState =>
                 [...prevState, {
                     item_id: 'd2',
                     item_name: e.target.id,
@@ -93,15 +107,45 @@ function OrderForm4({ orderItems, orderDetails, setOrderDetails, sumTotal }) {
                 }]);
         }
         else if (e.target.id === 'no flower') {
-            setOrderDetails(prevState =>
+            setItems_array(prevState =>
                 prevState.filter(item => {
                     return item.item_id !== 'd2';
                 }),
             );
         }
         else {
-            setOrderDetails(orderDetails.map(obj => {
+            setItems_array(items_array.map(obj => {
                 if (obj.item_id === 'd2') {
+                    return {
+                        ...obj,
+                        item_name: e.target.id
+                    };
+                }
+                return obj;
+
+            }));
+        }
+    }
+
+    const handleBroochDesign = (e) => {
+        if (items_array.findIndex(object => object.item_id === 'd3') === -1) {
+            setItems_array(prevState =>
+                [...prevState, {
+                    item_id: 'd3',
+                    item_name: e.target.id,
+                    price: 50
+                }]);
+        }
+        else if (e.target.id === 'no brooch') {
+            setItems_array(prevState =>
+                prevState.filter(item => {
+                    return item.item_id !== 'd3';
+                }),
+            );
+        }
+        else {
+            setItems_array(items_array.map(obj => {
+                if (obj.item_id === 'd3') {
                     return {
                         ...obj,
                         item_name: e.target.id
@@ -120,8 +164,8 @@ function OrderForm4({ orderItems, orderDetails, setOrderDetails, sumTotal }) {
                 <h2>Running Price</h2>
                 <div className='running-price-frame p-4'>
                     <RunningPrice
-                        orderItems={orderItems}
-                        orderDetails={orderDetails} />
+                        order={order}
+                        items_array={items_array} />
 
                 </div>
                 <h2>Decor</h2>
@@ -254,13 +298,42 @@ function OrderForm4({ orderItems, orderDetails, setOrderDetails, sumTotal }) {
                         <div
                             className={toggleState === 3 ? "content  active-content" : "content"}>
                             <h4>Designs:</h4>
-                            <div className='boxes'>
-                                <button className='square-button-4'></button>
-                                <button className='square-button-4'> </button>
-                                <button className='square-button-4'></button>
-                                <button className='square-button-4'></button>
-                                <button className='square-button-4'></button>
-
+                            <div className='boxes3'>
+                                <div className='square-button-with-text'>
+                                    <label>
+                                        <input type='radio' id='no brooch' name='wax-design' className='form1-radio' onClick={handleBroochDesign} />
+                                        <img className='radio-img' src={process.env.PUBLIC_URL + '/images/xmark.jpg'} alt='brooch'></img>
+                                    </label>
+                                    <h5>No Brooch</h5>
+                                </div>
+                                <div className='square-button-with-text'>
+                                    <label>
+                                        <input type='radio' id='brooch no.1' name='wax-design' className='form1-radio' onClick={handleBroochDesign} />
+                                        <img className='radio-img' src={process.env.PUBLIC_URL + '/images/brooches/3000.jpg'} alt='brooch'></img>
+                                    </label>
+                                    <h5>1</h5>
+                                </div>
+                                <div className='square-button-with-text'>
+                                    <label>
+                                        <input type='radio' id='brooch no.2' name='wax-design' className='form1-radio' onClick={handleBroochDesign} />
+                                        <img className='radio-img' src={process.env.PUBLIC_URL + '/images/brooches/3001.jpg'} alt='brooch'></img>
+                                    </label>
+                                    <h5>2</h5>
+                                </div>
+                                <div className='square-button-with-text'>
+                                    <label>
+                                        <input type='radio' id='brooch no.3' name='wax-design' className='form1-radio' onClick={handleBroochDesign} />
+                                        <img className='radio-img' src={process.env.PUBLIC_URL + '/images/brooches/3002.jpg'} alt='brooch'></img>
+                                    </label>
+                                    <h5>3</h5>
+                                </div>
+                                <div className='square-button-with-text'>
+                                    <label>
+                                        <input type='radio' id='brooch no.4' name='wax-design' className='form1-radio' onClick={handleBroochDesign} />
+                                        <img className='radio-img' src={process.env.PUBLIC_URL + '/images/brooches/3003.jpg'} alt='brooch'></img>
+                                    </label>
+                                    <h5>4</h5>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -270,7 +343,7 @@ function OrderForm4({ orderItems, orderDetails, setOrderDetails, sumTotal }) {
                 </span>
             </div>
             <div className='form1-footer'>
-                <Link to='order-form-3' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
+                <Link to='order-form-2' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
                 <Link to='/order-form-5' className="rounded-pill btn btn-info fw-bold nav-hover">Next</Link>
             </div>
         </>

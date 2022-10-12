@@ -56,19 +56,21 @@
 }
 
 .accDetail-body-bottom {
-    width: 200px;
+    width: 100px;
     margin-top: 10%;
     display: inline;
     flex-direction: column;
     justify-content: space-between;
-    position: relative;
-    left: 480px;
+    align-items: right;
 }
 
-.btn {
-    width: 200px;
+.btn-custaccdetail {
+    width: auto;
     margin: auto;
-    display: inline;
+    background-color: #53c46d;
+    justify-content: space-between;
+    align-items: center;
+    margin-left:10px;
 }
 
 .accDetail-body-field {

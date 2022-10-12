@@ -5,26 +5,38 @@ import NavBarCustomerLoggedIn from './NavBarCustomerLoggedIn';
 import { RunningPrice } from './RunningPrice';
 import OrderForm3 from './OrderForm3';
 
-function OrderForm2({ sumTotal, setOrderItems, orderItems, orderDetails, setOrderDetails }) {
+function OrderForm2({ sumTotal, setOrder, order, items_array, setItems_array }) {
     const [checked, setChecked] = useState(false);
-    const [allTextChecked, setAllTextChecked] = useState(false);
     const [hidden, setHidden] = useState(true)
 
     useEffect(() => {
-        <RunningPrice orderDetails={orderDetails} />
-
+        <RunningPrice items_array={items_array} />
         sumTotal.current = 0;
-        orderDetails.forEach(element => {
+        items_array.forEach(element => {
             if ('price' in element) {
                 sumTotal.current += element.price;
             }
         });
-        sumTotal.current += orderItems.order.material_price;
-        // console.log(orderDetails);
-    }, [orderDetails]);
+        sumTotal.current += order.material_price;
+        if (order.num_of_invites < 30) {
+            sumTotal.current += 1500;
+            let date1 = new Date().toJSON().slice(0, 10);
+            let date2 = order.event_date;
+            const date1new = new Date(date1);
+            const date2new = new Date(date2);
+            let Difference_In_Time = date2new.getTime() - date1new.getTime();
+            let Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+            if (Difference_In_Days < 14) {
+                sumTotal.current += sumTotal.current * 0.40;
+            }
+        }
+
+        console.log(order);
+        console.log(items_array);
+    }, [items_array, sumTotal]);
 
     const handlePagesPaperAndColor = (e) => {
-        setOrderDetails(orderDetails.map(obj => {
+        setItems_array(items_array.map(obj => {
             if (obj.item_id === 'm1') {
                 return {
                     ...obj,
@@ -32,9 +44,8 @@ function OrderForm2({ sumTotal, setOrderItems, orderItems, orderDetails, setOrde
                 };
             }
             return obj;
-
         }));
-        orderDetails.some(element => {
+        items_array.some(element => {
             if (element.color === 'Customize') {
                 setHidden(s => !s)
             }
@@ -42,21 +53,38 @@ function OrderForm2({ sumTotal, setOrderItems, orderItems, orderDetails, setOrde
     }
 
     const handlePagesSize = (e) => {
-        setOrderDetails(orderDetails.map(obj => {
-            if (obj.item_id === 'm1') {
-                return {
-                    ...obj,
-                    size: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
-                    price: parseFloat(e.target.value)
-                };
-            }
-            return obj;
-        }));
+        if (order.material === 'acrylic') {
+            setItems_array(items_array.map(obj => {
+                if (obj.item_id === 'm1') {
+                    return {
+                        ...obj,
+                        size: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
+                        quantity: 3,
+                        price: 90
+                    };
+                }
+                return obj;
+            }));
+        }
+        else {
+            setItems_array(items_array.map(obj => {
+                if (obj.item_id === 'm1') {
+                    return {
+                        ...obj,
+                        size: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
+                        quantity: 2,
+                        price: 60
+                    };
+                }
+                return obj;
+            }));
+        }
+
     }
 
     const handleEnvelopePaperAndColor = (e) => {
-        if (orderDetails.findIndex(object => object.item_id === 'e1') === -1) {
-            setOrderDetails(prevState =>
+        if (items_array.findIndex(object => object.item_id === 'e1') === -1) {
+            setItems_array(prevState =>
                 [...prevState, {
                     item_id: 'e1',
                     item_name: 'envelope',
@@ -64,7 +92,7 @@ function OrderForm2({ sumTotal, setOrderItems, orderItems, orderDetails, setOrde
                 }]);;
         }
         else {
-            setOrderDetails(orderDetails.map(obj => {
+            setItems_array(items_array.map(obj => {
                 if (obj.item_id === 'e1') {
                     return {
                         ...obj,
@@ -74,7 +102,7 @@ function OrderForm2({ sumTotal, setOrderItems, orderItems, orderDetails, setOrde
                 return obj;
             }));
         }
-        orderDetails.some(element => {
+        items_array.some(element => {
             if (element.color === 'Customize') {
                 setHidden(s => !s)
             }
@@ -82,8 +110,8 @@ function OrderForm2({ sumTotal, setOrderItems, orderItems, orderDetails, setOrde
     }
 
     const handleEnvelopeSize = (e) => {
-        if (orderDetails.findIndex(object => object.item_id === 'e1') === -1) {
-            setOrderDetails(prevState =>
+        if (items_array.findIndex(object => object.item_id === 'e1') === -1) {
+            setItems_array(prevState =>
                 [...prevState, {
                     item_id: 'e1',
                     item_name: 'envelope',
@@ -92,7 +120,7 @@ function OrderForm2({ sumTotal, setOrderItems, orderItems, orderDetails, setOrde
                 }]);
         }
         else {
-            setOrderDetails(orderDetails.map(obj => {
+            setItems_array(items_array.map(obj => {
                 if (obj.item_id === 'e1') {
                     return {
                         ...obj,
@@ -108,7 +136,7 @@ function OrderForm2({ sumTotal, setOrderItems, orderItems, orderDetails, setOrde
     const handleEnvelope = (e) => {
         setChecked(e.target.checked);
         if (e.target.checked === false) {
-            setOrderDetails(prevState =>
+            setItems_array(prevState =>
                 prevState.filter(item => {
                     return item.item_id !== 'e1' && item.item_id !== 'e2' && item.item_id !== 'e3';
                 }),
@@ -117,8 +145,8 @@ function OrderForm2({ sumTotal, setOrderItems, orderItems, orderDetails, setOrde
     }
 
     const handleEnvelopeLiner = (e) => {
-        if (orderDetails.findIndex(object => object.item_id === 'e2') === -1) {
-            setOrderDetails(prevState =>
+        if (items_array.findIndex(object => object.item_id === 'e2') === -1) {
+            setItems_array(prevState =>
                 [...prevState, {
                     item_id: 'e2',
                     item_name: 'envelope liner',
@@ -126,7 +154,7 @@ function OrderForm2({ sumTotal, setOrderItems, orderItems, orderDetails, setOrde
                 }]);
         }
         if (e.target.checked === false) {
-            setOrderDetails(prevState =>
+            setItems_array(prevState =>
                 prevState.filter(item => {
                     return item.item_id !== 'e2';
                 }),
@@ -135,8 +163,8 @@ function OrderForm2({ sumTotal, setOrderItems, orderItems, orderDetails, setOrde
     }
 
     const handleEnvelopeLock = (e) => {
-        if (orderDetails.findIndex(object => object.item_id === 'e3') === -1) {
-            setOrderDetails(prevState =>
+        if (items_array.findIndex(object => object.item_id === 'e3') === -1) {
+            setItems_array(prevState =>
                 [...prevState, {
                     item_id: 'e3',
                     item_name: 'envelope lock',
@@ -144,7 +172,7 @@ function OrderForm2({ sumTotal, setOrderItems, orderItems, orderDetails, setOrde
                 }]);
         }
         if (e.target.checked === false) {
-            setOrderDetails(prevState =>
+            setItems_array(prevState =>
                 prevState.filter(item => {
                     return item.item_id !== 'e3';
                 }),
@@ -153,83 +181,65 @@ function OrderForm2({ sumTotal, setOrderItems, orderItems, orderDetails, setOrde
     }
 
     const handleAllText = (e) => {
-        setAllTextChecked(e.target.checked);
-        if (e.target.checked === false) {
-            setOrderDetails(prevState =>
-                prevState.filter(item => {
-                    return item.item_id !== 't4';
-                }),
-            );
-        }
-        else {
-            setOrderDetails(prevState =>
+        if (items_array.findIndex(object => object.type === 'all text') === -1) {
+            setItems_array(prevState =>
                 [...prevState, {
-                    item_id: 't4',
-                    item_name: 'dry emboss',
+                    item_id: e.target.id,
+                    item_name: e.target.title,
                     type: 'all text',
                     price: parseFloat(e.target.value)
                 }]);
-            setOrderDetails(prevState =>
-                prevState.filter(item => {
-                    return item.type !== 'header' && item.type !== 'body';
-                }),
-            );
+        }
+        else {
+            setItems_array(items_array.map(obj => {
+                if (obj.type === 'all text') {
+                    return {
+                        ...obj,
+                        item_id: e.target.id,
+                        item_name: e.target.title,
+                        price: parseFloat(e.target.value)
+                    };
+                }
+                return obj;
+            }));
         }
     }
 
     const handleHeaderText = (e) => {
-        if (orderDetails.findIndex(object => object.type === 'header') === -1) {
-            setOrderDetails(prevState =>
+        if (items_array.findIndex(object => object.type === 'header text') === -1) {
+            setItems_array(prevState =>
                 [...prevState, {
-                    item_id: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
-                    item_name: e.target.childNodes[e.target.selectedIndex].getAttribute('title'),
-                    type: 'header',
+                    item_id: e.target.id,
+                    item_name: e.target.title,
+                    type: 'header text',
                     price: parseFloat(e.target.value)
                 }]);
         }
         else {
-            setOrderDetails(orderDetails.map(obj => {
-                if (obj.type === 'header') {
+            setItems_array(items_array.map(obj => {
+                if (obj.type === 'header text') {
                     return {
                         ...obj,
-                        item_id: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
-                        item_name: e.target.childNodes[e.target.selectedIndex].getAttribute('title'),
+                        item_id: e.target.id,
+                        item_name: e.target.name,
                         price: parseFloat(e.target.value)
                     };
                 }
                 return obj;
             }));
         }
-    }
-
-    const handleBodyText = (e) => {
-        if (orderDetails.findIndex(object => object.type === 'body') === -1) {
-            setOrderDetails(prevState =>
-                [...prevState, {
-                    item_id: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
-                    item_name: e.target.childNodes[e.target.selectedIndex].getAttribute('title'),
-                    type: 'body',
-                    price: parseFloat(e.target.value)
-                }]);
-        }
-        else {
-            setOrderDetails(orderDetails.map(obj => {
-                if (obj.type === 'body') {
-                    return {
-                        ...obj,
-                        item_id: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
-                        item_name: e.target.childNodes[e.target.selectedIndex].getAttribute('title'),
-                        price: parseFloat(e.target.value)
-                    };
-                }
-                return obj;
-            }));
+        if (e.target.checked === false) {
+            setItems_array(prevState =>
+                prevState.filter(item => {
+                    return item.type !== 'header text';
+                }),
+            );
         }
     }
 
     const handleRSVP = (e) => {
-        if (orderDetails.findIndex(object => object.item_id === 'p1') === -1) {
-            setOrderDetails(prevState =>
+        if (items_array.findIndex(object => object.item_id === 'p1') === -1) {
+            setItems_array(prevState =>
                 [...prevState, {
                     item_id: 'p1',
                     item_name: 'RSVP',
@@ -237,7 +247,7 @@ function OrderForm2({ sumTotal, setOrderItems, orderItems, orderDetails, setOrde
                 }]);
         }
         if (e.target.checked === false) {
-            setOrderDetails(prevState =>
+            setItems_array(prevState =>
                 prevState.filter(item => {
                     return item.item_id !== 'p1';
                 }),
@@ -246,8 +256,8 @@ function OrderForm2({ sumTotal, setOrderItems, orderItems, orderDetails, setOrde
     }
 
     const handleMonetaryGiftPackage = (e) => {
-        if (orderDetails.findIndex(object => object.item_id === 'p2') === -1) {
-            setOrderDetails(prevState =>
+        if (items_array.findIndex(object => object.item_id === 'p2') === -1) {
+            setItems_array(prevState =>
                 [...prevState, {
                     item_id: 'p2',
                     item_name: 'monetary gift package',
@@ -255,7 +265,7 @@ function OrderForm2({ sumTotal, setOrderItems, orderItems, orderDetails, setOrde
                 }]);
         }
         if (e.target.checked === false) {
-            setOrderDetails(prevState =>
+            setItems_array(prevState =>
                 prevState.filter(item => {
                     return item.item_id !== 'p2';
                 }),
@@ -264,8 +274,8 @@ function OrderForm2({ sumTotal, setOrderItems, orderItems, orderDetails, setOrde
     }
 
     const handleHisHerVows = (e) => {
-        if (orderDetails.findIndex(object => object.item_id === 'p3') === -1) {
-            setOrderDetails(prevState =>
+        if (items_array.findIndex(object => object.item_id === 'p3') === -1) {
+            setItems_array(prevState =>
                 [...prevState, {
                     item_id: 'p3',
                     item_name: 'his/her vows',
@@ -273,7 +283,7 @@ function OrderForm2({ sumTotal, setOrderItems, orderItems, orderDetails, setOrde
                 }]);
         }
         if (e.target.checked === false) {
-            setOrderDetails(prevState =>
+            setItems_array(prevState =>
                 prevState.filter(item => {
                     return item.item_id !== 'p3';
                 }),
@@ -282,11 +292,11 @@ function OrderForm2({ sumTotal, setOrderItems, orderItems, orderDetails, setOrde
     }
 
     const handleCover = (e) => {
-        if (orderDetails.findIndex(object => object.item_id === 'co1') === -1
-            && orderDetails.findIndex(object => object.item_id === 'co2') === -1
-            && orderDetails.findIndex(object => object.item_id === 'co3') === -1
-            && orderDetails.findIndex(object => object.item_id === 'co4') === -1) {
-            setOrderDetails(prevState =>
+        if (items_array.findIndex(object => object.item_id === 'co1') === -1
+            && items_array.findIndex(object => object.item_id === 'co2') === -1
+            && items_array.findIndex(object => object.item_id === 'co3') === -1
+            && items_array.findIndex(object => object.item_id === 'co4') === -1) {
+            setItems_array(prevState =>
                 [...prevState, {
                     item_id: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
                     item_name: e.target.childNodes[e.target.selectedIndex].getAttribute('title'),
@@ -294,7 +304,7 @@ function OrderForm2({ sumTotal, setOrderItems, orderItems, orderDetails, setOrde
                 }]);
         }
         else {
-            setOrderDetails(orderDetails.map(obj => {
+            setItems_array(items_array.map(obj => {
                 if (obj.item_id === 'co1'
                     || obj.item_id === 'co2'
                     || obj.item_id === 'co3'
@@ -312,8 +322,8 @@ function OrderForm2({ sumTotal, setOrderItems, orderItems, orderDetails, setOrde
     }
 
     const handleMenuCards = (e) => {
-        if (orderDetails.findIndex(object => object.item_id === 'ca1') === -1) {
-            setOrderDetails(prevState =>
+        if (items_array.findIndex(object => object.item_id === 'ca1') === -1) {
+            setItems_array(prevState =>
                 [...prevState, {
                     item_id: 'ca1',
                     item_name: 'menu cards',
@@ -321,7 +331,7 @@ function OrderForm2({ sumTotal, setOrderItems, orderItems, orderDetails, setOrde
                 }]);
         }
         if (e.target.checked === false) {
-            setOrderDetails(prevState =>
+            setItems_array(prevState =>
                 prevState.filter(item => {
                     return item.item_id !== 'ca1';
                 }),
@@ -330,8 +340,8 @@ function OrderForm2({ sumTotal, setOrderItems, orderItems, orderDetails, setOrde
     }
 
     const handleSeatCards = (e) => {
-        if (orderDetails.findIndex(object => object.item_id === 'ca2') === -1) {
-            setOrderDetails(prevState =>
+        if (items_array.findIndex(object => object.item_id === 'ca2') === -1) {
+            setItems_array(prevState =>
                 [...prevState, {
                     item_id: 'ca2',
                     item_name: 'seat cards',
@@ -339,7 +349,7 @@ function OrderForm2({ sumTotal, setOrderItems, orderItems, orderDetails, setOrde
                 }]);
         }
         if (e.target.checked === false) {
-            setOrderDetails(prevState =>
+            setItems_array(prevState =>
                 prevState.filter(item => {
                     return item.item_id !== 'ca2';
                 }),
@@ -348,8 +358,8 @@ function OrderForm2({ sumTotal, setOrderItems, orderItems, orderDetails, setOrde
     }
 
     const handleTableCards = (e) => {
-        if (orderDetails.findIndex(object => object.item_id === 'ca3') === -1) {
-            setOrderDetails(prevState =>
+        if (items_array.findIndex(object => object.item_id === 'ca3') === -1) {
+            setItems_array(prevState =>
                 [...prevState, {
                     item_id: 'ca3',
                     item_name: 'table cards',
@@ -357,7 +367,7 @@ function OrderForm2({ sumTotal, setOrderItems, orderItems, orderDetails, setOrde
                 }]);
         }
         if (e.target.checked === false) {
-            setOrderDetails(prevState =>
+            setItems_array(prevState =>
                 prevState.filter(item => {
                     return item.item_id !== 'ca3';
                 }),
@@ -372,9 +382,9 @@ function OrderForm2({ sumTotal, setOrderItems, orderItems, orderDetails, setOrde
                 <h2>Running Price</h2>
                 <div className='running-price-frame p-4'>
                     <RunningPrice
-                        orderItems={orderItems}
-                        orderDetails={orderDetails} />
-
+                        order={order}
+                        items_array={items_array}
+                    />
                 </div>
 
                 <div className='row-group mt-5'>
@@ -388,14 +398,14 @@ function OrderForm2({ sumTotal, setOrderItems, orderItems, orderDetails, setOrde
                     <div className='grid-item'><h5>Sizes</h5></div>
                     <div className='grid-item'><input type="checkbox" value="pages" className='checkbox-circle0' />Pages</div>
                     <div className='grid-item'>
-                        <select name="pages" id="pages-select" required onChange={handlePagesPaperAndColor}>
+                        <select name="pages" id="pages-select" required onClick={handlePagesPaperAndColor}>
                             <option value="Let Crafters Haven handle it!">Let Crafters Haven handle it!</option>
                             <option value="Customize">Customize</option>
                         </select>
                     </div>
                     <div className='grid-item'>
                         <div className='grid-item'>
-                            <select name="pages" id="pages-select" onChange={handlePagesSize}>
+                            <select name="pages" id="pages-select" onClick={handlePagesSize}>
                                 <option id="4.75 x 5.75 in" value="30">4.75 x 5.75 in</option>
                                 <option id="5.75 x 7.75 in" value="30">5.75 x 7.75 in</option>
                                 <option id="6.75 x 8.75 in" value="40">6.75 x 8.75 in</option>
@@ -405,49 +415,45 @@ function OrderForm2({ sumTotal, setOrderItems, orderItems, orderDetails, setOrde
                     <div className='grid-item'><input type="checkbox" value="envelope" className='checkbox-circle'
                         onChange={handleEnvelope} /> Envelope</div>
                     <div className='grid-item'>
-                        <select name="envelope" id="envelope-select" onChange={handleEnvelopePaperAndColor} disabled={!checked}>
+                        <select name="envelope" id="envelope-select" onClick={handleEnvelopePaperAndColor} disabled={!checked}>
                             <option value="Let Crafters Haven handle it!">Let Crafters Haven handle it!</option>
                             <option value="Customize">Customize</option>
                         </select>
                     </div>
                     <div className='grid-item'>
-                        <select name="envelope" id="envelope-select" onChange={handleEnvelopeSize} disabled={!checked}>
+                        <select name="envelope" id="envelope-select" onClick={handleEnvelopeSize} disabled={!checked}>
                             <option id="6 x 8 in" value='30'>6 x 8 in</option>
                         </select>
                     </div>
                 </div>
                 <div className='row-group'>
-                    <input type="checkbox" value="10" className='checkbox-circle' onClick={handleEnvelopeLiner} disabled={!checked} />Envelope Liner
-                    <input type="checkbox" value="5" className='checkbox-circle' onClick={handleEnvelopeLock} disabled={!checked} />Envelope Lock
+                    <input type="checkbox" value="10" className={!checked ? 'checkbox-circle1' : 'checkbox-circle'} onClick={handleEnvelopeLiner} disabled={!checked} />Envelope Liner
+                    <input type="checkbox" value="5" className={!checked ? 'checkbox-circle1' : 'checkbox-circle'} onClick={handleEnvelopeLock} disabled={!checked} />Envelope Lock
                 </div>
                 {!hidden ? <OrderForm3
-                    orderItems={orderItems}
-                    setOrderItems={setOrderItems}
-                    orderDetails={orderDetails}
-                    setOrderDetails={setOrderDetails}
+                    order={order}
+                    setOrder={setOrder}
+                    items_array={items_array}
+                    setItems_array={setItems_array}
                 /> : null}
 
                 <div className='row-group mt-5'>
                     <div className="number-circle">2</div>
                     <h3>Text Decor</h3>
                 </div>
-                <div className='grid-container'>
-                    <div className='grid-item'><h5>All Text</h5></div>
-                    <div className='grid-item'><h5>Header Text</h5></div>
-                    <div className='grid-item'><h5>Body Text</h5></div>
-                    <div className='grid-item'><input type="checkbox" value="20" name='all-text' className='checkbox-circle' onClick={handleAllText} />Dry Emboss</div>
-                    <div className='grid-item'>
-                        <select name="header-text" id="header-select" onChange={handleHeaderText} disabled={allTextChecked}>
-                            <option id="t1" title="header plain print" value="30">Plain Print</option>
-                            <option id="t2" title="header foil print" value="40">Foil Print</option>
-                        </select>
+                <div className='text-decor mt-3'>
+                    <div>
+                        <h5>All Text</h5>
+                        <div className='grid-item'><input type="radio" id='t4' title='all text emboss' value="20" name='all-text' className='checkbox-circle' onClick={handleAllText} />Emboss</div>
+                        <div className='grid-item'><input type="radio" id='t3' title='all text foil print' value="60" name='all-text' className='checkbox-circle' onClick={handleAllText} />Foil Print</div>
+                        <div className='grid-item'><input type="radio" id='t1' title='all text plain print' value="30" name='all-text' className='checkbox-circle' onClick={handleAllText} />Plain Print</div>
                     </div>
-                    <div className='grid-item'>
-                        <select name="body-text" id="body-select" onChange={handleBodyText} disabled={allTextChecked}>
-                            <option id="t1" title="body plain print" value="30">Plain Print</option>
-                            <option id="t3" title="body foil print" value="60">Foil Print</option>
-                        </select>
+                    <div>
+                        <h5>Header Text</h5>
+                        <div className='grid-item'><input type="checkbox" id='t2' title='header foil print' value="40" name='header-text' className='checkbox-circle' onClick={handleHeaderText} />Foil Print</div>
                     </div>
+
+
                 </div>
 
                 <div className='row-group mt-5'>
@@ -465,7 +471,7 @@ function OrderForm2({ sumTotal, setOrderItems, orderItems, orderDetails, setOrde
                     <h3>Cover</h3>
                 </div>
                 <div className='grid-item'>
-                    <select name="cover" id="cover-select" onChange={handleCover}>
+                    <select name="cover" id="cover-select" onClick={handleCover}>
                         <option id="co1" title='translucent cover' value="60">Translucent</option>
                         <option id="co2" title='trifold cover' value="60">Trifold</option>
                         <option id="co3" title='cover with print' value="120">Printed</option>
@@ -486,7 +492,7 @@ function OrderForm2({ sumTotal, setOrderItems, orderItems, orderDetails, setOrde
                 </span>
                 <div className='form1-footer'>
                     <Link to='/order-form-1' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
-                    <Link to='/order-form-3' className="rounded-pill btn btn-info fw-bold nav-hover">Next</Link>
+                    <Link to='/order-form-4' className="rounded-pill btn btn-info fw-bold nav-hover">Next</Link>
                 </div>
             </div>
         </>

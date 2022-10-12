@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './Downpayment.css';
 import Axios from 'axios';
 
-function Downpayment({ orderItems, setOrderItems, orderDetails, setOrderDetails }) {
+function Downpayment({ order, setOrder, items_array, setItems_array, setPayment_method }) {
     const errRef = useRef();
     const [errMsg, setErrMsg] = useState('');
 
@@ -13,16 +13,16 @@ function Downpayment({ orderItems, setOrderItems, orderDetails, setOrderDetails 
             const response = await Axios.post('http://localhost:5000/api/order/create-new-order',
                 {
                     //how to properly pass them to backend?
-                    orderItems,
-                    orderDetails
+                    order,
+                    items_array
                 },
                 {
                     withCredentials: true
                 }
             );
             console.log(response)
-            setOrderItems('');
-            setOrderDetails('');
+            setOrder('');
+            setItems_array('');
 
         } catch (err) {
             if (!err?.response) {
@@ -37,12 +37,7 @@ function Downpayment({ orderItems, setOrderItems, orderDetails, setOrderDetails 
     }
 
     const handlePayment = (e) => {
-        setOrderItems((prevState) => {
-            return {
-                ...prevState,
-                payment_method: e.target.id
-            };
-        });
+        setPayment_method(e.target.id);
     }
 
     return (
@@ -69,11 +64,7 @@ function Downpayment({ orderItems, setOrderItems, orderDetails, setOrderDetails 
                         <p>Contact Number: </p>
                         <p>Address: </p>
                         <p>Payment Method: </p>
-                        <br />
-                        <p>Quantity: </p>
-                        <p>Order Number: </p>
                         <p>Amount per Set: </p>
-                        <p>VAT: </p>
                         <b>TOTAL AMOUNT DUE</b>
                     </div>
                 </div>

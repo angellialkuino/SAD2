@@ -3,31 +3,25 @@ import { Link, Navigate, useNavigate } from 'react-router-dom';
 import NavBarCustomerLoggedIn from './NavBarCustomerLoggedIn';
 import './OrderForm1.css';
 
-const OrderForm1 = ({ orderItems, setOrderItems }) => {
-    useEffect(() => console.log(orderItems), [orderItems]);
+const OrderForm1 = ({ order, setOrder }) => {
+    useEffect(() => console.log(order), [order]);
 
     const navigate = useNavigate()
 
     const handleInviteType = (e) => {
-        setOrderItems((prevState) => {
+        setOrder((prevState) => {
             return {
                 ...prevState,
-                order: {
-                    ...prevState.order,
-                    invite_type: e.target.value
-                }
+                invite_type: e.target.value
             };
         });
     }
     const handleMaterial = (e) => {
-        setOrderItems((prevState) => {
+        setOrder((prevState) => {
             return {
                 ...prevState,
-                order: {
-                    ...prevState.order,
-                    material: e.target.id,
-                    material_price: parseFloat(e.target.value)
-                }
+                material: e.target.id,
+                material_price: parseFloat(e.target.value)
             };
         });
     }
@@ -98,13 +92,10 @@ const OrderForm1 = ({ orderItems, setOrderItems }) => {
                             id="event_date"
                             autoComplete="off"
                             onChange={(e) => {
-                                setOrderItems((prevState) => {
+                                setOrder((prevState) => {
                                     return {
                                         ...prevState,
-                                        order: {
-                                            ...prevState.order,
-                                            event_date: e.target.value
-                                        }
+                                        event_date: e.target.value
                                     };
                                 });
                             }}
@@ -118,13 +109,10 @@ const OrderForm1 = ({ orderItems, setOrderItems }) => {
                             id="motif"
                             autoComplete="off"
                             onChange={(e) => {
-                                setOrderItems((prevState) => {
+                                setOrder((prevState) => {
                                     return {
                                         ...prevState,
-                                        order: {
-                                            ...prevState.order,
-                                            motif: e.target.value
-                                        }
+                                        motif: e.target.value
                                     };
                                 });
                             }}
@@ -138,13 +126,10 @@ const OrderForm1 = ({ orderItems, setOrderItems }) => {
                             id="invitation_title"
                             autoComplete="off"
                             onChange={(e) => {
-                                setOrderItems((prevState) => {
+                                setOrder((prevState) => {
                                     return {
                                         ...prevState,
-                                        order: {
-                                            ...prevState.order,
-                                            invite_title: e.target.value
-                                        }
+                                        invite_title: e.target.value
                                     };
                                 });
                             }}
@@ -158,13 +143,10 @@ const OrderForm1 = ({ orderItems, setOrderItems }) => {
                             id="font"
                             autoComplete="off"
                             onChange={(e) => {
-                                setOrderItems((prevState) => {
+                                setOrder((prevState) => {
                                     return {
                                         ...prevState,
-                                        order: {
-                                            ...prevState.order,
-                                            font_style: e.target.value
-                                        }
+                                        font_style: e.target.value
                                     };
                                 });
                             }}
@@ -178,13 +160,10 @@ const OrderForm1 = ({ orderItems, setOrderItems }) => {
                             id="content_link"
                             autoComplete="off"
                             onChange={(e) => {
-                                setOrderItems((prevState) => {
+                                setOrder((prevState) => {
                                     return {
                                         ...prevState,
-                                        order: {
-                                            ...prevState.order,
-                                            content_link: e.target.value
-                                        }
+                                        content_link: e.target.value
                                     };
                                 });
                             }}
@@ -199,13 +178,10 @@ const OrderForm1 = ({ orderItems, setOrderItems }) => {
                             id="invite_number"
                             autoComplete="off"
                             onChange={(e) => {
-                                setOrderItems((prevState) => {
+                                setOrder((prevState) => {
                                     return {
                                         ...prevState,
-                                        order: {
-                                            ...prevState.order,
-                                            num_of_invites: e.target.value
-                                        }
+                                        num_of_invites: e.target.value
                                     };
                                 });
                             }}
@@ -219,13 +195,10 @@ const OrderForm1 = ({ orderItems, setOrderItems }) => {
                             id="peg_link"
                             autoComplete="off"
                             onChange={(e) => {
-                                setOrderItems((prevState) => {
+                                setOrder((prevState) => {
                                     return {
                                         ...prevState,
-                                        order: {
-                                            ...prevState.order,
-                                            peg_link: e.target.value
-                                        }
+                                        peg_link: e.target.value
                                     };
                                 });
                             }}

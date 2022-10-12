@@ -1,11 +1,11 @@
 import React from "react"
 
-export const RunningPrice = ({ orderItems, orderDetails }) => {
+export const RunningPrice = ({ order, items_array }) => {
     return (
         <>
-            {orderDetails.map((item) =>
+            {items_array.map((item) =>
                 <ul key={item.item_id}>
-                    <li>- {item.item_name} {item.price}Php</li>
+                    <li>{item.item_name} {item.quantity} {item.price}Php</li>
                 </ul>)
             }
         </>

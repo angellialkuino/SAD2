@@ -1,61 +1,27 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import NavBarCustomerLoggedIn from './NavBarCustomerLoggedIn';
 import './OrderForm5.css';
-import Axios from 'axios';
 
-function OrderForm5({ orderItems, setOrderItems, orderDetails, setOrderDetails }) {
-    const errRef = useRef();
-    const [errMsg, setErrMsg] = useState('');
-
+function OrderForm5({ order, setOrder, items_array }) {
     useEffect(() => {
-        console.log(orderItems);
-    }, [orderItems]);
+        console.log(order);
+        console.log(items_array);
+    }, [order]);
 
-    const handleSubmitOrder = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await Axios.post('http://localhost:5000/api/order/create-new-order',
-                {
-                    //how to properly pass them to backend?
-                    orderItems,
-                    orderDetails
-                },
-                {
-                    withCredentials: true
-                }
-            );
-            console.log(response)
-        } catch (err) {
-            if (!err?.response) {
-                setErrMsg('No Server Response');
-            } else if (err.response?.status === 409) {
-                setErrMsg('Submitted Already');
-            } else {
-                setErrMsg('Submission Failed')
-            }
-            errRef.current.focus();
-        }
-    }
     const handleDeadline = (e) => {
-        setOrderItems((prevState) => {
+        setOrder((prevState) => {
             return {
                 ...prevState,
-                order: {
-                    ...prevState.order,
-                    order_deadline: e.target.value
-                }
+                order_deadline: e.target.value
             };
         });
     }
     const handleClaim = (e) => {
-        setOrderItems((prevState) => {
+        setOrder((prevState) => {
             return {
                 ...prevState,
-                order: {
-                    ...prevState.order,
-                    claim_type: e.target.id
-                }
+                claim_type: e.target.id
             };
         });
     }
@@ -99,7 +65,7 @@ function OrderForm5({ orderItems, setOrderItems, orderDetails, setOrderDetails }
                 </div>
                 <div className='form1-footer'>
                     <Link to='/order-form-4' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
-                    <Link to='/check-order' className="rounded-pill btn btn-info fw-bold nav-hover" onClick={handleSubmitOrder}>Next</Link>
+                    <Link to='/check-order' className="rounded-pill btn btn-info fw-bold nav-hover">Next</Link>
                 </div>
             </div>
         </>
