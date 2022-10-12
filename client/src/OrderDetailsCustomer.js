@@ -4,13 +4,13 @@ import { Link, useLocation } from 'react-router-dom';
 import './OrderDetails.css';
 
 function OrderDetailsCustomer() {
-    const location = useLocation();
-    const {orderID} = location.state;
+    // const location = useLocation();
+    // const {orderID} = location.state;
 
     const [orderInfo, setOrderInfo] = useState({});    
     
-    //const [orderID, setOrderID] = useState("2993f16f-5ea2-4177-9d5e-1a4ac76586be");
-    // const [userID, setUserID] = useState("N/A");
+    const [orderID, setOrderID] = useState("2993f16f-5ea2-4177-9d5e-1a4ac76586be");
+    const [userID, setUserID] = useState("N/A");
     const [inviteType, setUserIinviteType] = useState("N/A");
     const [material, setMaterial] = useState("N/A");
     const [eventDate, setEventDate] = useState("N/A");
@@ -121,15 +121,17 @@ function OrderDetailsCustomer() {
                     <h5>Claim Type</h5>
                     <p>{claimType}</p>
                 </div>
-                <div>
-                    <table>
+
+                <div className="order-table-div">
+                    <table className='order-details-table'>
                         <thead>
-                        <tr>
-                            <th>Item Name</th>
-                            <th>Quantity</th>
-                            <th>Price</th>
-                        </tr>
+                            <tr>
+                                <th>Item Name</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                            </tr>
                         </thead>
+
                         <tbody>
                         {/* content of table */}
                         {itemsArray.map((val,key) => {
@@ -142,9 +144,11 @@ function OrderDetailsCustomer() {
                                 </tr>
                             );
                         })}  
-                        </tbody>                  
+                        </tbody>       
+                                   
                     </table>                    
                 </div>
+
                 <div className='order-details-footer'>
                     <Link to='/customer/invitation-draft' state={{orderID:orderID}} className="rounded-pill btn btn-info fw-bold nav-hover">View Invitation</Link>
                     <Link to='/customer/order-log' state={{orderID:orderID}} className="rounded-pill btn btn-info fw-bold nav-hover">View Order Log</Link>

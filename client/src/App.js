@@ -148,6 +148,8 @@ function App() {
             <Route path='/staff-list' element={<StaffList />} />
         </Routes>
 
+        <OrderDetailsCustomer />
+
     </React.Fragment>
 }
 
