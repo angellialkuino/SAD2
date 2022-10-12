@@ -35,9 +35,9 @@ function App() {
     //if user is logged in and check role(?)
     const [success, setSuccess] = useState(false);
     const [roles, setRoles] = useState('');
-    const sumTotal = useRef(0);
 
     //order form data
+    const sumTotal = useRef(0.00);
     const [orderItems, setOrderItems] = useState(
         {
             payment_method: '',
@@ -117,7 +117,14 @@ function App() {
                     orderDetails={orderDetails}
                     setOrderDetails={setOrderDetails}
                 />} />
-            <Route path='/check-order' element={<CheckOrder />} />
+            <Route path='/check-order' element=
+                {<CheckOrder
+                    orderItems={orderItems}
+                    setOrderItems={setOrderItems}
+                    orderDetails={orderDetails}
+                    setOrderDetails={setOrderDetails}
+                    sumTotal={sumTotal}
+                />} />
             <Route path='/order-pickup' element={<OrderPickup />} />
             <Route path='/shipping-address' element={<ShippingAddress />} />
             <Route path='downpayment' element={<Downpayment />} />
@@ -140,12 +147,12 @@ function App() {
             <Route path='/staff' element={<StaffAccountOwner />} />
             <Route path='/staff-list' element={<StaffList />} />
         </Routes>
-        <Downpayment
+        {/* <CheckOrder
             orderItems={orderItems}
             setOrderItems={setOrderItems}
             orderDetails={orderDetails}
             setOrderDetails={setOrderDetails}
-        />
+        /> */}
 
     </React.Fragment>
 }

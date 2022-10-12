@@ -8,11 +8,11 @@ import OrderForm3 from './OrderForm3';
 function OrderForm2({ sumTotal, setOrderItems, orderItems, orderDetails, setOrderDetails }) {
     const [checked, setChecked] = useState(false);
     const [allTextChecked, setAllTextChecked] = useState(false);
+    const [headerChecked, setHeaderChecked] = useState(false);
     const [hidden, setHidden] = useState(true)
 
     useEffect(() => {
         <RunningPrice orderDetails={orderDetails} />
-
         sumTotal.current = 0;
         orderDetails.forEach(element => {
             if ('price' in element) {
@@ -20,8 +20,21 @@ function OrderForm2({ sumTotal, setOrderItems, orderItems, orderDetails, setOrde
             }
         });
         sumTotal.current += orderItems.order.material_price;
-        // console.log(orderDetails);
-    }, [orderDetails]);
+        if (orderItems.order.num_of_invites < 30) {
+            sumTotal.current += 1500;
+            let date1 = new Date().toJSON().slice(0, 10);
+            let date2 = orderItems.order.event_date;
+            const date1new = new Date(date1);
+            const date2new = new Date(date2);
+            let Difference_In_Time = date2new.getTime() - date1new.getTime();
+            let Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+            if (Difference_In_Days < 14) {
+                sumTotal.current = sumTotal.current + (sumTotal.current * 0.40);
+            }
+        }
+        console.log(orderItems);
+        console.log(orderDetails);
+    }, [orderDetails, sumTotal]);
 
     const handlePagesPaperAndColor = (e) => {
         setOrderDetails(orderDetails.map(obj => {
@@ -32,7 +45,6 @@ function OrderForm2({ sumTotal, setOrderItems, orderItems, orderDetails, setOrde
                 };
             }
             return obj;
-
         }));
         orderDetails.some(element => {
             if (element.color === 'Customize') {
@@ -42,16 +54,33 @@ function OrderForm2({ sumTotal, setOrderItems, orderItems, orderDetails, setOrde
     }
 
     const handlePagesSize = (e) => {
-        setOrderDetails(orderDetails.map(obj => {
-            if (obj.item_id === 'm1') {
-                return {
-                    ...obj,
-                    size: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
-                    price: parseFloat(e.target.value)
-                };
-            }
-            return obj;
-        }));
+        if (orderItems.order.material === 'acrylic') {
+            setOrderDetails(orderDetails.map(obj => {
+                if (obj.item_id === 'm1') {
+                    return {
+                        ...obj,
+                        size: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
+                        quantity: 3,
+                        price: 90
+                    };
+                }
+                return obj;
+            }));
+        }
+        else {
+            setOrderDetails(orderDetails.map(obj => {
+                if (obj.item_id === 'm1') {
+                    return {
+                        ...obj,
+                        size: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
+                        quantity: 2,
+                        price: 60
+                    };
+                }
+                return obj;
+            }));
+        }
+
     }
 
     const handleEnvelopePaperAndColor = (e) => {
@@ -153,77 +182,59 @@ function OrderForm2({ sumTotal, setOrderItems, orderItems, orderDetails, setOrde
     }
 
     const handleAllText = (e) => {
-        setAllTextChecked(e.target.checked);
-        if (e.target.checked === false) {
-            setOrderDetails(prevState =>
-                prevState.filter(item => {
-                    return item.item_id !== 't4';
-                }),
-            );
-        }
-        else {
+        if (orderDetails.findIndex(object => object.type === 'all text') === -1) {
             setOrderDetails(prevState =>
                 [...prevState, {
-                    item_id: 't4',
-                    item_name: 'dry emboss',
+                    item_id: e.target.id,
+                    item_name: e.target.title,
                     type: 'all text',
                     price: parseFloat(e.target.value)
                 }]);
-            setOrderDetails(prevState =>
-                prevState.filter(item => {
-                    return item.type !== 'header' && item.type !== 'body';
-                }),
-            );
+        }
+        else {
+            setOrderDetails(orderDetails.map(obj => {
+                if (obj.type === 'all text') {
+                    return {
+                        ...obj,
+                        item_id: e.target.id,
+                        item_name: e.target.title,
+                        price: parseFloat(e.target.value)
+                    };
+                }
+                return obj;
+            }));
         }
     }
 
     const handleHeaderText = (e) => {
-        if (orderDetails.findIndex(object => object.type === 'header') === -1) {
+        if (orderDetails.findIndex(object => object.type === 'header text') === -1) {
             setOrderDetails(prevState =>
                 [...prevState, {
-                    item_id: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
-                    item_name: e.target.childNodes[e.target.selectedIndex].getAttribute('title'),
-                    type: 'header',
+                    item_id: e.target.id,
+                    item_name: e.target.title,
+                    type: 'header text',
                     price: parseFloat(e.target.value)
                 }]);
         }
         else {
             setOrderDetails(orderDetails.map(obj => {
-                if (obj.type === 'header') {
+                if (obj.type === 'header text') {
                     return {
                         ...obj,
-                        item_id: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
-                        item_name: e.target.childNodes[e.target.selectedIndex].getAttribute('title'),
+                        item_id: e.target.id,
+                        item_name: e.target.name,
                         price: parseFloat(e.target.value)
                     };
                 }
                 return obj;
             }));
         }
-    }
-
-    const handleBodyText = (e) => {
-        if (orderDetails.findIndex(object => object.type === 'body') === -1) {
+        if (e.target.checked === false) {
             setOrderDetails(prevState =>
-                [...prevState, {
-                    item_id: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
-                    item_name: e.target.childNodes[e.target.selectedIndex].getAttribute('title'),
-                    type: 'body',
-                    price: parseFloat(e.target.value)
-                }]);
-        }
-        else {
-            setOrderDetails(orderDetails.map(obj => {
-                if (obj.type === 'body') {
-                    return {
-                        ...obj,
-                        item_id: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
-                        item_name: e.target.childNodes[e.target.selectedIndex].getAttribute('title'),
-                        price: parseFloat(e.target.value)
-                    };
-                }
-                return obj;
-            }));
+                prevState.filter(item => {
+                    return item.type !== 'header text';
+                }),
+            );
         }
     }
 
@@ -373,8 +384,8 @@ function OrderForm2({ sumTotal, setOrderItems, orderItems, orderDetails, setOrde
                 <div className='running-price-frame p-4'>
                     <RunningPrice
                         orderItems={orderItems}
-                        orderDetails={orderDetails} />
-
+                        orderDetails={orderDetails}
+                    />
                 </div>
 
                 <div className='row-group mt-5'>
@@ -388,14 +399,14 @@ function OrderForm2({ sumTotal, setOrderItems, orderItems, orderDetails, setOrde
                     <div className='grid-item'><h5>Sizes</h5></div>
                     <div className='grid-item'><input type="checkbox" value="pages" className='checkbox-circle0' />Pages</div>
                     <div className='grid-item'>
-                        <select name="pages" id="pages-select" required onChange={handlePagesPaperAndColor}>
+                        <select name="pages" id="pages-select" required onClick={handlePagesPaperAndColor}>
                             <option value="Let Crafters Haven handle it!">Let Crafters Haven handle it!</option>
                             <option value="Customize">Customize</option>
                         </select>
                     </div>
                     <div className='grid-item'>
                         <div className='grid-item'>
-                            <select name="pages" id="pages-select" onChange={handlePagesSize}>
+                            <select name="pages" id="pages-select" onClick={handlePagesSize}>
                                 <option id="4.75 x 5.75 in" value="30">4.75 x 5.75 in</option>
                                 <option id="5.75 x 7.75 in" value="30">5.75 x 7.75 in</option>
                                 <option id="6.75 x 8.75 in" value="40">6.75 x 8.75 in</option>
@@ -405,20 +416,20 @@ function OrderForm2({ sumTotal, setOrderItems, orderItems, orderDetails, setOrde
                     <div className='grid-item'><input type="checkbox" value="envelope" className='checkbox-circle'
                         onChange={handleEnvelope} /> Envelope</div>
                     <div className='grid-item'>
-                        <select name="envelope" id="envelope-select" onChange={handleEnvelopePaperAndColor} disabled={!checked}>
+                        <select name="envelope" id="envelope-select" onClick={handleEnvelopePaperAndColor} disabled={!checked}>
                             <option value="Let Crafters Haven handle it!">Let Crafters Haven handle it!</option>
                             <option value="Customize">Customize</option>
                         </select>
                     </div>
                     <div className='grid-item'>
-                        <select name="envelope" id="envelope-select" onChange={handleEnvelopeSize} disabled={!checked}>
+                        <select name="envelope" id="envelope-select" onClick={handleEnvelopeSize} disabled={!checked}>
                             <option id="6 x 8 in" value='30'>6 x 8 in</option>
                         </select>
                     </div>
                 </div>
                 <div className='row-group'>
-                    <input type="checkbox" value="10" className='checkbox-circle' onClick={handleEnvelopeLiner} disabled={!checked} />Envelope Liner
-                    <input type="checkbox" value="5" className='checkbox-circle' onClick={handleEnvelopeLock} disabled={!checked} />Envelope Lock
+                    <input type="checkbox" value="10" className={!checked ? 'checkbox-circle1' : 'checkbox-circle'} onClick={handleEnvelopeLiner} disabled={!checked} />Envelope Liner
+                    <input type="checkbox" value="5" className={!checked ? 'checkbox-circle1' : 'checkbox-circle'} onClick={handleEnvelopeLock} disabled={!checked} />Envelope Lock
                 </div>
                 {!hidden ? <OrderForm3
                     orderItems={orderItems}
@@ -431,23 +442,19 @@ function OrderForm2({ sumTotal, setOrderItems, orderItems, orderDetails, setOrde
                     <div className="number-circle">2</div>
                     <h3>Text Decor</h3>
                 </div>
-                <div className='grid-container'>
-                    <div className='grid-item'><h5>All Text</h5></div>
-                    <div className='grid-item'><h5>Header Text</h5></div>
-                    <div className='grid-item'><h5>Body Text</h5></div>
-                    <div className='grid-item'><input type="checkbox" value="20" name='all-text' className='checkbox-circle' onClick={handleAllText} />Dry Emboss</div>
-                    <div className='grid-item'>
-                        <select name="header-text" id="header-select" onChange={handleHeaderText} disabled={allTextChecked}>
-                            <option id="t1" title="header plain print" value="30">Plain Print</option>
-                            <option id="t2" title="header foil print" value="40">Foil Print</option>
-                        </select>
+                <div className='text-decor mt-3'>
+                    <div>
+                        <h5>All Text</h5>
+                        <div className='grid-item'><input type="radio" id='t4' title='all text emboss' value="20" name='all-text' className='checkbox-circle' onClick={handleAllText} />Emboss</div>
+                        <div className='grid-item'><input type="radio" id='t3' title='all text foil print' value="60" name='all-text' className='checkbox-circle' onClick={handleAllText} />Foil Print</div>
+                        <div className='grid-item'><input type="radio" id='t1' title='all text plain print' value="30" name='all-text' className='checkbox-circle' onClick={handleAllText} />Plain Print</div>
                     </div>
-                    <div className='grid-item'>
-                        <select name="body-text" id="body-select" onChange={handleBodyText} disabled={allTextChecked}>
-                            <option id="t1" title="body plain print" value="30">Plain Print</option>
-                            <option id="t3" title="body foil print" value="60">Foil Print</option>
-                        </select>
+                    <div>
+                        <h5>Header Text</h5>
+                        <div className='grid-item'><input type="checkbox" id='t2' title='header foil print' value="40" name='header-text' className='checkbox-circle' onClick={handleHeaderText} />Foil Print</div>
                     </div>
+
+
                 </div>
 
                 <div className='row-group mt-5'>
@@ -486,7 +493,7 @@ function OrderForm2({ sumTotal, setOrderItems, orderItems, orderDetails, setOrde
                 </span>
                 <div className='form1-footer'>
                     <Link to='/order-form-1' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
-                    <Link to='/order-form-3' className="rounded-pill btn btn-info fw-bold nav-hover">Next</Link>
+                    <Link to='/order-form-4' className="rounded-pill btn btn-info fw-bold nav-hover">Next</Link>
                 </div>
             </div>
         </>

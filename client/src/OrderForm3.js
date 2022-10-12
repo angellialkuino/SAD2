@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import NavBarCustomerLoggedIn from './NavBarCustomerLoggedIn';
 import './OrderForm3.css';
 
 function OrderForm3({ orderDetails, setOrderDetails }) {
@@ -94,11 +92,6 @@ function OrderForm3({ orderDetails, setOrderDetails }) {
                         <h5>Cream</h5>
                     </div>
                 </div>
-
-                {/* <div className='form1-footer'>
-                    <Link to='/order-form-2' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
-                    <Link to='/order-form-4' className="rounded-pill btn btn-info fw-bold nav-hover">Next</Link>
-                </div> */}
             </form>
         </>
     );

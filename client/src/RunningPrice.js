@@ -5,7 +5,7 @@ export const RunningPrice = ({ orderItems, orderDetails }) => {
         <>
             {orderDetails.map((item) =>
                 <ul key={item.item_id}>
-                    <li>- {item.item_name} {item.price}Php</li>
+                    <li>{item.item_name} {item.quantity} {item.price}Php</li>
                 </ul>)
             }
         </>

@@ -1,8 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './CheckOrder.css';
+import { CheckOrderList } from './CheckOrderList';
 
-function CheckOrder() {
+function CheckOrder({ orderItems, orderDetails, sumTotal }) {
+    useEffect(() => {
+        <CheckOrderList
+            orderDetails={orderDetails}
+            orderItems={orderItems}
+            sumTotal={sumTotal}
+        />
+
+        console.log('opened component')
+    }, [orderItems, orderDetails, sumTotal]);
+
     return (
         <div className="Check_Order">
             <div className="Check_Order-container">
@@ -11,17 +22,11 @@ function CheckOrder() {
                 </div>
 
                 <div className="Check_Order_body">
-                    <p> Order Number: #######</p>
-                    <br />
-                    <p> Name:</p>
-                    <p> Contact Number:</p>
-                    <p> Address:</p>
-                    <p> Payment Method:</p>
-                    <br />
-                    <p> Quantity:</p>
-                    <p> Amount per Set:</p>
-                    <p> VAT:</p>
-                    <p> TOTAL:</p>
+                    <CheckOrderList
+                        orderItems={orderItems}
+                        orderDetails={orderDetails}
+                        sumTotal={sumTotal}
+                    />
                 </div>
             </div>
             <div className="form1-footer">

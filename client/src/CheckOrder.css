@@ -1,3 +1,24 @@
+.check-order-list {
+    display: flex;
+    flex-direction: row;
+    gap: 5rem;
+}
+
+.check-total {
+    position: relative;
+    left: 400px;
+}
+
+.table {
+    border-collapse: separate;
+    border-spacing: 5px 0;
+}
+
+.td {
+    padding: 10px 0;
+
+}
+
 .Check_Order-container {
     margin: 5rem 300px 0 300px;
     padding: 2rem;
@@ -6,6 +27,8 @@
     background-color: #d8ecf5;
     border-radius: 2rem;
     justify-content: space-evenly;
+    flex-direction: column;
+    align-items: center;
 }
 
 .Check_Order_body p {
@@ -22,27 +45,6 @@
     margin: 10px;
     text-align: left;
     font-weight: bold;
-}
-
-.Check_Order-container-info {
-    width: 50%;
-    height: 70%;
-    display: inline-block;
-    flex-direction: column;
-    padding: 0px;
-    margin-left: 20px;
-    box-sizing: border-box;
-    background-color: antiquewhite;
-    border-radius: 10px;
-}
-
-.Check_Order-container-info-body p {
-    font-size: 20px;
-    color: black;
-    padding: 10px;
-    margin: 10px;
-    text-align: left;
-    line-height: 20px;
 }
 
 .Check_Order-footer {

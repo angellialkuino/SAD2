@@ -69,11 +69,7 @@ function Downpayment({ orderItems, setOrderItems, orderDetails, setOrderDetails 
                         <p>Contact Number: </p>
                         <p>Address: </p>
                         <p>Payment Method: </p>
-                        <br />
-                        <p>Quantity: </p>
-                        <p>Order Number: </p>
                         <p>Amount per Set: </p>
-                        <p>VAT: </p>
                         <b>TOTAL AMOUNT DUE</b>
                     </div>
                 </div>
