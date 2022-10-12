@@ -1,43 +1,16 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import NavBarCustomerLoggedIn from './NavBarCustomerLoggedIn';
 import './OrderForm5.css';
-import Axios from 'axios';
 
 function OrderForm5({ orderItems, setOrderItems, orderDetails }) {
-    const errRef = useRef();
-    const [errMsg, setErrMsg] = useState('');
+
 
     useEffect(() => {
         console.log(orderItems);
         console.log(orderDetails);
     }, [orderItems]);
 
-    // const handleSubmitOrder = async (e) => {
-    //     e.preventDefault();
-    //     try {
-    //         const response = await Axios.post('http://localhost:5000/api/order/create-new-order',
-    //             {
-    //                 //how to properly pass them to backend?
-    //                 orderItems,
-    //                 orderDetails
-    //             },
-    //             {
-    //                 withCredentials: true
-    //             }
-    //         );
-    //         console.log(response)
-    //     } catch (err) {
-    //         if (!err?.response) {
-    //             setErrMsg('No Server Response');
-    //         } else if (err.response?.status === 409) {
-    //             setErrMsg('Submitted Already');
-    //         } else {
-    //             setErrMsg('Submission Failed')
-    //         }
-    //         errRef.current.focus();
-    //     }
-    // }
     const handleDeadline = (e) => {
         setOrderItems((prevState) => {
             return {
@@ -100,7 +73,7 @@ function OrderForm5({ orderItems, setOrderItems, orderDetails }) {
                 </div>
                 <div className='form1-footer'>
                     <Link to='/order-form-4' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
-                    <Link to='/check-order' className="rounded-pill btn btn-info fw-bold nav-hover" onClick={0}>Next</Link>
+                    <Link to='/check-order' className="rounded-pill btn btn-info fw-bold nav-hover">Next</Link>
                 </div>
             </div>
         </>

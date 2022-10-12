@@ -147,12 +147,6 @@ function App() {
             <Route path='/staff' element={<StaffAccountOwner />} />
             <Route path='/staff-list' element={<StaffList />} />
         </Routes>
-        <Downpayment
-            orderItems={orderItems}
-            setOrderItems={setOrderItems}
-            orderDetails={orderDetails}
-            setOrderDetails={setOrderDetails}
-        />
 
     </React.Fragment>
 }
