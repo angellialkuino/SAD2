@@ -147,7 +147,7 @@ function App() {
             setOrderDetails={setOrderDetails}
         /> */}
 
-        <CustAccDetail />
+        <StaffList />
 
     </React.Fragment>
 }
