@@ -11,7 +11,7 @@ function InvitationDraftCustomer() {
 
     const [path, setPath] = useState('');
     const [text, setText] = useState('');
-    //const [orderID, setOrderID] = useState('a7a40b63-dbe8-4bcc-bec0-5111b86588af');
+    // const [orderID, setOrderID] = useState('a7a40b63-dbe8-4bcc-bec0-5111b86588af');
 
     useEffect( () => {
         const showImage = async () => {
@@ -22,7 +22,7 @@ function InvitationDraftCustomer() {
                         
                     })
                     .catch(err => {
-                        setText('No Invite Draft Uplaoded Yet');
+                        setText('No Invite Draft Uploaded Yet');
                         console.log(err)
                     })
             }
@@ -33,13 +33,14 @@ function InvitationDraftCustomer() {
     return (
         <div className='invitation-draft-frame'>
             <h1 className='invitation-draft-h1'>Invitation Draft for Order {orderID.slice(-4)}</h1>
+            
             <div className='invitation-draft-inner-frame'>
                 {path && <img className='draft-img' src={path}/>}
                 {text && <p>{text}</p>}
             </div>
 
             <div className='order-being-confirmed-footer'>
-                <button onClick={() => navigate(-1)} className="rounded-pill btn btn-info fw-bold nav-hover">Back</button>
+                <button onClick={() => navigate(-1)} className="btn-invitationdraftcust rounded-pill btn btn-info fw-bold nav-hover">Back</button>
             </div>
         </div>
     );
