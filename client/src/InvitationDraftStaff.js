@@ -1,13 +1,18 @@
 import Axios from 'axios';
+import { useNavigate, useLocation } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import './InvitationDraft.css';
 
 function InvitationDraftStaff() {
+    const navigate = useNavigate();
+
+    const location = useLocation();
+    const {orderID} = location.state;
 
     const [fileData, setFileData] = useState(null);
     const [path, setPath] = useState('');
     const [text, setText] = useState('');
-    const [orderID, setOrderID] = useState('a7a40b63-dbe8-4bcc-bec0-5111b86588af');
+    //const [orderID, setOrderID] = useState('a7a40b63-dbe8-4bcc-bec0-5111b86588af');
 
     useEffect( () => {
         const showImage = async () => {
@@ -63,13 +68,13 @@ function InvitationDraftStaff() {
             </div>
 
             <div className='order-being-confirmed-footer'>
-                <button className='button'>Back</button>
                 <form onSubmit={onSubmitHandler}>
                     {/* Choose File button */}
                     <button className='button'><input type="file" onChange={imageChangeHandler} /></button>
 
                     <button className='button' type="submit">Update Picture</button>
                 </form>
+                <button onClick={() => navigate(-1)}>Back</button>
                 {/* <button className='button'>Update Picture</button> */}
             </div>
         </div>

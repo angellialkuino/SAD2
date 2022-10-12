@@ -1,29 +1,31 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from 'react-router-dom';
 import Axios from 'axios';
 
 function StaffAccountViewOwner() {
+    const navigate = useNavigate();
+
+    const location = useLocation();
+    const {userID} = location.state;
+
     const [isDisabled, setIsDisabled] = useState(true);
     const [user, setUser] = useState({});
-    const [userID, setUserID] = useState("");
+    //const [userID, setUserID] = useState("");
     const [name, setName] = useState("N/A");
     const [email, setEmail] = useState("N/A");
     const [contactNum, setcontactNum] = useState("N/A");
 
     const [errMsg, setErrMsg] = useState('');
-    const [success, setSuccess] = useState(false);
     const [successMsg, setSuccessMsg] = useState('');
 
     useEffect(() => {
 
         const getAccDetails = async () => {
             await Axios.get('http://localhost:5000/api/owner/staff-account',
-                {
-                    params: { user_id: "84000fad-c7ed-4041-8039-0826259a42b6" },
-                    withCredentials: true
-                }
+                {params: { user_id: userID }},
+                { withCredentials: true }
             ).then((res) => {
                 if (res.status === 200) {
-                    setSuccess(true);
                     setSuccessMsg(res.data.message);
                     setUser(res.data.user); //or is it res.body.user                    
                 } else if (res.status === 400) {
@@ -41,7 +43,6 @@ function StaffAccountViewOwner() {
 
     useEffect(() => {
         if (Object.keys(user).length !== 0) {
-            setUserID(user.user_id);
             setName(user.full_name);
             setEmail(user.email);
             setcontactNum(user.phone_number);
@@ -64,7 +65,6 @@ function StaffAccountViewOwner() {
             { withCredentials: true }
         ).then((res) => {
             if (res.status === 200) {
-                setSuccess(true);
                 setSuccessMsg(res.data.message);
                 setIsDisabled(true);
             } else if (res.status === 400) {
@@ -82,7 +82,6 @@ function StaffAccountViewOwner() {
             { withCredentials: true }
         ).then((res) => {
             if (res.status === 200) {
-                setSuccess(true);
                 setSuccessMsg(res.data.message);
                 //Navigate to staff list
             } else if (res.status === 400) {
@@ -128,6 +127,7 @@ function StaffAccountViewOwner() {
                 </>}
 
                 {!isDisabled && <button onClick={updateAccDetails} className="sub-button">Update Account</button>}
+                <button onClick={navigate(-1)}>Back</button>
             </div>
         </div>
     );

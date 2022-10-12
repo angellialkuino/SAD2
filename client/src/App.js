@@ -147,12 +147,12 @@ function App() {
             <Route path='/staff' element={<StaffAccountOwner />} />
             <Route path='/staff-list' element={<StaffList />} />
         </Routes>
-        {/* <CheckOrder
+        <Downpayment
             orderItems={orderItems}
             setOrderItems={setOrderItems}
             orderDetails={orderDetails}
             setOrderDetails={setOrderDetails}
-        /> */}
+        />
 
     </React.Fragment>
 }

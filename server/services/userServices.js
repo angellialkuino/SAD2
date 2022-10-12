@@ -24,12 +24,13 @@ exports.findUser = async (email) => {
 };
 
 exports.findUserbyId = async (id) => {
+    console.log(`service id: ${id}`);
     await db.transaction(async (trx) => {
         user = await trx("users")
                     .select('*')
-                    .where({ user_id: id});
+                    .where({user_id:id});
     });
-    
+    console.log(user);
     return user[0];
 };
 

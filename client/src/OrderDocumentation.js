@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate, useLocation } from 'react-router-dom';
 import Axios from 'axios';
-import OrderDocumentationTable from "./OrderDocumentationTable";
 import './OrderDocumentationTable.css'
 
 //var Orders = require("./OrderDocumentation_PLACEHOLDER.json");
 
 export default function OrderDocumentation() {
-    const [orderID, setOrderID] = useState("2993f16f-5ea2-4177-9d5e-1a4ac76586be");
+    const navigate = useNavigate();
+
+    const location = useLocation();
+    const {orderID} = location.state;
+
+    //const [orderID, setOrderID] = useState("2993f16f-5ea2-4177-9d5e-1a4ac76586be");
     const [orderDocs, setOrderDocs] = useState([]);
 
     const [date, setDate] = useState(new Date().toISOString().slice(0, 19).replace('T', ' '));
@@ -21,9 +26,8 @@ export default function OrderDocumentation() {
                 {withCredentials: true }
             ).then((res) => {
                 if(res.data.entries.length > 0){
-                    setOrderID(orderID);//use only the last 4 characters!!!
+                    setOrderDocs(res.data.entries);
                 }
-                setOrderDocs(res.data.entries);
             });
         }
         getOrderDocs();
@@ -89,8 +93,9 @@ export default function OrderDocumentation() {
 
 
 
-            <div onClick = {addEntry} className="od_add_entry">
+            <div className="od_add_entry">
                 <button onClick = {addEntry} className="od_button-add">Add Entry</button>
+                <button onClick={() => navigate(-1)}>Back</button>
             </div>
 
         </div>

@@ -35,6 +35,7 @@ import NavBar from "./NavBar";
 import CustNavBar from "./NavBarCustomerLoggedIn";
 import OwnerNavBar from "./NavBarOwner";
 import StaffNavBar from "./NavBarStaff";
+import OrderNavBar from "./NavBarOrder";
 
 
 function App() {
@@ -113,7 +114,7 @@ function App() {
 
             {/* Main Pages */}
             <Route path="/" element={<NavBar/>}>
-                {/* <Route index element= {<HomePage/>} /> */}
+                <Route index element= {<HomePage/>} />
                 <Route path='about-us' element={<AboutUs/>} />
                 <Route path='sign-up' element={<SignUp />} />
                 <Route path='login' element={<Login />} />
@@ -122,7 +123,7 @@ function App() {
 
 
             {/* Customer Order Form */}
-            <Route path="/form" element={<CustNavBar/>}>
+            <Route path="/form" element={<OrderNavBar/>}>
                 <Route path='terms-and-conditions' element={<TermsAndConditions />} />
                 <Route path='order-form-1' element=
                     {<OrderForm1
@@ -157,10 +158,10 @@ function App() {
 
             {/* Customer Account and Order Pages */}
             <Route path="/customer" element={<CustNavBar/>}>
-                {/* <Route index element= {<HomePage/>} /> */}
+                <Route index element= {<HomePage/>} />
                 <Route path='about-us' element={<AboutUs/>} />
-                <Route path='account-details' element={<CustAccDetail />} />
-                <Route path='current-orders' element={<CustMyOrders />} />
+                <Route path='my-account' element={<CustAccDetail />} />
+                <Route path='my-orders' element={<CustMyOrders />} />
                 <Route path='order-details' element={<OrderDetailsCustomer />} />
                 <Route path='order-log' element={<OrderDocumentationCustomer />} />
                 <Route path='invitation-draft' element={<InvitationDraftCustomer />} />
@@ -168,6 +169,7 @@ function App() {
 
             {/* Staff Pages */}
             <Route path="/staff" element={<StaffNavBar/>}>
+                <Route index element= {<HomePage/>} />
                 <Route path='order-list' element={<OrderListStaff />} />
                 <Route path='order-details' element={<OrderDetailsStaff />} />
                 <Route path='invitation-draft' element={<InvitationDraftStaff />} />
@@ -177,9 +179,13 @@ function App() {
 
             {/* Owner Pages */}
             <Route path="/owner" element={<OwnerNavBar/>}>
+                <Route index element= {<HomePage/>} />
                 <Route path='create-staff' element={<StaffAccountCreateOwner />} />
                 <Route path='view-staff' element={<StaffAccountOwner />} />
                 <Route path='staff-list' element={<StaffList />} />
+                <Route path='order-list' element={<OrderListStaff />} />
+                <Route path='order-history' element={<OrderHistoryStaff />} />
+
             </Route>
         </Routes>
         {/* <AboutUs /> */}

@@ -58,7 +58,7 @@ GET {{hostname}}/customer/my-account
 Content-Type: application/json
 
 {
-    "user_id": "84000fad-c7ed-4041-8039-0826259a42b6"
+    "user_id": "13ba8f9a-d46d-4fcc-bf89-e5c8c56260b3"
 }
 
 ### update customer

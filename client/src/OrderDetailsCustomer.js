@@ -4,13 +4,13 @@ import { Link, useLocation } from 'react-router-dom';
 import './OrderDetails.css';
 
 function OrderDetailsCustomer() {
-    // const location = useLocation();
-    // const {orderID} = location.state;
+    const location = useLocation();
+    const {orderID} = location.state;
 
     const [orderInfo, setOrderInfo] = useState({});    
     
-    const [orderID, setOrderID] = useState("2993f16f-5ea2-4177-9d5e-1a4ac76586be");
-    const [userID, setUserID] = useState("N/A");
+    //const [orderID, setOrderID] = useState("2993f16f-5ea2-4177-9d5e-1a4ac76586be");
+    // const [userID, setUserID] = useState("N/A");
     const [inviteType, setUserIinviteType] = useState("N/A");
     const [material, setMaterial] = useState("N/A");
     const [eventDate, setEventDate] = useState("N/A");
@@ -37,18 +37,16 @@ function OrderDetailsCustomer() {
 
 
     const [errMsg, setErrMsg] = useState('');
-    const [success, setSuccess] = useState(false);
     const [successMsg, setSuccessMsg] = useState('');
 
     useEffect( () => {
-        console.log(orderID);
+        console.log('orderID: ', orderID);
         const getOrderDetails = async () => {        
             await Axios.get('http://localhost:5000/api/order/order-info',
                 {params:{order_id: orderID}}, 
                 {withCredentials: true }
             ).then((res) => {
                 //console.log(res);
-                //console.log(res.data.order_info);
                 if(res.status===200){
                     setSuccessMsg(res.data.message);
                     setOrderInfo(res.data.order_info);
@@ -57,11 +55,13 @@ function OrderDetailsCustomer() {
                     setErrMsg(res.data.message); 
                 }
                 
+            }).catch((err)=>{
+                console.log(err.response.message);
             });
         }
         
     getOrderDetails();
-    }, [orderID])
+    }, []) //does it work when empty???? should it have orderID
 
     useEffect(()=>{
 
@@ -69,7 +69,7 @@ function OrderDetailsCustomer() {
         //console.log(`order info: \n${JSON.stringify(orderInfo)}`);
 
             //setOrderID(orderInfo.order.order_id);
-            setUserID(orderInfo.order.user_id);
+            // setUserID(orderInfo.order.user_id);
             setUserIinviteType(orderInfo.order.invite_typ);
             setMaterial(orderInfo.order.material);
             setEventDate(orderInfo.order.event_date.slice(0, 10));
@@ -82,7 +82,7 @@ function OrderDetailsCustomer() {
             setDateOrdered(orderInfo.order.date_ordered.slice(0, 10));
             setOrderDeadline(orderInfo.order.order_deadline.slice(0, 10));
             setClaimType(orderInfo.order.claim_type);
-            setOrderStatus(orderInfo.order.order_status); //might be unneccessary info
+            setOrderStatus(orderInfo.order.order_status); 
 
             setItemsArray(orderInfo.order_details);
 
@@ -146,8 +146,8 @@ function OrderDetailsCustomer() {
                     </table>                    
                 </div>
                 <div className='order-details-footer'>
-                    <Link to='/invitation-draft' className="rounded-pill btn btn-info fw-bold nav-hover">View Invitation</Link>
-                    <Link to='/documentation-of-changes' className="rounded-pill btn btn-info fw-bold nav-hover">View Order Log</Link>
+                    <Link to='/customer/invitation-draft' state={{orderID:orderID}} className="rounded-pill btn btn-info fw-bold nav-hover">View Invitation</Link>
+                    <Link to='/customer/order-log' state={{orderID:orderID}} className="rounded-pill btn btn-info fw-bold nav-hover">View Order Log</Link>
                 </div>
 
             </div>

@@ -33,12 +33,8 @@ function NavBarCustomerLoggedIn() {
             <nav className='nav'>
                 <Link to="/customer" className="navbar-brand nav-link site-title nav-hover">Crafter's Haven</Link>
                 <ul>
-                    <li><Link to='/customer/about-us' className="nav-link nav-text">About Us</Link></li>
-                    <li><Link to='/form/terms-and-conditions' className="rounded-pill btn btn-info fw-bold nav-hover">Order Now</Link></li>
-                </ul>
-                <ul>
-                    <li><Link to='/customer/my-orders' className="rounded-pill btn btn-info fw-bold nav-hover">My Orders</Link></li>
-                    <li><Link to='/customer/my-account' className="rounded-pill btn btn-info fw-bold nav-hover">My Account</Link></li>
+                    <li>Order Form</li>
+                    <li><Link to='/customer' className="rounded-pill btn btn-info fw-bold nav-hover">Cancel</Link></li>
                 </ul>
             </nav>
             <Outlet context={userID}/>

@@ -2,6 +2,7 @@ import React from 'react';
 import './OrderDocumentationTable.css'
 
 const OrderDocumentationTable = ({ data }) => {
+
     return (
         <table className="oh_table-table">
             <tbody>

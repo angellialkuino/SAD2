@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Axios from 'axios';
+import { useNavigate, useLocation } from 'react-router-dom';
 import OrderDocumentationTable from "./OrderDocumentationTable";
 import './OrderDocumentationTable.css'
 
@@ -9,19 +10,23 @@ import './OrderDocumentationTable.css'
 //var Orders = require("./OrderDocumentation_PLACEHOLDER.json");
 
 export default function OrderDocumentationCustomer() {
-    const [orderID, setOrderID] = useState("");
+    const navigate = useNavigate();
+
+    const location = useLocation();
+    const {orderID} = location.state;
+
+    //const [orderID, setOrderID] = useState("");
     const [orderDocs, setOrderDocs] = useState([]);
 
     useEffect(  () => {
         const getOrderDocs = async () => {
             await Axios.get('http://localhost:5000/api/order/order-documentation',
-                { params: {order_id: "93ebc2e9-7b45-440f-b87d-43c7c8477267"},
-                withCredentials: true }
+                { params: {order_id: orderID}},
+                {withCredentials: true }
             ).then((res) => {
                 if(res.data.entries.length > 0){
-                    setOrderID(res.data.entries[0].order_id);//use only the last 4 characters!!!
+                    setOrderDocs(res.data.entries);
                 }
-                setOrderDocs(res.data.entries);
             });
         }
         getOrderDocs();
@@ -40,7 +45,7 @@ export default function OrderDocumentationCustomer() {
                 {(orderDocs.length < 1 ) && <p>No Order Documentation Entries</p>}
                 
             </div>
-
+            <button onClick={() => navigate(-1)}>Back</button>
         </div>
     );
 }

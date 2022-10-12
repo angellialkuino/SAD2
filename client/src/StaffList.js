@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import StaffListTable from "./StaffListTable";
+import { Link } from "react-router-dom";
 
 // var Users = require("./StaffListPlaceholder.json");
 
@@ -34,7 +35,7 @@ function StaffList() {
         <div className="div-frame staff-list">
             <div className="headers">
                 <h4 className="title">Staff List</h4>
-                <button className="button">Add</button>
+                <Link to="/owner/create-staff">Add New Staff</Link>
             </div>
             {staffList.length>0 && <StaffListTable staffListData={staffList} />}
         </div>
