@@ -1,7 +1,6 @@
 import React, { useRef, useState, useEffect, useContext } from 'react';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import './SignUpAndLogin.css';
-
 import Axios from 'axios';
 
 const LoginForm = () => {

@@ -18,7 +18,7 @@ exports.currentOrders = async () => {
         orders = await trx("order AS o")
                     .join("users AS u","o.user_id","=","u.user_id")
                     .select("o.order_id","u.full_name","o.date_ordered","o.order_deadline","o.invite_type","o.motif","o.num_of_invites","o.order_status")
-                    .whereNotIn("o.order_status",["completed","canceled"]);
+                    .whereNotIn("o.order_status",["Completed","Canceled"]);
 
     });
 
@@ -193,7 +193,7 @@ exports.orderHistory = async () => {
         order = await trx("order AS o")
                     .join("users AS u","o.user_id","=","u.user_id")
                     .select("u.user_id","u.full_name","o.order_id","o.date_ordered", "o.order_status")
-                    .whereIn("o.order_status",["completed","canceled"]);
+                    .whereIn("o.order_status",["Completed","Canceled"]);
 
     });
     return order;

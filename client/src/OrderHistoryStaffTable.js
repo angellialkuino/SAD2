@@ -1,7 +1,10 @@
 import React from 'react';
+import { useNavigate} from 'react-router-dom';
 import './OrderListStaffTable.css'
 
 const Order_History_Staff_Table = ({ data }) => {
+    const navigate = useNavigate();
+
     return (
         <table className="oh_table-table">
             <tbody>
@@ -15,7 +18,7 @@ const Order_History_Staff_Table = ({ data }) => {
 
                 {data.map((item) => {
                     return(
-                    <tr className="oh_tr-tr" key={item.user_id.slice(-4)}>
+                    <tr className="oh_tr-tr" key={item.order_id.slice(-4)} onClick={()=> navigate("/staff/order-details",{state:item.order_id})}>
                         <td className="oh_td-td">{item.user_id.slice(-4)}</td>
                         <td className="oh_td-td">{item.full_name}</td>
                         <td className="oh_td-td">{item.order_id.slice(-4)}</td>

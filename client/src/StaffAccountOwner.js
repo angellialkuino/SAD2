@@ -6,7 +6,7 @@ function StaffAccountViewOwner() {
     const navigate = useNavigate();
 
     const location = useLocation();
-    const {userID} = location.state;
+    const userID = location.state;
 
     const [isDisabled, setIsDisabled] = useState(true);
     const [user, setUser] = useState({});
@@ -127,7 +127,7 @@ function StaffAccountViewOwner() {
                 </>}
 
                 {!isDisabled && <button onClick={updateAccDetails} className="sub-button">Update Account</button>}
-                <button onClick={navigate(-1)}>Back</button>
+                <button onClick={()=>navigate(-1)}>Back</button>
             </div>
         </div>
     );

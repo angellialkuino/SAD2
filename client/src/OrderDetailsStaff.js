@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import Axios from 'axios';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import './OrderDetails.css';
 
 function OrderDetailsStaff() {
+const navigate = useNavigate();
+
 const location = useLocation();
 const orderID = location.state;
 //const [orderID, setOrderID] = useState("4a1a6e3a-7d8c-4b99-8302-b665cfe37015");
@@ -97,11 +99,12 @@ const allowEdit = () => {
 //////////////////////////////
 const cancelOrder = async () => {
     await Axios.put('http://localhost:5000/api/order/cancel-order',
-        { order_id: orderID, order_status: "canceled" },
+        { order_id: orderID, order_status: "Canceled" },
         { withCredentials: true }
     ).then((res) => {
         if(res.status===200){
             setSuccessMsg(res.data.message);
+            navigate("/staff/order-list");
             // Show pop up? then Navigate to order list!!!
         }else if (res.status===400){
             setErrMsg(res.data.message); 
@@ -160,12 +163,15 @@ const updateOrderDetails = async () => {
 
 const updateOrderStatus = async (e) => {
     const newOrderStatus = e.target.value;
-    console.log(newOrderStatus)
     await Axios.put('http://localhost:5000/api/order/update-status',
         { order_id: orderID, order_status: newOrderStatus },
         { withCredentials: true }
     ).then((res) => {
         if(res.status===200){
+            setOrderStatus(newOrderStatus);
+            if(newOrderStatus=="Completed"){
+                navigate("/staff/order-list");
+            }
             setSuccessMsg(res.data.message);
         }else if (res.status===400){
             setErrMsg(res.data.message); 
@@ -286,12 +292,13 @@ const updateOrderStatus = async (e) => {
                         <h5>Invites Should Be Finished by:</h5>
                         <p>{orderDeadline.slice(0, 10)}</p>
 
-                        <select name="orderStatus" onChange={updateOrderStatus}>
-                            <option value="none" defaultValue disabled hidden>{orderStatus}</option>
+                        <select name="orderStatus" value={orderStatus} onChange={updateOrderStatus}>
+                            {/* <option value={orderStatus} disabled hidden>{orderStatus}</option> */}
                             <option value="Pending">Pending</option>
                             <option value="Creating">Creating</option>
                             <option value="Finalizing">Finalizing</option>
                             <option value="Ready to Claim!">Ready to Claim!</option>
+                            <option value="Completed">Completed</option>
                         </select>
                         <div className='order-status-button-row'>
                             <button onClick={cancelOrder} className='button'>Cancel Order</button>

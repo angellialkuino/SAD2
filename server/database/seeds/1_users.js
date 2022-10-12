@@ -8,6 +8,12 @@ const bcrypt = require('bcrypt');
 
 exports.seed = async function(knex) {
   // Deletes ALL existing entries
+  await knex('order_log').del()
+  await knex('billing_info').del()
+  await knex('order_details').del()
+  await knex('order').del()
+  await knex('items').del()
+
   await knex('users').del()
   await knex('users').insert([
     {user_id: uuid.v4(), role: 'customer', full_name: 'Angelli Kezzed M. Alkuino', phone_number: '09078216011', email: 'aaa@gmail.com', password: await bcrypt.hash('uhm', 10), fb_account: 'angelli.alkuino', address: 'address##adress', barangay: '20B', postal_code: '8000'},

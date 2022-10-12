@@ -1,3 +1,11 @@
+module.exports.isLoggedIn = (req,res) => {
+    if(req.user){
+        return res.send({role: req.user.role});
+    }else {
+        return res.send({role: null});
+    }
+}
+
 module.exports.isAuthCust = (req,res) => {
     if(!req.user){
         return res.status(401).send({msg: 'Please Log In'});

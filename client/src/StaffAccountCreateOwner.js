@@ -211,7 +211,7 @@ function CreateStaffAccountOwner() {
 
                     <div className="button-row">
                         <button type="submit" className="rounded-pill btn btn-info nav-hover">Create</button>
-                        <button onClick={navigate(-1)} className="rounded-pill btn btn-info nav-hover">Cancel</button>
+                        <button onClick={()=>navigate(-1)} className="rounded-pill btn btn-info nav-hover">Cancel</button>
                     </div>
                 </div>
             </form>
