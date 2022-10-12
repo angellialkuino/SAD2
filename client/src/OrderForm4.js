@@ -6,6 +6,7 @@ import NavBarCustomerLoggedIn from "./NavBarCustomerLoggedIn";
 import { RunningPrice } from "./RunningPrice";
 
 function OrderForm4({ orderItems, orderDetails, setOrderDetails, sumTotal }) {
+
     const [toggleState, setToggleState] = useState(1);
 
     const toggleTab = (index) => {
@@ -20,6 +21,7 @@ function OrderForm4({ orderItems, orderDetails, setOrderDetails, sumTotal }) {
             }
         });
         sumTotal.current += orderItems.order.material_price;
+        console.log(orderItems);
         console.log(orderDetails);
     }, [orderDetails]);
 
@@ -102,6 +104,36 @@ function OrderForm4({ orderItems, orderDetails, setOrderDetails, sumTotal }) {
         else {
             setOrderDetails(orderDetails.map(obj => {
                 if (obj.item_id === 'd2') {
+                    return {
+                        ...obj,
+                        item_name: e.target.id
+                    };
+                }
+                return obj;
+
+            }));
+        }
+    }
+
+    const handleBroochDesign = (e) => {
+        if (orderDetails.findIndex(object => object.item_id === 'd3') === -1) {
+            setOrderDetails(prevState =>
+                [...prevState, {
+                    item_id: 'd3',
+                    item_name: e.target.id,
+                    price: 50
+                }]);
+        }
+        else if (e.target.id === 'no brooch') {
+            setOrderDetails(prevState =>
+                prevState.filter(item => {
+                    return item.item_id !== 'd3';
+                }),
+            );
+        }
+        else {
+            setOrderDetails(orderDetails.map(obj => {
+                if (obj.item_id === 'd3') {
                     return {
                         ...obj,
                         item_name: e.target.id
@@ -254,13 +286,42 @@ function OrderForm4({ orderItems, orderDetails, setOrderDetails, sumTotal }) {
                         <div
                             className={toggleState === 3 ? "content  active-content" : "content"}>
                             <h4>Designs:</h4>
-                            <div className='boxes'>
-                                <button className='square-button-4'></button>
-                                <button className='square-button-4'> </button>
-                                <button className='square-button-4'></button>
-                                <button className='square-button-4'></button>
-                                <button className='square-button-4'></button>
-
+                            <div className='boxes3'>
+                                <div className='square-button-with-text'>
+                                    <label>
+                                        <input type='radio' id='no brooch' name='wax-design' className='form1-radio' onClick={handleBroochDesign} />
+                                        <img className='radio-img' src={process.env.PUBLIC_URL + '/images/xmark.jpg'} alt='brooch'></img>
+                                    </label>
+                                    <h5>No Brooch</h5>
+                                </div>
+                                <div className='square-button-with-text'>
+                                    <label>
+                                        <input type='radio' id='brooch no.1' name='wax-design' className='form1-radio' onClick={handleBroochDesign} />
+                                        <img className='radio-img' src={process.env.PUBLIC_URL + '/images/brooches/3000.jpg'} alt='brooch'></img>
+                                    </label>
+                                    <h5>1</h5>
+                                </div>
+                                <div className='square-button-with-text'>
+                                    <label>
+                                        <input type='radio' id='brooch no.2' name='wax-design' className='form1-radio' onClick={handleBroochDesign} />
+                                        <img className='radio-img' src={process.env.PUBLIC_URL + '/images/brooches/3001.jpg'} alt='brooch'></img>
+                                    </label>
+                                    <h5>2</h5>
+                                </div>
+                                <div className='square-button-with-text'>
+                                    <label>
+                                        <input type='radio' id='brooch no.3' name='wax-design' className='form1-radio' onClick={handleBroochDesign} />
+                                        <img className='radio-img' src={process.env.PUBLIC_URL + '/images/brooches/3002.jpg'} alt='brooch'></img>
+                                    </label>
+                                    <h5>3</h5>
+                                </div>
+                                <div className='square-button-with-text'>
+                                    <label>
+                                        <input type='radio' id='brooch no.4' name='wax-design' className='form1-radio' onClick={handleBroochDesign} />
+                                        <img className='radio-img' src={process.env.PUBLIC_URL + '/images/brooches/3003.jpg'} alt='brooch'></img>
+                                    </label>
+                                    <h5>4</h5>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -270,7 +331,7 @@ function OrderForm4({ orderItems, orderDetails, setOrderDetails, sumTotal }) {
                 </span>
             </div>
             <div className='form1-footer'>
-                <Link to='order-form-3' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
+                <Link to='order-form-2' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
                 <Link to='/order-form-5' className="rounded-pill btn btn-info fw-bold nav-hover">Next</Link>
             </div>
         </>
