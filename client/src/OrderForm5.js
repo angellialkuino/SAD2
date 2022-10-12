@@ -3,33 +3,25 @@ import { Link } from 'react-router-dom';
 import NavBarCustomerLoggedIn from './NavBarCustomerLoggedIn';
 import './OrderForm5.css';
 
-function OrderForm5({ orderItems, setOrderItems, orderDetails }) {
-
-
+function OrderForm5({ order, setOrder, items_array }) {
     useEffect(() => {
-        console.log(orderItems);
-        console.log(orderDetails);
-    }, [orderItems]);
+        console.log(order);
+        console.log(items_array);
+    }, [order]);
 
     const handleDeadline = (e) => {
-        setOrderItems((prevState) => {
+        setOrder((prevState) => {
             return {
                 ...prevState,
-                order: {
-                    ...prevState.order,
-                    order_deadline: e.target.value
-                }
+                order_deadline: e.target.value
             };
         });
     }
     const handleClaim = (e) => {
-        setOrderItems((prevState) => {
+        setOrder((prevState) => {
             return {
                 ...prevState,
-                order: {
-                    ...prevState.order,
-                    claim_type: e.target.id
-                }
+                claim_type: e.target.id
             };
         });
     }

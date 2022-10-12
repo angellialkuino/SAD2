@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import './OrderForm3.css';
 
-function OrderForm3({ orderDetails, setOrderDetails }) {
+function OrderForm3({ items_array, setItems_array }) {
 
     const handleColor = (e) => {
-        setOrderDetails(orderDetails.map(obj => {
+        setItems_array(items_array.map(obj => {
             if (obj.item_id === 'm1' || obj.item_id === 'e1') {
                 return {
                     ...obj,
