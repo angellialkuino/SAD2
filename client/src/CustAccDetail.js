@@ -154,9 +154,9 @@ function CustAccDetail() {
                     </div>
                     </>}
                     <div className="accDetail-body-bottom">
-                        {isDisabled && <button onClick={allowEdit} className="btn btn-dark btn-lg btn-block">Edit Account</button>}
-                        {!isDisabled && <button onClick={updateAccDetails} className="btn btn-dark btn-lg btn-block">Update Account</button>}
-                        <button onClick={logOut} className="btn btn-dark btn-lg btn-block">Log Out</button>
+                        {isDisabled && <button onClick={allowEdit} className="btn-custaccdetail btn-dark btn-lg btn-block">Edit Account</button>}
+                        {!isDisabled && <button onClick={updateAccDetails} className="btn-custaccdetail btn-dark btn-lg btn-block">Update Account</button>}
+                        <button onClick={logOut} className="btn-custaccdetail btn-dark btn-lg btn-block">Log Out</button>
                         
                     </div>
 
