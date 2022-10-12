@@ -5,7 +5,7 @@ import './OrderDetails.css';
 
 function OrderDetailsStaff() {
 const location = useLocation();
-const {orderID} = location.state;
+const orderID = location.state;
 //const [orderID, setOrderID] = useState("4a1a6e3a-7d8c-4b99-8302-b665cfe37015");
 const [orderInfo, setOrderInfo] = useState({});
 
@@ -39,7 +39,6 @@ const [errMsg, setErrMsg] = useState('');
 const [successMsg, setSuccessMsg] = useState('');
 
 useEffect( () => {
-    console.log(orderID);
     const getOrderDetails = async () => {        
         await Axios.get('http://localhost:5000/api/order/order-info',
             {params:{order_id: orderID}, 
@@ -250,7 +249,7 @@ const updateOrderStatus = async (e) => {
                         {itemsArray.map((val,key) => {
                             return(
                                 //add unique key property
-                                <tr> 
+                                <tr key={val.item_name}> 
                                     <td>{val.item_name}</td>
                                     <td>{val.quantity}</td>
                                     <td>{val.price}</td>
@@ -288,7 +287,7 @@ const updateOrderStatus = async (e) => {
                         <p>{orderDeadline.slice(0, 10)}</p>
 
                         <select name="orderStatus" onChange={updateOrderStatus}>
-                            <option value="none" selected disabled hidden>{orderStatus}</option>
+                            <option value="none" defaultValue disabled hidden>{orderStatus}</option>
                             <option value="Pending">Pending</option>
                             <option value="Creating">Creating</option>
                             <option value="Finalizing">Finalizing</option>

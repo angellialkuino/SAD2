@@ -132,10 +132,10 @@ function OrderDetailsCustomer() {
                         </thead>
                         <tbody>
                         {/* content of table */}
-                        {itemsArray.map((val,key) => {
+                        {itemsArray.map((val) => {
                             return(
                                 //add unique key property
-                                <tr> 
+                                <tr key={val.item_name}> 
                                     <td>{val.item_name}</td>
                                     <td>{val.quantity}</td>
                                     <td>{val.price}</td>
