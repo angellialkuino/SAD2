@@ -113,7 +113,7 @@ function App() {
             {/* <Route path='*' element={<ErrorPage />} /> */}                
 
             {/* Main Pages */}
-            <Route path="/" element={<NavBar/>}>
+            <Route path="/dud" element={<NavBar/>}>
                 <Route index element= {<HomePage/>} />
                 <Route path='about-us' element={<AboutUs/>} />
                 <Route path='sign-up' element={<SignUp />} />
@@ -188,7 +188,8 @@ function App() {
 
             </Route>
         </Routes>
-        {/* <AboutUs /> */}
+        {/* <AboutUs/> */}
+        {/* <InvitationDraftCustomer/> */}
     </React.Fragment>
 }
 

@@ -3,7 +3,6 @@ import Axios from 'axios';
 import { useNavigate, useLocation } from 'react-router-dom';
 import OrderDocumentationTable from "./OrderDocumentationTable";
 import './OrderDocumentationTable.css'
-import NavBarCustomerLoggedIn from "./NavBarCustomerLoggedIn";
 
 //import './OrderDocumentationTableCustomer.css'
 

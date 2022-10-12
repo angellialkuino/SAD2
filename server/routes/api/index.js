@@ -1,8 +1,10 @@
 const express = require('express');
 const router = express.Router();
+const {isLoggedIn} = require('../../middleware/auth');
 
 //how to organize these??
 
+router.get('/is-logged-in', isLoggedIn);
 
 router.use('/customer', require('./customerRoutes'));
 

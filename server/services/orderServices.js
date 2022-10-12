@@ -215,15 +215,25 @@ exports.logEntry = async (entryData) => {
     if(logs.length>1){
         revFee = (logs.length-1)*1500;
         await db.transaction( async(trx) => {
-            nums = await trx("billing_info")
-                        .select("total_revision_fee","sub_total")
+            amountInfo = await trx("billing_info")
+                        .select("total_revision_fee","rush_fee","sub_total")
                         .where({ order_id: entryData.order_id});
-            prevRevFee = nums[0].total_revision_fee; 
-            console.log(prevRevFee);
-            prevSubTotal = nums[0].sub_total;             
-            await trx("billing_info")
-                        .update({total_revision_fee:(prevRevFee ? prevRevFee+1500 : 1500), sub_total:prevSubTotal+1500})
-                        .where({ order_id: entryData.order_id});
+
+            let prevRevFee = amountInfo[0].total_revision_fee; 
+            let prevSubTotal = amountInfo[0].sub_total;
+            let prevRushFee = amountInfo[0].rush_fee;
+            if(prevRushFee==0){
+                await trx("billing_info")
+                .update({total_revision_fee:(prevRevFee ? prevRevFee+1500 : 1500), sub_total:prevSubTotal+1500})
+                .where({ order_id: entryData.order_id});
+            }else{
+                let partialTotal = (prevSubTotal-prevRushFee)+1500;
+                prevRushFee = partialTotal*0.4;
+                await trx("billing_info")
+                .update({total_revision_fee:(prevRevFee ? prevRevFee+1500 : 1500), sub_total:partialTotal*1.4, rush_fee:prevRushFee})
+                .where({ order_id: entryData.order_id});
+            }
+            
         });
     }
 

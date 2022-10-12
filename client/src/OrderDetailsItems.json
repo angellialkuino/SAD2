@@ -1,0 +1,77 @@
+[
+    {
+        "item_id":"ca1", "item_name":"menu cards", "selected":false
+    },
+    {
+        "item_id":"ca2", "item_name":"seat cards", "selected":false
+    },
+    {
+        "item_id":"ca3", "item_name":"table cards", "selected":false
+    },
+    {
+        "item_id":"co1", "item_name":"translucent cover", "selected":false
+    },
+    {
+        "item_id":"co2", "item_name":"trifold cover", "selected":false
+    },
+    {
+        "item_id":"co3", "item_name":"cover with print", "selected":false
+    },
+    {
+        "item_id":"co4", "item_name":"lasercut cover", "selected":false
+    },
+    {
+        "item_id":"d1", "item_name":"wax seal", "selected":false,
+        "type": "","color": ""
+    },
+    {
+        "item_id":"d2", "item_name":"dried flowers", "selected":false
+    },
+    {
+        "item_id":"d3", "item_name":"brooch", "selected":false,
+        "type": "","color": ""
+    },
+    {
+        "item_id":"e1", "item_name":"envelope", "selected":false,
+        "type": "","color": ""
+    },
+    {
+        "item_id":"e2", "item_name":"envelope liner", "selected":false
+    },
+    {
+        "item_id":"e3", "item_name":"envelope lock", "selected":false
+    },
+    {
+        "item_id":"m1", "item_name":"page", "selected":false,
+        "type": "","color": "", "size": "", "quantity": 0
+    },
+    {
+        "item_id":"m2", "item_name":"acrylic page", "selected":false,
+        "size": ""
+    },
+    {
+        "item_id":"p1", "item_name":"RSVP", "selected":false
+    },
+    {
+        "item_id":"p2", "item_name":"monetary gift page", "selected":false
+    },
+    {
+        "item_id":"p3", "item_name":"his/her vows", "selected":false
+    },
+    {
+        "item_id":"t1", "item_name":"plain print", "selected":false,
+        "color": ""
+    },
+    {
+        "item_id":"t2", "item_name":"foil print header", "selected":false,
+        "color": ""
+    },
+    {
+        "item_id":"t3", "item_name":"foil print all", "selected":false,
+        "color": ""
+    },
+    {
+        "item_id":"t4", "item_name":"emboss", "selected":false
+    }
+
+]

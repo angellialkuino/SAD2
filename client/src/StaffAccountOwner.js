@@ -83,6 +83,7 @@ function StaffAccountViewOwner() {
         ).then((res) => {
             if (res.status === 200) {
                 setSuccessMsg(res.data.message);
+                navigate("/owner/staff-list");
                 //Navigate to staff list
             } else if (res.status === 400) {
                 setErrMsg(res.data.message); //or is it res.body.message

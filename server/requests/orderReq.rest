@@ -17,7 +17,7 @@ Content-Type: application/json
 {
     "payment_method": "cash",
     "order": {
-        "user_id": "d93dbea1-b90b-440d-b423-003e00260930",
+        "user_id": "0f1792a6-aa78-41ed-9e65-f761b5808089",
         "invite_type": "INVTYPE",
         "material": "material",
         "event_date": "2022-10-13 1:01:01",
@@ -75,7 +75,7 @@ Content-Type: application/json
 {
     "order_id": "93ebc2e9-7b45-440f-b87d-43c7c8477267",
     "order_details": [
-    {"item_id": "m1", "type": "blue", "size": "5.75 x 6.75", "quantity": 3},
+    {"item_id": "m1", "type": "blue","color": "blue", "size": "5.75 x 6.75", "quantity": 3},
     {"item_id": "e1", "type": "blue", "size": "6 x 7"},
     {"item_id": "e3", "type": "blue"},
     {"item_id": "co2", "type": "bluecovertype"},
@@ -118,8 +118,8 @@ POST {{hostname}}/order/new-log-entry
 Content-Type: application/json
 
 {
-    "order_id": "aeca3c94-90ab-42a7-a7ac-116cbc3b73e0",
-    "date": "2022-09-08",
+    "order_id": "7a32d018-75b8-4f13-850a-f29cbdb04b92",
+    "date": "2022-09-08 01:01:01",
     "description": "layout changed 1st time"
 }
 

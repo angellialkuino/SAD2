@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import Axios from 'axios';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+import CheckBoxTable from "./OrderDetailsCheckBox";
 import './OrderDetails.css';
 
 function OrderDetailsStaff() {
@@ -36,6 +37,8 @@ const [subTotal, setSubTotal] = useState(0);
 const [paymentMethod, setPaymentMethod] = useState("N/A");
 
 const [isDisabled, setIsDisabled] = useState(true);
+const [isDisabledArr, setIsDisabledArr] = useState(true);
+
 
 const [errMsg, setErrMsg] = useState('');
 const [successMsg, setSuccessMsg] = useState('');
@@ -92,10 +95,6 @@ useEffect(()=>{
     }
 },[orderInfo])
 
-const allowEdit = () => {
-    setIsDisabled(false);
-}
-
 //////////////////////////////
 const cancelOrder = async () => {
     await Axios.put('http://localhost:5000/api/order/cancel-order',
@@ -146,6 +145,7 @@ const updateOrder = async () => {
     });
 }
 
+//////////////////////////////
 const updateOrderDetails = async () => {
     await Axios.put('http://localhost:5000/api/order/update-order-details',
         { order_id: orderID, order_details: itemsArray },
@@ -153,6 +153,7 @@ const updateOrderDetails = async () => {
     ).then((res) => {
         if(res.status===200){
             setSuccessMsg(res.data.message);
+            setIsDisabledArr(true);
         }else if (res.status===400){
             setErrMsg(res.data.message); 
         }  
@@ -237,11 +238,17 @@ const updateOrderStatus = async (e) => {
                         <input value={claimType} type="text" disabled={isDisabled} onChange={(e) => setClaimType(e.target.value)} className="form-control" />
                     </div>
 
-                    {isDisabled && <button onClick={allowEdit} className="btn btn-dark btn-lg btn-block">Edit Order</button>}
+                    {isDisabled && <button onClick={()=>setIsDisabled(false)} className="btn btn-dark btn-lg btn-block">Edit Order</button>}
                     {!isDisabled && <button onClick={updateOrder} className="btn btn-dark btn-lg btn-block">Update Order</button>}
                         
                 </div>
                 <div>
+                {!isDisabledArr && <>
+                    <CheckBoxTable array={itemsArray} onItemsArray={setItemsArray} updateReq={updateOrderDetails}/>
+                    <button onClick={updateOrderDetails} className="btn btn-dark btn-lg btn-block">Update Order</button>
+                </>}
+
+                {isDisabledArr && <>
                     <table>
                         <thead>
                         <tr>
@@ -251,10 +258,8 @@ const updateOrderStatus = async (e) => {
                         </tr>
                         </thead>
                         <tbody>
-                        {/* content of table */}
                         {itemsArray.map((val,key) => {
                             return(
-                                //add unique key property
                                 <tr key={val.item_name}> 
                                     <td>{val.item_name}</td>
                                     <td>{val.quantity}</td>
@@ -264,7 +269,9 @@ const updateOrderStatus = async (e) => {
                         })}  
                         </tbody>                  
                     </table> 
-                    <button className='rounded-pill btn btn-info fw-bold nav-hover'>Edit Order Details</button>
+                    <button onClick={()=>setIsDisabledArr(false)} className="btn btn-dark btn-lg btn-block">Edit Order</button>
+                </>}
+
                 </div>
                 <div className='order-details-footer'>
                     <Link to='/staff/invitation-draft' state={{orderID:orderID}} className="rounded-pill btn btn-info fw-bold nav-hover">View Invitation</Link>
