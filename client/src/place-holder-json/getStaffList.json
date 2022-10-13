@@ -1,0 +1,30 @@
+[
+
+    {
+        "user_id": "1",
+        "full_name": "Placeholder P. Placeholder",
+        "phone_number": "7777",
+        "email": "wanmoretaym@gmail.com",
+        "password": "abcpassword",
+        "fb_account": "jam",
+        "full_address": "#123, bb. street"
+    },
+    {
+        "user_id": "2",
+        "full_name": "Placeholder P. Placeholder",
+        "phone_number": "7777",
+        "email": "wanmoretaym@gmail.com",
+        "password": "abcpassword",
+        "fb_account": "jam",
+        "full_address": "#123, bb. street"
+    },
+    {
+        "user_id": "3",
+        "full_name": "Placeholder P. Placeholder",
+        "phone_number": "7777",
+        "email": "wanmoretaym@gmail.com",
+        "password": "abcpassword",
+        "fb_account": "jam",
+        "full_address": "#123, bb. street"
+    }
+]
