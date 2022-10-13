@@ -377,7 +377,6 @@ function OrderForm2({ sumTotal, setOrder, order, items_array, setItems_array }) 
 
     return (
         <>
-            <NavBarCustomerLoggedIn />
             <div className='order-frame-2'>
                 <h2>Running Price</h2>
                 <div className='running-price-frame p-4'>
@@ -491,8 +490,8 @@ function OrderForm2({ sumTotal, setOrder, order, items_array, setItems_array }) 
                     Total is subject to change <b>Total: {sumTotal.current} Php</b>
                 </span>
                 <div className='form1-footer'>
-                    <Link to='/order-form-1' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
-                    <Link to='/order-form-4' className="rounded-pill btn btn-info fw-bold nav-hover">Next</Link>
+                    <Link to='/form/order-form-1' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
+                    <Link to='/form/order-form-4' className="rounded-pill btn btn-info fw-bold nav-hover">Next</Link>
                 </div>
             </div>
         </>

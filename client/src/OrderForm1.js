@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
-import NavBarCustomerLoggedIn from './NavBarCustomerLoggedIn';
 import './OrderForm1.css';
 
 const OrderForm1 = ({ order, setOrder }) => {
@@ -28,13 +27,12 @@ const OrderForm1 = ({ order, setOrder }) => {
 
     const handleCancel = (e) => {
         if (window.confirm("Are you sure you want to cancel the order?")) {
-            navigate("/")
+            navigate("/customer")
         }
     }
 
     return (
         <>
-            <NavBarCustomerLoggedIn />
             <form className='main-order-frame1'>
                 <h3 className='category-h3'>TYPE OF INVITE</h3>
                 <div className='boxes'>
@@ -214,8 +212,8 @@ const OrderForm1 = ({ order, setOrder }) => {
                     </div>
                 </div>
                 <div className='form1-footer'>
-                    <Link to='/terms-and-conditions' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
-                    <Link to='/order-form-2' className="rounded-pill btn btn-info fw-bold nav-hover">Next</Link>
+                    <Link to='/form/terms-and-conditions' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
+                    <Link to='/form/order-form-2' className="rounded-pill btn btn-info fw-bold nav-hover">Next</Link>
                 </div>
             </form>
         </>

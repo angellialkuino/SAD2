@@ -14,8 +14,8 @@ function OrderPickup() {
                 <h5>Door 3, JADEG Bldg., 80 V. Mapa St, Poblacion District, Davao City, 8000 Davao del Sur</h5>
             </div>
             <div className='order-pickup-footer'>
-                <Link to='/check-order' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
-                <Link to='/shipping-address' className="rounded-pill btn btn-info fw-bold nav-hover">Proceed</Link>
+                <Link to='/form/check-order' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
+                <Link to='/form/shipping-address' className="rounded-pill btn btn-info fw-bold nav-hover">Proceed</Link>
             </div>
         </div>
     );

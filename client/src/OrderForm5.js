@@ -28,7 +28,6 @@ function OrderForm5({ order, setOrder, items_array }) {
 
     return (
         <>
-            <NavBarCustomerLoggedIn />
             <div className="order-frame-2">
                 <div className='row-group mt-5'>
                     <div className="number-circle">6</div>
@@ -64,8 +63,8 @@ function OrderForm5({ order, setOrder, items_array }) {
                     </div>
                 </div>
                 <div className='form1-footer'>
-                    <Link to='/order-form-4' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
-                    <Link to='/check-order' className="rounded-pill btn btn-info fw-bold nav-hover">Next</Link>
+                    <Link to='/form/order-form-4' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
+                    <Link to='/form/check-order' className="rounded-pill btn btn-info fw-bold nav-hover">Next</Link>
                 </div>
             </div>
         </>
