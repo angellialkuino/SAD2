@@ -2,4 +2,13 @@
     max-width: 85%;
     max-height: 85%;
     padding: 10px;
+    border-radius: 2rem;
+}
+
+.homepage-content {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-direction: row;
+
 }
