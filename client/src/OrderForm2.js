@@ -8,8 +8,8 @@ function OrderForm2({ sumTotal, order, setOrder, items_array, setItems_array }) 
     const [checked, setChecked] = useState(false);
     const [hidden1, setHidden1] = useState(true);
     const [hidden2, setHidden2] = useState(true);
-    const [e2Checked,sete2Checked] = useState(false);
-    const [e3Checked,sete3Checked] = useState(false);
+    const [e2Checked, sete2Checked] = useState(false);
+    const [e3Checked, sete3Checked] = useState(false);
     const [allTextChecked1, setAllTextChecked1] = useState(false);
     const [allTextChecked2, setAllTextChecked2] = useState(false);
     const [allTextChecked3, setAllTextChecked3] = useState(false);
@@ -24,27 +24,14 @@ function OrderForm2({ sumTotal, order, setOrder, items_array, setItems_array }) 
             }
         });
         sumTotal.current += order.material_price;
-        if (order.num_of_invites < 30) {
-            sumTotal.current += 1500;
-            let date1 = new Date().toJSON().slice(0, 10);
-            let date2 = order.event_date;
-            const date1new = new Date(date1);
-            const date2new = new Date(date2);
-            let Difference_In_Time = date2new.getTime() - date1new.getTime();
-            let Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
-            if (Difference_In_Days < 14) {
-                sumTotal.current += sumTotal.current * 0.40;
-            }
-        }
-
-        //console.log(order);
-        //console.log(items_array);
+        console.log(order);
+        console.log(items_array);
     }, [items_array, sumTotal]);
 
     const handlePagesPaperAndColor = (e) => {
-        if(e.target.value =='Customize'){
+        if (e.target.value == 'Customize') {
             setHidden1(false);
-        }else{setHidden1(true);}
+        } else { setHidden1(true); }
 
         setItems_array(items_array.map(obj => {
             if (obj.item_id === 'm1') {
@@ -69,13 +56,12 @@ function OrderForm2({ sumTotal, order, setOrder, items_array, setItems_array }) 
             }
             return obj;
         }));
-        //console.log((items_array[0]));
     }
 
     const handleEnvelopePaperAndColor = (e) => {
-        if(e.target.value =='Customize'){
+        if (e.target.value == 'Customize') {
             setHidden2(false);
-        }else{setHidden2(true);}
+        } else { setHidden2(true); }
 
         if (items_array.findIndex(object => object.item_id === 'e1') === -1) {
             setItems_array(prevState =>
@@ -121,7 +107,7 @@ function OrderForm2({ sumTotal, order, setOrder, items_array, setItems_array }) 
                     return item.item_id !== 'e1' && item.item_id !== 'e2' && item.item_id !== 'e3';
                 }),
             );
-        }else{
+        } else {
             setItems_array(prevState =>
                 [...prevState, {
                     item_id: 'e1',
@@ -141,7 +127,7 @@ function OrderForm2({ sumTotal, order, setOrder, items_array, setItems_array }) 
                     item_name: 'envelope liner',
                     price: parseFloat(e.target.value)
                 }]);
-        }else{
+        } else {
             setItems_array(prevState =>
                 prevState.filter(item => {
                     return item.item_id !== 'e2';
@@ -159,7 +145,7 @@ function OrderForm2({ sumTotal, order, setOrder, items_array, setItems_array }) 
                     item_name: 'envelope lock',
                     price: parseFloat(e.target.value)
                 }]);
-        }else {
+        } else {
             setItems_array(prevState =>
                 prevState.filter(item => {
                     return item.item_id !== 'e3';
@@ -171,27 +157,27 @@ function OrderForm2({ sumTotal, order, setOrder, items_array, setItems_array }) 
     const handleAllText = (e) => {
         switch (e.target.id) {
             case 't4':
-                if(!allTextChecked1){
+                if (!allTextChecked1) {
                     setAllTextChecked1(true);
                     setAllTextChecked2(false);
                     setAllTextChecked3(false);
                 }
                 break;
             case 't3':
-                if(!allTextChecked2){
+                if (!allTextChecked2) {
                     setAllTextChecked2(true);
                     setAllTextChecked1(false);
                     setAllTextChecked3(false);
                 }
                 break;
             case 't1':
-                if(!allTextChecked3){
+                if (!allTextChecked3) {
                     setAllTextChecked3(true);
                     setAllTextChecked2(false);
                     setAllTextChecked1(false);
                 }
                 break;
-        
+
             default:
                 break;
         }
@@ -204,7 +190,7 @@ function OrderForm2({ sumTotal, order, setOrder, items_array, setItems_array }) 
                     price: parseFloat(e.target.value)
                 }]);
         }
-        else{
+        else {
             setItems_array(items_array.map(obj => {
                 if (obj.type === 'all text') {
                     return {
@@ -218,7 +204,7 @@ function OrderForm2({ sumTotal, order, setOrder, items_array, setItems_array }) 
             }));
         }
         //if header
-        if(headerTextChecked){
+        if (headerTextChecked) {
             setItems_array(prevState =>
                 prevState.filter(item => {
                     return item.item_id !== 't2';
@@ -230,7 +216,7 @@ function OrderForm2({ sumTotal, order, setOrder, items_array, setItems_array }) 
 
 
     const handleHeaderText = (e) => {
-        if(!headerTextChecked){
+        if (!headerTextChecked) {
             setHeaderTextChecked(true);
         }
 
@@ -257,10 +243,10 @@ function OrderForm2({ sumTotal, order, setOrder, items_array, setItems_array }) 
             }));
         }
 
-        if(allTextChecked1||allTextChecked2||allTextChecked3){
+        if (allTextChecked1 || allTextChecked2 || allTextChecked3) {
             setItems_array(prevState =>
                 prevState.filter(item => {
-                    return item.item_id !== 't1' && item.item_id !== 't3'&& item.item_id !== 't4';
+                    return item.item_id !== 't1' && item.item_id !== 't3' && item.item_id !== 't4';
                 }),
             );
             setAllTextChecked1(false);

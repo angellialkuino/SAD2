@@ -62,6 +62,8 @@ function App() {
         { item_id: 'm1', item_name: 'page' }
     ])
 
+    const [receivalLink, setReceivalLink] = useState('')
+
     return <React.Fragment>
         <Routes>
             {/* <Route path='*' element={<ErrorPage />} /> */}
@@ -118,6 +120,8 @@ function App() {
                     setOrder={setOrder}
                     items_array={items_array}
                     setItems_array={setItems_array}
+                    receivalLink={receivalLink}
+                    setReceivalLink={setReceivalLink}
                 />} />
             <Route path='/check-order' element=
                 {<CheckOrder
@@ -134,6 +138,9 @@ function App() {
                 {<Downpayment
                     payment_method={payment_method}
                     setPayment_method={setPayment_method}
+                    order={order}
+                    items_array={items_array}
+                    sumTotal={sumTotal}
                 />} />
             <Route path='/order-payment' element={<OrderBeingConfirmed />} />
             {/* Customer Account and Order Pages */}

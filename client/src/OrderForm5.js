@@ -1,12 +1,26 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './OrderForm5.css';
 
-function OrderForm5({ order, setOrder, items_array }) {
+function OrderForm5({ order, setOrder, items_array, receivalLink, setReceivalLink }) {
+
+    const [isIncomplete, setIsIncomplete] = useState('')
     useEffect(() => {
         console.log(order);
         console.log(items_array);
-    }, [order, items_array]);
+        if (order.claim_type == 'pickup') {
+            setReceivalLink('/order-pickup')
+        }
+        else if (order.claim_type == 'delivery') {
+            setReceivalLink('/shipping-address')
+        }
+        if (order.claim_type === '' || order.order_deadline === '') {
+            setIsIncomplete(true);
+        }
+        else if (order.claim_type !== '' || order.order_deadline !== '') {
+            setIsIncomplete(false);
+        }
+    }, [order, items_array, receivalLink]);
 
     const handleDeadline = (e) => {
         setOrder((prevState) => {
@@ -23,6 +37,13 @@ function OrderForm5({ order, setOrder, items_array }) {
                 claim_type: e.target.id
             };
         });
+    }
+
+    const handleIncompleteInfo = (e) => {
+        if (isIncomplete === true) {
+            window.alert('Incomplete form fields')
+            e.preventDefault();
+        }
     }
 
     return (
@@ -63,7 +84,7 @@ function OrderForm5({ order, setOrder, items_array }) {
                 </div>
                 <div className='form1-footer'>
                     <Link to='/check-order' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
-                    <Link to='/order-pickup' className="rounded-pill btn btn-info fw-bold nav-hover">Next</Link>
+                    <Link to={receivalLink} onClick={handleIncompleteInfo} className="rounded-pill btn btn-info fw-bold nav-hover">Next</Link>
                 </div>
             </div>
         </>

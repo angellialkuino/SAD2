@@ -40,7 +40,7 @@ function ShippingAddress() {
         try {
             const response = await Axios.put('http://localhost:5000/api/customer/update',
                 {
-                    user_id:"",
+                    user_id: "",
                     phone_number: phoneNumber,
                     address: address,
                     barangay: barangay,
@@ -136,7 +136,7 @@ function ShippingAddress() {
                     />
                 </form>
                 <div className='form1-footer'>
-                    <Link to='/form/order-pickup' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
+                    <Link to='/form/order-form-5' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
                     <Link to='/form/downpayment' className="rounded-pill btn btn-info fw-bold nav-hover" onClick={handleShippingAddress}>Next</Link>
                 </div>
             </div>
