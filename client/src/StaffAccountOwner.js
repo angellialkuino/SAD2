@@ -5,12 +5,12 @@ import Axios from 'axios';
 function StaffAccountViewOwner() {
     const navigate = useNavigate();
 
-    const location = useLocation();
-    const userID = location.state;
+    // const location = useLocation();
+    // const userID = location.state;
 
     const [isDisabled, setIsDisabled] = useState(true);
     const [user, setUser] = useState({});
-    //const [userID, setUserID] = useState("");
+    const [userID, setUserID] = useState("");
     const [name, setName] = useState("N/A");
     const [email, setEmail] = useState("N/A");
     const [contactNum, setcontactNum] = useState("N/A");
