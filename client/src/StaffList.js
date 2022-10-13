@@ -32,11 +32,15 @@ function StaffList() {
 
     return (
         <div className="div-frame staff-list">
-            <div className="headers">
+            <header className="headers">
                 <h4 className="title">Staff List</h4>
-                <Link to="/owner/create-staff">Add New Staff</Link>
-            </div>
-            {staffList.length>0 && <StaffListTable staffListData={staffList} />}
+            </header>
+            <footer className="form1-footer w-25">
+                <button className="rounded-pill btn btn-info fw-bold nav-hover">
+                    <Link to="/owner/create-staff" className="no-deco">Add New Staff</Link>
+                </button>
+            </footer>
+            {staffList.length > 0 && <StaffListTable staffListData={staffList} />}
         </div>
     );
 }
