@@ -107,10 +107,7 @@ function OrderDetailsCustomer() {
         <div className='order-details-main'>
             <div className='order-div'>
                 <h1>ORDER {orderID.slice(-4)}</h1>
-                <div className='order-details-footer'>
-                    <Link to='/customer/invitation-draft' state={{orderID:orderID}} className="rounded-pill btn btn-info fw-bold nav-hover">View Invitation</Link>
-                    <Link to='/customer/order-log' state={{orderID:orderID}} className="rounded-pill btn btn-info fw-bold nav-hover">View Order Log</Link>
-                </div>
+
                 <div className='white-inner-div1'>
                     <h5>Date Ordered</h5>
                     <p>{dateOrdered}</p>
@@ -167,7 +164,10 @@ function OrderDetailsCustomer() {
                     </table>                    
                 </div>
 
-                
+                <div className='order-details-customer-footer'>
+                    <Link to='/customer/invitation-draft' state={{orderID:orderID}} className="rounded-pill btn-view-invite btn-info fw-bold nav-hover">View Invitation</Link>
+                    <Link to='/customer/order-log' state={{orderID:orderID}} className="rounded-pill btn-view-order btn-info fw-bold nav-hover">View Order Log</Link>
+                </div>
 
             </div>
             <div className='payment-status-div'>

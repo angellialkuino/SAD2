@@ -106,13 +106,13 @@
     border-color: gray;
 }
 
-.order-details-footer {
+.order-details-customer-footer {
     display: flex;
     flex-direction: row;
     gap: 1rem;
     position: relative;
-    bottom: 80px;
-    right: 20px;
+    /* bottom: 80px; */
+    /* right: 20px; */
     width: 90%;
 }
 
@@ -175,12 +175,17 @@
 }
 
 .order-details-table {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
+    /*style this table nicely*/
+    border-collapse: collapse;
+    background-color: white;
+    width: 90%;
+    height: auto;
+    margin: 1rem 0 1rem 0;
+    border-radius: 0.5rem;
+}
+
+td {
+    vertical-align: bottom;
 }
 
 .order-table-div {
@@ -190,4 +195,40 @@
     justify-content: center;
     width: 100%;
     height: 100%;
+}
+
+.btn-view-order {
+    border-radius: 10px;
+    border: none;
+    padding: 10px 10px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #000000;
+    background: #53c46d;
+    width: 100%;
+    transition: all .3s;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.btn-view-invite {
+    border-radius: 10px;
+    border: none;
+    padding: 10px 10px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #000000;
+    background: #53c46d;
+    width: 100%;
+    transition: all .3s;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 10px;
 }
