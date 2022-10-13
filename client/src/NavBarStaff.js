@@ -42,7 +42,7 @@ function NavBarStaff() {
                 <ul>
                     <li><Link to='/staff/order-list' className="rounded-pill btn btn-info fw-bold nav-hover">Order List</Link></li>
                     <li><Link to='/staff/order-history' className="rounded-pill btn btn-info fw-bold nav-hover">Order History</Link></li>
-                    <li><button onClick={logOut} className="btn btn-dark btn-lg btn-block">Log Out</button></li>
+                    <li><button onClick={logOut} className="rounded-pill btn btn-info fw-bold nav-hover">Log Out</button></li>
                 </ul>
             </nav>
 
