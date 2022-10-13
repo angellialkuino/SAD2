@@ -1,11 +1,44 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Downpayment.css';
 import Axios from 'axios';
 
-function Downpayment({ order, items_array, payment_method, setPayment_method }) {
+function Downpayment({ order, items_array, payment_method, setPayment_method, sumTotal }) {
     const errRef = useRef();
     const [errMsg, setErrMsg] = useState('');
+    const additionalFees = useRef();
+
+    useEffect(() => {
+        if (order.num_of_invites < 30) {
+            additionalFees.current += 1500;
+            sumTotal.current += 1500;
+            let date1 = new Date().toJSON().slice(0, 10);
+            let date2 = order.event_date;
+            const date1new = new Date(date1);
+            const date2new = new Date(date2);
+            let Difference_In_Time = date2new.getTime() - date1new.getTime();
+            let Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+            if (Difference_In_Days < 14) {
+                sumTotal.current += sumTotal.current * 0.40;
+                additionalFees.current += additionalFees.current * 0.40;
+            }
+        }
+        else {
+            let date1 = new Date().toJSON().slice(0, 10);
+            let date2 = order.event_date;
+            const date1new = new Date(date1);
+            const date2new = new Date(date2);
+            let Difference_In_Time = date2new.getTime() - date1new.getTime();
+            let Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+            if (Difference_In_Days < 14) {
+                sumTotal.current += sumTotal.current * 0.40;
+                additionalFees.current += additionalFees.current * 0.40;
+            }
+        }
+
+        console.log(order);
+        console.log(items_array);
+    }, []);
 
     const handleSubmitOrder = async (e) => {
         e.preventDefault();
@@ -57,10 +90,10 @@ function Downpayment({ order, items_array, payment_method, setPayment_method }) 
 
                     <div className="order_form_10-content-right">
                         <p>Unit Cost: </p>
-                        <p>Number of Invites: </p>
-                        <p>Additional Fees: </p>
-                        <p>Subtotal: </p>
-                        <p>Payment Method: </p>
+                        <p>Number of Invites: {order.num_of_invites} </p>
+                        <p>Additional Fees: {additionalFees.current} </p>
+                        <p>Subtotal: {sumTotal.current}</p>
+                        <p>Payment Method: {payment_method} </p>
                     </div>
                 </div>
                 <div className='row-group mt-5'>

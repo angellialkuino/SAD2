@@ -1,11 +1,27 @@
-import React, { useEffect } from 'react';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import './OrderForm1.css';
 
 const OrderForm1 = ({ order, setOrder, items_array, setItems_array }) => {
-    useEffect(() => console.log(order), [order]);
+    const [isIncomplete, setIsIncomplete] = useState(true)
+    useEffect(() => {
+        console.log(order)
 
-    const navigate = useNavigate()
+        if (order.content_link === '' || order.event_date === '' || order.font_style === '' || order.invite_title === '' || order.invite_type === '' || order.material === '' || order.motif === '' || order.num_of_invites === 0 || order.peg_link === '') {
+            setIsIncomplete(true);
+        }
+        else if (order.content_link !== '' && order.event_date !== '' && order.font_style !== '' && order.invite_title !== '' && order.invite_type !== '' && order.material !== '' && order.motif !== '' && order.num_of_invites !== 0 && order.peg_link !== '') {
+            setIsIncomplete(false);
+        }
+        console.log(isIncomplete)
+    }, [order]);
+
+    const handleIncompleteInfo = (e) => {
+        if (isIncomplete === true) {
+            window.alert('Incomplete form fields')
+            e.preventDefault();
+        }
+    }
 
     const handleInviteType = (e) => {
         setOrder((prevState) => {
@@ -46,12 +62,6 @@ const OrderForm1 = ({ order, setOrder, items_array, setItems_array }) => {
                 }
                 return obj;
             }));
-        }
-    }
-
-    const handleCancel = (e) => {
-        if (window.confirm("Are you sure you want to cancel the order?")) {
-            navigate("/customer")
         }
     }
 
@@ -237,7 +247,7 @@ const OrderForm1 = ({ order, setOrder, items_array, setItems_array }) => {
                 </div>
                 <div className='form1-footer'>
                     <Link to='/form/terms-and-conditions' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
-                    <Link to='/form/order-form-2' className="rounded-pill btn btn-info fw-bold nav-hover">Next</Link>
+                    <Link to='/form/order-form-2' onClick={handleIncompleteInfo} className="rounded-pill btn btn-info fw-bold nav-hover">Next</Link>
                 </div>
             </form>
         </>

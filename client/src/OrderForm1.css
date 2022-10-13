@@ -10,6 +10,10 @@
     padding: 2rem;
 }
 
+.btn-info:disabled {
+    background-color: gray;
+}
+
 .category-h3 {
     font-weight: bold;
 }
