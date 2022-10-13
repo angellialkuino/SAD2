@@ -155,7 +155,7 @@ function App() {
             <Route path='/staff-list' element={<StaffList />} />
         </Routes>
 
-        <OrderDetailsStaff />
+        <StaffAccountCreateOwner />
 
     </React.Fragment>
 }

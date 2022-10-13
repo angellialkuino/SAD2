@@ -1,9 +1,10 @@
 .profile-pic {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
     margin: 2rem;
+    flex-wrap: nowrap;
 }
 
 .profile-div {
@@ -11,8 +12,8 @@
     padding: 2rem;
     margin: 2rem auto auto auto;
     background-color: #d8ecf5;
-    height: 800px;
-    width: 1200px;
+    height: 90%;
+    width: 70%;
     border-radius: 2rem;
     justify-content: space-evenly;
 }
@@ -25,5 +26,41 @@
 .profile-info {
     display: flex;
     flex-direction: column;
-    margin: 7.5rem 2rem 2rem 3rem;
+}
+
+.btn-create-saco {
+    border-radius: 10px;
+    border: none;
+    padding: 10px 10px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #000000;
+    background: #53c46d;
+    width: 100%;
+    transition: all .3s;
+    display: inline-block;
+}
+
+.btn-cancel-saco {
+    border-radius: 10px;
+    border: none;
+    padding: 10px 10px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #000000;
+    background: #53c46d;
+    width: 100%;
+    transition: all .3s;
+    display: inline-block;
+}
+
+.saco-form {
+    display: flex;
+    flex-grow: 1;
+    padding-bottom: 1rem;
+    flex-direction: column;
+    align-content: center;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    margin-left: 20px;
 }
