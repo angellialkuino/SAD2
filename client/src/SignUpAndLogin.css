@@ -275,6 +275,7 @@ button {
 
 .line {
   display: inline-block;
+  margin-left: 5px;
 }
 
 .login-page-body {
@@ -327,4 +328,48 @@ button {
 .btn-page:hover {
   background: #53c46d;
   color: #ffffff;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-button {
+  background-color: #53c46d;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 10px;
+  cursor: pointer;
+  border-radius: 1rem;
+  align-items: center;
+}
+
+.noAccount {
+  text-align: center;
+  font-size: 17px;
+  padding-top: 10px;
+  color: #7f7d7d;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+}
+
+.haveAccount {
+  text-align: center;
+  font-size: 17px;
+  padding-top: 10px;
+  color: #7f7d7d;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
 }

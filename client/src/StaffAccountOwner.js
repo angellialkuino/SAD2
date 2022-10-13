@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from 'react-router-dom';
 import Axios from 'axios';
+import "./StaffAccountOwner.css";
 
 function StaffAccountViewOwner() {
     const navigate = useNavigate();
@@ -95,10 +96,10 @@ function StaffAccountViewOwner() {
     }
 
     return (
-        <div className="profile-div">
-            <h2 className="site-title">STAFF PROFILE</h2>
+        <div className="profile-div-sao">
             {user && <>
-                <div className="profile-info">
+                <div className="profile-info-sao">
+                    <h2 className="site-title-staff-profile">STAFF PROFILE</h2>
                     <div className='label-textfield'>
                         <h4>Name</h4>
                         <input disabled={isDisabled} type='text' value={name} onChange={(e) => setName(e.target.value)} className='profile-textfield' />
@@ -114,21 +115,23 @@ function StaffAccountViewOwner() {
 
                 </div>
             </>}
-            <div className='profile-pic'>
-                <div className='second-div-frame'></div>
+
+            <div className='profile-pic-sao'>
+                <div className='second-div-frame-sao'></div>
                 <button className='sub-button'>Upload Photo</button>
                 <p>Must not exceed 40 mb.</p>
 
             </div>
-            <div className="button-row">
+
+            <div className="button-row-sao">
 
                 {isDisabled && <>
-                    <button onClick={allowEdit} className="sub-button">Edit Account</button>
-                    <button onClick={deleteAcc} className="sub-button">Delete</button>
+                    <button onClick={allowEdit} className="sub-button-edit">Edit Account</button>
+                    <button onClick={deleteAcc} className="sub-button-delete">Delete</button>
                 </>}
 
-                {!isDisabled && <button onClick={updateAccDetails} className="sub-button">Update Account</button>}
-                <button onClick={()=>navigate(-1)}>Back</button>
+                {!isDisabled && <button onClick={updateAccDetails} className="sub-button-update">Update Account</button>}
+                <button onClick={()=>navigate(-1)} className="SAO-back">Back</button>
             </div>
         </div>
     );

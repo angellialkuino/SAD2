@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import NavBarCustomerLoggedIn from './NavBarCustomerLoggedIn';
 import './OrderForm5.css';
 
 function OrderForm5({ order, setOrder, items_array }) {
@@ -28,7 +27,6 @@ function OrderForm5({ order, setOrder, items_array }) {
 
     return (
         <>
-            <NavBarCustomerLoggedIn />
             <div className="order-frame-2">
                 <div className='row-group mt-5'>
                     <div className="number-circle">6</div>

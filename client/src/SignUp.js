@@ -232,7 +232,7 @@ const Sign_up = () => {
 
                         <button disabled={!validName || !validEmail || !validPwd || !validMatch || !validfb_account ? true : false}>Sign Up</button>
                     </form>
-                    <p>
+                    <p className="haveAccount">
                         Already registered?<br />
                         <span className="line">
                             <Link to='/login'>Login</Link>

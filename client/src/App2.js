@@ -40,73 +40,29 @@ import OrderNavBar from "./NavBarOrder";
 
 function App() {
     
-    const sumTotal = useRef(0);
-
     //order form data
-    const [orderData, setOrderData] = useState({
-        inviteType: '',
-        material: '',
-        materialPrice: 0,
-        eventDate: '',
-        motif: '',
-        invitationTitle: '',
-        font: '',
-        contentLink: '',
-        inviteNumbers: '',
-        pegLink: '',
-        pagesPaperAndColor: '',
-        pagesPrice: {
-            pagesSize: '',
-            pagesSizePrice: 0,
-        },
-        envelope: false,
-        envelopePaperAndColor: '',
-        envelopePrice: {
-            envelopeSize: '',
-            envelopeSizePrice: 0,
-        },
-        envelopeLinerPricing: {
-            envelopeLiner: false,
-            envelopeLinerPrice: 0
-        },
-        envelopeLockPricing: {
-            envelopeLock: false,
-            envelopeLockPrice: 0
-        },
-        allTextembossPricing: {
-            allTextEmboss: false,
-            allTextEmbossPrice: 0
-        },
-        headerTextPricing: {
-            headerText: '',
-            headerTextPrice: 0
-        },
-        bodyTextPricing: {
-            bodyText: '',
-            bodyTextPrice: 0
-        },
-        otherPagesPricing: {
-            otherPages: '',
-            otherPagesPrice: 0
-        },
-        coverPricing: {
-            cover: '',
-            coverPrice: 0
-        },
-        cardsPricing: {
-            cards: '',
-            cardPrice: 0
-        },
-        waxSeal: '',
-        sealColor: '',
-        driedFlowers: '',
-        brooch: '',
-        orderFinish: '',
-        receivalMethod: '',
-        priceTotal: '',
-        payentMethod: '',
-    })
+    const sumTotal = useRef(0.00);
+    const [payment_method, setPayment_method] = useState('')
+    const [order, setOrder] = useState(
+        {
+            invite_type: '',
+            material: '',
+            material_price: 0,
+            event_date: '',
+            motif: '',
+            invite_title: '',
+            font_style: '',
+            content_link: '',
+            num_of_invites: 0,
+            peg_link: '',
+            order_deadline: '',
+            claim_type: ''
+        }
+    )
 
+    const [items_array, setItems_array] = useState([
+        { item_id: 'm1', item_name: 'page' }
+    ])
 
     return <React.Fragment>
         <Routes>
@@ -126,33 +82,55 @@ function App() {
             <Route path="/form" element={<OrderNavBar/>}>
                 <Route path='terms-and-conditions' element={<TermsAndConditions />} />
                 <Route path='order-form-1' element=
-                    {<OrderForm1
-                        orderData={orderData}
-                        setOrderData={setOrderData}
-                        sumTotal={sumTotal}
+                {<OrderForm1
+                        order={order}
+                        setOrder={setOrder}
                     />} />
                 <Route path='order-form-2' element=
                     {<OrderForm2
-                        orderData={orderData}
-                        setOrderData={setOrderData}
+                        order={order}
+                        setOrder={setOrder}
+                        items_array={items_array}
+                        setItems_array={setItems_array}
                         sumTotal={sumTotal}
                     />} />
                 <Route path='order-form-3' element=
                     {<OrderForm3
+                        items_array={items_array}
+                        setItems_array={setItems_array}
                         sumTotal={sumTotal}
                     />} />
                 <Route path='order-form-4' element=
                     {<OrderForm4
+                        order={order}
+                        setOrder={setOrder}
+                        items_array={items_array}
+                        setItems_array={setItems_array}
                         sumTotal={sumTotal}
                     />} />
                 <Route path='order-form-5' element=
                     {<OrderForm5
-                        sumTotal={sumTotal}
+                        order={order}
+                        setOrder={setOrder}
+                        items_array={items_array}
+                        setItems_array={setItems_array}
                     />} />
-                <Route path='check-order' element={<CheckOrder />} />
+                <Route path='check-order' element=
+                    {<CheckOrder
+                        order={order}
+                        setOrder={setOrder}
+                        items_array={items_array}
+                        setItems_array={setItems_array}
+                        sumTotal={sumTotal}
+                        payment_method={payment_method}
+                    />} />
                 <Route path='order-pickup' element={<OrderPickup />} />
                 <Route path='shipping-address' element={<ShippingAddress />} />
-                <Route path='downpayment' element={<Downpayment />} />
+                <Route path='downpayment' element=
+                    {<Downpayment
+                        payment_method={payment_method}
+                        setPayment_method={setPayment_method}
+                    />} />
                 <Route path='order-payment' element={<OrderBeingConfirmed />} />
             </Route>
 

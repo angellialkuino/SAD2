@@ -1,0 +1,125 @@
+.site-title-staff-profile{
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 0;
+    margin-top: 0;
+    width: auto;
+}
+
+.sub-button-edit {
+    background-color: #179ad3;
+    border: none;
+    border-radius: 5px;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+    width: auto;
+}
+
+.sub-button-delete {
+    background-color: #179ad3;
+    border: none;
+    border-radius: 5px;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+    width: auto;
+}
+
+.sub-button-update {
+    background-color: #179ad3;
+    border: none;
+    border-radius: 5px;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+    width: auto;
+}
+
+.SAO-back {
+    background-color: #179ad3;
+    border: none;
+    border-radius: 5px;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+    width: auto;
+}
+
+.profile-div-sao {
+    display: flex;
+    padding: 2rem;
+    margin: 2rem auto auto auto;
+    background-color: #d8ecf5;
+    height: 650px;
+    width: 1200px;
+    border-radius: 2rem;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    align-content: stretch;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.profile-info-sao {
+    display: flex;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.profile-pic-sao {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transform: translateX(137px);
+}
+
+.button-row-sao {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: flex-end;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    align-content: flex-start;
+    transform: translateY(556px);
+}
+
+.second-div-frame-sao {
+    display: flex;
+    padding: 2rem;
+    margin: 2rem auto auto auto;
+    background-color: #d5e0e6;
+    height: 350px;
+    width: 350px;
+    border-radius: 20rem;
+}
