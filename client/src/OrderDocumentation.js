@@ -8,10 +8,10 @@ import './OrderDocumentationTable.css'
 export default function OrderDocumentation() {
     const navigate = useNavigate();
 
-    const location = useLocation();
-    const {orderID} = location.state;
+    // const location = useLocation();
+    // const {orderID} = location.state;
 
-    //const [orderID, setOrderID] = useState("2993f16f-5ea2-4177-9d5e-1a4ac76586be");
+    const [orderID, setOrderID] = useState("2993f16f-5ea2-4177-9d5e-1a4ac76586be");
     const [orderDocs, setOrderDocs] = useState([]);
 
     const [date, setDate] = useState(new Date().toISOString().slice(0, 19).replace('T', ' '));
@@ -91,11 +91,9 @@ export default function OrderDocumentation() {
                 
             </div>
 
-
-
             <div className="od_add_entry">
                 <button onClick = {addEntry} className="od_button-add">Add Entry</button>
-                <button onClick={() => navigate(-1)}>Back</button>
+                <button onClick={() => navigate(-1)} className="od_button-back">Back</button>
             </div>
 
         </div>
