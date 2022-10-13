@@ -220,59 +220,54 @@ const updateOrderDetails = async () => {
             <div className='order-div'>
                 <h1>ORDER {orderID.slice(-4)}</h1>
 
-                <div className='order-details-footer'>
-                    <Link to='/staff/invitation-draft' state={{orderID:orderID}} className="rounded-pill btn btn-info fw-bold nav-hover">View Invitation</Link>
-                    <Link to='/staff/order-log' state={{orderID:orderID}} className="rounded-pill btn btn-info fw-bold nav-hover">View Order Log</Link>
-                </div>
-
                 <div className='white-inner-div1'>
                     {/* Note: Copy pated from CustAccDetails so css styling classnames dont match!!!!!!! */}
-                    <div className="accDetail-body-field">
+                    <div className="accDetail-body-field-od">
                         <h3>Date Ordered</h3>
                         <input value={dateOrdered.slice(0, 10)} type="text" disabled={true} onChange={(e) => setDateOrdered(e.target.value)} className="form-control" />
                     </div>
 
-                    <div className="accDetail-body-field">
+                    <div className="accDetail-body-field-od">
                         <h3>Invitation Type</h3>
                         <input value={inviteType} type="text" disabled={isDisabled} onChange={(e) => setUserIinviteType(e.target.value)} className="form-control" />
                     </div>
 
-                    <div className="accDetail-body-field">
+                    <div className="accDetail-body-field-od">
                         <h3>Material</h3>
                         <input value={material} type="text" disabled={isDisabled} onChange={(e) => setMaterial(e.target.value)} className="form-control" />
                     </div>
 
-                    <div className="accDetail-body-field">
+                    <div className="accDetail-body-field-od">
                         <h3>Date of Event</h3>
                         <input value={eventDate.slice(0, 10)} type="text" disabled={isDisabled} onChange={(e) => setEventDate(e.target.value)} className="form-control" />
                     </div>
 
-                    <div className="accDetail-body-field">
+                    <div className="accDetail-body-field-od">
                         <h3>Motif</h3>
                         <input value={motif} type="text" disabled={isDisabled} onChange={(e) => setMotif(e.target.value)} className="form-control" />
                     </div>
 
-                    <div className="accDetail-body-field">
+                    <div className="accDetail-body-field-od">
                         <h3>Invitation Title</h3>
                         <input value={inviteTitle} type="text" disabled={isDisabled} onChange={(e) => setInviteTitle(e.target.value)} className="form-control" />
                     </div>
 
-                    <div className="accDetail-body-field">
+                    <div className="accDetail-body-field-od">
                         <h3>Font Style</h3>
                         <input value={fontStyle} type="text" disabled={isDisabled} onChange={(e) => setFontStyle(e.target.value)} className="form-control" />
                     </div>
 
-                    <div className="accDetail-body-field">
+                    <div className="accDetail-body-field-od">
                         <h3>Content Link</h3>
                         <input value={contentLink} type="text" disabled={isDisabled} onChange={(e) => setContentLink(e.target.value)} className="form-control" />
                     </div>
 
-                    <div className="accDetail-body-field">
+                    <div className="accDetail-body-field-od">
                         <h3>PEG Link</h3>
                         <input value={pegLink} type="text" disabled={isDisabled} onChange={(e) => setPegLink(e.target.value)} className="form-control" />
                     </div>
 
-                    <div className="accDetail-body-field">
+                    <div className="accDetail-body-field-od">
                         <h3>Claim Type</h3>
                         <input value={claimType} type="text" disabled={isDisabled} onChange={(e) => setClaimType(e.target.value)} className="form-control" />
                     </div>
@@ -281,9 +276,17 @@ const updateOrderDetails = async () => {
                     {!isDisabled && <button onClick={updateOrder} className="btn btn-dark btn-lg btn-block">Update Order</button>}
                         
                 </div>
+                <div className='order-details-footer-od'>
+                    <Link to='/staff/invitation-draft' state={{orderID:orderID}} className="rounded-pill btn-view-invite-od btn-info fw-bold nav-hover">View Invitation</Link>
+                    <Link to='/staff/order-log' state={{orderID:orderID}} className="rounded-pill btn-view-order-od btn-info fw-bold nav-hover">View Order Log</Link>
+                </div>
             </div>
 
-            <div className='order-div'>
+
+        </div>
+
+            <div className='payment-status-div'>
+            <div className='order-div-bottom'>
             <div>
                 {!isDisabledArr && <>
                     <CheckBoxTable array={itemsArray} onItemsArray={setItemsArray} updateReq={updateOrderDetails}/>
@@ -291,7 +294,7 @@ const updateOrderDetails = async () => {
                 </>}
 
                 {isDisabledArr && <>
-                    <table>
+                    <table className ="order-details-table-od">
                         <thead>
                         <tr>
                             <th>Item Name</th>
@@ -317,14 +320,11 @@ const updateOrderDetails = async () => {
                         })}  
                         </tbody>                  
                     </table> 
-                    <button onClick={()=>setIsDisabledArr(false)} className="btn btn-dark btn-lg btn-block">Edit Order Items</button>
+                    <button onClick={()=>setIsDisabledArr(false)} className="btn-edit-order-items btn-dark btn-lg btn-block">Edit Order Items</button>
                 </>}
 
             </div>
             </div>
-        </div>
-
-            <div className='payment-status-div'>
                 <div className='payment-details'>
                     <h1>Payment Details</h1>
                     <div className='white-inner-div1'>
@@ -338,6 +338,7 @@ const updateOrderDetails = async () => {
                         <p>Payment Method: {paymentMethod}</p>
                     </div>
                 </div>
+
                 <div className='order-status'>
                     <h1>Order Status</h1>
                     <div className='white-inner-div2'>
