@@ -20,19 +20,6 @@ function OrderForm2({ sumTotal, order, setOrder, items_array, setItems_array }) 
             }
         });
         sumTotal.current += order.material_price;
-        if (order.num_of_invites < 30) {
-            sumTotal.current += 1500;
-            let date1 = new Date().toJSON().slice(0, 10);
-            let date2 = order.event_date;
-            const date1new = new Date(date1);
-            const date2new = new Date(date2);
-            let Difference_In_Time = date2new.getTime() - date1new.getTime();
-            let Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
-            if (Difference_In_Days < 14) {
-                sumTotal.current += sumTotal.current * 0.40;
-            }
-        }
-
         console.log(order);
         console.log(items_array);
     }, [items_array, sumTotal]);
