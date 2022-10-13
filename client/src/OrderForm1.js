@@ -99,7 +99,7 @@ const OrderForm1 = ({ order, setOrder }) => {
                                     };
                                 });
                             }}
-                            required
+
                             className='profile-textfield' />
                     </div>
                     <div className='label-textfield'>
@@ -116,7 +116,7 @@ const OrderForm1 = ({ order, setOrder }) => {
                                     };
                                 });
                             }}
-                            required
+
                             className='profile-textfield' />
                     </div>
                     <div className='label-textfield'>
@@ -133,7 +133,7 @@ const OrderForm1 = ({ order, setOrder }) => {
                                     };
                                 });
                             }}
-                            required
+
                             className='profile-textfield' />
                     </div>
                     <div className='label-textfield'>
@@ -150,7 +150,7 @@ const OrderForm1 = ({ order, setOrder }) => {
                                     };
                                 });
                             }}
-                            required
+
                             className='profile-textfield' />
                     </div>
                     <div className='label-textfield'>
@@ -167,7 +167,7 @@ const OrderForm1 = ({ order, setOrder }) => {
                                     };
                                 });
                             }}
-                            required
+
                             className='profile-textfield' />
                     </div>
                     <div className='label-textfield'>
@@ -185,7 +185,7 @@ const OrderForm1 = ({ order, setOrder }) => {
                                     };
                                 });
                             }}
-                            required
+
                             className='profile-textfield' />
                     </div>
                     <div className='label-textfield'>
@@ -202,13 +202,12 @@ const OrderForm1 = ({ order, setOrder }) => {
                                     };
                                 });
                             }}
-                            required
+
                             className='profile-textfield' />
                     </div>
                 </div>
                 <div className='form1-footer'>
                     <Link to='/terms-and-conditions' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
-                    <button className="rounded-pill btn btn-danger fw-bold nav-hover" onClick={handleCancel}>Cancel Order</button>
                     <Link to='/order-form-2' className="rounded-pill btn btn-info fw-bold nav-hover">Next</Link>
                 </div>
             </form>

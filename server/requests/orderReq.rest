@@ -17,7 +17,7 @@ Content-Type: application/json
 {
     "payment_method": "cash",
     "order": {
-        "user_id": "0f1792a6-aa78-41ed-9e65-f761b5808089",
+        "user_id": "9e0ca833-c8c6-4ab9-a78d-559d93f55045",
         "invite_type": "INVTYPE",
         "material": "material",
         "event_date": "2022-10-13 1:01:01",

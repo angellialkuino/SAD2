@@ -35,7 +35,7 @@ function OrderForm4({ order, items_array, setItems_array, sumTotal }) {
         }
         console.log(order);
         console.log(items_array);
-    }, [items_array]);
+    }, [items_array, order, sumTotal]);
 
     const handleWaxDesign = (e) => {
         if (items_array.findIndex(object => object.item_id === 'd1') === -1) {
