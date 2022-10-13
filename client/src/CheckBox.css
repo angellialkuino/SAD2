@@ -31,30 +31,35 @@
     padding: 1rem;
     text-align: left;
     width:auto;
+    border-bottom: 1px solid #ddd;
 }
 
 .td-type {
     padding: 1rem;
     text-align: left;
     width:auto;
+    border-bottom: 1px solid #ddd;
 }
 
 .td-color {
     padding: 1rem;
     text-align: left;
     width:auto;
+    border-bottom: 1px solid #ddd;
 }
 
 .td-size {
     padding: 1rem;
     text-align: left;
     width:auto;
+    border-bottom: 1px solid #ddd;
 }
 
 .td-quantity {
     padding: 1rem;
     text-align: left;
     width:auto;
+    border-bottom: 1px solid #ddd;
 }
 
 .input-odcb {
@@ -90,4 +95,5 @@
 
 .checkbox-input {
     padding-left: 10px;
+    border-bottom: 1px solid #ddd;
 }
