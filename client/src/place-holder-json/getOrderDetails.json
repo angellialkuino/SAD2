@@ -17,11 +17,11 @@
 
     },
     "order_details": [
-        {"item_id": "m1", "item_name":"name", "price":20, "type": "orange", "size": "5.75 x 6.75", "quantity": 3},
-        {"item_id": "e1", "item_name":"name", "price":20, "type": "red", "size": "6 x 7"},
-        {"item_id": "e3", "item_name":"name", "price":20, "type": "euhue"},
-        {"item_id": "co2", "item_name":"name", "price":20, "type": "covertype"},
-        {"item_id": "d1", "item_name":"name", "price":20, "type": "leaves", "color": "blue"}
+        {"item_id": "m1", "item_name":"name1", "price":20, "type": "orange", "size": "5.75 x 6.75", "quantity": 3},
+        {"item_id": "e1", "item_name":"name2", "price":20, "type": "red", "size": "6 x 7"},
+        {"item_id": "e3", "item_name":"name3", "price":20, "type": "euhue"},
+        {"item_id": "co2", "item_name":"name4", "price":20, "type": "covertype"},
+        {"item_id": "d1", "item_name":"name5", "price":20, "type": "leaves", "color": "blue"}
     ],
     "billing_info": {
         "order_id": "29dafda5-7848-4e1f-913b-a98652a7e0cd",
