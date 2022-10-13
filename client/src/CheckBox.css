@@ -5,6 +5,7 @@
     height: auto;
     margin: 1rem 1rem 1rem 2rem;
     border-radius: 0.5rem;
+    padding: auto;
 }
 
 .checkBox-thead {
@@ -27,31 +28,31 @@
 }
 
 .td-item {
-    padding: 0.5rem;
+    padding: 1rem;
     text-align: left;
     width:auto;
 }
 
 .td-type {
-    padding: 0.5rem;
+    padding: 1rem;
     text-align: left;
     width:auto;
 }
 
 .td-color {
-    padding: 0.5rem;
+    padding: 1rem;
     text-align: left;
     width:auto;
 }
 
 .td-size {
-    padding: 0.5rem;
+    padding: 1rem;
     text-align: left;
     width:auto;
 }
 
 .td-quantity {
-    padding: 0.5rem;
+    padding: 1rem;
     text-align: left;
     width:auto;
 }
@@ -85,4 +86,8 @@
     align-content: center;
     justify-content: flex-start;
     align-items: center;
+}
+
+.checkbox-input {
+    padding-left: 10px;
 }

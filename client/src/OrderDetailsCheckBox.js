@@ -107,7 +107,7 @@ function OrderDetailsCheckBox(props) {
             {allItemsArray.map((item) => {
                 return(
                     <tr key={item.item_id} className={item.selected ? "selected" : ""}> 
-                        <td><input
+                        <td className= "checkbox-input"><input
                                 type="checkbox"
                                 checked={item.selected}
                                 onChange={(e) => onCheck(e, item)}
