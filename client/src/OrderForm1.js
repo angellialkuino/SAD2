@@ -13,7 +13,7 @@ const OrderForm1 = ({ order, setOrder, items_array, setItems_array }) => {
         else if (order.content_link !== '' && order.event_date !== '' && order.font_style !== '' && order.invite_title !== '' && order.invite_type !== '' && order.material !== '' && order.motif !== '' && order.num_of_invites !== 0 && order.peg_link !== '') {
             setIsIncomplete(false);
         }
-        console.log(isIncomplete)
+        //console.log(isIncomplete)
     }, [order]);
 
     const handleIncompleteInfo = (e) => {
@@ -32,6 +32,7 @@ const OrderForm1 = ({ order, setOrder, items_array, setItems_array }) => {
         });
     }
     const handleMaterial = (e) => {
+        console.log(`array:${items_array}`);
         setOrder((prevState) => {
             return {
                 ...prevState,
@@ -39,13 +40,14 @@ const OrderForm1 = ({ order, setOrder, items_array, setItems_array }) => {
                 material_price: parseFloat(e.target.value)
             };
         });
+
         if (order.material === 'acrylic') {
             setItems_array(items_array.map(obj => {
-                if (obj.item_id === 'm1') {
+                if (obj.item_id === 'm2') {
                     return {
                         ...obj,
-                        quantity: 3,
-                        price: 90
+                        quantity: 1,
+                        price: 180
                     };
                 }
                 return obj;
@@ -57,7 +59,7 @@ const OrderForm1 = ({ order, setOrder, items_array, setItems_array }) => {
                     return {
                         ...obj,
                         quantity: 2,
-                        price: 60
+                        price: 30
                     };
                 }
                 return obj;
@@ -219,7 +221,7 @@ const OrderForm1 = ({ order, setOrder, items_array, setItems_array }) => {
                                 setOrder((prevState) => {
                                     return {
                                         ...prevState,
-                                        num_of_invites: e.target.value
+                                        num_of_invites: parseInt(e.target.value)
                                     };
                                 });
                             }}

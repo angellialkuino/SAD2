@@ -1,19 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import './OrderForm5.css';
 
 function OrderForm5({ order, setOrder, items_array, receivalLink, setReceivalLink }) {
-
+    const navigate =useNavigate();
     const [isIncomplete, setIsIncomplete] = useState('')
     useEffect(() => {
-        console.log(order);
-        console.log(items_array);
-        if (order.claim_type == 'pickup') {
-            setReceivalLink('/order-pickup')
-        }
-        else if (order.claim_type == 'delivery') {
-            setReceivalLink('/shipping-address')
-        }
+        // console.log(order);
+        // console.log(items_array);
         if (order.claim_type === '' || order.order_deadline === '') {
             setIsIncomplete(true);
         }
@@ -39,10 +33,16 @@ function OrderForm5({ order, setOrder, items_array, receivalLink, setReceivalLin
         });
     }
 
-    const handleIncompleteInfo = (e) => {
+    const handleNext = (e) => {
         if (isIncomplete === true) {
             window.alert('Incomplete form fields')
             e.preventDefault();
+        }
+        else if (order.claim_type == 'pickup') {
+            navigate('/form/order-pickup')
+        }
+        else if (order.claim_type == 'delivery') {
+            navigate('/form/shipping-address')
         }
     }
 
@@ -83,8 +83,8 @@ function OrderForm5({ order, setOrder, items_array, receivalLink, setReceivalLin
                     </div>
                 </div>
                 <div className='form1-footer'>
-                    <Link to='/check-order' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
-                    <Link to={receivalLink} onClick={handleIncompleteInfo} className="rounded-pill btn btn-info fw-bold nav-hover">Next</Link>
+                    <Link to='/form/check-order' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
+                    <button onClick={handleNext} className="rounded-pill btn btn-info fw-bold nav-hover">Next</button>
                 </div>
             </div>
         </>
