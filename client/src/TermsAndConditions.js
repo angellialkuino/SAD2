@@ -21,11 +21,11 @@ function TermsAndConditions() {
                     <p>RE-ORDERS ARE DISCOURAGED. WE SUGGEST THAT YOU ORDER EXTRA INVITES, </p>
                     <p>IF CLIENT INSISTS ON REORDER. THERE WILL BE MINIMUM ORDER OF 20 PCS. </p>
                 </div>
-            </div>
 
-            <div className='termsAndConditions-btn'>
-                <Link to='/customer' className="rounded-pill btn btn-info fw-bold nav-hover">Cancel</Link>
-                <Link to='/form/order-form-1' className="rounded-pill btn btn-info fw-bold nav-hover">I Agree</Link>
+                <div className='termsAndConditions-btn'>
+                    <Link to='/customer' className="rounded-pill tAC-btn btn-info fw-bold nav-hover">Cancel</Link>
+                    <Link to='/form/order-form-1' className="rounded-pill tAC-btn btn-info fw-bold nav-hover">I Agree</Link>
+                </div>
             </div>
         </div>
     );
