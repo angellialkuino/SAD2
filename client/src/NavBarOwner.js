@@ -7,7 +7,7 @@ function NavBarOwner() {
     const [isAuth, setIsAuth] = useState(false);
 
     useEffect(() => {
-        const custAuth = async () => {
+        const ownerAuth = async () => {
             await Axios.get('http://localhost:5000/api/owner/auth',
                 { withCredentials: true }
             ).then().catch((err) => {
@@ -20,7 +20,7 @@ function NavBarOwner() {
             setIsAuth(true);
         }
 
-        custAuth();
+        ownerAuth();
     },[])
 
     const logOut = async () => {

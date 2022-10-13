@@ -73,15 +73,15 @@ export default function OrderDocumentation() {
                             </tr>
                             {(orderDocs.length > 0 ) &&
                             orderDocs.map((entry) => (
-                                <tr className="oh_tr-tr">
-                                    <td className="oh_td-td">{entry.date}</td>
+                                <tr key={entry.date} className="oh_tr-tr">
+                                    <td className="oh_td-td">{entry.date.slice(0,10)}</td>
                                     <td className="oh_td-td">{entry.description}</td>
 
                                 </tr>
                             ))}
 
                                 <tr className="oh_tr-tr">
-                                    <td className="oh_td-td">{date}</td>
+                                    <td className="oh_td-td">{date.slice(0,10)}</td>
                                     <td className="oh_td-td">
                                         <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
                                     </td>

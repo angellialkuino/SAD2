@@ -8,6 +8,11 @@
     align-items: center;
 }
 
+.order-first-col {
+    display: flex;
+    flex-direction: column;
+}
+
 .input-field {
     width: 225px;
 }
@@ -21,7 +26,7 @@
     flex-direction: column;
     background-color: #d8ecf5;
     width: 650px;
-    height: 670px;
+    height: auto;
     border-radius: 2rem;
     align-items: center;
     padding: 2rem 0 2rem 0;
@@ -167,4 +172,22 @@
 
 .timeline-order li:nth-child(even):before {
     bottom: -70px;
+}
+
+.order-details-table {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.order-table-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
 }

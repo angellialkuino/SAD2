@@ -27,6 +27,8 @@ export default function OrderDocumentationCustomer() {
                 if(res.data.entries.length > 0){
                     setOrderDocs(res.data.entries);
                 }
+            }).catch((err)=>{
+                console.log(err);
             });
         }
         getOrderDocs();
@@ -42,7 +44,7 @@ export default function OrderDocumentationCustomer() {
 
             <div className="oh_table">
                 {(orderDocs.length > 0 ) && <OrderDocumentationTable data={orderDocs} />}
-                {(orderDocs.length < 1 ) && <p>No Order Documentation Entries</p>}
+                {(orderDocs.length < 1 ) && <p>No Order Layout Changes</p>}
                 
             </div>
             <button onClick={() => navigate(-1)}>Back</button>

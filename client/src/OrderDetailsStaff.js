@@ -1,15 +1,26 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import Axios from 'axios';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import CheckBoxTable from "./OrderDetailsCheckBox";
 import './OrderDetails.css';
+const orderInfoJSON = require("./place-holder-json/getOrderDetails.json");
+
 
 function OrderDetailsStaff() {
-const location = useLocation();
-const {orderID} = location.state;
-//const [orderID, setOrderID] = useState("4a1a6e3a-7d8c-4b99-8302-b665cfe37015");
-const [orderInfo, setOrderInfo] = useState({});
 
-//const [userID, setUserID] = useState("N/A");
+//placeholder coode******
+const {order_info}=orderInfoJSON;
+console.log(order_info);
+const orderID = "29dafda5-7848-4e1f-913b-a98652a7e0cd";
+//placeholder coode******
+
+const navigate = useNavigate();
+
+// const location = useLocation();
+// const orderID = location.state;
+const [orderInfo, setOrderInfo] = useState(order_info);
+
+
 const [inviteType, setUserIinviteType] = useState("N/A");
 const [material, setMaterial] = useState("N/A");
 const [eventDate, setEventDate] = useState("N/A");
@@ -34,32 +45,33 @@ const [subTotal, setSubTotal] = useState(0);
 const [paymentMethod, setPaymentMethod] = useState("N/A");
 
 const [isDisabled, setIsDisabled] = useState(true);
+const [isDisabledArr, setIsDisabledArr] = useState(true);
+
 
 const [errMsg, setErrMsg] = useState('');
 const [successMsg, setSuccessMsg] = useState('');
 
-useEffect( () => {
-    console.log(orderID);
-    const getOrderDetails = async () => {        
-        await Axios.get('http://localhost:5000/api/order/order-info',
-            {params:{order_id: orderID}, 
-                withCredentials: true }
-        ).then((res) => {
-            //console.log(res);
-            //console.log(res.data.order_info);
-            if(res.status===200){
-                setSuccessMsg(res.data.message);
-                setOrderInfo(res.data.order_info);
+// useEffect( () => {
+//     const getOrderDetails = async () => {        
+//         await Axios.get('http://localhost:5000/api/order/order-info',
+//             {params:{order_id: orderID}, 
+//                 withCredentials: true }
+//         ).then((res) => {
+//             //console.log(res);
+//             //console.log(res.data.order_info);
+//             if(res.status===200){
+//                 setSuccessMsg(res.data.message);
+//                 setOrderInfo(res.data.order_info);
                 
-            }else if (res.status===400){
-                setErrMsg(res.data.message); 
-            }
+//             }else if (res.status===400){
+//                 setErrMsg(res.data.message); 
+//             }
             
-        });
-    }
+//         });
+//     }
     
-getOrderDetails();
-}, [])
+// getOrderDetails();
+// }, [])
 
 useEffect(()=>{
 
@@ -91,18 +103,35 @@ useEffect(()=>{
     }
 },[orderInfo])
 
-const allowEdit = () => {
-    setIsDisabled(false);
+const updateOrderStatus = async (e) => {
+    const newOrderStatus = e.target.value;
+    await Axios.put('http://localhost:5000/api/order/update-status',
+        { order_id: orderID, order_status: newOrderStatus },
+        { withCredentials: true }
+    ).then((res) => {
+        if(res.status===200){
+            setOrderStatus(newOrderStatus);
+            if(newOrderStatus=="Completed"){
+                navigate("/staff/order-list");
+            }
+            setSuccessMsg(res.data.message);
+        }else if (res.status===400){
+            setErrMsg(res.data.message); 
+        }  
+    }).catch((err) => {
+        console.log(err);
+    });
 }
 
 //////////////////////////////
 const cancelOrder = async () => {
     await Axios.put('http://localhost:5000/api/order/cancel-order',
-        { order_id: orderID, order_status: "canceled" },
+        { order_id: orderID, order_status: "Canceled" },
         { withCredentials: true }
     ).then((res) => {
         if(res.status===200){
             setSuccessMsg(res.data.message);
+            navigate("/staff/order-list");
             // Show pop up? then Navigate to order list!!!
         }else if (res.status===400){
             setErrMsg(res.data.message); 
@@ -144,6 +173,28 @@ const updateOrder = async () => {
     });
 }
 
+//////////////////////////////
+
+const updateBillingInfo = ()=> {
+    let newUnitCost =0;
+    for( let x in itemsArray){
+        
+        if('quantity' in itemsArray[x]){
+            newUnitCost += itemsArray[x].price*itemsArray[x].quantity;
+        }else{
+            newUnitCost += itemsArray[x].price;}
+    }
+    
+    let partialTotal = subTotal-rushFee-unitCost + newUnitCost;
+    if(rushFee){
+        setRushFee(partialTotal*0.4);
+        setSubTotal(partialTotal*1.4)
+    }else{
+        setSubTotal(partialTotal)
+    }
+    setUnitCost(newUnitCost);
+}
+
 const updateOrderDetails = async () => {
     await Axios.put('http://localhost:5000/api/order/update-order-details',
         { order_id: orderID, order_details: itemsArray },
@@ -151,6 +202,8 @@ const updateOrderDetails = async () => {
     ).then((res) => {
         if(res.status===200){
             setSuccessMsg(res.data.message);
+            setIsDisabledArr(true);
+            updateBillingInfo();
         }else if (res.status===400){
             setErrMsg(res.data.message); 
         }  
@@ -159,27 +212,19 @@ const updateOrderDetails = async () => {
     });
 }
 
-const updateOrderStatus = async (e) => {
-    const newOrderStatus = e.target.value;
-    console.log(newOrderStatus)
-    await Axios.put('http://localhost:5000/api/order/update-status',
-        { order_id: orderID, order_status: newOrderStatus },
-        { withCredentials: true }
-    ).then((res) => {
-        if(res.status===200){
-            setSuccessMsg(res.data.message);
-        }else if (res.status===400){
-            setErrMsg(res.data.message); 
-        }  
-    }).catch((err) => {
-        console.log(err);
-    });
-}
+
 
     return ( //change the <p> to input tags :")"
         <div className='order-details-main'>
+        <div className=".order-first-col">
             <div className='order-div'>
                 <h1>ORDER {orderID.slice(-4)}</h1>
+
+                <div className='order-details-footer'>
+                    <Link to='/staff/invitation-draft' state={{orderID:orderID}} className="rounded-pill btn btn-info fw-bold nav-hover">View Invitation</Link>
+                    <Link to='/staff/order-log' state={{orderID:orderID}} className="rounded-pill btn btn-info fw-bold nav-hover">View Order Log</Link>
+                </div>
+
                 <div className='white-inner-div1'>
                     {/* Note: Copy pated from CustAccDetails so css styling classnames dont match!!!!!!! */}
                     <div className="accDetail-body-field">
@@ -232,26 +277,39 @@ const updateOrderStatus = async (e) => {
                         <input value={claimType} type="text" disabled={isDisabled} onChange={(e) => setClaimType(e.target.value)} className="form-control" />
                     </div>
 
-                    {isDisabled && <button onClick={allowEdit} className="btn btn-dark btn-lg btn-block">Edit Order</button>}
+                    {isDisabled && <button onClick={()=>setIsDisabled(false)} className="btn btn-dark btn-lg btn-block">Edit Order Information</button>}
                     {!isDisabled && <button onClick={updateOrder} className="btn btn-dark btn-lg btn-block">Update Order</button>}
                         
                 </div>
-                <div>
+            </div>
+
+            <div className='order-div'>
+            <div>
+                {!isDisabledArr && <>
+                    <CheckBoxTable array={itemsArray} onItemsArray={setItemsArray} updateReq={updateOrderDetails}/>
+                    {/* <button onClick={updateOrderDetails} className="btn btn-dark btn-lg btn-block">!!Update Order</button> */}
+                </>}
+
+                {isDisabledArr && <>
                     <table>
                         <thead>
                         <tr>
                             <th>Item Name</th>
+                            <th>Type</th>
+                            <th>Color</th>
+                            <th>Size</th>
                             <th>Quantity</th>
                             <th>Price</th>
                         </tr>
                         </thead>
                         <tbody>
-                        {/* content of table */}
-                        {itemsArray.map((val,key) => {
+                        {itemsArray.map((val) => {
                             return(
-                                //add unique key property
-                                <tr> 
+                                <tr key={val.item_name}> 
                                     <td>{val.item_name}</td>
+                                    <td>{val.type}</td>
+                                    <td>{val.color}</td>
+                                    <td>{val.size}</td>
                                     <td>{val.quantity}</td>
                                     <td>{val.price}</td>
                                 </tr>
@@ -259,14 +317,13 @@ const updateOrderStatus = async (e) => {
                         })}  
                         </tbody>                  
                     </table> 
-                    <button className='rounded-pill btn btn-info fw-bold nav-hover'>Edit Order Details</button>
-                </div>
-                <div className='order-details-footer'>
-                    <Link to='/staff/invitation-draft' state={{orderID:orderID}} className="rounded-pill btn btn-info fw-bold nav-hover">View Invitation</Link>
-                    <Link to='/staff/order-log' state={{orderID:orderID}} className="rounded-pill btn btn-info fw-bold nav-hover">View Order Log</Link>
-                </div>
+                    <button onClick={()=>setIsDisabledArr(false)} className="btn btn-dark btn-lg btn-block">Edit Order Items</button>
+                </>}
 
             </div>
+            </div>
+        </div>
+
             <div className='payment-status-div'>
                 <div className='payment-details'>
                     <h1>Payment Details</h1>
@@ -287,12 +344,13 @@ const updateOrderStatus = async (e) => {
                         <h5>Invites Should Be Finished by:</h5>
                         <p>{orderDeadline.slice(0, 10)}</p>
 
-                        <select name="orderStatus" onChange={updateOrderStatus}>
-                            <option value="none" selected disabled hidden>{orderStatus}</option>
+                        <select name="orderStatus" value={orderStatus} onChange={updateOrderStatus}>
+                            {/* <option value={orderStatus} disabled hidden>{orderStatus}</option> */}
                             <option value="Pending">Pending</option>
                             <option value="Creating">Creating</option>
                             <option value="Finalizing">Finalizing</option>
                             <option value="Ready to Claim!">Ready to Claim!</option>
+                            <option value="Completed">Completed</option>
                         </select>
                         <div className='order-status-button-row'>
                             <button onClick={cancelOrder} className='button'>Cancel Order</button>

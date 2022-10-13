@@ -6,11 +6,11 @@ function StaffAccountViewOwner() {
     const navigate = useNavigate();
 
     const location = useLocation();
-    const {userID} = location.state;
+    const userID = location.state;
 
     const [isDisabled, setIsDisabled] = useState(true);
     const [user, setUser] = useState({});
-    //const [userID, setUserID] = useState("");
+    // const [userID, setUserID] = useState("");
     const [name, setName] = useState("N/A");
     const [email, setEmail] = useState("N/A");
     const [contactNum, setcontactNum] = useState("N/A");
@@ -83,6 +83,7 @@ function StaffAccountViewOwner() {
         ).then((res) => {
             if (res.status === 200) {
                 setSuccessMsg(res.data.message);
+                navigate("/owner/staff-list");
                 //Navigate to staff list
             } else if (res.status === 400) {
                 setErrMsg(res.data.message); //or is it res.body.message
@@ -127,7 +128,7 @@ function StaffAccountViewOwner() {
                 </>}
 
                 {!isDisabled && <button onClick={updateAccDetails} className="sub-button">Update Account</button>}
-                <button onClick={navigate(-1)}>Back</button>
+                <button onClick={()=>navigate(-1)}>Back</button>
             </div>
         </div>
     );

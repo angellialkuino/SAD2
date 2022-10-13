@@ -1,32 +1,38 @@
-import React, { useEffect} from 'react';
+import React, { useEffect, useState} from 'react';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
+import Axios from 'axios';
 
 
 function NavBar() {
-    // useEffect(() => {
-    //     const custAuth = async () => {
-    //         await Axios.get('http://localhost:5000/api/customer/auth',
-    //             { withCredentials: true }
-    //         ).then((res)=>{
-    //             setUserID(res.data.user_id);
-    //         }).catch((err) => {
-    //             console.log(res);
-    //             if(res.data.role=='customer'){
-    //                 navigate('/customer');
-    //             }else if(res.data.role=='staff'){
-    //                 navigate('/staff/order-list');                    
-    //             }else if(res.data.role=='owner'){
-    //                 navigate('/owner/staff-list');                    
-    //             }
-    //         });
-    //         setIsAuth(true);
-    //     }
+    const navigate = useNavigate();
+    const [render, setRender] =useState(false);
 
-    //     custAuth();
-    // },[])
+    useEffect(() => {
+        const custAuth = async () => {
+            await Axios.get('http://localhost:5000/api/is-logged-in',
+                { withCredentials: true }
+            ).then((res)=>{
+                if(!res.data.role){
+                    setRender(true);
+                    console.log("no user logged in");
+                }else if(res.data.role=='customer'){
+                    navigate('/customer');
+                }else if(res.data.role=='staff'){
+                    navigate('/staff/order-list');                    
+                }else if(res.data.role=='owner'){
+                    navigate('/owner/staff-list');                    
+                }
+            }).catch((err) => {
+                console.log(err);
+            });
+            
+        }
+
+        custAuth();
+    },[])
 
     return (
-        <>
+        <>{render && <>
             <nav className='nav'>
                 <Link to="/" className="navbar-brand nav-link site-title nav-hover">Crafter's Haven</Link>
                 <ul>
@@ -40,7 +46,7 @@ function NavBar() {
             </nav>
 
         <Outlet/>
-        </>
+        </>}</>
     );
 }
 

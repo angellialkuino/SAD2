@@ -13,7 +13,7 @@ const OrderDocumentationTable = ({ data }) => {
 
                 {data.map((item) => (
                     <tr className="oh_tr-tr">
-                        <td className="oh_td-td">{item.date}</td>
+                        <td className="oh_td-td">{item.date.slice(0,10)}</td>
                         <td className="oh_td-td">{item.description}</td>
 
                     </tr>

@@ -36,11 +36,6 @@ export default function OrderHistory() {
                 {(orderHistory.length < 1) && <p>No Order History</p>}
 
             </div>
-
-            <div className="oh_buttons">
-                <button className="oh_button-back" onClick={() => navigate(-1)}>Back</button>
-
-            </div>
         </div>
     );
 }

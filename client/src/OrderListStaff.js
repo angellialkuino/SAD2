@@ -17,7 +17,6 @@ export default function Order_List() {
             await Axios.get('http://localhost:5000/api/order/current-orders',
                 { withCredentials: true }
             ).then((res) => {
-                console.log(res);
                 setOrderList(res.data.orders);
             });
         }
