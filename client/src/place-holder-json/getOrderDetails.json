@@ -1,0 +1,37 @@
+{"order_info": {
+    "order": {
+        "user_id": "0f1792a6-aa78-41ed-9e65-f761b5808089",
+        "invite_type": "THIS",
+        "material": "IS",
+        "event_date": "2022-10-13 1:01:01",
+        "motif": "PLACEHOLDER",
+        "invite_title": "INFORMATION",
+        "font_style": "italics",
+        "content_link": "material",
+        "num_of_invites": 20,
+        "peg_link": "pinterest.com",
+        "date_ordered": "2022-09-20 15:30:30",
+        "order_deadline": "2022-09-20 1:01:01",
+        "claim_type": "delivery",
+        "order_status": "pending"
+
+    },
+    "order_details": [
+        {"item_id": "m1", "item_name":"name", "price":20, "type": "orange", "size": "5.75 x 6.75", "quantity": 3},
+        {"item_id": "e1", "item_name":"name", "price":20, "type": "red", "size": "6 x 7"},
+        {"item_id": "e3", "item_name":"name", "price":20, "type": "euhue"},
+        {"item_id": "co2", "item_name":"name", "price":20, "type": "covertype"},
+        {"item_id": "d1", "item_name":"name", "price":20, "type": "leaves", "color": "blue"}
+    ],
+    "billing_info": {
+        "order_id": "29dafda5-7848-4e1f-913b-a98652a7e0cd",
+        "unit_cost": "140.00",
+        "total_revision_fee": "1500.00",
+        "less_min_fee": "1500.00",
+        "rush-fee": "448.00",
+        "sub_total": "1568.00",
+        "payment_method": "bank"
+
+    }
+
+}}

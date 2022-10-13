@@ -13,7 +13,7 @@ function NavBar() {
                 { withCredentials: true }
             ).then((res)=>{
                 if(!res.data.role){
-                    render(true);
+                    setRender(true);
                     console.log("no user logged in");
                 }else if(res.data.role=='customer'){
                     navigate('/customer');

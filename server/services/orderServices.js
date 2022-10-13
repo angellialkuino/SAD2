@@ -37,10 +37,10 @@ exports.computePrice = async (itemsArray) => {
             .select('price')
             .where({ item_id: itemsArray[x].item_id});
 
-            unitPrice += price[0].price;
-            // console.log(itemsArray[x].item_id);
-            // console.log(price[0].price);
-            // console.log(unitPrice);
+            if('quantity' in itemsArray[x]){
+                unitPrice += price[0].price*itemsArray[x].quantity;
+            }else{
+                unitPrice += price[0].price;}
 
         }}); 
     
@@ -154,22 +154,23 @@ exports.updateOrder = async (OrderId,orderData) => {
     //delete orderData.order_id;
     //console.log(`data: ${JSON.stringify(id)}`);
 
-    await db.transaction(async (trx) => {
+    await db.transaction( async(trx) => {
         await trx("order")
                     .update(orderData)
                     .where(OrderId);
-        order = await trx("order")
-                    .select('*')
-                    .where(OrderId);
-    });
+        
+    })
 };
 
 exports.updateOrderDetails = async (orderId,itemsArray) => {
     //delete orderData.order_id;
     //console.log(`data: ${JSON.stringify(id)}`);
-
+    //console.log(orderId);
     itemsArray.forEach((item) => {
         item.order_id = orderId.order_id;
+        delete item.selected;
+        delete item.price;
+        delete item.item_name;
     });
 
     await db.transaction(async (trx) => {
@@ -177,14 +178,29 @@ exports.updateOrderDetails = async (orderId,itemsArray) => {
         await trx("order_details").insert(itemsArray);
     })
 
-    const unitPrice = await this.computePrice(itemsArray);
+    const newUnitCost = await this.computePrice(itemsArray);
+
 
     await db.transaction(async (trx) => {
-        const numOfInvites = await trx("order").select('num_of_invites').where(orderId);
-        await trx("billing_info").update(
-            {unit_cost: unitPrice, sub_total: unitPrice*numOfInvites[0].num_of_invites}
-        ).where(orderId);
+        amountInfo = await trx("billing_info")
+                    .select("unit_cost","rush_fee","sub_total")
+                    .where(orderId);
+        //console.log(`new unit cost ${newUnitCost}`);
+        let prevUnitCost = amountInfo[0].unit_cost; 
+        let prevSubTotal = amountInfo[0].sub_total;
+        let prevRushFee = amountInfo[0].rush_fee;
+
+        let partialTotal = (prevSubTotal-prevRushFee)-prevUnitCost+newUnitCost;
+        prevRushFee = partialTotal*0.4;
+
+        await trx("billing_info")
+            .update({unit_cost:newUnitCost, sub_total:partialTotal+prevRushFee, rush_fee:prevRushFee})
+            .where(orderId);
     });
+
+    // await db.transaction(async (trx) => {
+
+    // });
 };
 
 
@@ -215,7 +231,7 @@ exports.logEntry = async (entryData) => {
     if(logs.length>1){
         revFee = (logs.length-1)*1500;
         await db.transaction( async(trx) => {
-            amountInfo = await trx("billing_info")
+            const amountInfo = await trx("billing_info")
                         .select("total_revision_fee","rush_fee","sub_total")
                         .where({ order_id: entryData.order_id});
 
