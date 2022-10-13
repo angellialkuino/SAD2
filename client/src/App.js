@@ -30,6 +30,7 @@ import CheckOrder from "./CheckOrder";
 import OrderDocumentationCustomer from "./OrderDocumentationCustomer";
 import SignUp from "./SignUp";
 import Login from "./Login";
+import CreateStaffAccountOwner from "./StaffAccountCreateOwner";
 
 function App() {
     //if user is logged in and check role(?)
@@ -151,7 +152,7 @@ function App() {
             <Route path='/staff-list' element={<StaffList />} />
         </Routes>
 
-        <OrderDetailsCustomer />
+        <CustAccDetail />
 
     </React.Fragment>
 }
