@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './OrderForm2.css';
-import NavBarCustomerLoggedIn from './NavBarCustomerLoggedIn';
 import { RunningPrice } from './RunningPrice';
 import OrderForm3 from './OrderForm3';
 
 function OrderForm2({ sumTotal, order, setOrder, items_array, setItems_array }) {
     const [checked, setChecked] = useState(false);
-    const [hidden, setHidden] = useState(true);
-    const [allTextChecked, setAllTextChecked] = useState(false);
+    const [hidden1, setHidden1] = useState(true);
+    const [hidden2, setHidden2] = useState(true);
+    const [e2Checked, sete2Checked] = useState(false);
+    const [e3Checked, sete3Checked] = useState(false);
+    const [allTextChecked1, setAllTextChecked1] = useState(false);
+    const [allTextChecked2, setAllTextChecked2] = useState(false);
+    const [allTextChecked3, setAllTextChecked3] = useState(false);
     const [headerTextChecked, setHeaderTextChecked] = useState(false);
 
     useEffect(() => {
@@ -25,6 +29,10 @@ function OrderForm2({ sumTotal, order, setOrder, items_array, setItems_array }) 
     }, [items_array, sumTotal]);
 
     const handlePagesPaperAndColor = (e) => {
+        if (e.target.value == 'Customize') {
+            setHidden1(false);
+        } else { setHidden1(true); }
+
         setItems_array(items_array.map(obj => {
             if (obj.item_id === 'm1') {
                 return {
@@ -34,11 +42,6 @@ function OrderForm2({ sumTotal, order, setOrder, items_array, setItems_array }) 
             }
             return obj;
         }));
-        items_array.some(element => {
-            if (element.color === 'Customize') {
-                setHidden(s => !s)
-            }
-        });
     }
 
     const handlePagesSize = (e) => {
@@ -53,10 +56,13 @@ function OrderForm2({ sumTotal, order, setOrder, items_array, setItems_array }) 
             }
             return obj;
         }));
-        console.log((items_array[0]));
     }
 
     const handleEnvelopePaperAndColor = (e) => {
+        if (e.target.value == 'Customize') {
+            setHidden2(false);
+        } else { setHidden2(true); }
+
         if (items_array.findIndex(object => object.item_id === 'e1') === -1) {
             setItems_array(prevState =>
                 [...prevState, {
@@ -76,58 +82,52 @@ function OrderForm2({ sumTotal, order, setOrder, items_array, setItems_array }) 
                 return obj;
             }));
         }
-        items_array.some(element => {
-            if (element.color === 'Customize') {
-                setHidden(s => !s)
-            }
-        });
     }
 
     const handleEnvelopeSize = (e) => {
-        if (items_array.findIndex(object => object.item_id === 'e1') === -1) {
-            setItems_array(prevState =>
-                [...prevState, {
-                    item_id: 'e1',
-                    item_name: 'envelope',
+        setItems_array(items_array.map(obj => {
+            if (obj.item_id === 'e1') {
+                return {
+                    ...obj,
                     size: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
                     price: parseFloat(e.target.value)
-                }]);
-        }
-        else {
-            setItems_array(items_array.map(obj => {
-                if (obj.item_id === 'e1') {
-                    return {
-                        ...obj,
-                        size: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
-                        price: parseFloat(e.target.value)
-                    };
-                }
-                return obj;
-            }));
-        }
+                };
+            }
+            return obj;
+        }));
     }
 
     const handleEnvelope = (e) => {
         setChecked(e.target.checked);
         if (e.target.checked === false) {
+            sete2Checked(false);
+            sete3Checked(false);
             setItems_array(prevState =>
                 prevState.filter(item => {
                     return item.item_id !== 'e1' && item.item_id !== 'e2' && item.item_id !== 'e3';
                 }),
             );
+        } else {
+            setItems_array(prevState =>
+                [...prevState, {
+                    item_id: 'e1',
+                    item_name: 'envelope',
+                    size: '6 x 8 in',
+                    price: 30
+                }]);
         }
     }
 
     const handleEnvelopeLiner = (e) => {
-        if (items_array.findIndex(object => object.item_id === 'e2') === -1) {
+        sete2Checked(prev => !prev);
+        if (sete2Checked && items_array.findIndex(object => object.item_id === 'e2') === -1) {
             setItems_array(prevState =>
                 [...prevState, {
                     item_id: 'e2',
                     item_name: 'envelope liner',
                     price: parseFloat(e.target.value)
                 }]);
-        }
-        if (e.target.checked === false) {
+        } else {
             setItems_array(prevState =>
                 prevState.filter(item => {
                     return item.item_id !== 'e2';
@@ -137,15 +137,15 @@ function OrderForm2({ sumTotal, order, setOrder, items_array, setItems_array }) 
     }
 
     const handleEnvelopeLock = (e) => {
-        if (items_array.findIndex(object => object.item_id === 'e3') === -1) {
+        sete3Checked(prev => !prev);
+        if (sete3Checked && items_array.findIndex(object => object.item_id === 'e3') === -1) {
             setItems_array(prevState =>
                 [...prevState, {
                     item_id: 'e3',
                     item_name: 'envelope lock',
                     price: parseFloat(e.target.value)
                 }]);
-        }
-        if (e.target.checked === false) {
+        } else {
             setItems_array(prevState =>
                 prevState.filter(item => {
                     return item.item_id !== 'e3';
@@ -155,6 +155,32 @@ function OrderForm2({ sumTotal, order, setOrder, items_array, setItems_array }) 
     }
 
     const handleAllText = (e) => {
+        switch (e.target.id) {
+            case 't4':
+                if (!allTextChecked1) {
+                    setAllTextChecked1(true);
+                    setAllTextChecked2(false);
+                    setAllTextChecked3(false);
+                }
+                break;
+            case 't3':
+                if (!allTextChecked2) {
+                    setAllTextChecked2(true);
+                    setAllTextChecked1(false);
+                    setAllTextChecked3(false);
+                }
+                break;
+            case 't1':
+                if (!allTextChecked3) {
+                    setAllTextChecked3(true);
+                    setAllTextChecked2(false);
+                    setAllTextChecked1(false);
+                }
+                break;
+
+            default:
+                break;
+        }
         if (items_array.findIndex(object => object.type === 'all text') === -1) {
             setItems_array(prevState =>
                 [...prevState, {
@@ -177,18 +203,23 @@ function OrderForm2({ sumTotal, order, setOrder, items_array, setItems_array }) 
                 return obj;
             }));
         }
-        if (e.target.checked === true) {
-            setHeaderTextChecked(false);
+        //if header
+        if (headerTextChecked) {
             setItems_array(prevState =>
                 prevState.filter(item => {
-                    return item.type !== 'header text';
+                    return item.item_id !== 't2';
                 }),
             );
+            setHeaderTextChecked(false);
         }
-        setHeaderTextChecked(false);
     }
 
+
     const handleHeaderText = (e) => {
+        if (!headerTextChecked) {
+            setHeaderTextChecked(true);
+        }
+
         if (items_array.findIndex(object => object.type === 'header text') === -1) {
             setItems_array(prevState =>
                 [...prevState, {
@@ -211,13 +242,16 @@ function OrderForm2({ sumTotal, order, setOrder, items_array, setItems_array }) 
                 return obj;
             }));
         }
-        if (e.target.checked === true) {
-            setAllTextChecked(false);
+
+        if (allTextChecked1 || allTextChecked2 || allTextChecked3) {
             setItems_array(prevState =>
                 prevState.filter(item => {
-                    return item.type !== 'all text';
+                    return item.item_id !== 't1' && item.item_id !== 't3' && item.item_id !== 't4';
                 }),
             );
+            setAllTextChecked1(false);
+            setAllTextChecked2(false);
+            setAllTextChecked3(false);
         }
     }
 
@@ -371,7 +405,7 @@ function OrderForm2({ sumTotal, order, setOrder, items_array, setItems_array }) 
     return (
         <>
             <div className='order-frame-2'>
-                <h2>Running Price</h2>
+                <h4>Running Price</h4>
                 <div className='running-price-frame p-4'>
                     <RunningPrice
                         order={order}
@@ -390,14 +424,14 @@ function OrderForm2({ sumTotal, order, setOrder, items_array, setItems_array }) 
                     <div className='grid-item'><h5>Sizes</h5></div>
                     <div className='grid-item'><input type="checkbox" value="pages" className='checkbox-circle0' />Pages</div>
                     <div className='grid-item'>
-                        <select name="pages" id="pages-select" required onClick={handlePagesPaperAndColor}>
+                        <select name="pages" id="pages-select" required onChange={handlePagesPaperAndColor}>
                             <option value="Let Crafters Haven handle it!">Let Crafters Haven handle it!</option>
                             <option value="Customize">Customize</option>
                         </select>
                     </div>
                     <div className='grid-item'>
                         <div className='grid-item'>
-                            <select name="pages" id="pages-select" required onClick={handlePagesSize}>
+                            <select name="pages" id="pages-select" required onChange={handlePagesSize}>
                                 <option id="4.75 x 5.75 in" value="30">4.75 x 5.75 in</option>
                                 <option id="5.75 x 7.75 in" value="30">5.75 x 7.75 in</option>
                                 <option id="6.75 x 8.75 in" value="40">6.75 x 8.75 in</option>
@@ -415,14 +449,15 @@ function OrderForm2({ sumTotal, order, setOrder, items_array, setItems_array }) 
                     <div className='grid-item'>
                         <select name="envelope" id="envelope-select" onClick={handleEnvelopeSize} disabled={!checked}>
                             <option id="6 x 8 in" value='30'>6 x 8 in</option>
+                            <option id="7 x 9 in" value='40'>7 x 9 in</option>
                         </select>
                     </div>
                 </div>
                 <div className='row-group'>
-                    <input type="checkbox" value="10" className={!checked ? 'checkbox-circle1' : 'checkbox-circle'} onClick={handleEnvelopeLiner} disabled={!checked} />Envelope Liner
-                    <input type="checkbox" value="5" className={!checked ? 'checkbox-circle1' : 'checkbox-circle'} onClick={handleEnvelopeLock} disabled={!checked} />Envelope Lock
+                    <input type="checkbox" value="10" checked={e2Checked} className={!checked ? 'checkbox-circle1' : 'checkbox-circle'} onClick={handleEnvelopeLiner} disabled={!checked} />Envelope Liner
+                    <input type="checkbox" value="5" checked={e3Checked} className={!checked ? 'checkbox-circle1' : 'checkbox-circle'} onClick={handleEnvelopeLock} disabled={!checked} />Envelope Lock
                 </div>
-                {!hidden ? <OrderForm3
+                {(!hidden1 || !hidden2) ? <OrderForm3
                     order={order}
                     setOrder={setOrder}
                     items_array={items_array}
@@ -436,13 +471,13 @@ function OrderForm2({ sumTotal, order, setOrder, items_array, setItems_array }) 
                 <div className='text-decor mt-3'>
                     <div>
                         <h5>All Text</h5>
-                        <div className='grid-item'><input type="checkbox" checked={allTextChecked} className='checkbox-circle' id='t4' title='all text emboss' value="20" name='all text' onClick={handleAllText} />Emboss</div>
-                        <div className='grid-item'><input type="checkbox" checked={allTextChecked} className='checkbox-circle' id='t3' title='all text foil print' value="60" name='all text' onClick={handleAllText} />Foil Print</div>
-                        <div className='grid-item'><input type="checkbox" checked={allTextChecked} className='checkbox-circle' id='t1' title='all text plain print' value="30" name='all text' onClick={handleAllText} />Plain Print</div>
+                        <div className='grid-item'><input type="checkbox" checked={allTextChecked1} className='checkbox-circle' id='t4' title='all text emboss' value="20" onChange={handleAllText} />Emboss</div>
+                        <div className='grid-item'><input type="checkbox" checked={allTextChecked2} className='checkbox-circle' id='t3' title='all text foil print' value="60" onChange={handleAllText} />Foil Print</div>
+                        <div className='grid-item'><input type="checkbox" checked={allTextChecked3} className='checkbox-circle' id='t1' title='all text plain print' value="30" onChange={handleAllText} />Plain Print</div>
                     </div>
                     <div>
                         <h5>Header Text</h5>
-                        <div className='grid-item'><input type="checkbox" checked={headerTextChecked} className='checkbox-circle' id='t2' title='header foil print' value="40" name='header text' onClick={handleHeaderText} />Foil Print</div>
+                        <div className='grid-item'><input type="checkbox" checked={headerTextChecked} className='checkbox-circle' id='t2' title='header foil print' value="40" onChange={handleHeaderText} />Foil Print</div>
                     </div>
 
 
