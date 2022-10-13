@@ -134,8 +134,24 @@
 
 .od_add_entry {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
-    flex-direction: column;
+    flex-direction: row;
     margin-top: 20px;
+}
+
+.od_button-back {
+    background-color: #179ad3;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 1rem;
 }
