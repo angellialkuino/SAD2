@@ -7,7 +7,7 @@ function OrderForm5({ order, setOrder, items_array }) {
     useEffect(() => {
         console.log(order);
         console.log(items_array);
-    }, [order]);
+    }, [order, items_array]);
 
     const handleDeadline = (e) => {
         setOrder((prevState) => {
