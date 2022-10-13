@@ -17,8 +17,8 @@ function OrderBeingConfirmed() {
                 <li status="Ready to Claim!"></li>
             </ul>
             <div className='force-center-row'>
-                <p>ORDER NUMBER: XXXXXXXXX</p>
-                <p>Estimate Date Finished: MM d, yyyy</p>
+                <p>ORDER NUMBER:</p>
+                <p>Estimate Date Finished:</p>
             </div>
 
 

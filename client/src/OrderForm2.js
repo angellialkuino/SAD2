@@ -5,9 +5,11 @@ import NavBarCustomerLoggedIn from './NavBarCustomerLoggedIn';
 import { RunningPrice } from './RunningPrice';
 import OrderForm3 from './OrderForm3';
 
-function OrderForm2({ sumTotal, setOrder, order, items_array, setItems_array }) {
+function OrderForm2({ sumTotal, order, setOrder, items_array, setItems_array }) {
     const [checked, setChecked] = useState(false);
-    const [hidden, setHidden] = useState(true)
+    const [hidden, setHidden] = useState(true);
+    const [allTextChecked, setAllTextChecked] = useState(false);
+    const [headerTextChecked, setHeaderTextChecked] = useState(false);
 
     useEffect(() => {
         <RunningPrice items_array={items_array} />
@@ -53,33 +55,18 @@ function OrderForm2({ sumTotal, setOrder, order, items_array, setItems_array }) 
     }
 
     const handlePagesSize = (e) => {
-        if (order.material === 'acrylic') {
-            setItems_array(items_array.map(obj => {
-                if (obj.item_id === 'm1') {
-                    return {
-                        ...obj,
-                        size: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
-                        quantity: 3,
-                        price: 90
-                    };
-                }
-                return obj;
-            }));
-        }
-        else {
-            setItems_array(items_array.map(obj => {
-                if (obj.item_id === 'm1') {
-                    return {
-                        ...obj,
-                        size: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
-                        quantity: 2,
-                        price: 60
-                    };
-                }
-                return obj;
-            }));
-        }
+        setItems_array(items_array.map(obj => {
+            if (obj.item_id === 'm1') {
+                return {
+                    ...obj,
+                    size: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
+                    price: parseFloat(e.target.value) * parseFloat(items_array[0].quantity)
 
+                };
+            }
+            return obj;
+        }));
+        console.log((items_array[0]));
     }
 
     const handleEnvelopePaperAndColor = (e) => {
@@ -203,6 +190,15 @@ function OrderForm2({ sumTotal, setOrder, order, items_array, setItems_array }) 
                 return obj;
             }));
         }
+        if (e.target.checked === true) {
+            setHeaderTextChecked(false);
+            setItems_array(prevState =>
+                prevState.filter(item => {
+                    return item.type !== 'header text';
+                }),
+            );
+        }
+        setHeaderTextChecked(false);
     }
 
     const handleHeaderText = (e) => {
@@ -228,10 +224,11 @@ function OrderForm2({ sumTotal, setOrder, order, items_array, setItems_array }) 
                 return obj;
             }));
         }
-        if (e.target.checked === false) {
+        if (e.target.checked === true) {
+            setAllTextChecked(false);
             setItems_array(prevState =>
                 prevState.filter(item => {
-                    return item.type !== 'header text';
+                    return item.type !== 'all text';
                 }),
             );
         }
@@ -292,32 +289,41 @@ function OrderForm2({ sumTotal, setOrder, order, items_array, setItems_array }) 
     }
 
     const handleCover = (e) => {
-        if (items_array.findIndex(object => object.item_id === 'co1') === -1
-            && items_array.findIndex(object => object.item_id === 'co2') === -1
-            && items_array.findIndex(object => object.item_id === 'co3') === -1
-            && items_array.findIndex(object => object.item_id === 'co4') === -1) {
-            setItems_array(prevState =>
-                [...prevState, {
-                    item_id: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
-                    item_name: e.target.childNodes[e.target.selectedIndex].getAttribute('title'),
-                    price: parseFloat(e.target.value)
-                }]);
-        }
-        else {
-            setItems_array(items_array.map(obj => {
-                if (obj.item_id === 'co1'
-                    || obj.item_id === 'co2'
-                    || obj.item_id === 'co3'
-                    || obj.item_id === 'co4') {
-                    return {
-                        ...obj,
+        if (e.target.childNodes[e.target.selectedIndex].getAttribute('id') !== 'n/a') {
+            if (items_array.findIndex(object => object.item_id === 'co1') === -1
+                && items_array.findIndex(object => object.item_id === 'co2') === -1
+                && items_array.findIndex(object => object.item_id === 'co3') === -1
+                && items_array.findIndex(object => object.item_id === 'co4') === -1) {
+                setItems_array(prevState =>
+                    [...prevState, {
                         item_id: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
                         item_name: e.target.childNodes[e.target.selectedIndex].getAttribute('title'),
                         price: parseFloat(e.target.value)
-                    };
-                }
-                return obj;
-            }));
+                    }]);
+            }
+            else {
+                setItems_array(items_array.map(obj => {
+                    if (obj.item_id === 'co1'
+                        || obj.item_id === 'co2'
+                        || obj.item_id === 'co3'
+                        || obj.item_id === 'co4') {
+                        return {
+                            ...obj,
+                            item_id: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
+                            item_name: e.target.childNodes[e.target.selectedIndex].getAttribute('title'),
+                            price: parseFloat(e.target.value)
+                        };
+                    }
+                    return obj;
+                }));
+            }
+        }
+        if (e.target.childNodes[e.target.selectedIndex].getAttribute('id') === 'n/a') {
+            setItems_array(prevState =>
+                prevState.filter(item => {
+                    return item.item_id !== 'co1' && item.item_id !== 'co2' && item.item_id !== 'co3' && item.item_id !== 'co4';
+                }),
+            );
         }
     }
 
@@ -443,13 +449,13 @@ function OrderForm2({ sumTotal, setOrder, order, items_array, setItems_array }) 
                 <div className='text-decor mt-3'>
                     <div>
                         <h5>All Text</h5>
-                        <div className='grid-item'><input type="radio" id='t4' title='all text emboss' value="20" name='all-text' className='checkbox-circle' required onClick={handleAllText} />Emboss</div>
-                        <div className='grid-item'><input type="radio" id='t3' title='all text foil print' value="60" name='all-text' className='checkbox-circle' onClick={handleAllText} />Foil Print</div>
-                        <div className='grid-item'><input type="radio" id='t1' title='all text plain print' value="30" name='all-text' className='checkbox-circle' onClick={handleAllText} />Plain Print</div>
+                        <div className='grid-item'><input type="checkbox" checked={allTextChecked} className='checkbox-circle' id='t4' title='all text emboss' value="20" name='all text' onClick={handleAllText} />Emboss</div>
+                        <div className='grid-item'><input type="checkbox" checked={allTextChecked} className='checkbox-circle' id='t3' title='all text foil print' value="60" name='all text' onClick={handleAllText} />Foil Print</div>
+                        <div className='grid-item'><input type="checkbox" checked={allTextChecked} className='checkbox-circle' id='t1' title='all text plain print' value="30" name='all text' onClick={handleAllText} />Plain Print</div>
                     </div>
                     <div>
                         <h5>Header Text</h5>
-                        <div className='grid-item'><input type="checkbox" id='t2' title='header foil print' value="40" name='header-text' className='checkbox-circle' onClick={handleHeaderText} />Foil Print</div>
+                        <div className='grid-item'><input type="checkbox" checked={headerTextChecked} className='checkbox-circle' id='t2' title='header foil print' value="40" name='header text' onClick={handleHeaderText} />Foil Print</div>
                     </div>
 
 
@@ -470,7 +476,8 @@ function OrderForm2({ sumTotal, setOrder, order, items_array, setItems_array }) 
                     <h3>Cover</h3>
                 </div>
                 <div className='grid-item'>
-                    <select name="cover" id="cover-select" required onClick={handleCover}>
+                    <select name="cover" id="cover-select" required onChange={handleCover}>
+                        <option id="n/a" title='none' value="0">No Cover</option>
                         <option id="co1" title='translucent cover' value="60">Translucent</option>
                         <option id="co2" title='trifold cover' value="60">Trifold</option>
                         <option id="co3" title='cover with print' value="120">Printed</option>

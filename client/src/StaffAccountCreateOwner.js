@@ -216,7 +216,7 @@ function CreateStaffAccountOwner() {
                 </div>
             </form>
             <div className='profile-pic'>
-                <div className='second-div-frame'></div>
+                <div className='second-div-frame-saco'></div>
                 <button className='button'>Upload Photo</button>
                 <p>Must not exceed 40 mb.</p>
 

@@ -35,12 +35,13 @@ function StaffList() {
             <header className="headers">
                 <h4 className="title">Staff List</h4>
             </header>
+
+            {staffList.length > 0 && <StaffListTable staffListData={staffList} />}
             <footer className="form1-footer w-25">
                 <button className="rounded-pill btn btn-info fw-bold nav-hover">
                     <Link to="/owner/create-staff" className="no-deco">Add New Staff</Link>
                 </button>
             </footer>
-            {staffList.length > 0 && <StaffListTable staffListData={staffList} />}
         </div>
     );
 }

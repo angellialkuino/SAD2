@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import NavBarCustomerLoggedIn from './NavBarCustomerLoggedIn';
 import './OrderForm5.css';
 
 function OrderForm5({ order, setOrder, items_array }) {
@@ -36,7 +35,7 @@ function OrderForm5({ order, setOrder, items_array }) {
 
                 <div className='label-textfield'>
                     <input
-                        type='datetime-local'
+                        type='date'
                         id="order-finish"
                         autoComplete="off"
                         onChange={handleDeadline}
@@ -63,8 +62,8 @@ function OrderForm5({ order, setOrder, items_array }) {
                     </div>
                 </div>
                 <div className='form1-footer'>
-                    <Link to='/form/order-form-4' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
-                    <Link to='/form/check-order' className="rounded-pill btn btn-info fw-bold nav-hover">Next</Link>
+                    <Link to='/check-order' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
+                    <Link to='/order-pickup' className="rounded-pill btn btn-info fw-bold nav-hover">Next</Link>
                 </div>
             </div>
         </>

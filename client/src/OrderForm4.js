@@ -160,7 +160,7 @@ function OrderForm4({ order, items_array, setItems_array, sumTotal }) {
         <>
             <div className='order-frame-4'>
                 <h2>Running Price</h2>
-                <div className='running-price-frame p-4'>
+                <div>
                     <RunningPrice
                         order={order}
                         items_array={items_array} />
@@ -341,8 +341,8 @@ function OrderForm4({ order, items_array, setItems_array, sumTotal }) {
                 </span>
             </div>
             <div className='form1-footer'>
-                <Link to='/form/order-form-2' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
-                <Link to='/form/order-form-5' className="rounded-pill btn btn-info fw-bold nav-hover">Next</Link>
+                <Link to='order-form-2' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
+                <Link to='/check-order' className="rounded-pill btn btn-info fw-bold nav-hover">Next</Link>
             </div>
         </>
     );

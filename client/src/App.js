@@ -86,6 +86,8 @@ function App() {
                 {<OrderForm1
                     order={order}
                     setOrder={setOrder}
+                    items_array={items_array}
+                    setItems_array={setItems_array}
                 />} />
             <Route path='/order-form-2' element=
                 {<OrderForm2
@@ -152,7 +154,7 @@ function App() {
             <Route path='/staff-list' element={<StaffList />} />
         </Routes>
 
-        <SignUp />
+        <TermsAndConditions />
 
     </React.Fragment>
 }
