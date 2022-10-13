@@ -1,0 +1,88 @@
+.checkBox-table {
+    border-collapse: collapse;
+    background-color: white;
+    width: 90%;
+    height: auto;
+    margin: 1rem 1rem 1rem 2rem;
+    border-radius: 0.5rem;
+}
+
+.checkBox-thead {
+    background-color: #f2f2f2;
+    border-bottom: 1px solid #ddd;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+}
+
+.th-item {
+    padding: 0.5rem;
+    text-align: left;
+    width:auto;
+}
+
+.th-type {
+    padding: 0.5rem;
+    text-align: left;
+    width:auto;
+}
+
+.td-item {
+    padding: 0.5rem;
+    text-align: left;
+    width:auto;
+}
+
+.td-type {
+    padding: 0.5rem;
+    text-align: left;
+    width:auto;
+}
+
+.td-color {
+    padding: 0.5rem;
+    text-align: left;
+    width:auto;
+}
+
+.td-size {
+    padding: 0.5rem;
+    text-align: left;
+    width:auto;
+}
+
+.td-quantity {
+    padding: 0.5rem;
+    text-align: left;
+    width:auto;
+}
+
+.input-odcb {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    font-size: 1rem;
+    font-family: inherit;
+    color: inherit;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.btn-update-order-ods {
+    border-radius: 10px;
+    border: none;
+    padding: 10px 10px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #000000;
+    background: #53c46d;
+    width: 100%;
+    transition: all .3s;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
+}

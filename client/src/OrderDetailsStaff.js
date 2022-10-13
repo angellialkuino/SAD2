@@ -287,43 +287,43 @@ const updateOrderDetails = async () => {
 
             <div className='payment-status-div'>
             <div className='order-div-bottom'>
-            <div>
-                {!isDisabledArr && <>
-                    <CheckBoxTable array={itemsArray} onItemsArray={setItemsArray} updateReq={updateOrderDetails}/>
-                    {/* <button onClick={updateOrderDetails} className="btn btn-dark btn-lg btn-block">!!Update Order</button> */}
-                </>}
+                <div>
+                    {!isDisabledArr && <>
+                        <CheckBoxTable array={itemsArray} onItemsArray={setItemsArray} updateReq={updateOrderDetails}/>
+                        {/* <button onClick={updateOrderDetails} className="btn-update-order-ods btn-dark btn-lg btn-block">!!Update Order</button> */}
+                    </>}
 
-                {isDisabledArr && <>
-                    <table className ="order-details-table-od">
-                        <thead>
-                        <tr>
-                            <th>Item Name</th>
-                            <th>Type</th>
-                            <th>Color</th>
-                            <th>Size</th>
-                            <th>Quantity</th>
-                            <th>Price</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {itemsArray.map((val) => {
-                            return(
-                                <tr key={val.item_name}> 
-                                    <td>{val.item_name}</td>
-                                    <td>{val.type}</td>
-                                    <td>{val.color}</td>
-                                    <td>{val.size}</td>
-                                    <td>{val.quantity}</td>
-                                    <td>{val.price}</td>
-                                </tr>
-                            );
-                        })}  
-                        </tbody>                  
-                    </table> 
-                    <button onClick={()=>setIsDisabledArr(false)} className="btn-edit-order-items btn-dark btn-lg btn-block">Edit Order Items</button>
-                </>}
+                    {isDisabledArr && <>
+                        <table className ="order-details-table-od">
+                            <thead>
+                            <tr>
+                                <th>Item Name</th>
+                                <th>Type</th>
+                                <th>Color</th>
+                                <th>Size</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {itemsArray.map((val) => {
+                                return(
+                                    <tr key={val.item_name}> 
+                                        <td>{val.item_name}</td>
+                                        <td>{val.type}</td>
+                                        <td>{val.color}</td>
+                                        <td>{val.size}</td>
+                                        <td>{val.quantity}</td>
+                                        <td>{val.price}</td>
+                                    </tr>
+                                );
+                            })}  
+                            </tbody>                  
+                        </table> 
+                        <button onClick={()=>setIsDisabledArr(false)} className="btn-edit-order-items btn-dark btn-lg btn-block">Edit Order Items</button>
+                    </>}
 
-            </div>
+                </div>
             </div>
                 <div className='payment-details'>
                     <h1>Payment Details</h1>

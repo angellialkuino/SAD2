@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Axios from 'axios';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+import './CheckBox.css';
 const items = require("./OrderDetailsItems.json");
 
 function OrderDetailsCheckBox(props) {
@@ -91,15 +92,15 @@ function OrderDetailsCheckBox(props) {
     }},[selectedItems])
 
     return(<>{isLoaded &&
-        <table>
-            <thead>
+        <table className="checkBox-table">
+            <thead className="checkBox-thead">
             <tr>
                 <th></th>
-                <th>Item</th>
-                <th>Type</th>
-                <th>color</th>
-                <th>Size</th>
-                <th>Quantity</th>
+                <th className="th-item">Item</th>
+                <th className="th-type">Type</th>
+                <th className="th-color">Color</th>
+                <th className="th-size">Size</th>
+                <th className="th-quantity">Quantity</th>
             </tr>
             </thead>
             <tbody>
@@ -112,22 +113,22 @@ function OrderDetailsCheckBox(props) {
                                 onChange={(e) => onCheck(e, item)}
                         /></td>
 
-                        <td>{item.item_name}</td>
+                        <td className="td-item">{item.item_name}</td>
 
-                        <td>{'type' in item ?
-                            <input type="text" disabled={!item.selected} value={item.type || ""} onChange={(e) => setProperty(e,item,"type")} />
+                        <td className="td-type">{'type' in item ?
+                            <input className="input-odcb" type="text" disabled={!item.selected} value={item.type || ""} onChange={(e) => setProperty(e,item,"type")} />
                         : ""}</td>
 
-                        <td>{'color' in item ?
-                            <input type="text" disabled={!item.selected} value={item.color || ""} onChange={(e) => setProperty(e,item,"color")} />
+                        <td className="td-color">{'color' in item ?
+                            <input className="input-odcb" type="text" disabled={!item.selected} value={item.color || ""} onChange={(e) => setProperty(e,item,"color")} />
                         : ""}</td>
 
-                        <td>{'size' in item ?
-                            <input type="text" disabled={!item.selected} value={item.size || ""} onChange={(e) => setProperty(e,item,"size")} />
+                        <td className="td-size">{'size' in item ?
+                            <input className="input-odcb" type="text" disabled={!item.selected} value={item.size || ""} onChange={(e) => setProperty(e,item,"size")} />
                         : ""}</td>
 
-                        <td>{'quantity' in item ?
-                            <input type="text" disabled={!item.selected} value={item.quantity || ""} onChange={(e) => setProperty(e,item,"quantity")} />
+                        <td className="td-quantity">{'quantity' in item ?
+                            <input className="input-odcb" type="text" disabled={!item.selected} value={item.quantity || ""} onChange={(e) => setProperty(e,item,"quantity")} />
                         : ""}</td>
                     </tr>
                 );
@@ -136,7 +137,7 @@ function OrderDetailsCheckBox(props) {
                              
         </table>
     }                    
-    <button onClick={getSelected} className="btn btn-dark btn-lg btn-block">Update Order</button>
+    <button onClick={getSelected} className="btn-update-order-ods btn-dark btn-lg btn-block">Update Order</button>
     </>)
 }
 

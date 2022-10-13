@@ -293,6 +293,7 @@ td {
     height: 50%;
     border-radius: 2rem;
     align-items: center;
+    justify-content: center;
     padding: 2rem 0 2rem 0;
     margin-top: 15px;
 }
