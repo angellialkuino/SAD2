@@ -8,6 +8,11 @@
     align-items: center;
 }
 
+.order-first-col {
+    display: flex;
+    flex-direction: column;
+}
+
 .input-field {
     width: 225px;
 }
@@ -21,7 +26,7 @@
     flex-direction: column;
     background-color: #d8ecf5;
     width: 650px;
-    height: 670px;
+    height: auto;
     border-radius: 2rem;
     align-items: center;
     padding: 2rem 0 2rem 0;

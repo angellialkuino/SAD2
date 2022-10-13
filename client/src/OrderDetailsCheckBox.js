@@ -83,9 +83,12 @@ function OrderDetailsCheckBox(props) {
     }
 
     useEffect(()=>{
-        //console.log(selectedItems);
-        props.onItemsArray(selectedItems);
-    },[selectedItems])
+        console.log(selectedItems);
+        if(selectedItems.length>0){
+            props.onItemsArray(selectedItems);
+            props.updateReq();
+        
+    }},[selectedItems])
 
     return(<>{isLoaded &&
         <table>
@@ -112,19 +115,19 @@ function OrderDetailsCheckBox(props) {
                         <td>{item.item_name}</td>
 
                         <td>{'type' in item ?
-                            <input type="text" disabled={!item.selected} value={item.type} onChange={(e) => setProperty(e,item,"type")} />
+                            <input type="text" disabled={!item.selected} value={item.type || ""} onChange={(e) => setProperty(e,item,"type")} />
                         : ""}</td>
 
                         <td>{'color' in item ?
-                            <input type="text" disabled={!item.selected} value={item.color} onChange={(e) => setProperty(e,item,"color")} />
+                            <input type="text" disabled={!item.selected} value={item.color || ""} onChange={(e) => setProperty(e,item,"color")} />
                         : ""}</td>
 
                         <td>{'size' in item ?
-                            <input type="text" disabled={!item.selected} value={item.size} onChange={(e) => setProperty(e,item,"size")} />
+                            <input type="text" disabled={!item.selected} value={item.size || ""} onChange={(e) => setProperty(e,item,"size")} />
                         : ""}</td>
 
                         <td>{'quantity' in item ?
-                            <input type="text" disabled={!item.selected} value={item.quantity} onChange={(e) => setProperty(e,item,"quantity")} />
+                            <input type="text" disabled={!item.selected} value={item.quantity || ""} onChange={(e) => setProperty(e,item,"quantity")} />
                         : ""}</td>
                     </tr>
                 );
@@ -133,7 +136,7 @@ function OrderDetailsCheckBox(props) {
                              
         </table>
     }                    
-    <button onClick={props.updateReq()} className="btn btn-dark btn-lg btn-block">Update Order</button>
+    <button onClick={getSelected} className="btn btn-dark btn-lg btn-block">Update Order</button>
     </>)
 }
 

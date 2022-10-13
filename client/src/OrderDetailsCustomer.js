@@ -2,14 +2,22 @@ import React, { useState, useEffect, useRef } from "react";
 import Axios from 'axios';
 import { Link, useLocation } from 'react-router-dom';
 import './OrderDetails.css';
+const orderInfoJSON = require("./place-holder-json/getOrderDetails.json");
+
 
 function OrderDetailsCustomer() {
+    //placeholder coode******
+    const {order_info}=orderInfoJSON;
+    console.log(order_info);
+    const orderID = "29dafda5-7848-4e1f-913b-a98652a7e0cd";
+    //placeholder coode******
+
     // const location = useLocation();
     // const {orderID} = location.state;
 
-    const [orderInfo, setOrderInfo] = useState({});    
+    const [orderInfo, setOrderInfo] = useState(order_info);    
     
-    const [orderID, setOrderID] = useState("2993f16f-5ea2-4177-9d5e-1a4ac76586be");
+    //const [orderID, setOrderID] = useState("2993f16f-5ea2-4177-9d5e-1a4ac76586be");
     const [userID, setUserID] = useState("N/A");
     const [inviteType, setUserIinviteType] = useState("N/A");
     const [material, setMaterial] = useState("N/A");
@@ -99,6 +107,10 @@ function OrderDetailsCustomer() {
         <div className='order-details-main'>
             <div className='order-div'>
                 <h1>ORDER {orderID.slice(-4)}</h1>
+                <div className='order-details-footer'>
+                    <Link to='/customer/invitation-draft' state={{orderID:orderID}} className="rounded-pill btn btn-info fw-bold nav-hover">View Invitation</Link>
+                    <Link to='/customer/order-log' state={{orderID:orderID}} className="rounded-pill btn btn-info fw-bold nav-hover">View Order Log</Link>
+                </div>
                 <div className='white-inner-div1'>
                     <h5>Date Ordered</h5>
                     <p>{dateOrdered}</p>
@@ -126,9 +138,12 @@ function OrderDetailsCustomer() {
                     <table className='order-details-table'>
                         <thead>
                             <tr>
-                                <th>Item Name</th>
-                                <th>Quantity</th>
-                                <th>Price</th>
+                            <th>Item Name</th>
+                            <th>Type</th>
+                            <th>Color</th>
+                            <th>Size</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
                             </tr>
                         </thead>
 
@@ -139,6 +154,9 @@ function OrderDetailsCustomer() {
                                 //add unique key property
                                 <tr key={val.item_name}> 
                                     <td>{val.item_name}</td>
+                                    <td>{val.type}</td>
+                                    <td>{val.color}</td>
+                                    <td>{val.size}</td>
                                     <td>{val.quantity}</td>
                                     <td>{val.price}</td>
                                 </tr>
@@ -149,10 +167,7 @@ function OrderDetailsCustomer() {
                     </table>                    
                 </div>
 
-                <div className='order-details-footer'>
-                    <Link to='/customer/invitation-draft' state={{orderID:orderID}} className="rounded-pill btn btn-info fw-bold nav-hover">View Invitation</Link>
-                    <Link to='/customer/order-log' state={{orderID:orderID}} className="rounded-pill btn btn-info fw-bold nav-hover">View Order Log</Link>
-                </div>
+                
 
             </div>
             <div className='payment-status-div'>

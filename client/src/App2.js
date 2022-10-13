@@ -113,7 +113,7 @@ function App() {
             {/* <Route path='*' element={<ErrorPage />} /> */}                
 
             {/* Main Pages */}
-            <Route path="/dud" element={<NavBar/>}>
+            <Route path="/" element={<NavBar/>}>
                 <Route index element= {<HomePage/>} />
                 <Route path='about-us' element={<AboutUs/>} />
                 <Route path='sign-up' element={<SignUp />} />
