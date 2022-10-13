@@ -43,6 +43,7 @@
     width: 20%;
     transition: all .3s;
     display: inline-block;
+    margin: 10px;
 }
 
 .tAC-btn:hover {
