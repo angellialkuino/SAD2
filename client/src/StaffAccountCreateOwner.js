@@ -106,7 +106,7 @@ function CreateStaffAccountOwner() {
 
     return (
         <div className="profile-div">
-            <form onSubmit={handleSubmitCreate}>
+            <form onSubmit={handleSubmitCreate} className="saco-form">
                 <h3>CREATE STAFF ACCOUNT</h3>
                 <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>{errMsg}</p>
                 <div className="profile-info">
@@ -208,19 +208,21 @@ function CreateStaffAccountOwner() {
                         <FontAwesomeIcon icon={faInfoCircle} />
                         Must contain 11 digits.<br />
                     </p>
-
-                    <div className="button-row">
-                        <button type="submit" className="rounded-pill btn btn-info nav-hover">Create</button>
-                        <button onClick={()=>navigate(-1)} className="rounded-pill btn btn-info nav-hover">Cancel</button>
-                    </div>
                 </div>
             </form>
+
             <div className='profile-pic'>
                 <div className='second-div-frame-saco'></div>
                 <button className='button'>Upload Photo</button>
                 <p>Must not exceed 40 mb.</p>
 
             </div>
+
+            <div className="button-row">
+                <button type="submit" className="btn-create-saco btn-info nav-hover">Create</button>
+                <button onClick={()=>navigate(-1)} className="btn-cancel-saco btn-info nav-hover">Cancel</button>
+            </div>
+
         </div>
     );
 }

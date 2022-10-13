@@ -31,6 +31,7 @@ import OrderDocumentationCustomer from "./OrderDocumentationCustomer";
 import SignUp from "./SignUp";
 import Login from "./Login";
 import CreateStaffAccountOwner from "./StaffAccountCreateOwner";
+import OrderDetailsCheckBox from "./OrderDetailsCheckBox";
 
 function App() {
     //if user is logged in and check role(?)
@@ -154,7 +155,7 @@ function App() {
             <Route path='/staff-list' element={<StaffList />} />
         </Routes>
 
-        <TermsAndConditions />
+        <StaffAccountCreateOwner />
 
     </React.Fragment>
 }
