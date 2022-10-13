@@ -195,7 +195,7 @@ function OrderForm4({ order, items_array, setItems_array, sumTotal }) {
                             <div className='boxes3'>
                                 <div className='square-button-with-text'>
                                     <label>
-                                        <input type='radio' id='no wax' name='wax-design' className='form1-radio' onClick={handleWaxDesign} />
+                                        <input type='radio' id='no wax' name='wax-design' className='form1-radio' required onClick={handleWaxDesign} />
                                         <img className='radio-img' src={process.env.PUBLIC_URL + '/images/xmark.jpg'} alt='wax'></img>
                                     </label>
                                     <h5>No Wax</h5>
@@ -273,7 +273,7 @@ function OrderForm4({ order, items_array, setItems_array, sumTotal }) {
                             <div className='boxes3'>
                                 <div className='square-button-with-text'>
                                     <label>
-                                        <input type='radio' id='no flower' name='flower' className='form1-radio' onClick={handleDriedFlower} />
+                                        <input type='radio' id='no flower' name='flower' className='form1-radio' required onClick={handleDriedFlower} />
                                         <img className='radio-img' src={process.env.PUBLIC_URL + '/images/xmark.jpg'} alt='flower'></img>
                                     </label>
                                     <h5>No Flower</h5>
@@ -301,7 +301,7 @@ function OrderForm4({ order, items_array, setItems_array, sumTotal }) {
                             <div className='boxes3'>
                                 <div className='square-button-with-text'>
                                     <label>
-                                        <input type='radio' id='no brooch' name='wax-design' className='form1-radio' onClick={handleBroochDesign} />
+                                        <input type='radio' id='no brooch' name='wax-design' className='form1-radio' required onClick={handleBroochDesign} />
                                         <img className='radio-img' src={process.env.PUBLIC_URL + '/images/xmark.jpg'} alt='brooch'></img>
                                     </label>
                                     <h5>No Brooch</h5>

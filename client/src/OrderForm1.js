@@ -40,7 +40,7 @@ const OrderForm1 = ({ order, setOrder }) => {
                 <div className='boxes'>
                     <div className='square-button-with-text'>
                         <label>
-                            <input type='radio' id='wedding' name='invite-type' value='wedding' className='form1-radio' onClick={handleInviteType} />
+                            <input type='radio' id='wedding' name='invite-type' value='wedding' className='form1-radio' required onClick={handleInviteType} />
                             <img className='radio-img' src={process.env.PUBLIC_URL + '/images/wedding.jpg'} alt="wedding"></img>
                         </label>
                         <h5>Wedding</h5>
@@ -71,7 +71,7 @@ const OrderForm1 = ({ order, setOrder }) => {
                 <div className='boxes'>
                     <div className='square-button-with-text'>
                         <label>
-                            <input type='radio' id='paper' name='material' value='30' className='form1-radio' onClick={handleMaterial} />
+                            <input type='radio' id='paper' name='material' value='30' className='form1-radio' required onClick={handleMaterial} />
                             <img className='radio-img' src={process.env.PUBLIC_URL + '/images/paper.jpg'} alt="paper"></img>
                         </label>
                         <h5>Paper</h5>
@@ -88,6 +88,7 @@ const OrderForm1 = ({ order, setOrder }) => {
                     <div className='label-textfield'>
                         <h5>Date of Event</h5>
                         <input
+                            required
                             type='date'
                             id="event_date"
                             autoComplete="off"
@@ -105,6 +106,7 @@ const OrderForm1 = ({ order, setOrder }) => {
                     <div className='label-textfield'>
                         <h5>Motif</h5>
                         <input
+                            required
                             type='text'
                             id="motif"
                             autoComplete="off"
@@ -122,6 +124,7 @@ const OrderForm1 = ({ order, setOrder }) => {
                     <div className='label-textfield'>
                         <h5>Invitation Title</h5>
                         <input
+                            required
                             type='text'
                             id="invitation_title"
                             autoComplete="off"
@@ -139,6 +142,7 @@ const OrderForm1 = ({ order, setOrder }) => {
                     <div className='label-textfield'>
                         <h5>Font Style</h5>
                         <input
+                            required
                             type='text'
                             id="font"
                             autoComplete="off"
@@ -156,6 +160,7 @@ const OrderForm1 = ({ order, setOrder }) => {
                     <div className='label-textfield'>
                         <h5>Content Link</h5>
                         <input
+                            required
                             type='url'
                             id="content_link"
                             autoComplete="off"
@@ -173,6 +178,7 @@ const OrderForm1 = ({ order, setOrder }) => {
                     <div className='label-textfield'>
                         <h5>Number of Invites</h5>
                         <input
+                            required
                             type='number'
                             min='1'
                             id="invite_number"
@@ -191,6 +197,7 @@ const OrderForm1 = ({ order, setOrder }) => {
                     <div className='label-textfield'>
                         <h5>Peg Link</h5>
                         <input
+                            required
                             type='url'
                             id="peg_link"
                             autoComplete="off"
