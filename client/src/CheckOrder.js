@@ -2,12 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './CheckOrder.css';
 import { CheckOrderList } from './CheckOrderList';
-import Axios from 'axios';
 
-function CheckOrder({ order, items_array, sumTotal, payment_method }) {
-    const errRef = useRef();
-    const [errMsg, setErrMsg] = useState('');
-
+function CheckOrder({ order, items_array, sumTotal }) {
     useEffect(() => {
         <CheckOrderList
             items_array={items_array}
@@ -15,32 +11,6 @@ function CheckOrder({ order, items_array, sumTotal, payment_method }) {
             sumTotal={sumTotal}
         />
     }, [order, items_array, sumTotal]);
-
-    const handleSubmitOrder = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await Axios.post('http://localhost:5000/api/order/create-new-order',
-                {
-                    payment_method,
-                    order,
-                    items_array
-                },
-                {
-                    withCredentials: true
-                }
-            );
-            console.log(response)
-        } catch (err) {
-            if (!err?.response) {
-                setErrMsg('No Server Response');
-            } else if (err.response?.status === 409) {
-                setErrMsg('Submitted Already');
-            } else {
-                setErrMsg('Submission Failed')
-            }
-            // errRef.current.focus();
-        }
-    }
 
     return (
         <div className="Check_Order">
@@ -58,8 +28,8 @@ function CheckOrder({ order, items_array, sumTotal, payment_method }) {
                 </div>
             </div>
             <div className="form1-footer">
-                <Link to='/order-form-5' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
-                <Link to='/order-pickup' onClick={handleSubmitOrder} className="rounded-pill btn btn-info fw-bold nav-hover">Next</Link>
+                <Link to='/order-form-4' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
+                <Link to='/order-form-5' className="rounded-pill btn btn-info fw-bold nav-hover">Next</Link>
             </div>
         </div>
     );

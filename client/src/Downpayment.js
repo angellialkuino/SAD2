@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './Downpayment.css';
 import Axios from 'axios';
 
-function Downpayment({ order, setOrder, items_array, setItems_array, setPayment_method }) {
+function Downpayment({ order, items_array, payment_method, setPayment_method }) {
     const errRef = useRef();
     const [errMsg, setErrMsg] = useState('');
 
@@ -12,7 +12,7 @@ function Downpayment({ order, setOrder, items_array, setItems_array, setPayment_
         try {
             const response = await Axios.post('http://localhost:5000/api/order/create-new-order',
                 {
-                    //how to properly pass them to backend?
+                    payment_method,
                     order,
                     items_array
                 },
@@ -21,9 +21,6 @@ function Downpayment({ order, setOrder, items_array, setItems_array, setPayment_
                 }
             );
             console.log(response)
-            setOrder('');
-            setItems_array('');
-
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('No Server Response');
@@ -32,7 +29,7 @@ function Downpayment({ order, setOrder, items_array, setItems_array, setPayment_
             } else {
                 setErrMsg('Submission Failed')
             }
-            errRef.current.focus();
+            // errRef.current.focus();
         }
     }
 
@@ -59,13 +56,11 @@ function Downpayment({ order, setOrder, items_array, setItems_array, setPayment_
                     </div>
 
                     <div className="order_form_10-content-right">
-                        <p>ORDER NUMBER: </p>
-                        <p>Name: </p>
-                        <p>Contact Number: </p>
-                        <p>Address: </p>
+                        <p>Unit Cost: </p>
+                        <p>Number of Invites: </p>
+                        <p>Additional Fees: </p>
+                        <p>Subtotal: </p>
                         <p>Payment Method: </p>
-                        <p>Amount per Set: </p>
-                        <b>TOTAL AMOUNT DUE</b>
                     </div>
                 </div>
                 <div className='row-group mt-5'>
@@ -76,7 +71,7 @@ function Downpayment({ order, setOrder, items_array, setItems_array, setPayment_
                     <div className="Order_Form_7-checkbox">
                         <form>
                             <div className='grid-container'>
-                                <div className='grid-item'><input type="radio" name="payment" id="over the counter" className='checkbox-circle' onClick={handlePayment} />Over the counter</div>
+                                <div className='grid-item'><input type="radio" name="payment" id="over the counter" className='checkbox-circle' required onClick={handlePayment} />Over the counter</div>
                                 <div className='grid-item'><input type="radio" name="payment" id="bank" className='checkbox-circle' onClick={handlePayment} />Bank</div>
                                 <div className='grid-item'><input type="radio" name="payment" id="gcash" className='checkbox-circle' onClick={handlePayment} />GCash</div>
                             </div>

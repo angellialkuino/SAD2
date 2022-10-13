@@ -3,7 +3,7 @@ import { Link, Navigate, useNavigate } from 'react-router-dom';
 import NavBarCustomerLoggedIn from './NavBarCustomerLoggedIn';
 import './OrderForm1.css';
 
-const OrderForm1 = ({ order, setOrder }) => {
+const OrderForm1 = ({ order, setOrder, items_array, setItems_array }) => {
     useEffect(() => console.log(order), [order]);
 
     const navigate = useNavigate()
@@ -24,6 +24,30 @@ const OrderForm1 = ({ order, setOrder }) => {
                 material_price: parseFloat(e.target.value)
             };
         });
+        if (order.material === 'acrylic') {
+            setItems_array(items_array.map(obj => {
+                if (obj.item_id === 'm1') {
+                    return {
+                        ...obj,
+                        quantity: 3,
+                        price: 90
+                    };
+                }
+                return obj;
+            }));
+        }
+        else {
+            setItems_array(items_array.map(obj => {
+                if (obj.item_id === 'm1') {
+                    return {
+                        ...obj,
+                        quantity: 2,
+                        price: 60
+                    };
+                }
+                return obj;
+            }));
+        }
     }
 
     const handleCancel = (e) => {
