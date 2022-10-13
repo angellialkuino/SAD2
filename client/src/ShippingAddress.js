@@ -4,7 +4,6 @@ import Axios from "axios";
 import './ShippingAddress.css';
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import NavBarCustomerLoggedIn from './NavBarCustomerLoggedIn';
 
 const FULLNAME_REGEX = /(^[A-Za-z]{3,16})([ ]{0,1})([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})/; //was USER_REGEX
 const PHONENUMBER_REGEX = /^[0][1-9]\d{9}$|^[1-9]\d{9}$/g;
@@ -39,8 +38,9 @@ function ShippingAddress() {
     const handleShippingAddress = async (e) => {
         e.preventDefault();
         try {
-            const response = await Axios.post('http://localhost:5000/api/customer/sign-up',
+            const response = await Axios.put('http://localhost:5000/api/customer/update',
                 {
+                    user_id:"",
                     phone_number: phoneNumber,
                     address: address,
                     barangay: barangay,
@@ -68,7 +68,6 @@ function ShippingAddress() {
     }
     return (
         <>
-            <NavBarCustomerLoggedIn />
             <div className='shipping-address-frame'>
                 <div className='header'>
                     <h2>Shipping Address</h2>
@@ -137,8 +136,8 @@ function ShippingAddress() {
                     />
                 </form>
                 <div className='form1-footer'>
-                    <Link to='/order-pickup' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
-                    <Link to='/downpayment' className="rounded-pill btn btn-info fw-bold nav-hover" onClick={handleShippingAddress}>Next</Link>
+                    <Link to='/form/order-pickup' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
+                    <Link to='/form/downpayment' className="rounded-pill btn btn-info fw-bold nav-hover" onClick={handleShippingAddress}>Next</Link>
                 </div>
             </div>
         </>

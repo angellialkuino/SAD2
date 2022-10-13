@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import './CheckOrder.css';
 import { CheckOrderList } from './CheckOrderList';
 import Axios from 'axios';
 
 function CheckOrder({ order, items_array, sumTotal, payment_method }) {
+    //const navigate =useNavigate();
     const errRef = useRef();
     const [errMsg, setErrMsg] = useState('');
 
@@ -30,6 +31,7 @@ function CheckOrder({ order, items_array, sumTotal, payment_method }) {
                 }
             );
             console.log(response)
+                //navigate("/form/order-pickup");
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('No Server Response');
@@ -58,8 +60,8 @@ function CheckOrder({ order, items_array, sumTotal, payment_method }) {
                 </div>
             </div>
             <div className="form1-footer">
-                <Link to='/order-form-5' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
-                <Link to='/order-pickup' onClick={handleSubmitOrder} className="rounded-pill btn btn-info fw-bold nav-hover">Next</Link>
+                <Link to='/form/order-form-5' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
+                <Link to='/form/order-pickup' onClick={handleSubmitOrder} className="rounded-pill btn btn-info fw-bold nav-hover">Next</Link>
             </div>
         </div>
     );

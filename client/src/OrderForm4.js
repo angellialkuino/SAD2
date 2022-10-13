@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import "./OrderForm4.css";
 import React from 'react';
-import NavBarCustomerLoggedIn from "./NavBarCustomerLoggedIn";
 import { RunningPrice } from "./RunningPrice";
 
 function OrderForm4({ order, items_array, setItems_array, sumTotal }) {
@@ -159,7 +158,6 @@ function OrderForm4({ order, items_array, setItems_array, sumTotal }) {
 
     return (
         <>
-            <NavBarCustomerLoggedIn />
             <div className='order-frame-4'>
                 <h2>Running Price</h2>
                 <div className='running-price-frame p-4'>
@@ -343,8 +341,8 @@ function OrderForm4({ order, items_array, setItems_array, sumTotal }) {
                 </span>
             </div>
             <div className='form1-footer'>
-                <Link to='order-form-2' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
-                <Link to='/order-form-5' className="rounded-pill btn btn-info fw-bold nav-hover">Next</Link>
+                <Link to='/form/order-form-2' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
+                <Link to='/form/order-form-5' className="rounded-pill btn btn-info fw-bold nav-hover">Next</Link>
             </div>
         </>
     );
