@@ -12,10 +12,10 @@ import './OrderDocumentationTable.css'
 export default function OrderDocumentationCustomer() {
     const navigate = useNavigate();
 
-    const location = useLocation();
-    const {orderID} = location.state;
+    // const location = useLocation();
+    // const {orderID} = location.state;
 
-    //const [orderID, setOrderID] = useState("");
+    const [orderID, setOrderID] = useState("");
     const [orderDocs, setOrderDocs] = useState([]);
 
     useEffect(  () => {
@@ -47,7 +47,11 @@ export default function OrderDocumentationCustomer() {
                 {(orderDocs.length < 1 ) && <p>No Order Layout Changes</p>}
                 
             </div>
-            <button onClick={() => navigate(-1)}>Back</button>
+
+            <div className="odc-footer">
+                <button onClick={() => navigate(-1)} className="odc-back">Back</button>
+            </div>
+
         </div>
     );
 }

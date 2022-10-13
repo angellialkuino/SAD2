@@ -56,7 +56,7 @@ function OrderForm5({ order, setOrder, items_array }) {
                     <div className="Order_Form_7-checkbox">
                         <form>
                             <div className='grid-container'>
-                                <div className='grid-item'><input type="radio" name="receival" id="delivery" className='checkbox-circle' onClick={handleClaim} />Delivery</div>
+                                <div className='grid-item'><input type="radio" name="receival" id="delivery" className='checkbox-circle' required onClick={handleClaim} />Delivery</div>
                                 <div className='grid-item'><input type="radio" name="receival" id="pickup" className='checkbox-circle' onClick={handleClaim} />Pickup at Store</div>
                             </div>
                         </form>

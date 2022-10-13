@@ -65,47 +65,46 @@ const LoginForm = () => {
 
     return (
         <> <div className='center-div'>
+
             <div className='signup-left-div'>
                 <h1 className='centered-text-on-img white-text'>Invitations for every occassion</h1>
                 <img className='signup-img' src={process.env.PUBLIC_URL + '/images/sample6.jpg'} alt="Debut Invitation" />
 
             </div>
-            <div className='mt-5'>                
-                            <section>
-                                <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
-                                <h1>Login to Account</h1>
-                                <form onSubmit={handleSubmit}>
-                                    <label htmlFor="email">Email Address:</label>
-                                    <input
-                                        type="email"
-                                        id="email"
-                                        ref={userRef}
-                                        autoComplete="off"
-                                        onChange={(e) => setemail(e.target.value)}
-                                        value={email}
-                                        required
-                                    />
 
-                                    <label htmlFor="password">Password:</label>
-                                    <input
-                                        type="password"
-                                        id="password"
-                                        onChange={(e) => setPwd(e.target.value)}
-                                        value={pwd}
-                                        required
-                                    />
-                                    <button type="submit" >Login</button>
-                                </form>
-                                <p>
-                                    Need an Account?<br />
-                                    <span className="line">
-                                        <Link to='/sign-up'>Sign Up</Link>
-                                    </span>
+            <div className='login-form mt-5'>                
+                <section>
+                    <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
+                    <h1>Login to Account</h1>
+                    <form onSubmit={handleSubmit}>
+                        <label htmlFor="email">Email Address:</label>
+                        <input
+                            type="email"
+                            id="email"
+                            ref={userRef}
+                            autoComplete="off"
+                            onChange={(e) => setemail(e.target.value)}
+                            value={email}
+                            required
+                        />
 
-                                    <button onClick={testFunc}>Test Link</button>
-
-                                </p>
-                            </section>
+                        <label htmlFor="password">Password:</label>
+                        <input
+                            type="password"
+                            id="password"
+                            onChange={(e) => setPwd(e.target.value)}
+                            value={pwd}
+                            required
+                        />
+                        <button type="submit" className="login-button">Login</button>
+                    </form>
+                    <p className='noAccount'>
+                        Need an Account?   <br />
+                        <span className="line">
+                            <Link to='/sign-up'>Sign Up</Link>
+                        </span>
+                    </p>
+                </section>
             </div>
         </div></>
     )

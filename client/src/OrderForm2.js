@@ -404,7 +404,7 @@ function OrderForm2({ sumTotal, setOrder, order, items_array, setItems_array }) 
                     </div>
                     <div className='grid-item'>
                         <div className='grid-item'>
-                            <select name="pages" id="pages-select" onClick={handlePagesSize}>
+                            <select name="pages" id="pages-select" required onClick={handlePagesSize}>
                                 <option id="4.75 x 5.75 in" value="30">4.75 x 5.75 in</option>
                                 <option id="5.75 x 7.75 in" value="30">5.75 x 7.75 in</option>
                                 <option id="6.75 x 8.75 in" value="40">6.75 x 8.75 in</option>
@@ -443,7 +443,7 @@ function OrderForm2({ sumTotal, setOrder, order, items_array, setItems_array }) 
                 <div className='text-decor mt-3'>
                     <div>
                         <h5>All Text</h5>
-                        <div className='grid-item'><input type="radio" id='t4' title='all text emboss' value="20" name='all-text' className='checkbox-circle' onClick={handleAllText} />Emboss</div>
+                        <div className='grid-item'><input type="radio" id='t4' title='all text emboss' value="20" name='all-text' className='checkbox-circle' required onClick={handleAllText} />Emboss</div>
                         <div className='grid-item'><input type="radio" id='t3' title='all text foil print' value="60" name='all-text' className='checkbox-circle' onClick={handleAllText} />Foil Print</div>
                         <div className='grid-item'><input type="radio" id='t1' title='all text plain print' value="30" name='all-text' className='checkbox-circle' onClick={handleAllText} />Plain Print</div>
                     </div>
@@ -470,7 +470,7 @@ function OrderForm2({ sumTotal, setOrder, order, items_array, setItems_array }) 
                     <h3>Cover</h3>
                 </div>
                 <div className='grid-item'>
-                    <select name="cover" id="cover-select" onClick={handleCover}>
+                    <select name="cover" id="cover-select" required onClick={handleCover}>
                         <option id="co1" title='translucent cover' value="60">Translucent</option>
                         <option id="co2" title='trifold cover' value="60">Trifold</option>
                         <option id="co3" title='cover with print' value="120">Printed</option>

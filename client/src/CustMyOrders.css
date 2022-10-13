@@ -1,17 +1,6 @@
-.custMyOrders-body {
-    background: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
-    width: 50%;
-    margin: auto;
-}
-
-.custMyOrders-main {
-    background-color: #ffffff;
-    border-radius: 10px;
-    padding: 20px;
-    margin: 20px;
-    width: 100%;
+.no-deco {
+    text-decoration: none;
+    color: black;
 }
 
 .custMyOrders-header {
@@ -31,29 +20,13 @@
     padding: 20px;
 }
 
-.custMyOrders {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-    margin-top: 20px;
-    border-radius: 10px;
-}
-
 .custMyOrders-body-color {
     background-color: #d8ecf5;
     border-radius: 2rem;
     padding: 20px;
-    margin: 20px;
+    margin: 50px;
     display: flex;
     flex-direction: column;
-}
-
-.btn {
-    width: 200px;
-    margin-left: 50px;
-    display: inline;
 }
 
 .custMyOrders-body-labels-and-buttons {
@@ -62,6 +35,16 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    padding-bottom: 20px;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 2rem;
+    width: 50%;
+    margin: auto;
+}
+
+.orders-button-footer {
+    display: flex;
+    width: 50%;
+    gap: 1rem;
+    margin: auto auto 2rem auto;
 }
