@@ -67,15 +67,37 @@ h2 {
     justify-content: center;
 }
 
-.order-pickup-footer {
-    margin-top: 2rem;
+.op-btn-footer {
     display: flex;
     justify-content: right;
     align-items: center;
-    width: 50%;
     text-align: center;
     gap: 1rem;
     position: relative;
-    top: 70px;
-    left: 250px;
+}
+
+.btn-op-back {
+    border-radius: 10px;
+    border: none;
+    padding: 10px 10px;
+    margin-top: 20px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #000000;
+    background: #53c46d;
+    width: 100%;
+    transition: all .3s;
+}
+
+.btn-op-proceed {
+    border-radius: 10px;
+    border: none;
+    padding: 10px 10px;
+    margin-top: 20px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #000000;
+    background: #53c46d;
+    width: 100%;
+    transition: all .3s;
 }
