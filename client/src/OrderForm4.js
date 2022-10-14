@@ -7,7 +7,7 @@ import { RunningPrice } from "./RunningPrice";
 function OrderForm4({ order, items_array, setItems_array, sumTotal, setSumTotal }) {
 
     const [toggleState, setToggleState] = useState(1);
-    let tempSum=0;
+    let tempSum = 0;
 
     const toggleTab = (index) => {
         setToggleState(index);
@@ -18,13 +18,13 @@ function OrderForm4({ order, items_array, setItems_array, sumTotal, setSumTotal 
         items_array.forEach(element => {
             if ('price' in element) {
                 //sumTotal.current += element.price;
-                tempSum += (('quantity' in element) ? element.price*element.quantity : element.price);
+                tempSum += (('quantity' in element) ? element.price * element.quantity : element.price);
 
             }
         });
         //sumTotal.current += order.material_price;
         setSumTotal(tempSum);
-        
+
         // console.log(order);
         // console.log(items_array);
     }, [items_array, order]);
@@ -153,11 +153,11 @@ function OrderForm4({ order, items_array, setItems_array, sumTotal, setSumTotal 
         <>
             <div className='order-frame-4'>
                 <h2>Running Price</h2>
-                <div>
+                <div className='running-price-frame p-4'>
                     <RunningPrice
                         order={order}
-                        items_array={items_array} />
-
+                        items_array={items_array}
+                    />
                 </div>
                 <h2>Decor</h2>
                 <div className="tab-container">
