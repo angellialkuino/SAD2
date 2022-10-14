@@ -77,7 +77,9 @@ const isRush = (date) => {
 
 //create new order
 exports.createOrder = async (order, itemsArray, paymentMethod) => {
-    
+    if ('material_price' in order) {
+        delete order.material_price;
+    }
     await db.transaction(async (trx) => {
         order.order_id = uuid.v4();
         await trx("order").insert(order);
@@ -113,6 +115,8 @@ exports.createOrder = async (order, itemsArray, paymentMethod) => {
             {OP_id: uuid.v4(), user_id: order.user_id, order_id: order.order_id, less_min_fee:lessMin, rush_fee:rush, unit_cost: unitPrice, sub_total: partialTotal+rush, payment_method: paymentMethod}
         );
     });
+
+    return order.order_id;
 
 };
 

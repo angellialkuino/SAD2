@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 import OrderListStaffTable from "./OrderListStaffTable";
 import './OrderListStaffTable.css'
 
@@ -8,7 +7,6 @@ import './OrderListStaffTable.css'
 
 export default function Order_List() {
     
-    const navigate = useNavigate();
 
     const [orderList, setOrderList] = useState([]);
 
@@ -34,10 +32,6 @@ export default function Order_List() {
                 {(orderList.length > 0) && <OrderListStaffTable data={orderList} />}
             </div>
 
-            <div className="ol_buttons">
-                <button className="ol_button-back" onClick={() => navigate(-1)}>Back</button>
-
-            </div>
         </div>
     );
 }

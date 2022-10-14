@@ -5,14 +5,14 @@ import { RunningPrice } from './RunningPrice';
 import OrderForm3 from './OrderForm3';
 
 function OrderForm2({ sumTotal, setSumTotal, order, setOrder, items_array, setItems_array }) {
-    const [checked, setChecked] = useState(false);
+    const [checked, setChecked] = useState(true);
     const [hidden1, setHidden1] = useState(true);
     const [hidden2, setHidden2] = useState(true);
     const [e2Checked, sete2Checked] = useState(false);
     const [e3Checked, sete3Checked] = useState(false);
     const [allTextChecked1, setAllTextChecked1] = useState(false);
     const [allTextChecked2, setAllTextChecked2] = useState(false);
-    const [allTextChecked3, setAllTextChecked3] = useState(false);
+    const [allTextChecked3, setAllTextChecked3] = useState(true);
     const [headerTextChecked, setHeaderTextChecked] = useState(false);
     let tempSum=0;
 
@@ -77,7 +77,7 @@ function OrderForm2({ sumTotal, setSumTotal, order, setOrder, items_array, setIt
                     item_id: 'e1',
                     item_name: 'envelope',
                     color: e.target.value
-                }]);;
+                }]);
         }
         else {
             setItems_array(items_array.map(obj => {
@@ -106,8 +106,8 @@ function OrderForm2({ sumTotal, setSumTotal, order, setOrder, items_array, setIt
     }
 
     const handleEnvelope = (e) => {
-        setChecked(e.target.checked);
-        if (e.target.checked === false) {
+        setChecked((prev) => {return !prev});
+        if (!e.target.checked === false) {
             sete2Checked(false);
             sete3Checked(false);
             setItems_array(prevState =>
@@ -446,7 +446,7 @@ function OrderForm2({ sumTotal, setSumTotal, order, setOrder, items_array, setIt
                             </select>
                         </div></div>
 
-                    <div className='grid-item'><input type="checkbox" value="envelope" className='checkbox-circle'
+                    <div className='grid-item'><input type="checkbox" checked={checked} value="envelope" className='checkbox-circle'
                         onChange={handleEnvelope} /> Envelope</div>
                     <div className='grid-item'>
                         <select name="envelope" id="envelope-select" onClick={handleEnvelopePaperAndColor} disabled={!checked}>

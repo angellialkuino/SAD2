@@ -1,21 +1,22 @@
 import React, { useState, useEffect, useRef } from "react";
 import Axios from 'axios';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './OrderDetails.css';
 const orderInfoJSON = require("./place-holder-json/getOrderDetails.json");
 
 
 function OrderDetailsCustomer() {
-    //placeholder coode******
-    const {order_info}=orderInfoJSON;
-    console.log(order_info);
-    const orderID = "29dafda5-7848-4e1f-913b-a98652a7e0cd";
-    //placeholder coode******
+    // //placeholder coode******
+    // const {order_info}=orderInfoJSON;
+    // console.log(order_info);
+    // const orderID = "29dafda5-7848-4e1f-913b-a98652a7e0cd";
+    // //placeholder coode******
 
-    // const location = useLocation();
-    // const {orderID} = location.state;
+    const navigate =useNavigate();
+    const location = useLocation();
+    const {orderID} = location.state;
 
-    const [orderInfo, setOrderInfo] = useState(order_info);    
+    const [orderInfo, setOrderInfo] = useState([]);    
     
     //const [orderID, setOrderID] = useState("2993f16f-5ea2-4177-9d5e-1a4ac76586be");
     const [userID, setUserID] = useState("N/A");
@@ -103,10 +104,27 @@ function OrderDetailsCustomer() {
         }
     },[orderInfo])
 
+    const cancelOrder = async () => {
+        await Axios.put('http://localhost:5000/api/order/cancel-order',
+            { order_id: orderID, order_status: "Canceled" },
+            { withCredentials: true }
+        ).then((res) => {
+            if(res.status===200){
+                setSuccessMsg(res.data.message);
+                navigate("/customer/my-orders");
+                // Show pop up? then Navigate to order list!!!
+            }else if (res.status===400){
+                setErrMsg(res.data.message); 
+            }
+        }).catch((err) => {
+            console.log(err);
+        });
+    }
+
     return ( 
         <div className='order-details-main'>
             <div className='order-div'>
-                <h1>ORDER {orderID.slice(-4)}</h1>
+                <h3>ORDER {orderID.slice(-4)}</h3>
 
                 <div className='white-inner-div1'>
                     <h5>Date Ordered</h5>
@@ -172,7 +190,7 @@ function OrderDetailsCustomer() {
             </div>
             <div className='payment-status-div'>
                 <div className='payment-details'>
-                    <h1>Payment Details</h1>
+                    <h3>Payment Details</h3>
                     <div className='white-inner-div1'>
                         <p>Number of Invites: {numOfInv}</p>
                         <p>Amount per Invite: {unitCost}</p>
@@ -186,12 +204,16 @@ function OrderDetailsCustomer() {
                     </div>
                 </div>
                 <div className='order-status'>
-                    <h1>Order Status</h1>
+                    <h3>Order Status</h3>
                     <div className='white-inner-div2'>
                         <h5>Invites Should Be Finished by:</h5>
                         <p>{orderDeadline}</p>
                         <h3>Status: {orderStatus}</h3>
-                        <button className='button'>Cancel Order</button>
+                        <div className="cancel-button"><button className='button' onClick={cancelOrder}>Cancel Order</button></div>
+                        <div className="cancelation-clause">
+                            <p>*In case of cancellation, downpayment will be forfeited. Client will also be charged P1,500.00 for layout fee. </p>
+                            <p>*If the order has been completed, client will be charged full cost. </p>
+                        </div>
                     </div>
                 </div>
             </div>

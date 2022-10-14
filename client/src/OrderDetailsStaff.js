@@ -8,17 +8,17 @@ const orderInfoJSON = require("./place-holder-json/getOrderDetails.json");
 
 function OrderDetailsStaff() {
 
-//placeholder coode******
-const {order_info}=orderInfoJSON;
-console.log(order_info);
-const orderID = "29dafda5-7848-4e1f-913b-a98652a7e0cd";
-//placeholder coode******
+// //placeholder coode******
+// const {order_info}=orderInfoJSON;
+// console.log(order_info);
+// const orderID = "29dafda5-7848-4e1f-913b-a98652a7e0cd";
+// //placeholder coode******
 
 const navigate = useNavigate();
 
-// const location = useLocation();
-// const orderID = location.state;
-const [orderInfo, setOrderInfo] = useState(order_info);
+const location = useLocation();
+const orderID = location.state;
+const [orderInfo, setOrderInfo] = useState([]);
 
 
 const [inviteType, setUserIinviteType] = useState("N/A");
@@ -51,27 +51,27 @@ const [isDisabledArr, setIsDisabledArr] = useState(true);
 const [errMsg, setErrMsg] = useState('');
 const [successMsg, setSuccessMsg] = useState('');
 
-// useEffect( () => {
-//     const getOrderDetails = async () => {        
-//         await Axios.get('http://localhost:5000/api/order/order-info',
-//             {params:{order_id: orderID}, 
-//                 withCredentials: true }
-//         ).then((res) => {
-//             //console.log(res);
-//             //console.log(res.data.order_info);
-//             if(res.status===200){
-//                 setSuccessMsg(res.data.message);
-//                 setOrderInfo(res.data.order_info);
+useEffect( () => {
+    const getOrderDetails = async () => {        
+        await Axios.get('http://localhost:5000/api/order/order-info',
+            {params:{order_id: orderID}, 
+                withCredentials: true }
+        ).then((res) => {
+            //console.log(res);
+            //console.log(res.data.order_info);
+            if(res.status===200){
+                setSuccessMsg(res.data.message);
+                setOrderInfo(res.data.order_info);
                 
-//             }else if (res.status===400){
-//                 setErrMsg(res.data.message); 
-//             }
+            }else if (res.status===400){
+                setErrMsg(res.data.message); 
+            }
             
-//         });
-//     }
+        });
+    }
     
-// getOrderDetails();
-// }, [])
+getOrderDetails();
+}, [])
 
 useEffect(()=>{
 
@@ -218,7 +218,7 @@ const updateOrderDetails = async () => {
         <div className='order-details-main'>
         <div className=".order-first-col">
             <div className='order-div'>
-                <h1>ORDER {orderID.slice(-4)}</h1>
+                <h3>ORDER {orderID.slice(-4)}</h3>
 
                 <div className='white-inner-div1'>
                     {/* Note: Copy pated from CustAccDetails so css styling classnames dont match!!!!!!! */}
@@ -326,7 +326,7 @@ const updateOrderDetails = async () => {
                 </div>
             </div>
                 <div className='payment-details'>
-                    <h1>Payment Details</h1>
+                    <h3>Payment Details</h3>
                     <div className='white-inner-div1'>
                     <p>Number of Invites: {numOfInv}</p>
                         <p>Amount per Invite: {unitCost}</p>
@@ -340,7 +340,7 @@ const updateOrderDetails = async () => {
                 </div>
 
                 <div className='order-status'>
-                    <h1>Order Status</h1>
+                    <h3>Order Status</h3>
                     <div className='white-inner-div2'>
                         <h5>Invites Should Be Finished by:</h5>
                         <p>{orderDeadline.slice(0, 10)}</p>

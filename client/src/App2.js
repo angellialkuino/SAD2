@@ -61,7 +61,9 @@ function App() {
     )
 
     const [items_array, setItems_array] = useState([
-        { item_id: 'm1', item_name: 'page', price: 30, quantity: 2 }
+        { item_id: 'm1', item_name: 'page', price: 30, quantity: 2 },
+        { item_id: 't1', item_name: 'plain print', price: 30 },
+        { item_id: 'e1', item_name: 'envelope', price: 30 },
     ])
 
     return <React.Fragment>
@@ -141,7 +143,6 @@ function App() {
                         payment_method={payment_method}
                         setPayment_method={setPayment_method}
                     />} />
-                <Route path='order-payment' element={<OrderBeingConfirmed />} />
             </Route>
 
             {/* Customer Account and Order Pages */}
@@ -153,6 +154,7 @@ function App() {
                 <Route path='order-details' element={<OrderDetailsCustomer />} />
                 <Route path='order-log' element={<OrderDocumentationCustomer />} />
                 <Route path='invitation-draft' element={<InvitationDraftCustomer />} />
+                <Route path='order-payment' element={<OrderBeingConfirmed />} />
             </Route>
 
             {/* Staff Pages */}
@@ -176,8 +178,6 @@ function App() {
 
             </Route>
         </Routes>
-        {/* <AboutUs/> */}
-        {/* <InvitationDraftCustomer/> */}
     </React.Fragment>
 }
 
