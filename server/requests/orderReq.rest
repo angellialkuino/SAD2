@@ -17,7 +17,7 @@ Content-Type: application/json
 {
     "payment_method": "cash",
     "order": {
-        "user_id": "9e0ca833-c8c6-4ab9-a78d-559d93f55045",
+        "user_id": "85ae30b7-e076-4565-b011-5e735abe4096",
         "invite_type": "INVTYPE",
         "material": "material",
         "event_date": "2022-10-13 1:01:01",
@@ -25,7 +25,7 @@ Content-Type: application/json
         "invite_title": "material",
         "font_style": "italics",
         "content_link": "material",
-        "num_of_invites": 20,
+        "num_of_invites": 2,
         "peg_link": "pinterest.com",
         "date_ordered": "2022-09-20 15:30:30",
         "order_deadline": "2022-09-20 1:01:01",
@@ -35,11 +35,8 @@ Content-Type: application/json
     },
 //pass an array of objects for the order details
 "items_array": [
-    {"item_id": "m1", "item_name":"name", "price":20, "type": "orange", "size": "5.75 x 6.75", "quantity": 3},
-    {"item_id": "e1", "item_name":"name", "price":20, "type": "red", "size": "6 x 7"},
-    {"item_id": "e3", "item_name":"name", "price":20, "type": "euhue"},
-    {"item_id": "co2", "item_name":"name", "price":20, "type": "covertype"},
-    {"item_id": "d1", "item_name":"name", "price":20, "type": "leaves", "color": "blue"}
+    {"item_id": "m1", "item_name":"page", "price":30, "type": "orange", "size": "5.75 x 6.75", "quantity": 3},
+    {"item_id": "e1", "item_name":"envelope", "price":30, "type": "red", "size": "6 x 7"}
     ]
 
 }
@@ -73,14 +70,11 @@ PUT {{hostname}}/order/update-order-details
 Content-Type: application/json
 
 {
-    "order_id": "93ebc2e9-7b45-440f-b87d-43c7c8477267",
+    "order_id": "a1317e81-e8b8-45b7-be61-c7ce21aeda16",
     "order_details": [
-    {"item_id": "m1", "type": "blue","color": "blue", "size": "5.75 x 6.75", "quantity": 3},
-    {"item_id": "e1", "type": "blue", "size": "6 x 7"},
-    {"item_id": "e3", "type": "blue"},
-    {"item_id": "co2", "type": "bluecovertype"},
-    {"item_id": "d1", "type": "blueleaves", "color": "blue"},
-    {"item_id": "t2", "type": "blueblue", "color": "blue"}
+    {"item_id": "m1", "item_name":"page", "price":30, "type": "orange", "size": "5.75 x 6.75", "quantity": 3},
+    {"item_id": "e1", "item_name":"envelope", "price":30, "type": "red", "size": "6 x 7"},
+    {"item_id": "e2", "item_name":"envelope lock", "price":10, "type": "blueblue", "color": "blue"}
 
     ]
 }

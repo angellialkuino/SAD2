@@ -20,7 +20,7 @@ function OrderBeingConfirmed() {
 
 
             <div className='order-being-confirmed-footer'>
-                <Link to="/" className="rounded-pill btn btn-info fw-bold nav-hover">Close</Link>
+                <Link to="/customer/my-orders" className="rounded-pill btn btn-info fw-bold nav-hover">View My Orders</Link>
             </div>
         </div>
     );

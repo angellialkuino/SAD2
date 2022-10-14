@@ -44,9 +44,10 @@ export const CheckOrderList = ({ order, items_array, sumTotal }) => {
                             })}
                         </tbody>
                     </table>
+                    <h3 >Unit Cost: {sumTotal}</h3>
                 </div>
             </div>
-            <h3 className='check-total'>Unit Cost: {sumTotal}</h3>
+            
         </>
     )
 }

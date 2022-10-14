@@ -4,8 +4,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import './CheckBox.css';
 const items = require("./OrderDetailsItems.json");
 
-function OrderDetailsCheckBox(props) {
-    const [itemsArray, setItemsArray] = useState(props.array);
+function OrderDetailsCheckBox({orderID,itemsArray,setItemsArray,updateBillingInfo}) {
     const [allItemsArray, setAllItemsArray] = useState(items);
     const [isLoaded, setisLoaded] = useState(false);
     const [selectedItems, setSelectedItems] = useState([]);
@@ -45,7 +44,7 @@ function OrderDetailsCheckBox(props) {
         tempArr.every(item => {
             if(item.item_id === obj.item_id){
                 item.selected=e.target.checked;
-                console.log(item);
+                //console.log(item);
                 return false;
             }
             return true;
@@ -68,7 +67,7 @@ function OrderDetailsCheckBox(props) {
         tempArr.every(y => {
             if(y.item_id === item.item_id){
                 y[key]=e.target.value;
-                console.log(y);
+                //console.log(y);
                 return false;
             }
             return true;
@@ -77,19 +76,38 @@ function OrderDetailsCheckBox(props) {
         setAllItemsArray(tempArr);
     }
 
+    const updateOrderDetails = async () => {
+        console.log('update req arr',selectedItems);
+        await Axios.put('http://localhost:5000/api/order/update-order-details',
+            { order_id: orderID, order_details: selectedItems },
+            { withCredentials: true }
+        ).then((res) => {
+            if(res.status===200){
+                // setSuccessMsg(res.data.message);
+                setItemsArray(selectedItems);
+                updateBillingInfo(selectedItems);
+            }else if (res.status===400){
+                // setErrMsg(res.data.message); 
+            }  
+        }).catch((err) => {
+            console.log(err);
+        });
+    }
+
     const getSelected = async () =>{
-        const temp =allItemsArray.filter( (e) => {return e.selected});
-        setSelectedItems(temp);
+        // const temp = allItemsArray.filter( (e) => {return e.selected});
+        setSelectedItems(allItemsArray.filter( (e) => {return e.selected}));
         //console.log(selectedItems);
     }
 
     useEffect(()=>{
-        console.log(selectedItems);
+        console.log('selected',selectedItems);
         if(selectedItems.length>0){
-            props.onItemsArray(selectedItems);
-            props.updateReq();
-        
+            updateOrderDetails();
+            
     }},[selectedItems])
+
+    
 
     return(<>{isLoaded &&
         <table className="checkBox-table">

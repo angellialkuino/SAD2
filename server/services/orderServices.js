@@ -37,13 +37,15 @@ exports.computePrice = async (itemsArray) => {
             .select('price')
             .where({ item_id: itemsArray[x].item_id});
 
-            if('quantity' in itemsArray[x]){
+            if('quantity' in itemsArray[x] && itemsArray[x].quantity != null){
+                console.log(`quantity obj \n${JSON.stringify(itemsArray[x])}`);
                 unitPrice += price[0].price*itemsArray[x].quantity;
             }else{
+                console.log(`no quantity obj \n${JSON.stringify(itemsArray[x])}`);
                 unitPrice += price[0].price;}
 
         }}); 
-    
+    console.log(unitPrice);
     return unitPrice;
 };
 

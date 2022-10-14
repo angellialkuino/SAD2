@@ -175,14 +175,14 @@ const updateOrder = async () => {
 
 //////////////////////////////
 
-const updateBillingInfo = ()=> {
+const updateBillingInfo = (arr)=> {
     let newUnitCost =0;
-    for( let x in itemsArray){
+    for( let x in arr){
         
-        if('quantity' in itemsArray[x]){
-            newUnitCost += itemsArray[x].price*itemsArray[x].quantity;
+        if('quantity' in arr[x] && itemsArray[x].quantity != null){
+            newUnitCost += arr[x].price*arr[x].quantity;
         }else{
-            newUnitCost += itemsArray[x].price;}
+            newUnitCost += arr[x].price;}
     }
     
     let partialTotal = subTotal-rushFee-unitCost + newUnitCost;
@@ -193,24 +193,27 @@ const updateBillingInfo = ()=> {
         setSubTotal(partialTotal)
     }
     setUnitCost(newUnitCost);
+    setIsDisabledArr(true);
+
 }
 
-const updateOrderDetails = async () => {
-    await Axios.put('http://localhost:5000/api/order/update-order-details',
-        { order_id: orderID, order_details: itemsArray },
-        { withCredentials: true }
-    ).then((res) => {
-        if(res.status===200){
-            setSuccessMsg(res.data.message);
-            setIsDisabledArr(true);
-            updateBillingInfo();
-        }else if (res.status===400){
-            setErrMsg(res.data.message); 
-        }  
-    }).catch((err) => {
-        console.log(err);
-    });
-}
+// const updateOrderDetails = async () => {
+//     console.log('update req arr',itemsArray);
+//     await Axios.put('http://localhost:5000/api/order/update-order-details',
+//         { order_id: orderID, order_details: itemsArray },
+//         { withCredentials: true }
+//     ).then((res) => {
+//         if(res.status===200){
+//             setSuccessMsg(res.data.message);
+//             setIsDisabledArr(true);
+//             updateBillingInfo();
+//         }else if (res.status===400){
+//             setErrMsg(res.data.message); 
+//         }  
+//     }).catch((err) => {
+//         console.log(err);
+//     });
+// }
 
 
 
@@ -281,50 +284,10 @@ const updateOrderDetails = async () => {
                     <Link to='/staff/order-log' state={{orderID:orderID}} className="rounded-pill btn-view-order-od btn-info fw-bold nav-hover">View Order Log</Link>
                 </div>
             </div>
-
-
         </div>
 
             <div className='payment-status-div'>
-            <div className='order-div-bottom'>
-                <div>
-                    {!isDisabledArr && <>
-                        <CheckBoxTable array={itemsArray} onItemsArray={setItemsArray} updateReq={updateOrderDetails}/>
-                        {/* <button onClick={updateOrderDetails} className="btn-update-order-ods btn-dark btn-lg btn-block">!!Update Order</button> */}
-                    </>}
-
-                    {isDisabledArr && <>
-                        <table className ="order-details-table-od">
-                            <thead>
-                            <tr>
-                                <th>Item Name</th>
-                                <th>Type</th>
-                                <th>Color</th>
-                                <th>Size</th>
-                                <th>Quantity</th>
-                                <th>Price</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {itemsArray.map((val) => {
-                                return(
-                                    <tr key={val.item_name}> 
-                                        <td>{val.item_name}</td>
-                                        <td>{val.type}</td>
-                                        <td>{val.color}</td>
-                                        <td>{val.size}</td>
-                                        <td>{val.quantity}</td>
-                                        <td>{val.price}</td>
-                                    </tr>
-                                );
-                            })}  
-                            </tbody>                  
-                        </table> 
-                        <button onClick={()=>setIsDisabledArr(false)} className="btn-edit-order-items btn-dark btn-lg btn-block">Edit Order Items</button>
-                    </>}
-
-                </div>
-            </div>
+            
                 <div className='payment-details'>
                     <h3>Payment Details</h3>
                     <div className='white-inner-div1'>
@@ -346,16 +309,56 @@ const updateOrderDetails = async () => {
                         <p>{orderDeadline.slice(0, 10)}</p>
 
                         <select name="orderStatus" value={orderStatus} onChange={updateOrderStatus}>
-                            {/* <option value={orderStatus} disabled hidden>{orderStatus}</option> */}
+                            <option value="Canceled" disabled hidden>Canceled</option>
                             <option value="Pending">Pending</option>
                             <option value="Creating">Creating</option>
                             <option value="Finalizing">Finalizing</option>
                             <option value="Ready to Claim!">Ready to Claim!</option>
                             <option value="Completed">Completed</option>
                         </select>
-                        <div className='order-status-button-row'>
+                        <div className='cancel-button order-status-button-row'>
                             <button onClick={cancelOrder} className='button'>Cancel Order</button>
                         </div>
+                    </div>
+                </div>
+
+                <div className='order-div-bottom'>
+                    <div>
+                        {!isDisabledArr && <>
+                            <CheckBoxTable orderID={orderID} itemsArray={itemsArray} setItemsArray={setItemsArray} updateBillingInfo={updateBillingInfo}/>
+                            {/* <button onClick={updateOrderDetails} className="btn-update-order-ods btn-dark btn-lg btn-block">!!Update Order</button> */}
+                        </>}
+
+                        {isDisabledArr && <>
+                            <table className ="order-details-table-od">
+                                <thead>
+                                <tr>
+                                    <th>Item Name</th>
+                                    <th>Type</th>
+                                    <th>Color</th>
+                                    <th>Size</th>
+                                    <th>Quantity</th>
+                                    <th>Price</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {itemsArray.map((val) => {
+                                    return(
+                                        <tr key={val.item_name}> 
+                                            <td>{val.item_name}</td>
+                                            <td>{val.type}</td>
+                                            <td>{val.color}</td>
+                                            <td>{val.size}</td>
+                                            <td>{val.quantity}</td>
+                                            <td>{val.price}</td>
+                                        </tr>
+                                    );
+                                })}  
+                                </tbody>                  
+                            </table> 
+                            <button onClick={()=>setIsDisabledArr(false)} className="btn-edit-order-items btn-dark btn-lg btn-block">Edit Order Items</button>
+                        </>}
+
                     </div>
                 </div>
             </div>
