@@ -31,10 +31,13 @@
     align-items: center;
 }
 
-.Check_Order_body p {
-    font-size: 20px;
-    margin-left: 20px;
-
+.check-order-frame {
+    background-color: #ffffff;
+    border-radius: 2rem;
+    width: 80%;
+    margin-bottom: 2rem;
+    display: flex;
+    top: 50px;
 }
 
 .Check_Order-header h3 {
