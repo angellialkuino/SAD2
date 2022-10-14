@@ -18,8 +18,7 @@ function CheckOrder({ order, items_array, sumTotal }) {
                 <div className="Check_Order-header">
                     <h3>Please Check Your Order</h3>
                 </div>
-
-                <div className="Check_Order_body">
+                <div className='check-order-frame p-4'>
                     <CheckOrderList
                         order={order}
                         items_array={items_array}
