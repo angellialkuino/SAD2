@@ -33,8 +33,7 @@ const LoginPage = () => {
             if (res.status === 200) {
                 console.log(res);
                 setSuccess(true);
-                //setSuccessMsg(res.data.message);
-                //setRoles("customer"); //check if backend returns anythin pero dba matic cust naman toh?
+                navigate("/form/terms-and-conditions");
                 setemail('');
                 setPwd('');
             } else if (res.status === 400) {
@@ -57,19 +56,11 @@ const LoginPage = () => {
     }
 
     return (
-        <> {success ? (navigate("/terms-and-conditions")) : (
+        <> 
             <section>
                 <div className='center-div'>
                     <div className='mt-5'>
-                        {success ? (
-                            <section>
-                                <h1>You are logged in!</h1>
-                                <br />
-                                <p>
-                                    <Link to='homepage'>Go to Home</Link>
-                                </p>
-                            </section>
-                        ) : (
+                        
                             <section>
                                 <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
                                 <h1>Login</h1>
@@ -102,11 +93,11 @@ const LoginPage = () => {
                                     </span>
                                 </p>
                             </section>
-                        )}
+                        
                     </div>
                 </div>
             </section>
-        )} </>
+         </>
     )
 }
 

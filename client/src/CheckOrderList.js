@@ -17,8 +17,6 @@ export const CheckOrderList = ({ order, items_array, sumTotal }) => {
                             <li>Content Link: {order.content_link}</li>
                             <li>Number of Invites: {order.num_of_invites}</li>
                             <li>Peg Link: {order.peg_link}</li>
-                            <li>Order Deadline: {order.order_deadline}</li>
-                            <li>Claim Type: {order.claim_type}</li>
                         </ul>
                     }
                 </div>
@@ -34,9 +32,9 @@ export const CheckOrderList = ({ order, items_array, sumTotal }) => {
                             </tr>
                         </thead>
                         <tbody>
-                            {items_array.map((val, key) => {
+                            {items_array.map((val) => {
                                 return (
-                                    <tr>
+                                    <tr key={val.item_name}>
                                         <td className='td'>{val.item_name}</td>
                                         <td className='td'>{val.color}</td>
                                         <td className='td'>{val.quantity}</td>
@@ -48,7 +46,7 @@ export const CheckOrderList = ({ order, items_array, sumTotal }) => {
                     </table>
                 </div>
             </div>
-            <h3 className='check-total'>Unit Cost: {sumTotal.current}</h3>
+            <h3 className='check-total'>Unit Cost: {sumTotal}</h3>
         </>
     )
 }

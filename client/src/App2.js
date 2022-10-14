@@ -41,7 +41,7 @@ import OrderNavBar from "./NavBarOrder";
 function App() {
     
     //order form data
-    const sumTotal = useRef(0.00);
+    const [sumTotal,setSumTotal] = useState(0);
     const [payment_method, setPayment_method] = useState('')
     const [order, setOrder] = useState(
         {
@@ -61,7 +61,7 @@ function App() {
     )
 
     const [items_array, setItems_array] = useState([
-        { item_id: 'm1', item_name: 'page' }
+        { item_id: 'm1', item_name: 'page', price: 30, quantity: 2 }
     ])
 
     return <React.Fragment>
@@ -83,6 +83,8 @@ function App() {
                 <Route path='terms-and-conditions' element={<TermsAndConditions />} />
                 <Route path='order-form-1' element=
                 {<OrderForm1
+                        items_array={items_array}
+                        setItems_array={setItems_array}
                         order={order}
                         setOrder={setOrder}
                     />} />
@@ -93,12 +95,14 @@ function App() {
                         items_array={items_array}
                         setItems_array={setItems_array}
                         sumTotal={sumTotal}
+                        setSumTotal={setSumTotal}
                     />} />
                 <Route path='order-form-3' element=
                     {<OrderForm3
                         items_array={items_array}
                         setItems_array={setItems_array}
                         sumTotal={sumTotal}
+                        setSumTotal={setSumTotal}
                     />} />
                 <Route path='order-form-4' element=
                     {<OrderForm4
@@ -107,6 +111,7 @@ function App() {
                         items_array={items_array}
                         setItems_array={setItems_array}
                         sumTotal={sumTotal}
+                        setSumTotal={setSumTotal}
                     />} />
                 <Route path='order-form-5' element=
                     {<OrderForm5
@@ -122,12 +127,17 @@ function App() {
                         items_array={items_array}
                         setItems_array={setItems_array}
                         sumTotal={sumTotal}
+                        setSumTotal={setSumTotal}
                         payment_method={payment_method}
                     />} />
                 <Route path='order-pickup' element={<OrderPickup />} />
                 <Route path='shipping-address' element={<ShippingAddress />} />
                 <Route path='downpayment' element=
                     {<Downpayment
+                        order={order}
+                        items_array={items_array}
+                        sumTotal={sumTotal}
+                        setSumTotal={setSumTotal}
                         payment_method={payment_method}
                         setPayment_method={setPayment_method}
                     />} />

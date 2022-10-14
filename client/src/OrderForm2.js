@@ -4,7 +4,7 @@ import './OrderForm2.css';
 import { RunningPrice } from './RunningPrice';
 import OrderForm3 from './OrderForm3';
 
-function OrderForm2({ sumTotal, order, setOrder, items_array, setItems_array }) {
+function OrderForm2({ sumTotal, setSumTotal, order, setOrder, items_array, setItems_array }) {
     const [checked, setChecked] = useState(false);
     const [hidden1, setHidden1] = useState(true);
     const [hidden2, setHidden2] = useState(true);
@@ -14,19 +14,27 @@ function OrderForm2({ sumTotal, order, setOrder, items_array, setItems_array }) 
     const [allTextChecked2, setAllTextChecked2] = useState(false);
     const [allTextChecked3, setAllTextChecked3] = useState(false);
     const [headerTextChecked, setHeaderTextChecked] = useState(false);
+    let tempSum=0;
 
     useEffect(() => {
         <RunningPrice items_array={items_array} />
-        sumTotal.current = 0;
+        //sumTotal.current = 0;
         items_array.forEach(element => {
             if ('price' in element) {
-                sumTotal.current += element.price;
+                //sumTotal.current += ('quantity' in element ? element.price*element.quantity : element.price);
+                tempSum += (('quantity' in element) ? element.price*element.quantity : element.price);
+                ('quantity' in element) ? console.log(`1: ${element.price*element.quantity}`) : console.log(`2: ${element.price}`)
             }
         });
-        sumTotal.current += order.material_price;
-        console.log(order);
-        console.log(items_array);
-    }, [items_array, sumTotal]);
+        setSumTotal(tempSum);
+        // console.log(order);
+        // console.log(items_array);
+    }, [items_array]);
+
+    useEffect(()=>{
+        console.log(`on useEffect: ${items_array}`);
+        console.log(`total: ${sumTotal}`);
+    },[sumTotal])
 
     const handlePagesPaperAndColor = (e) => {
         if (e.target.value == 'Customize') {
@@ -516,7 +524,7 @@ function OrderForm2({ sumTotal, order, setOrder, items_array, setItems_array }) 
                     <div className='grid-item'><input type="checkbox" id="table" value="20" name='cards' className='checkbox-circle' onClick={handleTableCards} />Table Cards</div>
                 </div>
                 <span className='total-footer'>
-                    Total is subject to change <b>Total: {sumTotal.current} Php</b>
+                    Total is subject to change <b>Total: {sumTotal} Php</b>
                 </span>
                 <div className='form1-footer'>
                     <Link to='/form/order-form-1' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>

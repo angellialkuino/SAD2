@@ -4,37 +4,30 @@ import "./OrderForm4.css";
 import React from 'react';
 import { RunningPrice } from "./RunningPrice";
 
-function OrderForm4({ order, items_array, setItems_array, sumTotal }) {
+function OrderForm4({ order, items_array, setItems_array, sumTotal, setSumTotal }) {
 
     const [toggleState, setToggleState] = useState(1);
+    let tempSum=0;
 
     const toggleTab = (index) => {
         setToggleState(index);
     };
 
     useEffect(() => {
-        sumTotal.current = 0;
+        //sumTotal.current = 0;
         items_array.forEach(element => {
             if ('price' in element) {
-                sumTotal.current += element.price;
+                //sumTotal.current += element.price;
+                tempSum += (('quantity' in element) ? element.price*element.quantity : element.price);
+
             }
         });
-        sumTotal.current += order.material_price;
-        if (order.num_of_invites < 30) {
-            sumTotal.current += 1500;
-            let date1 = new Date().toJSON().slice(0, 10);
-            let date2 = order.event_date;
-            const date1new = new Date(date1);
-            const date2new = new Date(date2);
-            let Difference_In_Time = date2new.getTime() - date1new.getTime();
-            let Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
-            if (Difference_In_Days < 14) {
-                sumTotal.current += sumTotal.current * 0.40;
-            }
-        }
-        console.log(order);
-        console.log(items_array);
-    }, [items_array, order, sumTotal]);
+        //sumTotal.current += order.material_price;
+        setSumTotal(tempSum);
+        
+        // console.log(order);
+        // console.log(items_array);
+    }, [items_array, order]);
 
     const handleWaxDesign = (e) => {
         if (items_array.findIndex(object => object.item_id === 'd1') === -1) {
@@ -337,12 +330,12 @@ function OrderForm4({ order, items_array, setItems_array, sumTotal }) {
                     </div>
                 </div>
                 <span className='total-footer'>
-                    Total is subject to change <b>Total: {sumTotal.current}Php</b>
+                    Total is subject to change <b>Total: {sumTotal}Php</b>
                 </span>
             </div>
             <div className='form1-footer'>
-                <Link to='order-form-2' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
-                <Link to='/check-order' className="rounded-pill btn btn-info fw-bold nav-hover">Next</Link>
+                <Link to='/form/order-form-2' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
+                <Link to='/form/check-order' className="rounded-pill btn btn-info fw-bold nav-hover">Next</Link>
             </div>
         </>
     );

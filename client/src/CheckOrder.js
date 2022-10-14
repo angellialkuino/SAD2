@@ -28,8 +28,8 @@ function CheckOrder({ order, items_array, sumTotal }) {
                 </div>
             </div>
             <div className="form1-footer">
-                <Link to='/order-form-4' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
-                <Link to='/order-form-5' className="rounded-pill btn btn-info fw-bold nav-hover">Next</Link>
+                <Link to='/form/order-form-4' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
+                <Link to='/form/order-form-5' className="rounded-pill btn btn-info fw-bold nav-hover">Next</Link>
             </div>
         </div>
     );
