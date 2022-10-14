@@ -21,6 +21,5 @@
     height: fit-content;
     display: flex;
     position: relative;
-    top: 250px;
     flex-direction: column;
 }
