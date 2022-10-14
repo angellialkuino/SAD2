@@ -153,7 +153,7 @@ function OrderForm4({ order, items_array, setItems_array, sumTotal, setSumTotal 
         <>
             <div className='order-frame-4'>
                 <h2>Running Price</h2>
-                <div className='running-price-frame p-4'>
+                <div className='running-price-frame p-2'>
                     <RunningPrice
                         order={order}
                         items_array={items_array}
@@ -330,7 +330,7 @@ function OrderForm4({ order, items_array, setItems_array, sumTotal, setSumTotal 
                     </div>
                 </div>
                 <span className='total-footer'>
-                    Total is subject to change <b>Total: {sumTotal}Php</b>
+                    Total is subject to change. <b>Unit Cost: {sumTotal} Php</b>
                 </span>
             </div>
             <div className='form1-footer'>

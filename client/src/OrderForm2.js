@@ -14,7 +14,7 @@ function OrderForm2({ sumTotal, setSumTotal, order, setOrder, items_array, setIt
     const [allTextChecked2, setAllTextChecked2] = useState(false);
     const [allTextChecked3, setAllTextChecked3] = useState(false);
     const [headerTextChecked, setHeaderTextChecked] = useState(false);
-    let tempSum=0;
+    let tempSum = 0;
 
     useEffect(() => {
         <RunningPrice items_array={items_array} />
@@ -22,8 +22,8 @@ function OrderForm2({ sumTotal, setSumTotal, order, setOrder, items_array, setIt
         items_array.forEach(element => {
             if ('price' in element) {
                 //sumTotal.current += ('quantity' in element ? element.price*element.quantity : element.price);
-                tempSum += (('quantity' in element) ? element.price*element.quantity : element.price);
-                ('quantity' in element) ? console.log(`1: ${element.price*element.quantity}`) : console.log(`2: ${element.price}`)
+                tempSum += (('quantity' in element) ? element.price * element.quantity : element.price);
+                ('quantity' in element) ? console.log(`1: ${element.price * element.quantity}`) : console.log(`2: ${element.price}`)
             }
         });
         setSumTotal(tempSum);
@@ -31,10 +31,10 @@ function OrderForm2({ sumTotal, setSumTotal, order, setOrder, items_array, setIt
         // console.log(items_array);
     }, [items_array]);
 
-    useEffect(()=>{
+    useEffect(() => {
         console.log(`on useEffect: ${items_array}`);
         console.log(`total: ${sumTotal}`);
-    },[sumTotal])
+    }, [sumTotal])
 
     const handlePagesPaperAndColor = (e) => {
         if (e.target.value == 'Customize') {
@@ -414,7 +414,7 @@ function OrderForm2({ sumTotal, setSumTotal, order, setOrder, items_array, setIt
         <>
             <div className='order-frame-2'>
                 <h4>Running Price</h4>
-                <div className='running-price-frame p-4'>
+                <div className='running-price-frame p-2'>
                     <RunningPrice
                         order={order}
                         items_array={items_array}
@@ -524,7 +524,7 @@ function OrderForm2({ sumTotal, setSumTotal, order, setOrder, items_array, setIt
                     <div className='grid-item'><input type="checkbox" id="table" value="20" name='cards' className='checkbox-circle' onClick={handleTableCards} />Table Cards</div>
                 </div>
                 <span className='total-footer'>
-                    Total is subject to change <b>Total: {sumTotal} Php</b>
+                    Total is subject to change. <b>Unit Cost: {sumTotal} Php</b>
                 </span>
                 <div className='form1-footer'>
                     <Link to='/form/order-form-1' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
