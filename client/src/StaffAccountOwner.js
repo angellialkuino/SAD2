@@ -79,7 +79,7 @@ function StaffAccountViewOwner() {
 
     const deleteAcc = async () => {
         await Axios.delete('http://localhost:5000/api/owner/staff-delete',
-            { user_id: userID },
+            { data:{user_id: userID} },
             { withCredentials: true }
         ).then((res) => {
             if (res.status === 200) {

@@ -11,10 +11,9 @@ exports.createOrder = async (req,res) => {
         const order = req.body.order; 
         const itemsArray = req.body.items_array;
         const paymentMethod = req.body.payment_method;
-        await service.createOrder(order, itemsArray, paymentMethod);
-        const unitPrice = await service.computePrice(itemsArray);
+        const orderID = await service.createOrder(order, itemsArray, paymentMethod);
 
-        res.status(201).send({ message:'Successfully created new order', unitPrice});
+        res.status(201).send({ message:'Successfully created new order', order_id: orderID});
     } catch (err){
         console.log(err);
         return res.status(400).send({ message:'Failed to create new order' });

@@ -43,23 +43,16 @@ const OrderForm1 = ({ order, setOrder, items_array, setItems_array }) => {
 
         if (order.material === 'acrylic') {
             setItems_array(items_array.map(obj => {
-                if (obj.item_id === 'm2') {
-                    return {
-                        ...obj,
-                        quantity: 1,
+                setItems_array(prevState =>
+                    [...prevState, {
+                        item_id: 'm2',
+                        item_name: 'acrylic',
                         price: 180
-                    };
-                }
-                return obj;
-            }));
-        }
-        else {
-            setItems_array(items_array.map(obj => {
+                    }]);
                 if (obj.item_id === 'm1') {
                     return {
                         ...obj,
-                        quantity: 2,
-                        price: 30
+                        quantity: 3
                     };
                 }
                 return obj;

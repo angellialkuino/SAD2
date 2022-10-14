@@ -1,9 +1,11 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link,useOutletContext,useNavigate } from 'react-router-dom';
 import './Downpayment.css';
 import Axios from 'axios';
 
 function Downpayment({ order, items_array, payment_method, setPayment_method, sumTotal }) {
+    const userID = useOutletContext();
+    const navigate = useNavigate();
     const errRef = useRef();
     const [errMsg, setErrMsg] = useState('');
     const additionalFees = useRef();
@@ -12,7 +14,11 @@ function Downpayment({ order, items_array, payment_method, setPayment_method, su
     const [finalTotal, setFinalTotal] =useState(0);
 
 
-    useEffect(() => {
+    useEffect(() => 
+    {
+        order.user_id=userID;
+        order.date_ordered = new Date().toISOString().slice(0, 19).replace('T', ' ');
+        order.order_status = "pending";
         console.log(`sum:${sumTotal}`);
         console.log(order);
         console.log(items_array);
@@ -54,7 +60,9 @@ function Downpayment({ order, items_array, payment_method, setPayment_method, su
                     withCredentials: true
                 }
             );
-            console.log(response)
+            console.log(response);
+            console.log(response.data.order_id);
+            navigate("/customer/order-payment", {state: response.data.order_id});
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('No Server Response');
@@ -115,8 +123,8 @@ function Downpayment({ order, items_array, payment_method, setPayment_method, su
                     </div>
                 </div>
                 <div className="form1-footer">
-                    <Link to='/shipping-address' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
-                    <Link to='/order-payment' className="rounded-pill btn btn-info fw-bold nav-hover" onClick={handleSubmitOrder}>Next</Link>
+                    <Link to='/form/order-form-5' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
+                    <button className="rounded-pill btn btn-info fw-bold nav-hover" onClick={handleSubmitOrder}>Next</button>
                 </div>
             </div>
         </>

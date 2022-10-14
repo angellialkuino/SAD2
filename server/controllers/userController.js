@@ -91,11 +91,13 @@ exports.updateUser = async (req, res) => {
 //DELETE USER ACC INFO
 exports.deleteUser = async (req, res) => {
     try {
+        console.log(JSON.stringify(req.body));
         const user = await service.deleteUser(req.body.user_id);
         return res.status(200).send({ message:'Successfully deleted user account' , user});
 
     } catch (err) {
         console.log('error at controller delete user');
+        console.log(err);
         return res.status(400).send({ message:'Failed to delete user account' });
 
     }

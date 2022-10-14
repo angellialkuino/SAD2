@@ -5,7 +5,15 @@
     justify-content: center;
     margin: 2rem;
     gap: 5rem;
-    align-items: center;
+    align-items: flex-start;
+}
+
+.cancel-button{
+    margin: 20px 0 30px 0;
+}
+
+.cancelation-clause{
+    text-align: left;
 }
 
 .order-first-col {
