@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import Axios from 'axios';
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,6 +11,7 @@ const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const FACEBOOK_REGEX = /(?:https?:\/\/)?(?:www\.)?(mbasic.facebook|m\.facebook|facebook|fb)\.(com|me)\/([\w\-\.]*)/ig;
 
 const Sign_up = () => {
+    const navigate = useNavigate();
     const userRef = useRef();
     const errRef = useRef();
     //full name
@@ -35,7 +36,6 @@ const Sign_up = () => {
     const [fb_accountFocus, setfb_accountFocus] = useState(false);
 
     const [errMsg, setErrMsg] = useState('');
-    const [success, setSuccess] = useState(false);
 
     useEffect(() => {
         userRef.current.focus();
@@ -86,14 +86,7 @@ const Sign_up = () => {
             // console.log(response?.data);
             // console.log(response?.accessToken);
             console.log(response)
-            setSuccess(true);
-            //clear state and controlled inputs
-            //need value attrib on inputs for this
-            setUser('');
-            setemail('');
-            setPwd('');
-            setMatchPwd('');
-            setfb_account('');
+            navigate("/customer");
 
         } catch (err) {
             if (!err?.response) {
@@ -114,14 +107,7 @@ const Sign_up = () => {
                 <img className='signup-img' src={process.env.PUBLIC_URL + '/images/sample6.jpg'} alt="Debut Invitation" />
             </div>
 
-            <div className='mt-5'>{success ? (
-                <section>
-                    <h1>Success!</h1>
-                    <p>
-                        <Link to='/login'>Login</Link>
-                    </p>
-                </section>
-            ) : (
+            <div className='mt-5'>
                 <section>
                     <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>{errMsg}</p>
                     <h1>Create Account</h1>
@@ -239,7 +225,7 @@ const Sign_up = () => {
                         </span>
                     </p>
                 </section>
-            )}</div>
+            </div>
 
         </div> </>
     )

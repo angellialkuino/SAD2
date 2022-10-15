@@ -17,7 +17,7 @@ exports.createCust = async (req, res, next) => {
             return res.status(400).send({ message:'This email already has an existing account' });
         }
         
-        const creation = await service.createUser(userData, 'customer');
+        const user = await service.createUser(userData, 'customer');
         next();
 
     } catch (err){
@@ -35,13 +35,13 @@ exports.createStaff = async (req, res) => {
         const existingUser = await service.findUser(userData.email);
 
         if(existingUser){
-            //console.log(existingUser);            
-            res.status(400).send({ message:'This email already has an existing account' });
+            //console.log('existingUser');            
+            return res.status(400).send({ message:'This email already has an existing account' });
         }
 
         //var user is not used hnrm should it be returned??? meron na sa req.body ang info tho
         const user = await service.createUser(userData, 'staff');
-        res.status(201).send({ message:'Successfully created new staff account', user });
+        return res.status(201).send({ message:'Successfully created new staff account', user_id: user });
 
     } catch (err){
         console.log(err);

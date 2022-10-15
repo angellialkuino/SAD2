@@ -75,13 +75,15 @@ function CreateStaffAccountOwner() {
             },
             { withCredentials: true }
         ).then((res) => {
-            if (res.status === 200) {
+            if (res.status === 201) {
                 setSuccessMsg(res.data.message);
+                navigate("/owner/view-staff", {state:res.data.user_id});
                 // navigate to new staff profile!!!!
-            } else if (res.status === 400) {
-                setErrMsg(res.data.message); //or is it res.body.message
-            }
+            } 
         }).catch((err) => {
+            console.log(err.response.data.message); //error message
+            setErrMsg(err.response.data.message);
+
             console.log(err);
         });
     }
@@ -219,7 +221,7 @@ function CreateStaffAccountOwner() {
             </div>
 
             <div className="button-row">
-                <button type="submit" className="btn-create-saco btn-info nav-hover">Create</button>
+                <button onClick={handleSubmitCreate} className="btn-create-saco btn-info nav-hover">Create</button>
                 <button onClick={()=>navigate(-1)} className="btn-cancel-saco btn-info nav-hover">Cancel</button>
             </div>
 
