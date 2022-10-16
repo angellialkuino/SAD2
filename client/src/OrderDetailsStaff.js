@@ -20,8 +20,9 @@ const location = useLocation();
 const orderID = location.state;
 const [orderInfo, setOrderInfo] = useState([]);
 
+const [userInfo, setUserInfo] = useState({});
 
-const [inviteType, setUserIinviteType] = useState("N/A");
+const [inviteType, setInviteType] = useState("N/A");
 const [material, setMaterial] = useState("N/A");
 const [eventDate, setEventDate] = useState("N/A");
 const [motif, setMotif] = useState("N/A");
@@ -76,9 +77,10 @@ getOrderDetails();
 useEffect(()=>{
 
     if (Object.keys(orderInfo).length !== 0){
-        //setOrderID(orderInfo.order.order_id);
-        //setUserID(orderInfo.order.user_id);
-        setUserIinviteType(orderInfo.order.invite_type);
+
+        setUserInfo(orderInfo.user_info);
+
+        setInviteType(orderInfo.order.invite_type);
         setMaterial(orderInfo.order.material);
         setEventDate(orderInfo.order.event_date.slice(0, 19).replace('T', ' '));
         setMotif(orderInfo.order.motif);
@@ -219,106 +221,69 @@ const updateBillingInfo = (arr)=> {
 
     return ( //change the <p> to input tags :")"
         <div className='order-details-main'>
-        <div className=".order-first-col">
-            <div className='order-div'>
-                <h3>ORDER {orderID.slice(-4)}</h3>
+            <div className=".order-first-col">
+                <div className='order-div'>
+                    <h3>ORDER {orderID.slice(-4)}</h3>
 
-                <div className='white-inner-div1'>
-                    {/* Note: Copy pated from CustAccDetails so css styling classnames dont match!!!!!!! */}
-                    <div className="accDetail-body-field-od">
-                        <h3>Date Ordered</h3>
-                        <input value={dateOrdered.slice(0, 10)} type="text" disabled={true} onChange={(e) => setDateOrdered(e.target.value)} className="form-control" />
-                    </div>
-
-                    <div className="accDetail-body-field-od">
-                        <h3>Invitation Type</h3>
-                        <input value={inviteType} type="text" disabled={isDisabled} onChange={(e) => setUserIinviteType(e.target.value)} className="form-control" />
-                    </div>
-
-                    <div className="accDetail-body-field-od">
-                        <h3>Material</h3>
-                        <input value={material} type="text" disabled={isDisabled} onChange={(e) => setMaterial(e.target.value)} className="form-control" />
-                    </div>
-
-                    <div className="accDetail-body-field-od">
-                        <h3>Date of Event</h3>
-                        <input value={eventDate.slice(0, 10)} type="text" disabled={isDisabled} onChange={(e) => setEventDate(e.target.value)} className="form-control" />
-                    </div>
-
-                    <div className="accDetail-body-field-od">
-                        <h3>Motif</h3>
-                        <input value={motif} type="text" disabled={isDisabled} onChange={(e) => setMotif(e.target.value)} className="form-control" />
-                    </div>
-
-                    <div className="accDetail-body-field-od">
-                        <h3>Invitation Title</h3>
-                        <input value={inviteTitle} type="text" disabled={isDisabled} onChange={(e) => setInviteTitle(e.target.value)} className="form-control" />
-                    </div>
-
-                    <div className="accDetail-body-field-od">
-                        <h3>Font Style</h3>
-                        <input value={fontStyle} type="text" disabled={isDisabled} onChange={(e) => setFontStyle(e.target.value)} className="form-control" />
-                    </div>
-
-                    <div className="accDetail-body-field-od">
-                        <h3>Content Link</h3>
-                        <input value={contentLink} type="text" disabled={isDisabled} onChange={(e) => setContentLink(e.target.value)} className="form-control" />
-                    </div>
-
-                    <div className="accDetail-body-field-od">
-                        <h3>PEG Link</h3>
-                        <input value={pegLink} type="text" disabled={isDisabled} onChange={(e) => setPegLink(e.target.value)} className="form-control" />
-                    </div>
-
-                    <div className="accDetail-body-field-od">
-                        <h3>Claim Type</h3>
-                        <input value={claimType} type="text" disabled={isDisabled} onChange={(e) => setClaimType(e.target.value)} className="form-control" />
-                    </div>
-
-                    {isDisabled && <button onClick={()=>setIsDisabled(false)} className="btn btn-dark btn-lg btn-block">Edit Order Information</button>}
-                    {!isDisabled && <button onClick={updateOrder} className="btn btn-dark btn-lg btn-block">Update Order</button>}
-                        
-                </div>
-                <div className='order-details-footer-od'>
-                    <Link to='/staff/invitation-draft' state={{orderID:orderID}} className="rounded-pill btn-view-invite-od btn-info fw-bold nav-hover">View Invitation</Link>
-                    <Link to='/staff/order-log' state={{orderID:orderID}} className="rounded-pill btn-view-order-od btn-info fw-bold nav-hover">View Order Log</Link>
-                </div>
-            </div>
-        </div>
-
-            <div className='payment-status-div'>
-            
-                <div className='payment-details'>
-                    <h3>Payment Details</h3>
                     <div className='white-inner-div1'>
-                    <p>Number of Invites: {numOfInv}</p>
-                        <p>Amount per Invite: {unitCost}</p>
-                        <p>Additional Fees:</p>
-                        <p>Total Revision Fee: {revFee || 0}</p>
-                        <p>Total Rush Fee: {rushFee || 0}</p>
-                        <p>Total Less than Min Fee: {lessMinFee || 0}</p>
-                        <h5>TOTAL AMOUNT DUE: {subTotal}</h5>
-                        <p>Payment Method: {paymentMethod}</p>
-                    </div>
-                </div>
-
-                <div className='order-status'>
-                    <h3>Order Status</h3>
-                    <div className='white-inner-div2'>
-                        <h5>Invites Should Be Finished by:</h5>
-                        <p>{orderDeadline.slice(0, 10)}</p>
-
-                        <select name="orderStatus" value={orderStatus} onChange={updateOrderStatus}>
-                            <option value="Canceled" disabled hidden>Canceled</option>
-                            <option value="Pending">Pending</option>
-                            <option value="Creating">Creating</option>
-                            <option value="Finalizing">Finalizing</option>
-                            <option value="Ready to Claim!">Ready to Claim!</option>
-                            <option value="Completed">Completed</option>
-                        </select>
-                        <div className='cancel-button order-status-button-row'>
-                            <button onClick={cancelOrder} className='button'>Cancel Order</button>
+                        {/* Note: Copy pated from CustAccDetails so css styling classnames dont match!!!!!!! */}
+                        <div className="accDetail-body-field-od">
+                            <h3>Date Ordered</h3>
+                            <input value={dateOrdered.slice(0, 10)} type="text" disabled={true} onChange={(e) => setDateOrdered(e.target.value)} className="form-control" />
                         </div>
+
+                        <div className="accDetail-body-field-od">
+                            <h3>Invitation Type</h3>
+                            <input value={inviteType} type="text" disabled={isDisabled} onChange={(e) => setInviteType(e.target.value)} className="form-control" />
+                        </div>
+
+                        <div className="accDetail-body-field-od">
+                            <h3>Material</h3>
+                            <input value={material} type="text" disabled={isDisabled} onChange={(e) => setMaterial(e.target.value)} className="form-control" />
+                        </div>
+
+                        <div className="accDetail-body-field-od">
+                            <h3>Date of Event</h3>
+                            <input value={eventDate.slice(0, 10)} type="text" disabled={isDisabled} onChange={(e) => setEventDate(e.target.value)} className="form-control" />
+                        </div>
+
+                        <div className="accDetail-body-field-od">
+                            <h3>Motif</h3>
+                            <input value={motif} type="text" disabled={isDisabled} onChange={(e) => setMotif(e.target.value)} className="form-control" />
+                        </div>
+
+                        <div className="accDetail-body-field-od">
+                            <h3>Invitation Title</h3>
+                            <input value={inviteTitle} type="text" disabled={isDisabled} onChange={(e) => setInviteTitle(e.target.value)} className="form-control" />
+                        </div>
+
+                        <div className="accDetail-body-field-od">
+                            <h3>Font Style</h3>
+                            <input value={fontStyle} type="text" disabled={isDisabled} onChange={(e) => setFontStyle(e.target.value)} className="form-control" />
+                        </div>
+
+                        <div className="accDetail-body-field-od">
+                            <h3>Content Link</h3>
+                            <input value={contentLink} type="text" disabled={isDisabled} onChange={(e) => setContentLink(e.target.value)} className="form-control" />
+                        </div>
+
+                        <div className="accDetail-body-field-od">
+                            <h3>PEG Link</h3>
+                            <input value={pegLink} type="text" disabled={isDisabled} onChange={(e) => setPegLink(e.target.value)} className="form-control" />
+                        </div>
+
+                        <div className="accDetail-body-field-od">
+                            <h3>Claim Type</h3>
+                            <input value={claimType} type="text" disabled={isDisabled} onChange={(e) => setClaimType(e.target.value)} className="form-control" />
+                        </div>
+
+                        {isDisabled && <button onClick={()=>setIsDisabled(false)} className="btn btn-dark btn-lg btn-block">Edit Order Information</button>}
+                        {!isDisabled && <button onClick={updateOrder} className="btn btn-dark btn-lg btn-block">Update Order</button>}
+                            
+                    </div>
+                    <div className='order-details-footer-od'>
+                        <Link to='/staff/invitation-draft' state={{orderID:orderID}} className="rounded-pill btn-view-invite-od btn-info fw-bold nav-hover">View Invitation</Link>
+                        <Link to='/staff/order-log' state={{orderID:orderID}} className="rounded-pill btn-view-order-od btn-info fw-bold nav-hover">View Order Log</Link>
                     </div>
                 </div>
 
@@ -326,7 +291,6 @@ const updateBillingInfo = (arr)=> {
                     <div>
                         {!isDisabledArr && <>
                             <CheckBoxTable orderID={orderID} itemsArray={itemsArray} setItemsArray={setItemsArray} updateBillingInfo={updateBillingInfo}/>
-                            {/* <button onClick={updateOrderDetails} className="btn-update-order-ods btn-dark btn-lg btn-block">!!Update Order</button> */}
                         </>}
 
                         {isDisabledArr && <>
@@ -361,6 +325,56 @@ const updateBillingInfo = (arr)=> {
 
                     </div>
                 </div>
+            </div>
+
+            <div className='payment-status-div'>            
+                <div className='payment-details'>
+                    <h3>Payment Details</h3>
+                    <div className='white-inner-div1'>
+                        <div className="padding">
+                            <h4>Billing Info</h4>
+                            <p>Number of Invites: {numOfInv}</p>
+                            <p>Amount per Invite: {unitCost}</p>
+                            <p>Additional Fees:</p>
+                            <p>&nbsp;&nbsp; Revision Fee: {revFee || 0}</p>
+                            <p>&nbsp;&nbsp; Rush Fee: {rushFee || 0}</p>
+                            <p>&nbsp;&nbsp; Less than Min Fee: {lessMinFee || 0}</p>
+                            <h5>Total Amount Due: {subTotal}</h5>
+                            <p>Payment Method: {paymentMethod}</p>
+                        </div>
+                        <div>
+                            <h4>Customer Info</h4>
+                            <p>Name: {userInfo.full_name}</p>
+                            <p>Email: {userInfo.email}</p>
+                            <p>Phone Number: {userInfo.phone_number}</p>
+                            <p>FaceBook Accountt: {userInfo.fb_account}</p>
+                            <p>Address: {userInfo.address}</p>
+                            <p>Barangay: {userInfo.barangay}</p>
+                            <p>Postal Code: {userInfo.postal_code}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div className='order-status'>
+                    <h3>Order Status</h3>
+                    <div className='white-inner-div2'>
+                        <h5>Invites Should Be Finished by:</h5>
+                        <p>{orderDeadline.slice(0, 10)}</p>
+
+                        <select name="orderStatus" value={orderStatus} onChange={updateOrderStatus}>
+                            <option value="Canceled" disabled hidden>Canceled</option>
+                            <option value="Pending">Pending</option>
+                            <option value="Creating">Creating</option>
+                            <option value="Finalizing">Finalizing</option>
+                            <option value="Ready to Claim!">Ready to Claim!</option>
+                            <option value="Completed">Completed</option>
+                        </select>
+                        <div className='cancel-button order-status-button-row'>
+                            <button onClick={cancelOrder} className='button'>Cancel Order</button>
+                        </div>
+                    </div>
+                </div>
+                
             </div>
         </div>
     );

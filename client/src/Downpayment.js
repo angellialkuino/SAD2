@@ -26,6 +26,9 @@ function Downpayment({ order, setOrder, items_array, setItems_array, payment_met
         if (order.num_of_invites < 30) {
             setLessMin(1500);
             //sumTotal.current += 1500;
+        }else{
+            setLessMin(0);
+
         }
             
 
@@ -42,6 +45,8 @@ function Downpayment({ order, setOrder, items_array, setItems_array, payment_met
             //sumTotal.current += sumTotal.current * 0.40;
         setRushFee(((sumTotal*order.num_of_invites)+lessMin )* 0.40,
         setFinalTotal(((sumTotal*order.num_of_invites)+lessMin+rushFee)));
+        }else{
+        setFinalTotal(((sumTotal*order.num_of_invites)+lessMin+rushFee));
         }
         
 
@@ -62,7 +67,7 @@ function Downpayment({ order, setOrder, items_array, setItems_array, payment_met
             );
             console.log(response);
             console.log(response.data.order_id);
-            setOrder([
+            setItems_array([
                 { item_id: 'm1', item_name: 'page', price: 30, quantity: 2 },
                 { item_id: 't1', item_name: 'plain print', price: 30, type:'all text' },
                 { item_id: 'e1', item_name: 'envelope', price: 30 },
@@ -73,7 +78,7 @@ function Downpayment({ order, setOrder, items_array, setItems_array, payment_met
             navigate("/customer/order-payment", {state: response.data.order_id});
         } catch (err) {
             if (!err?.response) {
-                setErrMsg('No Server Response');
+                setErrMsg(err.response.data.message);
             } else if (err.response?.status === 409) {
                 setErrMsg('Submitted Already');
             } else {
@@ -108,10 +113,10 @@ function Downpayment({ order, setOrder, items_array, setItems_array, payment_met
                     <div className="order_form_10-content-right">
                         <p>Unit Cost: {sumTotal}</p>
                         <p>Number of Invites: {order.num_of_invites} </p>
-                        <p>Additional Fees:</p>
-                        <p>Less than Minimum Fee: {lessMin} </p>
-                        <p>Rush Fee: {rushFee} </p>
-                        <p>Subtotal: {finalTotal}</p>
+                        <h5>Additional Fees:</h5>
+                        <p>&nbsp;&nbsp;Less than Minimum Fee: {lessMin} </p>
+                        <p>&nbsp;&nbsp;Rush Fee: {rushFee} </p>
+                        <h5>Subtotal: {finalTotal}</h5>
                         <p>Payment Method: {payment_method} </p>
                     </div>
                 </div>

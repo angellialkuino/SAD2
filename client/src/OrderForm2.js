@@ -14,11 +14,11 @@ function OrderForm2({ sumTotal, setSumTotal, order, setOrder, items_array, setIt
     const [allTextChecked2, setAllTextChecked2] = useState(false);
     const [allTextChecked3, setAllTextChecked3] = useState(true);
     const [headerTextChecked, setHeaderTextChecked] = useState(false);
-    let tempSum = 0;
 
     useEffect(() => {
         <RunningPrice items_array={items_array} />
         //sumTotal.current = 0;
+        let tempSum = 0;
         items_array.forEach(element => {
             if ('price' in element) {
                 //sumTotal.current += ('quantity' in element ? element.price*element.quantity : element.price);
@@ -441,7 +441,7 @@ function OrderForm2({ sumTotal, setSumTotal, order, setOrder, items_array, setIt
                     <div className='grid-item'><input type="checkbox" checked={checked} value="envelope" className='checkbox-circle'
                         onChange={handleEnvelope} /> Envelope</div>
                     <div className='grid-item'>
-                        <select name="envelope" id="envelope-select" onClick={handleEnvelopePaperAndColor} disabled={!checked}>
+                        <select name="envelope" id="envelope-select" onChange={handleEnvelopePaperAndColor} disabled={!checked}>
                             <option value="Let Crafters Haven handle it!">Let Crafters Haven handle it!</option>
                             <option value="Customize">Customize</option>
                         </select>
@@ -454,8 +454,8 @@ function OrderForm2({ sumTotal, setSumTotal, order, setOrder, items_array, setIt
                     </div>
                 </div>
                 <div className='row-group'>
-                    <input type="checkbox" value="10" checked={e2Checked} className={!checked ? 'checkbox-circle1' : 'checkbox-circle'} onClick={handleEnvelopeLiner} disabled={!checked} />Envelope Liner
-                    <input type="checkbox" value="5" checked={e3Checked} className={!checked ? 'checkbox-circle1' : 'checkbox-circle'} onClick={handleEnvelopeLock} disabled={!checked} />Envelope Lock
+                    <input type="checkbox" value="10" checked={e2Checked} className={!checked ? 'checkbox-circle1' : 'checkbox-circle'} onChange={handleEnvelopeLiner} disabled={!checked} />Envelope Liner
+                    <input type="checkbox" value="5" checked={e3Checked} className={!checked ? 'checkbox-circle1' : 'checkbox-circle'} onChange={handleEnvelopeLock} disabled={!checked} />Envelope Lock
                 </div>
                 {(!hidden1 || !hidden2) ? <OrderForm3
                     order={order}
@@ -488,9 +488,9 @@ function OrderForm2({ sumTotal, setSumTotal, order, setOrder, items_array, setIt
                     <h3>Other Pages</h3>
                 </div>
                 <div className='grid-container'>
-                    <div className='grid-item'><input type="checkbox" id="rsvp" value="20" name='other-pages' className='checkbox-circle' onClick={handleRSVP} />RSVP</div>
-                    <div className='grid-item'><input type="checkbox" id="monetary-gift-page" value="20" name='other-pages' className='checkbox-circle' onClick={handleMonetaryGiftPackage} />Monetary Gift Page</div>
-                    <div className='grid-item'><input type="checkbox" id="vows" value="80" name='other-pages' className='checkbox-circle' onClick={handleHisHerVows} />His/Her Vows</div>
+                    <div className='grid-item'><input type="checkbox" id="rsvp" value="20" name='other-pages' className='checkbox-circle' onChange={handleRSVP} />RSVP</div>
+                    <div className='grid-item'><input type="checkbox" id="monetary-gift-page" value="20" name='other-pages' className='checkbox-circle' onChange={handleMonetaryGiftPackage} />Monetary Gift Page</div>
+                    <div className='grid-item'><input type="checkbox" id="vows" value="80" name='other-pages' className='checkbox-circle' onChange={handleHisHerVows} />His/Her Vows</div>
                 </div>
 
                 <div className='row-group mt-5'>
@@ -511,9 +511,9 @@ function OrderForm2({ sumTotal, setSumTotal, order, setOrder, items_array, setIt
                     <h3>Cards</h3>
                 </div>
                 <div className='grid-container'>
-                    <div className='grid-item'><input type="checkbox" id="menu" value="20" name='cards' className='checkbox-circle' onClick={handleMenuCards} />Menu Cards</div>
-                    <div className='grid-item'><input type="checkbox" id="seat" value="20" name='cards' className='checkbox-circle' onClick={handleSeatCards} />Seat Cards</div>
-                    <div className='grid-item'><input type="checkbox" id="table" value="20" name='cards' className='checkbox-circle' onClick={handleTableCards} />Table Cards</div>
+                    <div className='grid-item'><input type="checkbox" id="menu" value="20" name='cards' className='checkbox-circle' onChange={handleMenuCards} />Menu Cards</div>
+                    <div className='grid-item'><input type="checkbox" id="seat" value="20" name='cards' className='checkbox-circle' onChange={handleSeatCards} />Seat Cards</div>
+                    <div className='grid-item'><input type="checkbox" id="table" value="20" name='cards' className='checkbox-circle' onChange={handleTableCards} />Table Cards</div>
                 </div>
                 <span className='total-footer'>
                     Total is subject to change. <b>Unit Cost: {sumTotal} Php</b>

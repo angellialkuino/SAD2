@@ -7,7 +7,7 @@ import { RunningPrice } from "./RunningPrice";
 function OrderForm4({ order, items_array, setItems_array, sumTotal, setSumTotal }) {
 
     const [toggleState, setToggleState] = useState(1);
-    let tempSum = 0;
+    const [isColorDisabled,setIsColorDisabled] = useState(true);
 
     const toggleTab = (index) => {
         setToggleState(index);
@@ -15,6 +15,7 @@ function OrderForm4({ order, items_array, setItems_array, sumTotal, setSumTotal 
 
     useEffect(() => {
         //sumTotal.current = 0;
+        let tempSum = 0;
         items_array.forEach(element => {
             if ('price' in element) {
                 //sumTotal.current += element.price;
@@ -30,7 +31,15 @@ function OrderForm4({ order, items_array, setItems_array, sumTotal, setSumTotal 
     }, [items_array, order]);
 
     const handleWaxDesign = (e) => {
-        if (items_array.findIndex(object => object.item_id === 'd1') === -1) {
+        if (e.target.id === 'no wax') {
+            setIsColorDisabled(true);
+            setItems_array(prevState =>
+                prevState.filter(item => {
+                    return item.item_id !== 'd1';
+                }),
+            );
+        } else if (items_array.findIndex(object => object.item_id === 'd1') === -1) {
+            setIsColorDisabled(false);
             setItems_array(prevState =>
                 [...prevState, {
                     item_id: 'd1',
@@ -38,14 +47,8 @@ function OrderForm4({ order, items_array, setItems_array, sumTotal, setSumTotal 
                     price: 15
                 }]);
         }
-        else if (e.target.id === 'no wax') {
-            setItems_array(prevState =>
-                prevState.filter(item => {
-                    return item.item_id !== 'd1';
-                }),
-            );
-        }
         else {
+            setIsColorDisabled(false);
             setItems_array(items_array.map(obj => {
                 if (obj.item_id === 'd1') {
                     return {
@@ -60,50 +63,33 @@ function OrderForm4({ order, items_array, setItems_array, sumTotal, setSumTotal 
     }
 
     const handleWaxColor = (e) => {
-        if (items_array.findIndex(object => object.item_id === 'd1') === -1) {
-            setItems_array(prevState =>
-                [...prevState, {
-                    item_id: 'd1',
-                    color: e.target.id,
-                    price: 15
-                }]);
-        }
-        else if (e.target.id === 'no wax') {
-            setItems_array(prevState =>
-                prevState.filter(item => {
-                    return item.item_id !== 'd1';
-                }),
-            );
-        }
-        else {
-            setItems_array(items_array.map(obj => {
-                if (obj.item_id === 'd1') {
-                    return {
-                        ...obj,
-                        color: e.target.id
-                    };
-                }
-                return obj;
+        setItems_array(items_array.map(obj => {
+            if (obj.item_id === 'd1') {
+                return {
+                    ...obj,
+                    color: e.target.id
+                };
+            }
+            return obj;
 
-            }));
-        }
+        }));
     }
 
     const handleDriedFlower = (e) => {
-        if (items_array.findIndex(object => object.item_id === 'd2') === -1) {
+        
+        if (e.target.id === 'no flower') {
+            setItems_array(prevState =>
+                prevState.filter(item => {
+                    return item.item_id !== 'd2';
+                }),
+            );
+        } else if (items_array.findIndex(object => object.item_id === 'd2') === -1) {
             setItems_array(prevState =>
                 [...prevState, {
                     item_id: 'd2',
                     item_name: e.target.id,
                     price: 40
                 }]);
-        }
-        else if (e.target.id === 'no flower') {
-            setItems_array(prevState =>
-                prevState.filter(item => {
-                    return item.item_id !== 'd2';
-                }),
-            );
         }
         else {
             setItems_array(items_array.map(obj => {
@@ -120,20 +106,19 @@ function OrderForm4({ order, items_array, setItems_array, sumTotal, setSumTotal 
     }
 
     const handleBroochDesign = (e) => {
-        if (items_array.findIndex(object => object.item_id === 'd3') === -1) {
+        if (e.target.id === 'no brooch') {
+            setItems_array(prevState =>
+                prevState.filter(item => {
+                    return item.item_id !== 'd3';
+                }),
+            );
+        } else if (items_array.findIndex(object => object.item_id === 'd3') === -1) {
             setItems_array(prevState =>
                 [...prevState, {
                     item_id: 'd3',
                     item_name: e.target.id,
                     price: 50
                 }]);
-        }
-        else if (e.target.id === 'no brooch') {
-            setItems_array(prevState =>
-                prevState.filter(item => {
-                    return item.item_id !== 'd3';
-                }),
-            );
         }
         else {
             setItems_array(items_array.map(obj => {
@@ -224,35 +209,35 @@ function OrderForm4({ order, items_array, setItems_array, sumTotal, setSumTotal 
                             <h4>Color:</h4>
                             <div className='boxes-4'>
                                 <label>
-                                    <input type='radio' id='copper' name='wax-color' className='form1-radio' onClick={handleWaxColor} />
+                                    <input disabled={isColorDisabled} type='radio' id='copper' name='wax-color' className='form1-radio' onClick={handleWaxColor} />
                                     <img className='radio-img4' src={process.env.PUBLIC_URL + '/images/waxes/colors/2.jpg'} alt='wax color'></img>
                                 </label>
                                 <label>
-                                    <input type='radio' id='royal blue' name='wax-color' className='form1-radio' onClick={handleWaxColor} />
+                                    <input disabled={isColorDisabled} type='radio' id='royal blue' name='wax-color' className='form1-radio' onClick={handleWaxColor} />
                                     <img className='radio-img4' src={process.env.PUBLIC_URL + '/images/waxes/colors/b.jpg'} alt='wax color'></img>
                                 </label>
                                 <label>
-                                    <input type='radio' id='green' name='wax-color' className='form1-radio' onClick={handleWaxColor} />
+                                    <input disabled={isColorDisabled} type='radio' id='green' name='wax-color' className='form1-radio' onClick={handleWaxColor} />
                                     <img className='radio-img4' src={process.env.PUBLIC_URL + '/images/waxes/colors/e.jpg'} alt='wax color'></img>
                                 </label>
                                 <label>
-                                    <input type='radio' id='pink' name='wax-color' className='form1-radio' onClick={handleWaxColor} />
+                                    <input disabled={isColorDisabled} type='radio' id='pink' name='wax-color' className='form1-radio' onClick={handleWaxColor} />
                                     <img className='radio-img4' src={process.env.PUBLIC_URL + '/images/waxes/colors/g2.jpg'} alt='wax color'></img>
                                 </label>
                                 <label>
-                                    <input type='radio' id='silver' name='wax-color' className='form1-radio' onClick={handleWaxColor} />
+                                    <input disabled={isColorDisabled} type='radio' id='silver' name='wax-color' className='form1-radio' onClick={handleWaxColor} />
                                     <img className='radio-img4' src={process.env.PUBLIC_URL + '/images/waxes/colors/h.jpg'} alt='wax color'></img>
                                 </label>
                                 <label>
-                                    <input type='radio' id='olive green' name='wax-color' className='form1-radio' onClick={handleWaxColor} />
+                                    <input disabled={isColorDisabled} type='radio' id='olive green' name='wax-color' className='form1-radio' onClick={handleWaxColor} />
                                     <img className='radio-img4' src={process.env.PUBLIC_URL + '/images/waxes/colors/l.jpg'} alt='wax color'></img>
                                 </label>
                                 <label>
-                                    <input type='radio' id='sky blue' name='wax-color' className='form1-radio' onClick={handleWaxColor} />
+                                    <input disabled={isColorDisabled} type='radio' id='sky blue' name='wax-color' className='form1-radio' onClick={handleWaxColor} />
                                     <img className='radio-img4' src={process.env.PUBLIC_URL + '/images/waxes/colors/m2.jpg'} alt='wax color'></img>
                                 </label>
                                 <label>
-                                    <input type='radio' id='violet' name='wax-color' className='form1-radio' onClick={handleWaxColor} />
+                                    <input disabled={isColorDisabled} type='radio' id='violet' name='wax-color' className='form1-radio' onClick={handleWaxColor} />
                                     <img className='radio-img4' src={process.env.PUBLIC_URL + '/images/waxes/colors/z.jpg'} alt='wax color'></img>
                                 </label>
                             </div>

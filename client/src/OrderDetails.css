@@ -1,3 +1,6 @@
+.padding{
+    padding-right: 100px;
+}
 .order-details-main {
     display: flex;
     flex-direction: row;
@@ -84,7 +87,7 @@
     background-color: white;
     height: 90%;
     width: 90%;
-    flex-direction: column;
+    flex-direction: row;
     align-items: left;
     flex-wrap: wrap;
     border-radius: 2rem;
@@ -309,7 +312,7 @@ td {
 .order-details-table-od {
     border-collapse: collapse;
     background-color: white;
-    width: 650px;
+    width: 550px;
     height: auto;
     margin: 1rem 0 1rem 0;
     border-radius: 0.5rem;

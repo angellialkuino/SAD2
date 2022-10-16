@@ -146,12 +146,15 @@ exports.viewOrder = async (order) => {
         billingInfo = await trx("billing_info")
                         .select('*')
                         .where({ order_id: order.order_id});
+        userInfo = await trx("users")
+                        .select('*')
+                        .where({ user_id: order.user_id});
     
     });
 
     //add query for order purchase details
 
-    return {order:order, order_details: orderDetails, billing_info: billingInfo[0]};
+    return {order:order, order_details: orderDetails, billing_info: billingInfo[0], user_info:userInfo[0]};
 
 }
 
