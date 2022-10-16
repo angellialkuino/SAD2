@@ -153,7 +153,7 @@ function OrderForm4({ order, items_array, setItems_array, sumTotal, setSumTotal 
         <>
             <div className='order-frame-4'>
                 <h2>Running Price</h2>
-                <div className='running-price-frame p-2'>
+                <div className='running-price-frame4 p-2'>
                     <RunningPrice
                         order={order}
                         items_array={items_array}
