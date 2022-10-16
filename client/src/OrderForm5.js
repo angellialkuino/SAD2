@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Link,useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './OrderForm5.css';
 
 function OrderForm5({ order, setOrder, items_array, receivalLink, setReceivalLink }) {
-    const navigate =useNavigate();
+    const navigate = useNavigate();
     const [isIncomplete, setIsIncomplete] = useState('')
     useEffect(() => {
         // console.log(order);
@@ -34,6 +34,7 @@ function OrderForm5({ order, setOrder, items_array, receivalLink, setReceivalLin
     }
 
     const handleNext = (e) => {
+
         if (isIncomplete === true) {
             window.alert('Incomplete form fields')
             e.preventDefault();
@@ -44,6 +45,7 @@ function OrderForm5({ order, setOrder, items_array, receivalLink, setReceivalLin
         else if (order.claim_type == 'delivery') {
             navigate('/form/shipping-address')
         }
+        e.preventDefault();
     }
 
     return (
