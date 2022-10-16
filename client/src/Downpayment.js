@@ -14,8 +14,15 @@ function Downpayment({ order, setOrder, items_array, setItems_array, payment_met
     const [finalTotal, setFinalTotal] = useState(0);
 
 
-    useEffect(() => {
-        order.user_id = userID;
+    useEffect(() => 
+    {
+        for (var key in order) {
+            if(order[key] == ''|| order[key]== null){
+                return navigate("/form/order-form-1");
+            }
+        }
+        
+        order.user_id=userID;
         order.date_ordered = new Date().toISOString().slice(0, 19).replace('T', ' ');
         order.order_status = "pending";
         console.log(`sum:${sumTotal}`);
@@ -64,8 +71,7 @@ function Downpayment({ order, setOrder, items_array, setItems_array, payment_met
                     withCredentials: true
                 }
             );
-            console.log(response);
-            console.log(response.data.order_id);
+            
             setItems_array([
                 { item_id: 'm1', item_name: 'page', price: 30, quantity: 2 },
                 { item_id: 't1', item_name: 'plain print', price: 30, type: 'all text' },
@@ -74,6 +80,12 @@ function Downpayment({ order, setOrder, items_array, setItems_array, payment_met
             Object.keys(order).forEach(key => {
                 order[key] = "";
             });
+            delete order.order_deadline;
+            delete order.claim_type;
+            delete order.date_ordered;
+            delete order.order_status;
+            delete order.user_id;
+
             navigate("/customer/order-payment", { state: response.data.order_id });
         } catch (err) {
             if (!err?.response) {

@@ -1,9 +1,19 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import './CheckOrder.css';
 import { CheckOrderList } from './CheckOrderList';
 
 function CheckOrder({ order, items_array, sumTotal }) {
+    const navigate = useNavigate();
+
+    useEffect(()=>{
+        for (var key in order) {
+            if(order[key] == ''|| order[key]== null){
+                return navigate("/form/order-form-1");
+            }
+        }
+    },[])
+
     useEffect(() => {
         <CheckOrderList
             items_array={items_array}

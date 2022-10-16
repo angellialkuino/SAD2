@@ -5,6 +5,15 @@ import './OrderForm5.css';
 function OrderForm5({ order, setOrder, items_array, receivalLink, setReceivalLink }) {
     const navigate = useNavigate();
     const [isIncomplete, setIsIncomplete] = useState('')
+
+    useEffect(()=>{
+        for (var key in order) {
+            if(order[key] == ''|| order[key]== null){
+                return navigate("/form/order-form-1");
+            }
+        }
+    },[])
+
     useEffect(() => {
         // console.log(order);
         // console.log(items_array);

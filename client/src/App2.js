@@ -53,9 +53,9 @@ function App() {
             font_style: '',
             content_link: '',
             num_of_invites: 0,
-            peg_link: '',
-            order_deadline: '',
-            claim_type: ''
+            peg_link: ''
+            // order_deadline: '',
+            // claim_type: ''
         }
     )
 
@@ -99,13 +99,13 @@ function App() {
                         sumTotal={sumTotal}
                         setSumTotal={setSumTotal}
                     />} />
-                <Route path='order-form-3' element=
+                {/* <Route path='order-form-3' element=
                     {<OrderForm3
                         items_array={items_array}
                         setItems_array={setItems_array}
                         sumTotal={sumTotal}
                         setSumTotal={setSumTotal}
-                    />} />
+                    />} /> */}
                 <Route path='order-form-4' element=
                     {<OrderForm4
                         order={order}
@@ -132,8 +132,8 @@ function App() {
                         setSumTotal={setSumTotal}
                         payment_method={payment_method}
                     />} />
-                <Route path='order-pickup' element={<OrderPickup />} />
-                <Route path='shipping-address' element={<ShippingAddress />} />
+                <Route path='order-pickup' element={<OrderPickup order={order} />} />
+                <Route path='shipping-address' element={<ShippingAddress order={order} />} />
                 <Route path='downpayment' element=
                     {<Downpayment
                         setOrder={setOrder}

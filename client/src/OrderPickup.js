@@ -1,8 +1,17 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, {useEffect} from 'react';
+import { Link,useNavigate } from 'react-router-dom';
 import './OrderPickup.css';
 
-function OrderPickup() {
+function OrderPickup({order}) {
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        for (var key in order) {
+            if(order[key] == ''|| order[key]== null){
+                return navigate("/form/order-form-1");
+            }
+    }},[])
+
     return (
         <div className='order-pickup-frame'>
             <div className='text'>
