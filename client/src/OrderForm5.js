@@ -34,7 +34,6 @@ function OrderForm5({ order, setOrder, items_array, receivalLink, setReceivalLin
     }
 
     const handleNext = (e) => {
-
         if (isIncomplete === true) {
             window.alert('Incomplete form fields')
             e.preventDefault();
