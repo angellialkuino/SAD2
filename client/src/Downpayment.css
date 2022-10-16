@@ -1,5 +1,6 @@
 .order_form_10-container {
     display: flex;
+    width: 900px;
     flex-direction: column;
     margin: 2rem auto auto auto;
     background-color: #d8ecf5;

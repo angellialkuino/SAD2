@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import StaffListTable from "./StaffListTable";
 import { Link } from "react-router-dom";
-const users = require("./place-holder-json/getStaffList.json");
+// const users = require("./place-holder-json/getStaffList.json");
 
 function StaffList() {
 

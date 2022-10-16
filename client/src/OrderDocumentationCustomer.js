@@ -12,15 +12,15 @@ import './OrderDocumentationTable.css'
 export default function OrderDocumentationCustomer() {
     const navigate = useNavigate();
 
-    // const location = useLocation();
-    // const {orderID} = location.state;
+    const location = useLocation();
+    const {orderID} = location.state;
 
-    const [orderID, setOrderID] = useState("");
+    //const [orderID, setOrderID] = useState("");
     const [orderDocs, setOrderDocs] = useState([]);
 
     useEffect(  () => {
         const getOrderDocs = async () => {
-            await Axios.get('http://localhost:5000/api/order/order-documentation',
+            await Axios.get('http://localhost:5000/api/order/order-log-list',
                 { params: {order_id: orderID}},
                 {withCredentials: true }
             ).then((res) => {
@@ -28,6 +28,7 @@ export default function OrderDocumentationCustomer() {
                     setOrderDocs(res.data.entries);
                 }
             }).catch((err)=>{
+                console.log(err.response.data.message);
                 console.log(err);
             });
         }

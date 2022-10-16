@@ -12,7 +12,7 @@ const OrderDocumentationTable = ({ data }) => {
                 </tr>
 
                 {data.map((item) => (
-                    <tr className="oh_tr-tr">
+                    <tr className="oh_tr-tr" key={item.log_id.slice(-4)}>
                         <td className="oh_td-td">{item.date.slice(0,10)}</td>
                         <td className="oh_td-td">{item.description}</td>
 

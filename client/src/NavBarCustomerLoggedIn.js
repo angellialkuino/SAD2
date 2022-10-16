@@ -41,6 +41,7 @@ function NavBarCustomerLoggedIn() {
                     <li><Link to='/customer/my-account' className="rounded-pill btn btn-info fw-bold nav-hover">My Account</Link></li>
                 </ul>
             </nav>
+            
             <Outlet context={userID}/>
             </>}
 

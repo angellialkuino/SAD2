@@ -23,7 +23,7 @@ function OrderForm2({ sumTotal, setSumTotal, order, setOrder, items_array, setIt
             if ('price' in element) {
                 //sumTotal.current += ('quantity' in element ? element.price*element.quantity : element.price);
                 tempSum += (('quantity' in element) ? element.price * element.quantity : element.price);
-                ('quantity' in element) ? console.log(`1: ${element.price * element.quantity}`) : console.log(`2: ${element.price}`)
+                // ('quantity' in element) ? console.log(`1: ${element.price * element.quantity}`) : console.log(`2: ${element.price}`)
             }
         });
         setSumTotal(tempSum);
@@ -31,10 +31,10 @@ function OrderForm2({ sumTotal, setSumTotal, order, setOrder, items_array, setIt
         // console.log(items_array);
     }, [items_array]);
 
-    useEffect(() => {
-        console.log(`on useEffect: ${items_array}`);
-        console.log(`total: ${sumTotal}`);
-    }, [sumTotal])
+    // useEffect(() => {
+    //     console.log(`on useEffect: ${items_array}`);
+    //     console.log(`total: ${sumTotal}`);
+    // }, [sumTotal])
 
     const handlePagesPaperAndColor = (e) => {
         if (e.target.value == 'Customize') {
@@ -58,7 +58,7 @@ function OrderForm2({ sumTotal, setSumTotal, order, setOrder, items_array, setIt
                 return {
                     ...obj,
                     size: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
-                    price: parseFloat(e.target.value) * parseFloat(items_array[0].quantity)
+                    price: parseFloat(e.target.value)
 
                 };
             }
@@ -107,7 +107,9 @@ function OrderForm2({ sumTotal, setSumTotal, order, setOrder, items_array, setIt
 
     const handleEnvelope = (e) => {
         setChecked((prev) => {return !prev});
-        if (!e.target.checked === false) {
+        // console.log(checked);
+        // console.log(e.target.checked);
+        if (e.target.checked === false) {
             sete2Checked(false);
             sete3Checked(false);
             setItems_array(prevState =>
@@ -116,13 +118,16 @@ function OrderForm2({ sumTotal, setSumTotal, order, setOrder, items_array, setIt
                 }),
             );
         } else {
-            setItems_array(prevState =>
-                [...prevState, {
-                    item_id: 'e1',
-                    item_name: 'envelope',
-                    size: '6 x 8 in',
-                    price: 30
-                }]);
+            if( items_array.findIndex(object => object.item_id === 'e1') === -1){
+                setItems_array(prevState =>
+                    [...prevState, {
+                        item_id: 'e1',
+                        item_name: 'envelope',
+                        size: '6 x 8 in',
+                        price: 30
+                    }]);
+            }
+            
         }
     }
 
@@ -236,19 +241,6 @@ function OrderForm2({ sumTotal, setSumTotal, order, setOrder, items_array, setIt
                     type: 'header text',
                     price: parseFloat(e.target.value)
                 }]);
-        }
-        else {
-            setItems_array(items_array.map(obj => {
-                if (obj.type === 'header text') {
-                    return {
-                        ...obj,
-                        item_id: e.target.id,
-                        item_name: e.target.name,
-                        price: parseFloat(e.target.value)
-                    };
-                }
-                return obj;
-            }));
         }
 
         if (allTextChecked1 || allTextChecked2 || allTextChecked3) {
@@ -455,7 +447,7 @@ function OrderForm2({ sumTotal, setSumTotal, order, setOrder, items_array, setIt
                         </select>
                     </div>
                     <div className='grid-item'>
-                        <select name="envelope" id="envelope-select" onClick={handleEnvelopeSize} disabled={!checked}>
+                        <select name="envelope" id="envelope-select" onChange={handleEnvelopeSize} disabled={!checked}>
                             <option id="6 x 8 in" value='30'>6 x 8 in</option>
                             <option id="7 x 9 in" value='40'>7 x 9 in</option>
                         </select>

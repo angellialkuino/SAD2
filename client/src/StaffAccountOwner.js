@@ -131,7 +131,6 @@ function StaffAccountViewOwner() {
                 </>}
 
                 {!isDisabled && <button onClick={updateAccDetails} className="sub-button-update">Update Account</button>}
-                <button onClick={()=>navigate(-1)} className="SAO-back">Back</button>
             </div>
         </div>
     );

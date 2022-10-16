@@ -3,7 +3,7 @@ import { Link,useOutletContext,useNavigate } from 'react-router-dom';
 import './Downpayment.css';
 import Axios from 'axios';
 
-function Downpayment({ order, items_array, payment_method, setPayment_method, sumTotal }) {
+function Downpayment({ order, setOrder, items_array, setItems_array, payment_method, setPayment_method, sumTotal }) {
     const userID = useOutletContext();
     const navigate = useNavigate();
     const errRef = useRef();
@@ -62,6 +62,14 @@ function Downpayment({ order, items_array, payment_method, setPayment_method, su
             );
             console.log(response);
             console.log(response.data.order_id);
+            setOrder([
+                { item_id: 'm1', item_name: 'page', price: 30, quantity: 2 },
+                { item_id: 't1', item_name: 'plain print', price: 30, type:'all text' },
+                { item_id: 'e1', item_name: 'envelope', price: 30 },
+            ]);
+            Object.keys(order).forEach(key => {
+                order[key] = "";
+              });
             navigate("/customer/order-payment", {state: response.data.order_id});
         } catch (err) {
             if (!err?.response) {

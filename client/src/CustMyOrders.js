@@ -36,11 +36,11 @@ function CustMyOrders() {
                                 <div className="custMyOrders-labels">
                                     <h3>Order {item.order_id.slice(-4)}</h3>
                                     <div className="orders-button-footer">
-                                        <button className="rounded-pill btn btn-info fw-bold nav-hover">
-                                            <Link to="/customer/order-details" className="no-deco" state={{ orderID: item.order_id }}>
+                                        {/* <button className="rounded-pill btn btn-info fw-bold nav-hover"> */}
+                                            <Link to="/customer/order-details" className="rounded-pill btn btn-info fw-bold nav-hover" state={{ orderID: item.order_id }}>
                                                 View Order Details
                                             </Link>
-                                        </button>
+                                        {/* </button> */}
                                     </div>
                                 </div>
                             )

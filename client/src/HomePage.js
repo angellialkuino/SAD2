@@ -1,6 +1,5 @@
 import React from "react";
 import './HomePage.css';
-import NavBar from "./NavBar";
 
 function HomePage() {
     return (

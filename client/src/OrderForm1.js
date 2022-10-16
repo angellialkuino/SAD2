@@ -36,8 +36,7 @@ const OrderForm1 = ({ order, setOrder, items_array, setItems_array }) => {
         setOrder((prevState) => {
             return {
                 ...prevState,
-                material: e.target.id,
-                material_price: parseFloat(e.target.value)
+                material: e.target.id
             };
         });
 
