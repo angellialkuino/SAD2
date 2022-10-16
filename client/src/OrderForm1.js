@@ -5,7 +5,7 @@ import './OrderForm1.css';
 const OrderForm1 = ({ order, setOrder, items_array, setItems_array }) => {
     const [isIncomplete, setIsIncomplete] = useState(true)
     useEffect(() => {
-        console.log(order)
+        // console.log(order)
 
         if (order.content_link === '' || order.event_date === '' || order.font_style === '' || order.invite_title === '' || order.invite_type === '' || order.material === '' || order.motif === '' || order.num_of_invites === 0 || order.peg_link === '') {
             setIsIncomplete(true);
@@ -32,38 +32,31 @@ const OrderForm1 = ({ order, setOrder, items_array, setItems_array }) => {
         });
     }
     const handleMaterial = (e) => {
-        console.log(`array:${items_array}`);
+       //console.log(`array:${items_array}`);
         setOrder((prevState) => {
             return {
                 ...prevState,
-                material: e.target.id,
-                material_price: parseFloat(e.target.value)
+                material: e.target.id
             };
         });
 
-        if (order.material === 'acrylic') {
-            setItems_array(items_array.map(obj => {
-                if (obj.item_id === 'm2') {
-                    return {
-                        ...obj,
-                        quantity: 1,
-                        price: 180
-                    };
-                }
-                return obj;
-            }));
-        }
-        else {
-            setItems_array(items_array.map(obj => {
+        if (e.target.id === 'acrylic' && items_array.findIndex(object => object.item_id === 'm2') === -1) {
+            setItems_array(prevState =>
+                [...prevState, {
+                    item_id: 'm2',
+                    item_name: 'acrylic',
+                    price: 180
+            }],
+            setItems_array(items_array.map(obj => {                
                 if (obj.item_id === 'm1') {
                     return {
                         ...obj,
-                        quantity: 2,
-                        price: 30
+                        quantity: 3
                     };
                 }
                 return obj;
-            }));
+            })));
+            console.log(items_array);
         }
     }
 

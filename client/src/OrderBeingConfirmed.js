@@ -1,31 +1,26 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link,useLocation } from 'react-router-dom';
 import './OrderBeingConfirmed.css';
 
 function OrderBeingConfirmed() {
+    const location = useLocation();
+    const orderID = location.state;
     return (
         <div className='order-being-confirmed-frame'>
             <div className='order-being-confirmed-header'>
                 <h1>Order payment is being confirmed!</h1>
-                <p>Thank you so much!</p>
+                <h4>Thank you so much!</h4>
             </div>
-            <ul className="timeline">
-                <li className='pending' status="Pending"></li>
-                <li status="Creating"></li>
-                <li status="Finalizing"></li>
-                <li status="Ready to Check"></li>
-                <li status="Ready to Claim!"></li>
-            </ul>
             <div className='force-center-row'>
-                <p>ORDER NUMBER:</p>
-                <p>Estimate Date Finished:</p>
+                <h4>ORDER ID: {orderID.slice(-4)}</h4>
+                <h4>View Order on My Orders Tab</h4>
             </div>
 
 
 
 
             <div className='order-being-confirmed-footer'>
-                <Link to="/" className="rounded-pill btn btn-info fw-bold nav-hover">Close</Link>
+                <Link to="/customer/my-orders" className="rounded-pill btn btn-info fw-bold nav-hover">View My Orders</Link>
             </div>
         </div>
     );

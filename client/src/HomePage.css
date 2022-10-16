@@ -12,3 +12,12 @@
     flex-direction: row;
 
 }
+
+.error-page {
+    width:100%;
+    padding: 100px;
+    display: flex;
+    text-align: center;
+    flex-direction: row;
+
+}

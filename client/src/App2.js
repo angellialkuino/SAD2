@@ -47,7 +47,6 @@ function App() {
         {
             invite_type: '',
             material: '',
-            material_price: 0,
             event_date: '',
             motif: '',
             invite_title: '',
@@ -61,15 +60,17 @@ function App() {
     )
 
     const [items_array, setItems_array] = useState([
-        { item_id: 'm1', item_name: 'page', price: 30, quantity: 2 }
+        { item_id: 'm1', item_name: 'page', price: 30, quantity: 2 },
+        { item_id: 't1', item_name: 'plain print', price: 30, type:'all text' },
+        { item_id: 'e1', item_name: 'envelope', price: 30 },
     ])
 
     return <React.Fragment>
         <Routes>
-            {/* <Route path='*' element={<ErrorPage />} /> */}                
 
             {/* Main Pages */}
             <Route path="/" element={<NavBar/>}>
+                <Route path='*' element={<ErrorPage />} />                
                 <Route index element= {<HomePage/>} />
                 <Route path='about-us' element={<AboutUs/>} />
                 <Route path='sign-up' element={<SignUp />} />
@@ -80,6 +81,7 @@ function App() {
 
             {/* Customer Order Form */}
             <Route path="/form" element={<OrderNavBar/>}>
+                <Route path='*' element={<ErrorPage />} />                
                 <Route path='terms-and-conditions' element={<TermsAndConditions />} />
                 <Route path='order-form-1' element=
                 {<OrderForm1
@@ -134,6 +136,8 @@ function App() {
                 <Route path='shipping-address' element={<ShippingAddress />} />
                 <Route path='downpayment' element=
                     {<Downpayment
+                        setOrder={setOrder}
+                        setItems_array={setItems_array}
                         order={order}
                         items_array={items_array}
                         sumTotal={sumTotal}
@@ -141,11 +145,11 @@ function App() {
                         payment_method={payment_method}
                         setPayment_method={setPayment_method}
                     />} />
-                <Route path='order-payment' element={<OrderBeingConfirmed />} />
             </Route>
 
             {/* Customer Account and Order Pages */}
             <Route path="/customer" element={<CustNavBar/>}>
+                <Route path='*' element={<ErrorPage />} />        
                 <Route index element= {<HomePage/>} />
                 <Route path='about-us' element={<AboutUs/>} />
                 <Route path='my-account' element={<CustAccDetail />} />
@@ -153,11 +157,13 @@ function App() {
                 <Route path='order-details' element={<OrderDetailsCustomer />} />
                 <Route path='order-log' element={<OrderDocumentationCustomer />} />
                 <Route path='invitation-draft' element={<InvitationDraftCustomer />} />
+                <Route path='order-payment' element={<OrderBeingConfirmed />} />
             </Route>
 
             {/* Staff Pages */}
             <Route path="/staff" element={<StaffNavBar/>}>
                 <Route index element= {<HomePage/>} />
+                <Route path='*' element={<ErrorPage />} />                
                 <Route path='order-list' element={<OrderListStaff />} />
                 <Route path='order-details' element={<OrderDetailsStaff />} />
                 <Route path='invitation-draft' element={<InvitationDraftStaff />} />
@@ -168,6 +174,7 @@ function App() {
             {/* Owner Pages */}
             <Route path="/owner" element={<OwnerNavBar/>}>
                 <Route index element= {<HomePage/>} />
+                <Route path='*' element={<ErrorPage />} />                
                 <Route path='create-staff' element={<StaffAccountCreateOwner />} />
                 <Route path='view-staff' element={<StaffAccountOwner />} />
                 <Route path='staff-list' element={<StaffList />} />
@@ -176,8 +183,6 @@ function App() {
 
             </Route>
         </Routes>
-        {/* <AboutUs/> */}
-        {/* <InvitationDraftCustomer/> */}
     </React.Fragment>
 }
 

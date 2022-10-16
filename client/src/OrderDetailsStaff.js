@@ -8,20 +8,21 @@ const orderInfoJSON = require("./place-holder-json/getOrderDetails.json");
 
 function OrderDetailsStaff() {
 
-//placeholder coode******
-const {order_info}=orderInfoJSON;
-console.log(order_info);
-const orderID = "29dafda5-7848-4e1f-913b-a98652a7e0cd";
-//placeholder coode******
+// //placeholder coode******
+// const {order_info}=orderInfoJSON;
+// console.log(order_info);
+// const orderID = "29dafda5-7848-4e1f-913b-a98652a7e0cd";
+// //placeholder coode******
 
 const navigate = useNavigate();
 
-// const location = useLocation();
-// const orderID = location.state;
-const [orderInfo, setOrderInfo] = useState(order_info);
+const location = useLocation();
+const orderID = location.state;
+const [orderInfo, setOrderInfo] = useState([]);
 
+const [userInfo, setUserInfo] = useState({});
 
-const [inviteType, setUserIinviteType] = useState("N/A");
+const [inviteType, setInviteType] = useState("N/A");
 const [material, setMaterial] = useState("N/A");
 const [eventDate, setEventDate] = useState("N/A");
 const [motif, setMotif] = useState("N/A");
@@ -51,34 +52,35 @@ const [isDisabledArr, setIsDisabledArr] = useState(true);
 const [errMsg, setErrMsg] = useState('');
 const [successMsg, setSuccessMsg] = useState('');
 
-// useEffect( () => {
-//     const getOrderDetails = async () => {        
-//         await Axios.get('http://localhost:5000/api/order/order-info',
-//             {params:{order_id: orderID}, 
-//                 withCredentials: true }
-//         ).then((res) => {
-//             //console.log(res);
-//             //console.log(res.data.order_info);
-//             if(res.status===200){
-//                 setSuccessMsg(res.data.message);
-//                 setOrderInfo(res.data.order_info);
+useEffect( () => {
+    const getOrderDetails = async () => {        
+        await Axios.get('http://localhost:5000/api/order/order-info',
+            {params:{order_id: orderID}, 
+                withCredentials: true }
+        ).then((res) => {
+            //console.log(res);
+            //console.log(res.data.order_info);
+            if(res.status===200){
+                setSuccessMsg(res.data.message);
+                setOrderInfo(res.data.order_info);
                 
-//             }else if (res.status===400){
-//                 setErrMsg(res.data.message); 
-//             }
+            }else if (res.status===400){
+                setErrMsg(res.data.message); 
+            }
             
-//         });
-//     }
+        });
+    }
     
-// getOrderDetails();
-// }, [])
+getOrderDetails();
+}, [])
 
 useEffect(()=>{
 
     if (Object.keys(orderInfo).length !== 0){
-        //setOrderID(orderInfo.order.order_id);
-        //setUserID(orderInfo.order.user_id);
-        setUserIinviteType(orderInfo.order.invite_type);
+
+        setUserInfo(orderInfo.user_info);
+
+        setInviteType(orderInfo.order.invite_type);
         setMaterial(orderInfo.order.material);
         setEventDate(orderInfo.order.event_date.slice(0, 19).replace('T', ' '));
         setMotif(orderInfo.order.motif);
@@ -175,14 +177,14 @@ const updateOrder = async () => {
 
 //////////////////////////////
 
-const updateBillingInfo = ()=> {
+const updateBillingInfo = (arr)=> {
     let newUnitCost =0;
-    for( let x in itemsArray){
+    for( let x in arr){
         
-        if('quantity' in itemsArray[x]){
-            newUnitCost += itemsArray[x].price*itemsArray[x].quantity;
+        if('quantity' in arr[x] && itemsArray[x].quantity != null){
+            newUnitCost += arr[x].price*arr[x].quantity;
         }else{
-            newUnitCost += itemsArray[x].price;}
+            newUnitCost += arr[x].price;}
     }
     
     let partialTotal = subTotal-rushFee-unitCost + newUnitCost;
@@ -193,171 +195,186 @@ const updateBillingInfo = ()=> {
         setSubTotal(partialTotal)
     }
     setUnitCost(newUnitCost);
+    setIsDisabledArr(true);
+
 }
 
-const updateOrderDetails = async () => {
-    await Axios.put('http://localhost:5000/api/order/update-order-details',
-        { order_id: orderID, order_details: itemsArray },
-        { withCredentials: true }
-    ).then((res) => {
-        if(res.status===200){
-            setSuccessMsg(res.data.message);
-            setIsDisabledArr(true);
-            updateBillingInfo();
-        }else if (res.status===400){
-            setErrMsg(res.data.message); 
-        }  
-    }).catch((err) => {
-        console.log(err);
-    });
-}
+// const updateOrderDetails = async () => {
+//     console.log('update req arr',itemsArray);
+//     await Axios.put('http://localhost:5000/api/order/update-order-details',
+//         { order_id: orderID, order_details: itemsArray },
+//         { withCredentials: true }
+//     ).then((res) => {
+//         if(res.status===200){
+//             setSuccessMsg(res.data.message);
+//             setIsDisabledArr(true);
+//             updateBillingInfo();
+//         }else if (res.status===400){
+//             setErrMsg(res.data.message); 
+//         }  
+//     }).catch((err) => {
+//         console.log(err);
+//     });
+// }
 
 
 
     return ( //change the <p> to input tags :")"
         <div className='order-details-main'>
-        <div className=".order-first-col">
-            <div className='order-div'>
-                <h1>ORDER {orderID.slice(-4)}</h1>
+            <div className=".order-first-col">
+                <div className='order-div'>
+                    <h3>ORDER {orderID.slice(-4)}</h3>
 
-                <div className='white-inner-div1'>
-                    {/* Note: Copy pated from CustAccDetails so css styling classnames dont match!!!!!!! */}
-                    <div className="accDetail-body-field-od">
-                        <h3>Date Ordered</h3>
-                        <input value={dateOrdered.slice(0, 10)} type="text" disabled={true} onChange={(e) => setDateOrdered(e.target.value)} className="form-control" />
-                    </div>
-
-                    <div className="accDetail-body-field-od">
-                        <h3>Invitation Type</h3>
-                        <input value={inviteType} type="text" disabled={isDisabled} onChange={(e) => setUserIinviteType(e.target.value)} className="form-control" />
-                    </div>
-
-                    <div className="accDetail-body-field-od">
-                        <h3>Material</h3>
-                        <input value={material} type="text" disabled={isDisabled} onChange={(e) => setMaterial(e.target.value)} className="form-control" />
-                    </div>
-
-                    <div className="accDetail-body-field-od">
-                        <h3>Date of Event</h3>
-                        <input value={eventDate.slice(0, 10)} type="text" disabled={isDisabled} onChange={(e) => setEventDate(e.target.value)} className="form-control" />
-                    </div>
-
-                    <div className="accDetail-body-field-od">
-                        <h3>Motif</h3>
-                        <input value={motif} type="text" disabled={isDisabled} onChange={(e) => setMotif(e.target.value)} className="form-control" />
-                    </div>
-
-                    <div className="accDetail-body-field-od">
-                        <h3>Invitation Title</h3>
-                        <input value={inviteTitle} type="text" disabled={isDisabled} onChange={(e) => setInviteTitle(e.target.value)} className="form-control" />
-                    </div>
-
-                    <div className="accDetail-body-field-od">
-                        <h3>Font Style</h3>
-                        <input value={fontStyle} type="text" disabled={isDisabled} onChange={(e) => setFontStyle(e.target.value)} className="form-control" />
-                    </div>
-
-                    <div className="accDetail-body-field-od">
-                        <h3>Content Link</h3>
-                        <input value={contentLink} type="text" disabled={isDisabled} onChange={(e) => setContentLink(e.target.value)} className="form-control" />
-                    </div>
-
-                    <div className="accDetail-body-field-od">
-                        <h3>PEG Link</h3>
-                        <input value={pegLink} type="text" disabled={isDisabled} onChange={(e) => setPegLink(e.target.value)} className="form-control" />
-                    </div>
-
-                    <div className="accDetail-body-field-od">
-                        <h3>Claim Type</h3>
-                        <input value={claimType} type="text" disabled={isDisabled} onChange={(e) => setClaimType(e.target.value)} className="form-control" />
-                    </div>
-
-                    {isDisabled && <button onClick={()=>setIsDisabled(false)} className="btn btn-dark btn-lg btn-block">Edit Order Information</button>}
-                    {!isDisabled && <button onClick={updateOrder} className="btn btn-dark btn-lg btn-block">Update Order</button>}
-                        
-                </div>
-                <div className='order-details-footer-od'>
-                    <Link to='/staff/invitation-draft' state={{orderID:orderID}} className="rounded-pill btn-view-invite-od btn-info fw-bold nav-hover">View Invitation</Link>
-                    <Link to='/staff/order-log' state={{orderID:orderID}} className="rounded-pill btn-view-order-od btn-info fw-bold nav-hover">View Order Log</Link>
-                </div>
-            </div>
-
-
-        </div>
-
-            <div className='payment-status-div'>
-            <div className='order-div-bottom'>
-                <div>
-                    {!isDisabledArr && <>
-                        <CheckBoxTable array={itemsArray} onItemsArray={setItemsArray} updateReq={updateOrderDetails}/>
-                        {/* <button onClick={updateOrderDetails} className="btn-update-order-ods btn-dark btn-lg btn-block">!!Update Order</button> */}
-                    </>}
-
-                    {isDisabledArr && <>
-                        <table className ="order-details-table-od">
-                            <thead>
-                            <tr>
-                                <th>Item Name</th>
-                                <th>Type</th>
-                                <th>Color</th>
-                                <th>Size</th>
-                                <th>Quantity</th>
-                                <th>Price</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {itemsArray.map((val) => {
-                                return(
-                                    <tr key={val.item_name}> 
-                                        <td>{val.item_name}</td>
-                                        <td>{val.type}</td>
-                                        <td>{val.color}</td>
-                                        <td>{val.size}</td>
-                                        <td>{val.quantity}</td>
-                                        <td>{val.price}</td>
-                                    </tr>
-                                );
-                            })}  
-                            </tbody>                  
-                        </table> 
-                        <button onClick={()=>setIsDisabledArr(false)} className="btn-edit-order-items btn-dark btn-lg btn-block">Edit Order Items</button>
-                    </>}
-
-                </div>
-            </div>
-                <div className='payment-details'>
-                    <h1>Payment Details</h1>
                     <div className='white-inner-div1'>
-                    <p>Number of Invites: {numOfInv}</p>
-                        <p>Amount per Invite: {unitCost}</p>
-                        <p>Additional Fees:</p>
-                        <p>Total Revision Fee: {revFee || 0}</p>
-                        <p>Total Rush Fee: {rushFee || 0}</p>
-                        <p>Total Less than Min Fee: {lessMinFee || 0}</p>
-                        <h5>TOTAL AMOUNT DUE: {subTotal}</h5>
-                        <p>Payment Method: {paymentMethod}</p>
+                        {/* Note: Copy pated from CustAccDetails so css styling classnames dont match!!!!!!! */}
+                        <div className="accDetail-body-field-od">
+                            <h3>Date Ordered</h3>
+                            <input value={dateOrdered.slice(0, 10)} type="text" disabled={true} onChange={(e) => setDateOrdered(e.target.value)} className="form-control" />
+                        </div>
+
+                        <div className="accDetail-body-field-od">
+                            <h3>Invitation Type</h3>
+                            <input value={inviteType} type="text" disabled={isDisabled} onChange={(e) => setInviteType(e.target.value)} className="form-control" />
+                        </div>
+
+                        <div className="accDetail-body-field-od">
+                            <h3>Material</h3>
+                            <input value={material} type="text" disabled={isDisabled} onChange={(e) => setMaterial(e.target.value)} className="form-control" />
+                        </div>
+
+                        <div className="accDetail-body-field-od">
+                            <h3>Date of Event</h3>
+                            <input value={eventDate.slice(0, 10)} type="text" disabled={isDisabled} onChange={(e) => setEventDate(e.target.value)} className="form-control" />
+                        </div>
+
+                        <div className="accDetail-body-field-od">
+                            <h3>Motif</h3>
+                            <input value={motif} type="text" disabled={isDisabled} onChange={(e) => setMotif(e.target.value)} className="form-control" />
+                        </div>
+
+                        <div className="accDetail-body-field-od">
+                            <h3>Invitation Title</h3>
+                            <input value={inviteTitle} type="text" disabled={isDisabled} onChange={(e) => setInviteTitle(e.target.value)} className="form-control" />
+                        </div>
+
+                        <div className="accDetail-body-field-od">
+                            <h3>Font Style</h3>
+                            <input value={fontStyle} type="text" disabled={isDisabled} onChange={(e) => setFontStyle(e.target.value)} className="form-control" />
+                        </div>
+
+                        <div className="accDetail-body-field-od">
+                            <h3>Content Link</h3>
+                            <input value={contentLink} type="text" disabled={isDisabled} onChange={(e) => setContentLink(e.target.value)} className="form-control" />
+                        </div>
+
+                        <div className="accDetail-body-field-od">
+                            <h3>PEG Link</h3>
+                            <input value={pegLink} type="text" disabled={isDisabled} onChange={(e) => setPegLink(e.target.value)} className="form-control" />
+                        </div>
+
+                        <div className="accDetail-body-field-od">
+                            <h3>Claim Type</h3>
+                            <input value={claimType} type="text" disabled={isDisabled} onChange={(e) => setClaimType(e.target.value)} className="form-control" />
+                        </div>
+
+                        {isDisabled && <button onClick={()=>setIsDisabled(false)} className="btn btn-dark btn-lg btn-block">Edit Order Information</button>}
+                        {!isDisabled && <button onClick={updateOrder} className="btn btn-dark btn-lg btn-block">Update Order</button>}
+                            
+                    </div>
+                    <div className='order-details-footer-od'>
+                        <Link to='/staff/invitation-draft' state={{orderID:orderID}} className="rounded-pill btn-view-invite-od btn-info fw-bold nav-hover">View Invitation</Link>
+                        <Link to='/staff/order-log' state={{orderID:orderID}} className="rounded-pill btn-view-order-od btn-info fw-bold nav-hover">View Order Log</Link>
+                    </div>
+                </div>
+
+                <div className='order-div-bottom'>
+                    <div>
+                        {!isDisabledArr && <>
+                            <CheckBoxTable orderID={orderID} itemsArray={itemsArray} setItemsArray={setItemsArray} updateBillingInfo={updateBillingInfo}/>
+                        </>}
+
+                        {isDisabledArr && <>
+                            <table className ="order-details-table-od">
+                                <thead>
+                                <tr>
+                                    <th>Item Name</th>
+                                    <th>Type</th>
+                                    <th>Color</th>
+                                    <th>Size</th>
+                                    <th>Quantity</th>
+                                    <th>Price</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {itemsArray.map((val) => {
+                                    return(
+                                        <tr key={val.item_name}> 
+                                            <td>{val.item_name}</td>
+                                            <td>{val.type}</td>
+                                            <td>{val.color}</td>
+                                            <td>{val.size}</td>
+                                            <td>{val.quantity}</td>
+                                            <td>{val.price}</td>
+                                        </tr>
+                                    );
+                                })}  
+                                </tbody>                  
+                            </table> 
+                            <button onClick={()=>setIsDisabledArr(false)} className="btn-edit-order-items btn-dark btn-lg btn-block">Edit Order Items</button>
+                        </>}
+
+                    </div>
+                </div>
+            </div>
+
+            <div className='payment-status-div'>            
+                <div className='payment-details'>
+                    <h3>Payment Details</h3>
+                    <div className='white-inner-div1'>
+                        <div className="padding">
+                            <h4>Billing Info</h4>
+                            <p>Number of Invites: {numOfInv}</p>
+                            <p>Amount per Invite: {unitCost}</p>
+                            <p>Additional Fees:</p>
+                            <p>&nbsp;&nbsp; Revision Fee: {revFee || 0}</p>
+                            <p>&nbsp;&nbsp; Rush Fee: {rushFee || 0}</p>
+                            <p>&nbsp;&nbsp; Less than Min Fee: {lessMinFee || 0}</p>
+                            <h5>Total Amount Due: {subTotal}</h5>
+                            <p>Payment Method: {paymentMethod}</p>
+                        </div>
+                        <div>
+                            <h4>Customer Info</h4>
+                            <p>Name: {userInfo.full_name}</p>
+                            <p>Email: {userInfo.email}</p>
+                            <p>Phone Number: {userInfo.phone_number}</p>
+                            <p>FaceBook Accountt: {userInfo.fb_account}</p>
+                            <p>Address: {userInfo.address}</p>
+                            <p>Barangay: {userInfo.barangay}</p>
+                            <p>Postal Code: {userInfo.postal_code}</p>
+                        </div>
                     </div>
                 </div>
 
                 <div className='order-status'>
-                    <h1>Order Status</h1>
+                    <h3>Order Status</h3>
                     <div className='white-inner-div2'>
                         <h5>Invites Should Be Finished by:</h5>
                         <p>{orderDeadline.slice(0, 10)}</p>
 
                         <select name="orderStatus" value={orderStatus} onChange={updateOrderStatus}>
-                            {/* <option value={orderStatus} disabled hidden>{orderStatus}</option> */}
+                            <option value="Canceled" disabled hidden>Canceled</option>
                             <option value="Pending">Pending</option>
                             <option value="Creating">Creating</option>
                             <option value="Finalizing">Finalizing</option>
                             <option value="Ready to Claim!">Ready to Claim!</option>
                             <option value="Completed">Completed</option>
                         </select>
-                        <div className='order-status-button-row'>
+                        <div className='cancel-button order-status-button-row'>
                             <button onClick={cancelOrder} className='button'>Cancel Order</button>
                         </div>
                     </div>
                 </div>
+                
             </div>
         </div>
     );

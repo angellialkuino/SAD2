@@ -11,6 +11,7 @@ exports.createUser = async (userData,role) => {
         userData.role = role;
         await trx("users").insert(userData);
     });
+    return userData.user_id;
 };
 
 exports.findUser = async (email) => {

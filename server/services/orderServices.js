@@ -37,13 +37,15 @@ exports.computePrice = async (itemsArray) => {
             .select('price')
             .where({ item_id: itemsArray[x].item_id});
 
-            if('quantity' in itemsArray[x]){
+            if('quantity' in itemsArray[x] && itemsArray[x].quantity != null){
+                console.log(`quantity obj \n${JSON.stringify(itemsArray[x])}`);
                 unitPrice += price[0].price*itemsArray[x].quantity;
             }else{
+                console.log(`no quantity obj \n${JSON.stringify(itemsArray[x])}`);
                 unitPrice += price[0].price;}
 
         }}); 
-    
+    console.log(unitPrice);
     return unitPrice;
 };
 
@@ -77,7 +79,9 @@ const isRush = (date) => {
 
 //create new order
 exports.createOrder = async (order, itemsArray, paymentMethod) => {
-    
+    if ('material_price' in order) {
+        delete order.material_price;
+    }
     await db.transaction(async (trx) => {
         order.order_id = uuid.v4();
         await trx("order").insert(order);
@@ -114,6 +118,8 @@ exports.createOrder = async (order, itemsArray, paymentMethod) => {
         );
     });
 
+    return order.order_id;
+
 };
 
 //find if order exists
@@ -140,12 +146,15 @@ exports.viewOrder = async (order) => {
         billingInfo = await trx("billing_info")
                         .select('*')
                         .where({ order_id: order.order_id});
+        userInfo = await trx("users")
+                        .select('*')
+                        .where({ user_id: order.user_id});
     
     });
 
     //add query for order purchase details
 
-    return {order:order, order_details: orderDetails, billing_info: billingInfo[0]};
+    return {order:order, order_details: orderDetails, billing_info: billingInfo[0], user_info:userInfo[0]};
 
 }
 

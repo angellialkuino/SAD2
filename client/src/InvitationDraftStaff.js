@@ -64,18 +64,18 @@ function InvitationDraftStaff() {
             <div className='invitation-draft-inner-frame'>
                  {path && <img className='draft-img' src={path}/>}
                  {text && <p>{text}</p>}
-
             </div>
 
-            <div className='order-being-confirmed-footer'>
+            {/* <div className='.order-being-confirmed-footer'> */}
                 <form className='invitationdraft_form' onSubmit={onSubmitHandler}>
                     {/* Choose File button */}
                     <button className='button-Filechosen btn-info fw-bold nav-hover'><input type="file" onChange={imageChangeHandler} /></button>
                     <button className='button-updatepicture btn-info fw-bold nav-hover' type="submit">Update Picture</button>
+                    <button className='button-backinvitation btn-info fw-bold nav-hover' onClick={() => navigate(-1)}>Back</button>
+
                 </form>
                 {/* <button className='button'>Update Picture</button> */}
-            </div>
-            <button className='button-backinvitation btn-info fw-bold nav-hover' onClick={() => navigate(-1)}>Back</button>
+            {/* </div> */}
         </div>
     );
 }

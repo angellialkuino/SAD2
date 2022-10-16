@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link,useOutletContext,useNavigate } from 'react-router-dom';
 import Axios from "axios";
 import './ShippingAddress.css';
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
@@ -9,6 +9,9 @@ const FULLNAME_REGEX = /(^[A-Za-z]{3,16})([ ]{0,1})([A-Za-z]{3,16})?([ ]{0,1})?(
 const PHONENUMBER_REGEX = /^[0][1-9]\d{9}$|^[1-9]\d{9}$/g;
 
 function ShippingAddress() {
+    const navigate = useNavigate();
+    const userID = useOutletContext();
+
     const errRef = useRef();
 
     const [phoneNumber, setPhoneNumber] = useState('')
@@ -40,7 +43,7 @@ function ShippingAddress() {
         try {
             const response = await Axios.put('http://localhost:5000/api/customer/update',
                 {
-                    user_id: "",
+                    user_id: userID,
                     phone_number: phoneNumber,
                     address: address,
                     barangay: barangay,
@@ -50,11 +53,8 @@ function ShippingAddress() {
                     withCredentials: true
                 }
             );
-            console.log(response)
-            setPhoneNumber('');
-            setAddress('');
-            setBarangay('');
-            setPostalCode('');
+            console.log(response);
+            navigate("/form/downpayment");
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('No Server Response');
@@ -137,7 +137,7 @@ function ShippingAddress() {
                 </form>
                 <div className='form1-footer'>
                     <Link to='/form/order-form-5' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
-                    <Link to='/form/downpayment' className="rounded-pill btn btn-info fw-bold nav-hover" onClick={handleShippingAddress}>Next</Link>
+                    <button className="rounded-pill btn btn-info fw-bold nav-hover" onClick={handleShippingAddress}>Next</button>
                 </div>
             </div>
         </>

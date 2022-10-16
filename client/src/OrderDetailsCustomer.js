@@ -1,25 +1,29 @@
 import React, { useState, useEffect, useRef } from "react";
 import Axios from 'axios';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './OrderDetails.css';
 const orderInfoJSON = require("./place-holder-json/getOrderDetails.json");
 
 
 function OrderDetailsCustomer() {
-    //placeholder coode******
-    const {order_info}=orderInfoJSON;
-    console.log(order_info);
-    const orderID = "29dafda5-7848-4e1f-913b-a98652a7e0cd";
-    //placeholder coode******
+    // //placeholder coode******
+    // const {order_info}=orderInfoJSON;
+    // console.log(order_info);
+    // const orderID = "29dafda5-7848-4e1f-913b-a98652a7e0cd";
+    // //placeholder coode******
 
-    // const location = useLocation();
-    // const {orderID} = location.state;
+    const navigate =useNavigate();
+    const location = useLocation();
+    const {orderID} = location.state;
 
-    const [orderInfo, setOrderInfo] = useState(order_info);    
+    const [orderInfo, setOrderInfo] = useState([]);
+    
+    const [userInfo, setUserInfo] = useState({});
+    
     
     //const [orderID, setOrderID] = useState("2993f16f-5ea2-4177-9d5e-1a4ac76586be");
     const [userID, setUserID] = useState("N/A");
-    const [inviteType, setUserIinviteType] = useState("N/A");
+    const [inviteType, setInviteType] = useState("N/A");
     const [material, setMaterial] = useState("N/A");
     const [eventDate, setEventDate] = useState("N/A");
     const [motif, setMotif] = useState("N/A");
@@ -78,7 +82,7 @@ function OrderDetailsCustomer() {
 
             //setOrderID(orderInfo.order.order_id);
             // setUserID(orderInfo.order.user_id);
-            setUserIinviteType(orderInfo.order.invite_typ);
+            setInviteType(orderInfo.order.invite_type);
             setMaterial(orderInfo.order.material);
             setEventDate(orderInfo.order.event_date.slice(0, 10));
             setMotif(orderInfo.order.motif);
@@ -103,32 +107,69 @@ function OrderDetailsCustomer() {
         }
     },[orderInfo])
 
+    const cancelOrder = async () => {
+        await Axios.put('http://localhost:5000/api/order/cancel-order',
+            { order_id: orderID, order_status: "Canceled" },
+            { withCredentials: true }
+        ).then((res) => {
+            if(res.status===200){
+                setSuccessMsg(res.data.message);
+                navigate("/customer/my-orders");
+                // Show pop up? then Navigate to order list!!!
+            }else if (res.status===400){
+                setErrMsg(res.data.message); 
+            }
+        }).catch((err) => {
+            console.log(err);
+        });
+    }
+
     return ( 
         <div className='order-details-main'>
             <div className='order-div'>
-                <h1>ORDER {orderID.slice(-4)}</h1>
+                <h3>ORDER {orderID.slice(-4)}</h3>
 
                 <div className='white-inner-div1'>
+                    <div className="accDetail-body-field-od">
                     <h5>Date Ordered</h5>
                     <p>{dateOrdered}</p>
+                    </div>
+                    <div className="accDetail-body-field-od">
                     <h5>Invitation Type</h5>
                     <p>{inviteType}</p>
+                    </div>
+                    <div className="accDetail-body-field-od">
                     <h5>Material</h5>
                     <p>{material}</p>
+                    </div>
+                    <div className="accDetail-body-field-od">
                     <h5>Date of Event</h5>
                     <p>{eventDate}</p>
+                    </div>
+                    <div className="accDetail-body-field-od">
                     <h5>Motif</h5>
                     <p>{motif}</p>                    
+                    </div>
+                    <div className="accDetail-body-field-od">
                     <h5>Invitation Title</h5>
                     <p>{inviteTitle}</p>
+                    </div>
+                    <div className="accDetail-body-field-od">
                     <h5>Font Style</h5>
                     <p>{fontStyle}</p>
+                    </div>
+                    <div className="accDetail-body-field-od">
                     <h5>Content Link</h5>
                     <p>{contentLink}</p>
+                    </div>
+                    <div className="accDetail-body-field-od">
                     <h5>PEG Link</h5>
                     <p>{pegLink}</p>
+                    </div>
+                    <div className="accDetail-body-field-od">
                     <h5>Claim Type</h5>
                     <p>{claimType}</p>
+                    </div>
                 </div>
 
                 <div className="order-table-div">
@@ -172,26 +213,42 @@ function OrderDetailsCustomer() {
             </div>
             <div className='payment-status-div'>
                 <div className='payment-details'>
-                    <h1>Payment Details</h1>
+                    <h3>Payment Details</h3>
                     <div className='white-inner-div1'>
-                        <p>Number of Invites: {numOfInv}</p>
-                        <p>Amount per Invite: {unitCost}</p>
-                        <p>Additional Fees:</p>
-                        <p>Total Revision Fee: {revFee || 0}</p>
-                        <p>Total Rush Fee: {rushFee || 0}</p>
-                        <p>Total Less than Min Fee: {lessMinFee || 0}</p>
-                        <h5>TOTAL AMOUNT DUE: {subTotal}</h5>
-                        <p>Payment Method: {paymentMethod}</p>
-
-                    </div>
+                        <div className="padding">
+                                <h4>Billing Info</h4>
+                                <p>Number of Invites: {numOfInv}</p>
+                                <p>Amount per Invite: {unitCost}</p>
+                                <p>Additional Fees:</p>
+                                <p>&nbsp;&nbsp; Revision Fee: {revFee || 0}</p>
+                                <p>&nbsp;&nbsp; Rush Fee: {rushFee || 0}</p>
+                                <p>&nbsp;&nbsp; Less than Min Fee: {lessMinFee || 0}</p>
+                                <h5>Total Amount Due: {subTotal}</h5>
+                                <p>Payment Method: {paymentMethod}</p>
+                            </div>
+                            <div>
+                                <h4>Customer Info</h4>
+                                <p>Name: {userInfo.full_name}</p>
+                                <p>Email: {userInfo.email}</p>
+                                <p>Phone Number: {userInfo.phone_number}</p>
+                                <p>FaceBook Accountt: {userInfo.fb_account}</p>
+                                <p>Address: {userInfo.address}</p>
+                                <p>Barangay: {userInfo.barangay}</p>
+                                <p>Postal Code: {userInfo.postal_code}</p>
+                            </div>
+                        </div>
                 </div>
                 <div className='order-status'>
-                    <h1>Order Status</h1>
+                    <h3>Order Status</h3>
                     <div className='white-inner-div2'>
                         <h5>Invites Should Be Finished by:</h5>
                         <p>{orderDeadline}</p>
                         <h3>Status: {orderStatus}</h3>
-                        <button className='button'>Cancel Order</button>
+                        <div className="cancel-button"><button className='button' onClick={cancelOrder}>Cancel Order</button></div>
+                        <div className="cancelation-clause">
+                            <p>*In case of cancellation, downpayment will be forfeited. Client will also be charged P1,500.00 for layout fee. </p>
+                            <p>*If the order has been completed, client will be charged full cost. </p>
+                        </div>
                     </div>
                 </div>
             </div>

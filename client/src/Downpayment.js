@@ -1,9 +1,11 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link,useOutletContext,useNavigate } from 'react-router-dom';
 import './Downpayment.css';
 import Axios from 'axios';
 
-function Downpayment({ order, items_array, payment_method, setPayment_method, sumTotal }) {
+function Downpayment({ order, setOrder, items_array, setItems_array, payment_method, setPayment_method, sumTotal }) {
+    const userID = useOutletContext();
+    const navigate = useNavigate();
     const errRef = useRef();
     const [errMsg, setErrMsg] = useState('');
     const additionalFees = useRef();
@@ -12,7 +14,11 @@ function Downpayment({ order, items_array, payment_method, setPayment_method, su
     const [finalTotal, setFinalTotal] =useState(0);
 
 
-    useEffect(() => {
+    useEffect(() => 
+    {
+        order.user_id=userID;
+        order.date_ordered = new Date().toISOString().slice(0, 19).replace('T', ' ');
+        order.order_status = "pending";
         console.log(`sum:${sumTotal}`);
         console.log(order);
         console.log(items_array);
@@ -20,6 +26,9 @@ function Downpayment({ order, items_array, payment_method, setPayment_method, su
         if (order.num_of_invites < 30) {
             setLessMin(1500);
             //sumTotal.current += 1500;
+        }else{
+            setLessMin(0);
+
         }
             
 
@@ -36,6 +45,8 @@ function Downpayment({ order, items_array, payment_method, setPayment_method, su
             //sumTotal.current += sumTotal.current * 0.40;
         setRushFee(((sumTotal*order.num_of_invites)+lessMin )* 0.40,
         setFinalTotal(((sumTotal*order.num_of_invites)+lessMin+rushFee)));
+        }else{
+        setFinalTotal(((sumTotal*order.num_of_invites)+lessMin+rushFee));
         }
         
 
@@ -54,10 +65,20 @@ function Downpayment({ order, items_array, payment_method, setPayment_method, su
                     withCredentials: true
                 }
             );
-            console.log(response)
+            console.log(response);
+            console.log(response.data.order_id);
+            setItems_array([
+                { item_id: 'm1', item_name: 'page', price: 30, quantity: 2 },
+                { item_id: 't1', item_name: 'plain print', price: 30, type:'all text' },
+                { item_id: 'e1', item_name: 'envelope', price: 30 },
+            ]);
+            Object.keys(order).forEach(key => {
+                order[key] = "";
+              });
+            navigate("/customer/order-payment", {state: response.data.order_id});
         } catch (err) {
             if (!err?.response) {
-                setErrMsg('No Server Response');
+                setErrMsg(err.response.data.message);
             } else if (err.response?.status === 409) {
                 setErrMsg('Submitted Already');
             } else {
@@ -92,10 +113,10 @@ function Downpayment({ order, items_array, payment_method, setPayment_method, su
                     <div className="order_form_10-content-right">
                         <p>Unit Cost: {sumTotal}</p>
                         <p>Number of Invites: {order.num_of_invites} </p>
-                        <p>Additional Fees:</p>
-                        <p>Less than Minimum Fee: {lessMin} </p>
-                        <p>Rush Fee: {rushFee} </p>
-                        <p>Subtotal: {finalTotal}</p>
+                        <h5>Additional Fees:</h5>
+                        <p>&nbsp;&nbsp;Less than Minimum Fee: {lessMin} </p>
+                        <p>&nbsp;&nbsp;Rush Fee: {rushFee} </p>
+                        <h5>Subtotal: {finalTotal}</h5>
                         <p>Payment Method: {payment_method} </p>
                     </div>
                 </div>
@@ -115,8 +136,8 @@ function Downpayment({ order, items_array, payment_method, setPayment_method, su
                     </div>
                 </div>
                 <div className="form1-footer">
-                    <Link to='/shipping-address' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
-                    <Link to='/order-payment' className="rounded-pill btn btn-info fw-bold nav-hover" onClick={handleSubmitOrder}>Next</Link>
+                    <Link to='/form/order-form-5' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
+                    <button className="rounded-pill btn btn-info fw-bold nav-hover" onClick={handleSubmitOrder}>Next</button>
                 </div>
             </div>
         </>

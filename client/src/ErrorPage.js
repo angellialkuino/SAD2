@@ -1,8 +1,9 @@
 import React from 'react'
+import './HomePage.css'
 
 function ErrorPage() {
     return (
-        <div>Error! Page not found.</div>
+        <div className="error-page"><h1>Error! Page not found.</h1></div>
     )
 }
 

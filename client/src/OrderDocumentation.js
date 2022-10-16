@@ -8,15 +8,16 @@ import './OrderDocumentationTable.css'
 export default function OrderDocumentation() {
     const navigate = useNavigate();
 
-    // const location = useLocation();
-    // const {orderID} = location.state;
+    const location = useLocation();
+    const {orderID} = location.state;
 
-    const [orderID, setOrderID] = useState("2993f16f-5ea2-4177-9d5e-1a4ac76586be");
+    //const [orderID, setOrderID] = useState("2993f16f-5ea2-4177-9d5e-1a4ac76586be");
     const [orderDocs, setOrderDocs] = useState([]);
 
     const [date, setDate] = useState(new Date().toISOString().slice(0, 19).replace('T', ' '));
     const [description, setDescription] = useState("");
-
+    const [isSorted, setIsSorted] = useState(false);
+    let temparr;
     
     
     useEffect(  () => {
@@ -26,12 +27,19 @@ export default function OrderDocumentation() {
                 {withCredentials: true }
             ).then((res) => {
                 if(res.data.entries.length > 0){
-                    setOrderDocs(res.data.entries);
+                    setOrderDocs(res.data.entries.sort(function(a,b){
+                        // Turn your strings into dates, and then subtract them
+                        // to get a value that is either negative, positive, or zero.
+                        return new Date(a.date) - new Date(b.date);
+                    }));
                 }
             });
         }
         getOrderDocs();
+        
     }, [])
+
+   
 
     const addEntry = async () => {
 
@@ -71,14 +79,14 @@ export default function OrderDocumentation() {
                                 <th className="oh_th-th">Date</th>
                                 <th className="oh_th-th">Description</th>
                             </tr>
-                            {(orderDocs.length > 0 ) &&
-                            orderDocs.map((entry) => (
+                            {orderDocs.length>0 ?
+                            orderDocs.map((entry,index) => (
                                 <tr key={entry.date} className="oh_tr-tr">
                                     <td className="oh_td-td">{entry.date.slice(0,10)}</td>
                                     <td className="oh_td-td">{entry.description}</td>
 
                                 </tr>
-                            ))}
+                            )) : null}
 
                                 <tr className="oh_tr-tr">
                                     <td className="oh_td-td">{date.slice(0,10)}</td>

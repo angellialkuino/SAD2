@@ -12,10 +12,10 @@ function OrderPickup() {
             <img src={process.env.PUBLIC_URL + '/images/map.jpg'} alt="Map" className='map-img' />
             <div className='map'>
                 <h5>Door 3, JADEG Bldg., 80 V. Mapa St, Poblacion District, Davao City, 8000 Davao del Sur</h5>
-            </div>
-            <div className='order-pickup-footer'>
-                <Link to='/form/order-form-5' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
-                <Link to='/form/downpayment' className="rounded-pill btn btn-info fw-bold nav-hover">Proceed</Link>
+                <div className='op-btn-footer'>
+                    <Link to='/form/order-form-5' className="rounded-pill btn-op-back btn-info fw-bold nav-hover">Back</Link>
+                    <Link to='/form/downpayment' className="rounded-pill btn-op-proceed btn-info fw-bold nav-hover">Proceed</Link>
+                </div>
             </div>
         </div>
     );

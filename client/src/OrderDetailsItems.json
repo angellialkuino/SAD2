@@ -1,77 +1,77 @@
 [
     {
-        "item_id":"ca1", "item_name":"menu cards", "selected":false
+        "item_id":"ca1", "item_name":"menu cards", "selected":false, "price": 20
     },
     {
-        "item_id":"ca2", "item_name":"seat cards", "selected":false
+        "item_id":"ca2", "item_name":"seat cards", "selected":false, "price": 20 
     },
     {
-        "item_id":"ca3", "item_name":"table cards", "selected":false
+        "item_id":"ca3", "item_name":"table cards", "selected":false, "price": 20
     },
     {
-        "item_id":"co1", "item_name":"translucent cover", "selected":false
+        "item_id":"co1", "item_name":"translucent cover", "selected":false, "price": 60
     },
     {
-        "item_id":"co2", "item_name":"trifold cover", "selected":false
+        "item_id":"co2", "item_name":"trifold cover", "selected":false, "price": 60
     },
     {
-        "item_id":"co3", "item_name":"cover with print", "selected":false
+        "item_id":"co3", "item_name":"cover with print", "selected":false, "price": 120
     },
     {
-        "item_id":"co4", "item_name":"lasercut cover", "selected":false
+        "item_id":"co4", "item_name":"lasercut cover", "selected":false, "price": 60
     },
     {
-        "item_id":"d1", "item_name":"wax seal", "selected":false,
+        "item_id":"d1", "item_name":"wax seal", "selected":false, "price": 15,
         "type": "","color": ""
     },
     {
-        "item_id":"d2", "item_name":"dried flowers", "selected":false
+        "item_id":"d2", "item_name":"dried flowers", "selected":false, "price": 40
     },
     {
-        "item_id":"d3", "item_name":"brooch", "selected":false,
+        "item_id":"d3", "item_name":"brooch", "selected":false, "price": 50,
         "type": "","color": ""
     },
     {
-        "item_id":"e1", "item_name":"envelope", "selected":false,
+        "item_id":"e1", "item_name":"envelope", "selected":false, "price": 30,
         "type": "","color": ""
     },
     {
-        "item_id":"e2", "item_name":"envelope liner", "selected":false
+        "item_id":"e2", "item_name":"envelope liner", "selected":false, "price": 10
     },
     {
-        "item_id":"e3", "item_name":"envelope lock", "selected":false
+        "item_id":"e3", "item_name":"envelope lock", "selected":false, "price": 5
     },
     {
-        "item_id":"m1", "item_name":"page", "selected":false,
+        "item_id":"m1", "item_name":"page", "selected":false, "price": 30,
         "type": "","color": "", "size": "", "quantity": 0
     },
     {
-        "item_id":"m2", "item_name":"acrylic page", "selected":false,
+        "item_id":"m2", "item_name":"acrylic page", "selected":false, "price": 180,
         "size": ""
     },
     {
-        "item_id":"p1", "item_name":"RSVP", "selected":false
+        "item_id":"p1", "item_name":"RSVP", "selected":false, "price": 20
     },
     {
-        "item_id":"p2", "item_name":"monetary gift page", "selected":false
+        "item_id":"p2", "item_name":"monetary gift page", "selected":false, "price": 20
     },
     {
-        "item_id":"p3", "item_name":"his/her vows", "selected":false
+        "item_id":"p3", "item_name":"his/her vows", "selected":false, "price": 80
     },
     {
-        "item_id":"t1", "item_name":"plain print", "selected":false,
+        "item_id":"t1", "item_name":"plain print", "selected":false, "price": 30,
         "color": ""
     },
     {
-        "item_id":"t2", "item_name":"foil print header", "selected":false,
+        "item_id":"t2", "item_name":"foil print header", "selected":false, "price": 40,
         "color": ""
     },
     {
-        "item_id":"t3", "item_name":"foil print all", "selected":false,
+        "item_id":"t3", "item_name":"foil print all", "selected":false, "price": 60,
         "color": ""
     },
     {
-        "item_id":"t4", "item_name":"emboss", "selected":false
+        "item_id":"t4", "item_name":"emboss", "selected":false, "price": 20
     }
 
 ]

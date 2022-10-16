@@ -44,7 +44,6 @@ function NavBar() {
                     <li><Link to='/login' className="rounded-pill btn btn-info nav-hover">Login</Link></li>
                 </ul>
             </nav>
-
         <Outlet/>
         </>}</>
     );

@@ -5,25 +5,25 @@ import { RunningPrice } from './RunningPrice';
 import OrderForm3 from './OrderForm3';
 
 function OrderForm2({ sumTotal, setSumTotal, order, setOrder, items_array, setItems_array }) {
-    const [checked, setChecked] = useState(false);
+    const [checked, setChecked] = useState(true);
     const [hidden1, setHidden1] = useState(true);
     const [hidden2, setHidden2] = useState(true);
     const [e2Checked, sete2Checked] = useState(false);
     const [e3Checked, sete3Checked] = useState(false);
     const [allTextChecked1, setAllTextChecked1] = useState(false);
     const [allTextChecked2, setAllTextChecked2] = useState(false);
-    const [allTextChecked3, setAllTextChecked3] = useState(false);
+    const [allTextChecked3, setAllTextChecked3] = useState(true);
     const [headerTextChecked, setHeaderTextChecked] = useState(false);
-    let tempSum = 0;
 
     useEffect(() => {
         <RunningPrice items_array={items_array} />
         //sumTotal.current = 0;
+        let tempSum = 0;
         items_array.forEach(element => {
             if ('price' in element) {
                 //sumTotal.current += ('quantity' in element ? element.price*element.quantity : element.price);
                 tempSum += (('quantity' in element) ? element.price * element.quantity : element.price);
-                ('quantity' in element) ? console.log(`1: ${element.price * element.quantity}`) : console.log(`2: ${element.price}`)
+                // ('quantity' in element) ? console.log(`1: ${element.price * element.quantity}`) : console.log(`2: ${element.price}`)
             }
         });
         setSumTotal(tempSum);
@@ -31,10 +31,10 @@ function OrderForm2({ sumTotal, setSumTotal, order, setOrder, items_array, setIt
         // console.log(items_array);
     }, [items_array]);
 
-    useEffect(() => {
-        console.log(`on useEffect: ${items_array}`);
-        console.log(`total: ${sumTotal}`);
-    }, [sumTotal])
+    // useEffect(() => {
+    //     console.log(`on useEffect: ${items_array}`);
+    //     console.log(`total: ${sumTotal}`);
+    // }, [sumTotal])
 
     const handlePagesPaperAndColor = (e) => {
         if (e.target.value == 'Customize') {
@@ -58,7 +58,7 @@ function OrderForm2({ sumTotal, setSumTotal, order, setOrder, items_array, setIt
                 return {
                     ...obj,
                     size: e.target.childNodes[e.target.selectedIndex].getAttribute('id'),
-                    price: parseFloat(e.target.value) * parseFloat(items_array[0].quantity)
+                    price: parseFloat(e.target.value)
 
                 };
             }
@@ -77,7 +77,7 @@ function OrderForm2({ sumTotal, setSumTotal, order, setOrder, items_array, setIt
                     item_id: 'e1',
                     item_name: 'envelope',
                     color: e.target.value
-                }]);;
+                }]);
         }
         else {
             setItems_array(items_array.map(obj => {
@@ -106,7 +106,9 @@ function OrderForm2({ sumTotal, setSumTotal, order, setOrder, items_array, setIt
     }
 
     const handleEnvelope = (e) => {
-        setChecked(e.target.checked);
+        setChecked((prev) => {return !prev});
+        // console.log(checked);
+        // console.log(e.target.checked);
         if (e.target.checked === false) {
             sete2Checked(false);
             sete3Checked(false);
@@ -116,13 +118,16 @@ function OrderForm2({ sumTotal, setSumTotal, order, setOrder, items_array, setIt
                 }),
             );
         } else {
-            setItems_array(prevState =>
-                [...prevState, {
-                    item_id: 'e1',
-                    item_name: 'envelope',
-                    size: '6 x 8 in',
-                    price: 30
-                }]);
+            if( items_array.findIndex(object => object.item_id === 'e1') === -1){
+                setItems_array(prevState =>
+                    [...prevState, {
+                        item_id: 'e1',
+                        item_name: 'envelope',
+                        size: '6 x 8 in',
+                        price: 30
+                    }]);
+            }
+            
         }
     }
 
@@ -236,19 +241,6 @@ function OrderForm2({ sumTotal, setSumTotal, order, setOrder, items_array, setIt
                     type: 'header text',
                     price: parseFloat(e.target.value)
                 }]);
-        }
-        else {
-            setItems_array(items_array.map(obj => {
-                if (obj.type === 'header text') {
-                    return {
-                        ...obj,
-                        item_id: e.target.id,
-                        item_name: e.target.name,
-                        price: parseFloat(e.target.value)
-                    };
-                }
-                return obj;
-            }));
         }
 
         if (allTextChecked1 || allTextChecked2 || allTextChecked3) {
@@ -446,24 +438,24 @@ function OrderForm2({ sumTotal, setSumTotal, order, setOrder, items_array, setIt
                             </select>
                         </div></div>
 
-                    <div className='grid-item'><input type="checkbox" value="envelope" className='checkbox-circle'
+                    <div className='grid-item'><input type="checkbox" checked={checked} value="envelope" className='checkbox-circle'
                         onChange={handleEnvelope} /> Envelope</div>
                     <div className='grid-item'>
-                        <select name="envelope" id="envelope-select" onClick={handleEnvelopePaperAndColor} disabled={!checked}>
+                        <select name="envelope" id="envelope-select" onChange={handleEnvelopePaperAndColor} disabled={!checked}>
                             <option value="Let Crafters Haven handle it!">Let Crafters Haven handle it!</option>
                             <option value="Customize">Customize</option>
                         </select>
                     </div>
                     <div className='grid-item'>
-                        <select name="envelope" id="envelope-select" onClick={handleEnvelopeSize} disabled={!checked}>
+                        <select name="envelope" id="envelope-select" onChange={handleEnvelopeSize} disabled={!checked}>
                             <option id="6 x 8 in" value='30'>6 x 8 in</option>
                             <option id="7 x 9 in" value='40'>7 x 9 in</option>
                         </select>
                     </div>
                 </div>
                 <div className='row-group'>
-                    <input type="checkbox" value="10" checked={e2Checked} className={!checked ? 'checkbox-circle1' : 'checkbox-circle'} onClick={handleEnvelopeLiner} disabled={!checked} />Envelope Liner
-                    <input type="checkbox" value="5" checked={e3Checked} className={!checked ? 'checkbox-circle1' : 'checkbox-circle'} onClick={handleEnvelopeLock} disabled={!checked} />Envelope Lock
+                    <input type="checkbox" value="10" checked={e2Checked} className={!checked ? 'checkbox-circle1' : 'checkbox-circle'} onChange={handleEnvelopeLiner} disabled={!checked} />Envelope Liner
+                    <input type="checkbox" value="5" checked={e3Checked} className={!checked ? 'checkbox-circle1' : 'checkbox-circle'} onChange={handleEnvelopeLock} disabled={!checked} />Envelope Lock
                 </div>
                 {(!hidden1 || !hidden2) ? <OrderForm3
                     order={order}
@@ -496,9 +488,9 @@ function OrderForm2({ sumTotal, setSumTotal, order, setOrder, items_array, setIt
                     <h3>Other Pages</h3>
                 </div>
                 <div className='grid-container'>
-                    <div className='grid-item'><input type="checkbox" id="rsvp" value="20" name='other-pages' className='checkbox-circle' onClick={handleRSVP} />RSVP</div>
-                    <div className='grid-item'><input type="checkbox" id="monetary-gift-page" value="20" name='other-pages' className='checkbox-circle' onClick={handleMonetaryGiftPackage} />Monetary Gift Page</div>
-                    <div className='grid-item'><input type="checkbox" id="vows" value="80" name='other-pages' className='checkbox-circle' onClick={handleHisHerVows} />His/Her Vows</div>
+                    <div className='grid-item'><input type="checkbox" id="rsvp" value="20" name='other-pages' className='checkbox-circle' onChange={handleRSVP} />RSVP</div>
+                    <div className='grid-item'><input type="checkbox" id="monetary-gift-page" value="20" name='other-pages' className='checkbox-circle' onChange={handleMonetaryGiftPackage} />Monetary Gift Page</div>
+                    <div className='grid-item'><input type="checkbox" id="vows" value="80" name='other-pages' className='checkbox-circle' onChange={handleHisHerVows} />His/Her Vows</div>
                 </div>
 
                 <div className='row-group mt-5'>
@@ -519,9 +511,9 @@ function OrderForm2({ sumTotal, setSumTotal, order, setOrder, items_array, setIt
                     <h3>Cards</h3>
                 </div>
                 <div className='grid-container'>
-                    <div className='grid-item'><input type="checkbox" id="menu" value="20" name='cards' className='checkbox-circle' onClick={handleMenuCards} />Menu Cards</div>
-                    <div className='grid-item'><input type="checkbox" id="seat" value="20" name='cards' className='checkbox-circle' onClick={handleSeatCards} />Seat Cards</div>
-                    <div className='grid-item'><input type="checkbox" id="table" value="20" name='cards' className='checkbox-circle' onClick={handleTableCards} />Table Cards</div>
+                    <div className='grid-item'><input type="checkbox" id="menu" value="20" name='cards' className='checkbox-circle' onChange={handleMenuCards} />Menu Cards</div>
+                    <div className='grid-item'><input type="checkbox" id="seat" value="20" name='cards' className='checkbox-circle' onChange={handleSeatCards} />Seat Cards</div>
+                    <div className='grid-item'><input type="checkbox" id="table" value="20" name='cards' className='checkbox-circle' onChange={handleTableCards} />Table Cards</div>
                 </div>
                 <span className='total-footer'>
                     Total is subject to change. <b>Unit Cost: {sumTotal} Php</b>
