@@ -34,8 +34,8 @@ function CustMyOrders() {
                         myOrders.map((item) => {
                             return (
                                 <div className="custMyOrders-labels">
-                                    <h3>Order {item.order_id.slice(-4)}</h3>
-                                    <h5>Status: {item.order_status}</h5>
+                                    <h4 className="labels">Order {item.order_id.slice(-4)}</h4>
+                                    <h4 className="labels">Status: {item.order_status}</h4>
                                     <div className="orders-button-footer">
                                         {/* <button className="rounded-pill btn btn-info fw-bold nav-hover"> */}
                                             <Link to="/customer/order-details" className="rounded-pill btn btn-info fw-bold nav-hover" state={{ orderID: item.order_id }}>
