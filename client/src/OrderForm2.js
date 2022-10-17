@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './OrderForm2.css';
 import { RunningPrice } from './RunningPrice';
 import OrderForm3 from './OrderForm3';
 
 function OrderForm2({ sumTotal, setSumTotal, order, setOrder, items_array, setItems_array }) {
+    const navigate = useNavigate();
     const [checked, setChecked] = useState(true);
     const [hidden1, setHidden1] = useState(true);
     const [hidden2, setHidden2] = useState(true);
@@ -16,6 +17,12 @@ function OrderForm2({ sumTotal, setSumTotal, order, setOrder, items_array, setIt
     const [headerTextChecked, setHeaderTextChecked] = useState(false);
 
     useEffect(() => {
+        for (var key in order) {
+            if(order[key] == ''|| order[key]== null){
+                return navigate("/form/order-form-1");
+            }
+        }
+
         <RunningPrice items_array={items_array} />
         //sumTotal.current = 0;
         let tempSum = 0;

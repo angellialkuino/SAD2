@@ -16,6 +16,12 @@ function Downpayment({ order, setOrder, items_array, setItems_array, payment_met
 
     useEffect(() => 
     {
+        for (var key in order) {
+            if(order[key] == ''|| order[key]== null){
+                return navigate("/form/order-form-1");
+            }
+        }
+        
         order.user_id=userID;
         order.date_ordered = new Date().toISOString().slice(0, 19).replace('T', ' ');
         order.order_status = "pending";

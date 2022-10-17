@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import "./OrderForm4.css";
 import React from 'react';
 import { RunningPrice } from "./RunningPrice";
 
 function OrderForm4({ order, items_array, setItems_array, sumTotal, setSumTotal }) {
 
+    const navigate = useNavigate();
     const [toggleState, setToggleState] = useState(1);
     const [isColorDisabled, setIsColorDisabled] = useState(true);
 
@@ -13,6 +14,13 @@ function OrderForm4({ order, items_array, setItems_array, sumTotal, setSumTotal 
         setToggleState(index);
     };
 
+    useEffect(()=>{
+        for (var key in order) {
+            if(order[key] == ''|| order[key]== null){
+                return navigate("/form/order-form-1");
+            }
+        }
+    },[])
     useEffect(() => {
         //sumTotal.current = 0;
         let tempSum = 0;
