@@ -45,5 +45,5 @@
     height: 150px;
     width: 150px;
     border-radius: 2rem;
-    filter: brightness(60%);
+    filter: grayscale(100%);
 }
