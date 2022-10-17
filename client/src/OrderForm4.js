@@ -210,35 +210,35 @@ function OrderForm4({ order, items_array, setItems_array, sumTotal, setSumTotal 
                             <div className='boxes-4'>
                                 <label>
                                     <input disabled={isColorDisabled} type='radio' id='copper' name='wax-color' className='form1-radio' onClick={handleWaxColor} />
-                                    <img className='radio-img4' src={process.env.PUBLIC_URL + '/images/waxes/colors/2.jpg'} alt='wax color'></img>
+                                    <img className={isColorDisabled ? 'radio-img4-disabled' : 'radio-img4'} src={process.env.PUBLIC_URL + '/images/waxes/colors/2.jpg'} alt='wax color'></img>
                                 </label>
                                 <label>
                                     <input disabled={isColorDisabled} type='radio' id='royal blue' name='wax-color' className='form1-radio' onClick={handleWaxColor} />
-                                    <img className='radio-img4' src={process.env.PUBLIC_URL + '/images/waxes/colors/b.jpg'} alt='wax color'></img>
+                                    <img className={isColorDisabled ? 'radio-img4-disabled' : 'radio-img4'} src={process.env.PUBLIC_URL + '/images/waxes/colors/b.jpg'} alt='wax color'></img>
                                 </label>
                                 <label>
                                     <input disabled={isColorDisabled} type='radio' id='green' name='wax-color' className='form1-radio' onClick={handleWaxColor} />
-                                    <img className='radio-img4' src={process.env.PUBLIC_URL + '/images/waxes/colors/e.jpg'} alt='wax color'></img>
+                                    <img className={isColorDisabled ? 'radio-img4-disabled' : 'radio-img4'} src={process.env.PUBLIC_URL + '/images/waxes/colors/e.jpg'} alt='wax color'></img>
                                 </label>
                                 <label>
                                     <input disabled={isColorDisabled} type='radio' id='pink' name='wax-color' className='form1-radio' onClick={handleWaxColor} />
-                                    <img className='radio-img4' src={process.env.PUBLIC_URL + '/images/waxes/colors/g2.jpg'} alt='wax color'></img>
+                                    <img className={isColorDisabled ? 'radio-img4-disabled' : 'radio-img4'} src={process.env.PUBLIC_URL + '/images/waxes/colors/g2.jpg'} alt='wax color'></img>
                                 </label>
                                 <label>
                                     <input disabled={isColorDisabled} type='radio' id='silver' name='wax-color' className='form1-radio' onClick={handleWaxColor} />
-                                    <img className='radio-img4' src={process.env.PUBLIC_URL + '/images/waxes/colors/h.jpg'} alt='wax color'></img>
+                                    <img className={isColorDisabled ? 'radio-img4-disabled' : 'radio-img4'} src={process.env.PUBLIC_URL + '/images/waxes/colors/h.jpg'} alt='wax color'></img>
                                 </label>
                                 <label>
                                     <input disabled={isColorDisabled} type='radio' id='olive green' name='wax-color' className='form1-radio' onClick={handleWaxColor} />
-                                    <img className='radio-img4' src={process.env.PUBLIC_URL + '/images/waxes/colors/l.jpg'} alt='wax color'></img>
+                                    <img className={isColorDisabled ? 'radio-img4-disabled' : 'radio-img4'} src={process.env.PUBLIC_URL + '/images/waxes/colors/l.jpg'} alt='wax color'></img>
                                 </label>
                                 <label>
                                     <input disabled={isColorDisabled} type='radio' id='sky blue' name='wax-color' className='form1-radio' onClick={handleWaxColor} />
-                                    <img className='radio-img4' src={process.env.PUBLIC_URL + '/images/waxes/colors/m2.jpg'} alt='wax color'></img>
+                                    <img className={isColorDisabled ? 'radio-img4-disabled' : 'radio-img4'} src={process.env.PUBLIC_URL + '/images/waxes/colors/m2.jpg'} alt='wax color'></img>
                                 </label>
                                 <label>
                                     <input disabled={isColorDisabled} type='radio' id='violet' name='wax-color' className='form1-radio' onClick={handleWaxColor} />
-                                    <img className='radio-img4' src={process.env.PUBLIC_URL + '/images/waxes/colors/z.jpg'} alt='wax color'></img>
+                                    <img className={isColorDisabled ? 'radio-img4-disabled' : 'radio-img4'} src={process.env.PUBLIC_URL + '/images/waxes/colors/z.jpg'} alt='wax color'></img>
                                 </label>
                             </div>
                         </div>
