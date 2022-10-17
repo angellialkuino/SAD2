@@ -2,27 +2,29 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './OrderForm5.css';
 
-function OrderForm5({ order, setOrder, items_array, receivalLink, setReceivalLink }) {
+function OrderForm5({ order, setOrder, items_array }) {
+    const [receivalLink, setReceivalLink] = useState('')
     const navigate = useNavigate();
-    const [isIncomplete, setIsIncomplete] = useState('')
+    const [isIncomplete, setIsIncomplete] = useState(true)
 
-    useEffect(()=>{
+    useEffect(() => {
         for (var key in order) {
-            if(order[key] == ''|| order[key]== null){
+            if (order[key] == '' || order[key] == null) {
                 return navigate("/form/order-form-1");
             }
         }
-    },[])
+    }, [])
 
     useEffect(() => {
-        // console.log(order);
+        console.log(order);
         // console.log(items_array);
-        if (order.claim_type === '' || order.order_deadline === '') {
-            setIsIncomplete(true);
-        }
-        else if (order.claim_type !== '' || order.order_deadline !== '') {
+        if (order.hasOwnProperty('claim_type') && order.hasOwnProperty('order_deadline')) {
             setIsIncomplete(false);
         }
+        else {
+            setIsIncomplete(true);
+        }
+        console.log(isIncomplete);
     }, [order, items_array, receivalLink]);
 
     const handleDeadline = (e) => {
@@ -40,6 +42,13 @@ function OrderForm5({ order, setOrder, items_array, receivalLink, setReceivalLin
                 claim_type: e.target.id
             };
         });
+        if (e.target.id === 'pickup') {
+            setReceivalLink('/form/order-pickup');
+        }
+        else if (e.target.id === 'delivery') {
+            setReceivalLink('/form/shipping-address');
+        }
+        console.log(receivalLink);
     }
 
     const handleNext = (e) => {
@@ -47,13 +56,6 @@ function OrderForm5({ order, setOrder, items_array, receivalLink, setReceivalLin
             window.alert('Incomplete form fields')
             e.preventDefault();
         }
-        else if (order.claim_type == 'pickup') {
-            navigate('/form/order-pickup')
-        }
-        else if (order.claim_type == 'delivery') {
-            navigate('/form/shipping-address')
-        }
-        e.preventDefault();
     }
 
     return (
@@ -94,7 +96,7 @@ function OrderForm5({ order, setOrder, items_array, receivalLink, setReceivalLin
                 </div>
                 <div className='form1-footer'>
                     <Link to='/form/check-order' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
-                    <button onClick={handleNext} className="rounded-pill btn btn-info fw-bold nav-hover">Next</button>
+                    <Link to={receivalLink} onClick={handleNext} className="rounded-pill btn btn-info fw-bold nav-hover">Next</Link>
                 </div>
             </div>
         </>
