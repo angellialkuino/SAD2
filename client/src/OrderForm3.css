@@ -5,3 +5,45 @@
     margin-bottom: 2rem;
     flex-flow: row wrap
 }
+
+.row-group {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.checkbox-circle {
+    border-radius: 50%;
+    vertical-align: middle;
+    border: 1px solid #53c46d;
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+    cursor: pointer;
+    margin: 0.2rem;
+    padding: 0.5rem;
+}
+
+.checkbox-circle:hover {
+    cursor: pointer;
+    outline: 2px solid #179ad3;
+}
+
+.checkbox-circle:checked {
+    background-color: #53c46d;
+}
+
+.radio-img {
+    height: 150px;
+    width: 150px;
+    border-radius: 2rem;
+}
+
+.radio-img-disabled {
+    height: 150px;
+    width: 150px;
+    border-radius: 2rem;
+    filter: brightness(60%);
+}

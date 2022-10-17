@@ -466,6 +466,8 @@ function OrderForm2({ sumTotal, setSumTotal, order, setOrder, items_array, setIt
                     <input type="checkbox" value="5" checked={e3Checked} className={!checked ? 'checkbox-circle1' : 'checkbox-circle'} onChange={handleEnvelopeLock} disabled={!checked} />Envelope Lock
                 </div>
                 {(!hidden1 || !hidden2) ? <OrderForm3
+                    hidden1={hidden1}
+                    hidden2={hidden2}
                     order={order}
                     setOrder={setOrder}
                     items_array={items_array}
