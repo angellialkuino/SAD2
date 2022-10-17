@@ -5,7 +5,7 @@ const uuid = require('uuid');
 exports.custOrders = async (custId) => {
     await db.transaction( async (trx) => {
         orders = await trx("order")
-                        .select("order_id")
+                        .select("order_id","order_status")
                         .where({user_id: custId});
     });
 

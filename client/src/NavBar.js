@@ -32,7 +32,10 @@ function NavBar() {
     },[])
 
     return (
-        <>{render && <>
+        <>
+        {!render && <h1>Please Connect To Server</h1>}
+        
+        {render && <>
             <nav className='nav'>
                 <Link to="/" className="navbar-brand nav-link site-title nav-hover">Crafter's Haven</Link>
                 <ul>
