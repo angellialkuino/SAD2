@@ -53,9 +53,9 @@ function App() {
             font_style: '',
             content_link: '',
             num_of_invites: 0,
-            peg_link: '',
-            order_deadline: '',
-            claim_type: ''
+            peg_link: ''
+            // order_deadline: '',
+            // claim_type: ''
         }
     )
 

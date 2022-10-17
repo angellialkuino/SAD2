@@ -17,6 +17,7 @@ function OrderForm2({ sumTotal, setSumTotal, order, setOrder, items_array, setIt
     const [headerTextChecked, setHeaderTextChecked] = useState(false);
 
     useEffect(() => {
+        console.log(order);
         for (var key in order) {
             if(order[key] == ''|| order[key]== null){
                 return navigate("/form/order-form-1");
