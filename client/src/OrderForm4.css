@@ -61,15 +61,7 @@
     width: 100px;
     border-radius: 2rem;
     margin: 0.5rem;
-    filter: brightness(30%);
-}
-
-.radio-img4:disabled {
-    height: 100px;
-    width: 100px;
-    border-radius: 2rem;
-    margin: 0.5rem;
-    filter: brightness(30%);
+    filter: brightness(50%);
 }
 
 .small-square-button-4 {

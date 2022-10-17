@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { Link,useOutletContext,useNavigate } from 'react-router-dom';
+import { Link, useOutletContext, useNavigate } from 'react-router-dom';
 import './Downpayment.css';
 import Axios from 'axios';
 
@@ -9,9 +9,9 @@ function Downpayment({ order, setOrder, items_array, setItems_array, payment_met
     const errRef = useRef();
     const [errMsg, setErrMsg] = useState('');
     const additionalFees = useRef();
-    const [lessMin, setLessMin] =useState(0);
-    const [rushFee, setRushFee] =useState(0);
-    const [finalTotal, setFinalTotal] =useState(0);
+    const [lessMin, setLessMin] = useState(0);
+    const [rushFee, setRushFee] = useState(0);
+    const [finalTotal, setFinalTotal] = useState(0);
 
 
     useEffect(() => 
@@ -32,15 +32,15 @@ function Downpayment({ order, setOrder, items_array, setItems_array, payment_met
         if (order.num_of_invites < 30) {
             setLessMin(1500);
             //sumTotal.current += 1500;
-        }else{
+        } else {
             setLessMin(0);
 
         }
-            
+
 
     }, []);
 
-    useEffect(()=>{
+    useEffect(() => {
         let date1 = new Date().toJSON().slice(0, 10);
         let date2 = order.order_deadline;
         const date1new = new Date(date1);
@@ -49,14 +49,14 @@ function Downpayment({ order, setOrder, items_array, setItems_array, payment_met
         let Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
         if (Difference_In_Days < 14) {
             //sumTotal.current += sumTotal.current * 0.40;
-        setRushFee(((sumTotal*order.num_of_invites)+lessMin )* 0.40,
-        setFinalTotal(((sumTotal*order.num_of_invites)+lessMin+rushFee)));
-        }else{
-        setFinalTotal(((sumTotal*order.num_of_invites)+lessMin+rushFee));
+            setRushFee(((sumTotal * order.num_of_invites) + lessMin) * 0.40,
+                setFinalTotal(((sumTotal * order.num_of_invites) + lessMin + rushFee)));
+        } else {
+            setFinalTotal(((sumTotal * order.num_of_invites) + lessMin + rushFee));
         }
-        
 
-    },[lessMin])
+
+    }, [lessMin])
 
     const handleSubmitOrder = async (e) => {
         e.preventDefault();
@@ -75,13 +75,13 @@ function Downpayment({ order, setOrder, items_array, setItems_array, payment_met
             console.log(response.data.order_id);
             setItems_array([
                 { item_id: 'm1', item_name: 'page', price: 30, quantity: 2 },
-                { item_id: 't1', item_name: 'plain print', price: 30, type:'all text' },
+                { item_id: 't1', item_name: 'plain print', price: 30, type: 'all text' },
                 { item_id: 'e1', item_name: 'envelope', price: 30 },
             ]);
             Object.keys(order).forEach(key => {
                 order[key] = "";
-              });
-            navigate("/customer/order-payment", {state: response.data.order_id});
+            });
+            navigate("/customer/order-payment", { state: response.data.order_id });
         } catch (err) {
             if (!err?.response) {
                 setErrMsg(err.response.data.message);
@@ -141,6 +141,7 @@ function Downpayment({ order, setOrder, items_array, setItems_array, payment_met
                         </form>
                     </div>
                 </div>
+                <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>{errMsg}</p>
                 <div className="form1-footer">
                     <Link to='/form/order-form-5' className="rounded-pill btn btn-info fw-bold nav-hover">Back</Link>
                     <button className="rounded-pill btn btn-info fw-bold nav-hover" onClick={handleSubmitOrder}>Next</button>
