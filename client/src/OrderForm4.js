@@ -7,7 +7,7 @@ import { RunningPrice } from "./RunningPrice";
 function OrderForm4({ order, items_array, setItems_array, sumTotal, setSumTotal }) {
 
     const [toggleState, setToggleState] = useState(1);
-    const [isColorDisabled,setIsColorDisabled] = useState(true);
+    const [isColorDisabled, setIsColorDisabled] = useState(true);
 
     const toggleTab = (index) => {
         setToggleState(index);
@@ -76,7 +76,7 @@ function OrderForm4({ order, items_array, setItems_array, sumTotal, setSumTotal 
     }
 
     const handleDriedFlower = (e) => {
-        
+
         if (e.target.id === 'no flower') {
             setItems_array(prevState =>
                 prevState.filter(item => {
