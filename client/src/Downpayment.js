@@ -85,6 +85,7 @@ function Downpayment({ order, setOrder, items_array, setItems_array, payment_met
             delete order.date_ordered;
             delete order.order_status;
             delete order.user_id;
+            localStorage.clear();
 
             navigate("/customer/order-payment", { state: response.data.order_id });
         } catch (err) {
