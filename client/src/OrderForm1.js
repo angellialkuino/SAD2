@@ -9,6 +9,8 @@ const OrderForm1 = ({ order, setOrder, items_array, setItems_array }) => {
         setOrder((prevState) => {
             return {
                 ...prevState,
+                invite_type: localStorage.getItem("typeInput"),
+                material: localStorage.getItem("materialInput"),
                 motif: localStorage.getItem("motifInput"),
                 event_date: localStorage.getItem("dateInput"),
                 invite_title: localStorage.getItem("titleInput"),
@@ -21,7 +23,7 @@ const OrderForm1 = ({ order, setOrder, items_array, setItems_array }) => {
     }, []);
 
     useEffect(() => {
-        // console.log(order)
+        console.log(order)
 
         if (order.content_link === '' || order.event_date === '' || order.font_style === '' || order.invite_title === '' || order.invite_type === '' || order.material === '' || order.motif === '' || order.num_of_invites === 0 || order.peg_link === '') {
             setIsIncomplete(true);
@@ -43,9 +45,10 @@ const OrderForm1 = ({ order, setOrder, items_array, setItems_array }) => {
         setOrder((prevState) => {
             return {
                 ...prevState,
-                invite_type: e.target.value
+                invite_type: e.target.id
             };
         });
+        localStorage.setItem("typeInput", e.target.id);
     }
     const handleMaterial = (e) => {
         //console.log(`array:${items_array}`);
@@ -74,6 +77,7 @@ const OrderForm1 = ({ order, setOrder, items_array, setItems_array }) => {
                 })));
             console.log(items_array);
         }
+        localStorage.setItem("materialInput", e.target.id);
     }
 
     return (
@@ -83,28 +87,28 @@ const OrderForm1 = ({ order, setOrder, items_array, setItems_array }) => {
                 <div className='boxes'>
                     <div className='square-button-with-text'>
                         <label>
-                            <input type='radio' id='wedding' name='invite-type' value='wedding' className='form1-radio' required onClick={handleInviteType} />
+                            <input type='radio' checked={order.invite_type === 'wedding' ? true : false} id='wedding' name='invite-type' value='wedding' className='form1-radio' required onChange={handleInviteType} />
                             <img className='radio-img' src={process.env.PUBLIC_URL + '/images/wedding.jpg'} alt="wedding"></img>
                         </label>
                         <h5>Wedding</h5>
                     </div>
                     <div className='square-button-with-text'>
                         <label>
-                            <input type='radio' id='birthday' name='invite-type' value='birthday' className='form1-radio' onClick={handleInviteType} />
+                            <input type='radio' checked={order.invite_type === 'birthday' ? true : false} id='birthday' name='invite-type' value='birthday' className='form1-radio' onChange={handleInviteType} />
                             <img className='radio-img' src={process.env.PUBLIC_URL + '/images/birthday.jpg'} alt="birthday"></img>
                         </label>
                         <h5>Birthday</h5>
                     </div>
                     <div className='square-button-with-text'>
                         <label>
-                            <input type='radio' id='debut' name='invite-type' value='debut' className='form1-radio' onClick={handleInviteType} />
+                            <input type='radio' checked={order.invite_type === 'debut' ? true : false} id='debut' name='invite-type' value='debut' className='form1-radio' onChange={handleInviteType} />
                             <img className='radio-img' src={process.env.PUBLIC_URL + '/images/debut.jpg'} alt="debut"></img>
                         </label>
                         <h5>Debut</h5>
                     </div>
                     <div className='square-button-with-text'>
                         <label>
-                            <input type='radio' id='other' name='invite-type' value='other' className='form1-radio' onClick={handleInviteType} />
+                            <input type='radio' checked={order.invite_type === 'other' ? true : false} id='other' name='invite-type' value='other' className='form1-radio' onChange={handleInviteType} />
                             <img className='radio-img' src={process.env.PUBLIC_URL + '/images/other.jpg'} alt="other"></img>
                         </label>
                         <h5>Other</h5>
@@ -114,14 +118,14 @@ const OrderForm1 = ({ order, setOrder, items_array, setItems_array }) => {
                 <div className='boxes'>
                     <div className='square-button-with-text'>
                         <label>
-                            <input type='radio' id='paper' name='material' value='30' className='form1-radio' required onClick={handleMaterial} />
+                            <input type='radio' checked={order.material === 'paper' ? true : false} id='paper' name='material' value='30' className='form1-radio' required onChange={handleMaterial} />
                             <img className='radio-img' src={process.env.PUBLIC_URL + '/images/paper.jpg'} alt="paper"></img>
                         </label>
                         <h5>Paper</h5>
                     </div>
                     <div className='square-button-with-text'>
                         <label>
-                            <input type='radio' id='acrylic' name='material' value='180' className='form1-radio' onClick={handleMaterial} />
+                            <input type='radio' checked={order.material === 'acrylic' ? true : false} id='acrylic' name='material' value='180' className='form1-radio' onChange={handleMaterial} />
                             <img className='radio-img' src={process.env.PUBLIC_URL + '/images/acrylic.jpg'} alt="acrylic"></img>
                         </label>
                         <h5>Acrylic</h5>

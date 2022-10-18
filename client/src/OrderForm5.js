@@ -8,6 +8,16 @@ function OrderForm5({ order, setOrder, items_array }) {
     const [isIncomplete, setIsIncomplete] = useState(true)
 
     useEffect(() => {
+        setOrder((prevState) => {
+            return {
+                ...prevState,
+                order_deadline: localStorage.getItem("deadlineInput"),
+                claim_type: localStorage.getItem("claimInput")
+            };
+        });
+    }, []);
+
+    useEffect(() => {
         for (var key in order) {
             if (order[key] == '' || order[key] == null) {
                 return navigate("/form/order-form-1");
@@ -34,6 +44,7 @@ function OrderForm5({ order, setOrder, items_array }) {
                 order_deadline: e.target.value
             };
         });
+        localStorage.setItem("deadlineInput", e.target.value);
     }
     const handleClaim = (e) => {
         setOrder((prevState) => {
@@ -49,6 +60,7 @@ function OrderForm5({ order, setOrder, items_array }) {
             setReceivalLink('/form/shipping-address');
         }
         console.log(receivalLink);
+        localStorage.setItem("claimInput", e.target.id);
     }
 
     const handleNext = (e) => {
@@ -68,6 +80,7 @@ function OrderForm5({ order, setOrder, items_array }) {
 
                 <div className='label-textfield'>
                     <input
+                        value={order.order_deadline}
                         type='date'
                         id="order-finish"
                         autoComplete="off"
@@ -88,8 +101,14 @@ function OrderForm5({ order, setOrder, items_array }) {
                     <div className="Order_Form_7-checkbox">
                         <form>
                             <div className='grid-container'>
-                                <div className='grid-item'><input type="radio" name="receival" id="delivery" className='checkbox-circle' required onClick={handleClaim} />Delivery</div>
-                                <div className='grid-item'><input type="radio" name="receival" id="pickup" className='checkbox-circle' onClick={handleClaim} />Pickup at Store</div>
+                                <div className='grid-item'>
+                                    <input type="radio" checked={order.claim_type === 'delivery' ? true : false} name="receival" id="delivery" className='checkbox-circle' required onClick={handleClaim}
+                                    />Delivery
+                                </div>
+                                <div className='grid-item'>
+                                    <input type="radio" checked={order.claim_type === 'pickup' ? true : false} name="receival" id="pickup" className='checkbox-circle' onClick={handleClaim}
+                                    />Pickup at Store
+                                </div>
                             </div>
                         </form>
                     </div>

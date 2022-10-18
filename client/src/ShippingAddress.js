@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { Link,useOutletContext,useNavigate } from 'react-router-dom';
+import { Link, useOutletContext, useNavigate } from 'react-router-dom';
 import Axios from "axios";
 import './ShippingAddress.css';
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const FULLNAME_REGEX = /(^[A-Za-z]{3,16})([ ]{0,1})([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})/; //was USER_REGEX
 const PHONENUMBER_REGEX = /^[0][1-9]\d{9}$|^[1-9]\d{9}$/g;
 
-function ShippingAddress({order}) {
+function ShippingAddress({ order }) {
     const navigate = useNavigate();
     const userID = useOutletContext();
 
@@ -31,11 +31,19 @@ function ShippingAddress({order}) {
     const [success, setSuccess] = useState(false);
 
     useEffect(() => {
+        setPhoneNumber(localStorage.getItem("numberInput"))
+        setAddress(localStorage.getItem("addressInput"))
+        setBarangay(localStorage.getItem("barangayInput"))
+        setPostalCode(localStorage.getItem("postalInput"))
+    }, []);
+
+    useEffect(() => {
         for (var key in order) {
-            if(order[key] == ''|| order[key]== null){
+            if (order[key] == '' || order[key] == null) {
                 return navigate("/form/order-form-1");
             }
-    }},[])
+        }
+    }, [])
 
     useEffect(() => {
         setValidPhone(PHONENUMBER_REGEX.test(phoneNumber));
@@ -90,7 +98,10 @@ function ShippingAddress({order}) {
                     <input type='text'
                         id="phone_number"
                         autoComplete="off"
-                        onChange={(e) => setPhoneNumber(e.target.value)}
+                        onChange={(e) => {
+                            setPhoneNumber(e.target.value)
+                            localStorage.setItem("numberInput", e.target.value);
+                        }}
                         value={phoneNumber}
                         required
                         onFocus={() => setPhoneFocus(true)}
@@ -107,7 +118,10 @@ function ShippingAddress({order}) {
                     <input
                         type="text"
                         id="address"
-                        onChange={(e) => setAddress(e.target.value)}
+                        onChange={(e) => {
+                            setAddress(e.target.value)
+                            localStorage.setItem("addressInput", e.target.value);
+                        }}
                         value={address}
                         required
                         onFocus={() => setAddressFocus(true)}
@@ -121,7 +135,10 @@ function ShippingAddress({order}) {
                     <input
                         type="text"
                         id="barangay"
-                        onChange={(e) => setBarangay(e.target.value)}
+                        onChange={(e) => {
+                            setBarangay(e.target.value)
+                            localStorage.setItem("barangayInput", e.target.value);
+                        }}
                         value={barangay}
                         required
                         onFocus={() => setBarangayFocus(true)}
@@ -134,7 +151,10 @@ function ShippingAddress({order}) {
                     <input
                         type="text"
                         id="postal-code"
-                        onChange={(e) => setPostalCode(e.target.value)}
+                        onChange={(e) => {
+                            setPostalCode(e.target.value)
+                            localStorage.setItem("postalInput", e.target.value);
+                        }}
                         value={postalCode}
                         required
                         onFocus={() => setPostalCodeFocus(true)}
