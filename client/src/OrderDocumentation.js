@@ -42,25 +42,23 @@ export default function OrderDocumentation() {
    
 
     const addEntry = async () => {
-
-        await Axios.post('http://localhost:5000/api/order/new-log-entry',
-            { 
-                order_id: orderID,
-                date: new Date().toISOString().slice(0, 19).replace('T', ' '),
-                description: description
-            },
-            {withCredentials: true }
-        ).then((res) => {
-            setOrderDocs([...orderDocs,{
-                order_id: orderID,
-                date: date,
-                description: description}]);
-            setDate(new Date().toISOString().slice(0, 19).replace('T', ' '));
-            setDescription("");            
-        });
-
-        console.log(date);
-
+        if(description != "" && description != null ){
+            await Axios.post('http://localhost:5000/api/order/new-log-entry',
+                { 
+                    order_id: orderID,
+                    date: new Date().toISOString().slice(0, 19).replace('T', ' '),
+                    description: description
+                },
+                {withCredentials: true }
+            ).then((res) => {
+                setOrderDocs([...orderDocs,{
+                    order_id: orderID,
+                    date: date,
+                    description: description}]);
+                setDate(new Date().toISOString().slice(0, 19).replace('T', ' '));
+                setDescription("");            
+            });
+            }
     }
 
     return (

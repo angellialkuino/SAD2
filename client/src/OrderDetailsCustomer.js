@@ -78,10 +78,8 @@ function OrderDetailsCustomer() {
     useEffect(()=>{
 
         if (Object.keys(orderInfo).length !== 0){
-        //console.log(`order info: \n${JSON.stringify(orderInfo)}`);
-
-            //setOrderID(orderInfo.order.order_id);
-            // setUserID(orderInfo.order.user_id);
+            setUserInfo(orderInfo.user_info);
+            
             setInviteType(orderInfo.order.invite_type);
             setMaterial(orderInfo.order.material);
             setEventDate(orderInfo.order.event_date.slice(0, 10));
@@ -244,11 +242,12 @@ function OrderDetailsCustomer() {
                         <h5>Invites Should Be Finished by:</h5>
                         <p>{orderDeadline}</p>
                         <h3>Status: {orderStatus}</h3>
+                        {orderStatus != 'Canceled' && orderStatus != 'Completed' && <>
                         <div className="cancel-button"><button className='button' onClick={cancelOrder}>Cancel Order</button></div>
                         <div className="cancelation-clause">
                             <p>*In case of cancellation, downpayment will be forfeited. Client will also be charged P1,500.00 for layout fee. </p>
                             <p>*If the order has been completed, client will be charged full cost. </p>
-                        </div>
+                        </div> </>}
                     </div>
                 </div>
             </div>

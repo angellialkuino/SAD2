@@ -361,7 +361,7 @@ const updateBillingInfo = (arr)=> {
                         <h5>Invites Should Be Finished by:</h5>
                         <p>{orderDeadline.slice(0, 10)}</p>
 
-                        <select name="orderStatus" value={orderStatus} onChange={updateOrderStatus}>
+                        <select className="input-field" name="orderStatus" value={orderStatus} onChange={updateOrderStatus}>
                             <option value="Canceled" disabled hidden>Canceled</option>
                             <option value="Pending">Pending</option>
                             <option value="Creating">Creating</option>
@@ -369,9 +369,10 @@ const updateBillingInfo = (arr)=> {
                             <option value="Ready to Claim!">Ready to Claim!</option>
                             <option value="Completed">Completed</option>
                         </select>
+                        {orderStatus != 'Canceled' && orderStatus != 'Completed' && <>
                         <div className='cancel-button order-status-button-row'>
                             <button onClick={cancelOrder} className='button'>Cancel Order</button>
-                        </div>
+                        </div> </>}
                     </div>
                 </div>
                 

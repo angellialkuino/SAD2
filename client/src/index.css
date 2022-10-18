@@ -8,7 +8,7 @@
 
 .feed-frame {
     border-radius: 40px;
-    background: #d5e0e6;
+    background: #d8ecf5;
     padding: 10px;
     width: 600px;
     height: fit-content;
@@ -97,7 +97,7 @@ nav ul {
     display: flex;
     padding: 2rem;
     margin: 2rem auto auto auto;
-    background-color: #d5e0e6;
+    background-color: #d8ecf5;
     height: 800px;
     width: 1600px;
     border-radius: 2rem;
@@ -139,7 +139,7 @@ nav ul {
     display: flex;
     padding: 2rem;
     margin: 2rem auto auto auto;
-    background-color: #d5e0e6;
+    background-color: #d8ecf5;
     height: 500px;
     width: 500px;
     border-radius: 20rem;

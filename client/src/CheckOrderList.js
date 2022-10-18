@@ -5,7 +5,7 @@ export const CheckOrderList = ({ order, items_array, sumTotal }) => {
         <>
             <div className='check-order-list'>
                 <div>
-                    <h5>Main Order</h5>
+                    <h5>Order Info</h5>
                     {
                         <ul>
                             <li>Invitation Type: {order.invite_type}</li>

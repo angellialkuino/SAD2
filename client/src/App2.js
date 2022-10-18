@@ -61,8 +61,8 @@ function App() {
 
     const [items_array, setItems_array] = useState([
         { item_id: 'm1', item_name: 'page', price: 30, quantity: 2 },
-        { item_id: 't1', item_name: 'plain print', price: 30, type:'all text' },
         { item_id: 'e1', item_name: 'envelope', price: 30 },
+        { item_id: 't1', item_name: 'plain print', price: 30, type:'all text' }
     ])
 
     return <React.Fragment>
