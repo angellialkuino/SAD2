@@ -4,6 +4,22 @@ import './OrderForm1.css';
 
 const OrderForm1 = ({ order, setOrder, items_array, setItems_array }) => {
     const [isIncomplete, setIsIncomplete] = useState(true)
+    //set input fields for text
+    useEffect(() => {
+        setOrder((prevState) => {
+            return {
+                ...prevState,
+                motif: localStorage.getItem("motifInput"),
+                event_date: localStorage.getItem("dateInput"),
+                invite_title: localStorage.getItem("titleInput"),
+                font_style: localStorage.getItem("fontInput"),
+                content_link: localStorage.getItem("contentInput"),
+                num_of_invites: localStorage.getItem("numberInput"),
+                peg_link: localStorage.getItem("pegInput"),
+            };
+        });
+    }, []);
+
     useEffect(() => {
         // console.log(order)
 
@@ -32,7 +48,7 @@ const OrderForm1 = ({ order, setOrder, items_array, setItems_array }) => {
         });
     }
     const handleMaterial = (e) => {
-       //console.log(`array:${items_array}`);
+        //console.log(`array:${items_array}`);
         setOrder((prevState) => {
             return {
                 ...prevState,
@@ -46,16 +62,16 @@ const OrderForm1 = ({ order, setOrder, items_array, setItems_array }) => {
                     item_id: 'm2',
                     item_name: 'acrylic',
                     price: 180
-            }],
-            setItems_array(items_array.map(obj => {                
-                if (obj.item_id === 'm1') {
-                    return {
-                        ...obj,
-                        quantity: 3
-                    };
-                }
-                return obj;
-            })));
+                }],
+                setItems_array(items_array.map(obj => {
+                    if (obj.item_id === 'm1') {
+                        return {
+                            ...obj,
+                            quantity: 3
+                        };
+                    }
+                    return obj;
+                })));
             console.log(items_array);
         }
     }
@@ -116,6 +132,7 @@ const OrderForm1 = ({ order, setOrder, items_array, setItems_array }) => {
                         <h5>Date of Event</h5>
                         <input
                             required
+                            value={order.event_date}
                             type='date'
                             id="event_date"
                             autoComplete="off"
@@ -126,6 +143,7 @@ const OrderForm1 = ({ order, setOrder, items_array, setItems_array }) => {
                                         event_date: e.target.value
                                     };
                                 });
+                                localStorage.setItem("dateInput", e.target.value);
                             }}
 
                             className='profile-textfield' />
@@ -134,6 +152,7 @@ const OrderForm1 = ({ order, setOrder, items_array, setItems_array }) => {
                         <h5>Motif</h5>
                         <input
                             required
+                            value={order.motif}
                             type='text'
                             id="motif"
                             autoComplete="off"
@@ -144,6 +163,7 @@ const OrderForm1 = ({ order, setOrder, items_array, setItems_array }) => {
                                         motif: e.target.value
                                     };
                                 });
+                                localStorage.setItem("motifInput", e.target.value);
                             }}
 
                             className='profile-textfield' />
@@ -152,6 +172,7 @@ const OrderForm1 = ({ order, setOrder, items_array, setItems_array }) => {
                         <h5>Invitation Title</h5>
                         <input
                             required
+                            value={order.invite_title}
                             type='text'
                             id="invitation_title"
                             autoComplete="off"
@@ -162,6 +183,7 @@ const OrderForm1 = ({ order, setOrder, items_array, setItems_array }) => {
                                         invite_title: e.target.value
                                     };
                                 });
+                                localStorage.setItem("titleInput", e.target.value);
                             }}
 
                             className='profile-textfield' />
@@ -170,6 +192,7 @@ const OrderForm1 = ({ order, setOrder, items_array, setItems_array }) => {
                         <h5>Font Style</h5>
                         <input
                             required
+                            value={order.font_style}
                             type='text'
                             id="font"
                             autoComplete="off"
@@ -180,6 +203,7 @@ const OrderForm1 = ({ order, setOrder, items_array, setItems_array }) => {
                                         font_style: e.target.value
                                     };
                                 });
+                                localStorage.setItem("fontInput", e.target.value);
                             }}
 
                             className='profile-textfield' />
@@ -188,6 +212,7 @@ const OrderForm1 = ({ order, setOrder, items_array, setItems_array }) => {
                         <h5>Content Link</h5>
                         <input
                             required
+                            value={order.content_link}
                             type='url'
                             id="content_link"
                             autoComplete="off"
@@ -198,6 +223,7 @@ const OrderForm1 = ({ order, setOrder, items_array, setItems_array }) => {
                                         content_link: e.target.value
                                     };
                                 });
+                                localStorage.setItem("contentInput", e.target.value);
                             }}
 
                             className='profile-textfield' />
@@ -206,6 +232,7 @@ const OrderForm1 = ({ order, setOrder, items_array, setItems_array }) => {
                         <h5>Number of Invites</h5>
                         <input
                             required
+                            value={order.num_of_invites}
                             type='number'
                             min='1'
                             id="invite_number"
@@ -217,6 +244,7 @@ const OrderForm1 = ({ order, setOrder, items_array, setItems_array }) => {
                                         num_of_invites: parseInt(e.target.value)
                                     };
                                 });
+                                localStorage.setItem("numberInput", e.target.value);
                             }}
 
                             className='profile-textfield' />
@@ -225,6 +253,7 @@ const OrderForm1 = ({ order, setOrder, items_array, setItems_array }) => {
                         <h5>Peg Link</h5>
                         <input
                             required
+                            value={order.peg_link}
                             type='url'
                             id="peg_link"
                             autoComplete="off"
@@ -235,6 +264,7 @@ const OrderForm1 = ({ order, setOrder, items_array, setItems_array }) => {
                                         peg_link: e.target.value
                                     };
                                 });
+                                localStorage.setItem("pegInput", e.target.value);
                             }}
 
                             className='profile-textfield' />
